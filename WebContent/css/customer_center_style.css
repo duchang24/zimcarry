@@ -432,6 +432,60 @@ etc
 }
 
 @media screen and (max-width: 800px) {
+	
+	/* sub_page_common */
+	.sub_content_wrap { 
+		padding-bottom: 0; 
+		margin-bottom: 30px; 
+	}
+	.sub_content_wrap .sub_title { 
+		width: fit-content; 
+		height: 70px; 
+		margin: 0; 
+		padding: 150px 0 50px 4%; 
+		font-size: 26px 
+	}
+	.sub_content_wrap .sub_content .sub_navi { 
+		position: static; 
+		width: 100%; 
+		left: 0; 
+		text-align: center; 
+	}
+	.sub_content_wrap .sub_content .sub_navi ul li { 
+		width: 34%; 
+	}
+	.sub_content_wrap .sub_content .sub_navi ul li a { 
+		height: 75px; 
+		border: none; 
+		border-radius: 0px; 
+		border-top: 1px solid #ddd; 
+		border-bottom: 1px solid #ddd; 
+	}
+	.sub_content_wrap .sub_content .sub_navi ul li:first-child a { 
+		border-radius: 0px; 
+	}
+	.sub_content_wrap .sub_content .sub_navi ul li:nth-child(2) a { 
+		border-right: 1px solid #ddd; border-left: 1px solid #ddd; 
+	}
+	.sub_content_wrap .sub_content .sub_navi ul li:last-child a { 
+		border-radius: 0px; 
+	}
+	
+	.sub_content_wrap .sub_content .sub_indicator { 
+		height: 60px; 
+		padding-top: 50px;
+		border-bottom: 1px solid #ddd; 
+	}
+	.sub_content_wrap .sub_content .sub_indicator h2 { 
+		float: left; 
+		padding-left: 4%; 
+		font-size: 34px; 
+	}
+	.sub_content_wrap .sub_content .button_wrap { 
+		margin: 40px 0; 
+		text-align: right;
+	}
+	/* sub_page_common end */
     
     .page_wrap {
         margin-top: 20px;

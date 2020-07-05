@@ -43,6 +43,7 @@ public class NoticeDAO {
 		return noticeList;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public String noticeDataToJSON(String no_idx) {
 		String no_title = "", no_content = "", no_writer = "", no_writedate = "", no_hit = "", no_file = "", no_hidden = "";
 		try {
