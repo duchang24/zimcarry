@@ -25,7 +25,7 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-      	<div class="notice_list notice">
+      	<div class="list_up notice">
       		<table>
       			<thead>
       				<tr>
@@ -51,7 +51,7 @@
       			</tbody>
       		</table>
       	</div>
-      	<div class="notice_content notice">
+      	<div class="list_down notice">
       		<form method="post" action="./data/write_edit_ok.jsp" onsubmit="return checkForm()">
       			<p>제목 : <input type="text" name="noTitle" id="no_title"></p>
       			<p>작성자 : <input type="text" name="noWriter" id="no_writer"></p>

@@ -146,5 +146,4 @@ public class NoticeDAO {
 		
 		return jobj.toString();
 	}
-	
 }
