@@ -60,4 +60,8 @@ public class NoticeDTO {
 	public void setNoHidden(String noHidden) {
 		this.noHidden = noHidden;
 	}
+	@Override
+	public String toString() {
+		return "NoticeDTO [ noIdx : " + noIdx + ", noTitle : " + noTitle + ", noContent : " + noContent.substring(0, (int)(noContent.length() / 2)) + "..., noWriter : " + noWriter + ", noWritedate : " + noWritedate + ", noHit : " + noHit + ", noFile : " + noFile + ", noHidden : " + noHidden + " ]";
+	}
 }
