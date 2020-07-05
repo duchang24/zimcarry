@@ -10,31 +10,46 @@ import org.json.simple.JSONObject;
 
 import com.zimcarry.db.DBConn;
 
-
 public class NoticeDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	public List<NoticeDTO> getNoticeList() {
+	public List<NoticeDTO> getNoticeList(String allList) {
 		
 		List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden FROM tb_notice";
+			String sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden FROM tb_notice ORDER BY no_idx DESC";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			while (rs.next()) {
-				NoticeDTO notice = new NoticeDTO();
-				notice.setNoIdx(rs.getLong("no_idx"));
-				notice.setNoTitle(rs.getString("no_title"));
-				notice.setNoWriter(rs.getString("no_writer"));
-				notice.setNoWritedate(rs.getDate("no_writedate"));
-				notice.setNoHit(rs.getLong("no_hit"));
-				notice.setNoHidden(rs.getString("no_hidden"));
-				noticeList.add(notice);
+			if (allList.equals("yes")) {
+				while (rs.next()) {
+					NoticeDTO notice = new NoticeDTO();
+					notice.setNoIdx(rs.getLong("no_idx"));
+					notice.setNoTitle(rs.getString("no_title"));
+					notice.setNoWriter(rs.getString("no_writer"));
+					notice.setNoWritedate(rs.getDate("no_writedate"));
+					notice.setNoHit(rs.getLong("no_hit"));
+					notice.setNoHidden(rs.getString("no_hidden"));
+					noticeList.add(notice);
+				}
+			} else if (allList.equals("no")) {
+				while (rs.next()) {
+					if (rs.getString("no_hidden").equals("n")) {
+						NoticeDTO notice = new NoticeDTO();
+						notice.setNoIdx(rs.getLong("no_idx"));
+						notice.setNoTitle(rs.getString("no_title"));
+						notice.setNoWriter(rs.getString("no_writer"));
+						notice.setNoWritedate(rs.getDate("no_writedate"));
+						notice.setNoHit(rs.getLong("no_hit"));
+						notice.setNoHidden(rs.getString("no_hidden"));
+						noticeList.add(notice);
+					}
+				}
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -78,4 +93,5 @@ public class NoticeDAO {
 		
 		return jobj.toString();
 	}
+	
 }

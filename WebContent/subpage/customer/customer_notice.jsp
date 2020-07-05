@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%	request.setCharacterEncoding("UTF-8"); %>
+<%@ page isELIgnored="false" %>
+<%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%  request.setCharacterEncoding("utf-8"); %>
+<jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
+<c:set var="noticeList" value="${noticeDAO.getNoticeList('no')}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,13 +62,15 @@
                                 <th>작성일</th>
                                 <th>조회</th>
                             </tr>
-                            <tr>
-                                <td><%=no_idx%></td>
-                                <td><a href="./customer_notice_view.jsp?no_idx=<%=no_idx%>"><%=no_title%></a></td>
-                                <td><%=no_writer%></td>
-                                <td><%=no_writedate%></td>
-                                <td><%=no_hit%></td>
-                            </tr>
+                            <c:forEach var="notice" items="${noticeList}" varStatus="status">
+	                            <tr>
+	                                <td></td>
+	                                <td><a href="./customer_notice_view.jsp?no_idx=${notice.noIdx}">${notice.noTitle}</a></td>
+	                                <td>${notice.noWriter}</td>
+	                                <td>${notice.noWritedate}</td>
+	                                <td>${notice.noHit}</td>
+	                            </tr>
+                            </c:forEach>
                         </table>
                     </div>
                 </div>
