@@ -25,7 +25,7 @@
                 <div id="sub_content" class="box_inner sub_content">
                     <nav class="sub_navi">
                         <ul>
-                            <li><a href="./service_zimcarry.jsp" class="on">짐캐리란</a></li>
+                            <li><a href="./service_zimcarry.jsp">짐캐리란</a></li>
                             <li><a href="./service_delivery.jsp">운송서비스</a></li>
                             <li><a href="./service_carry.jsp">보관서비스</a></li>
                         </ul>
