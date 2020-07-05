@@ -34,6 +34,7 @@
       					<th>작성자</th>
       					<th>작성일</th>
       					<th>조회수</th>
+      					<th>숨김여부</th>
       				</tr>
       			</thead>
       			<tbody>
@@ -44,6 +45,7 @@
 	      					<td>${noticeItem.noWriter}</td>
 	      					<td>${noticeItem.noWritedate}</td>
 	      					<td>${noticeItem.noHit}</td>
+	      					<td>${noticeItem.noHidden}</td>
 	      				</tr>
       				</c:forEach>
       			</tbody>
@@ -51,13 +53,14 @@
       	</div>
       	<div class="notice_content notice">
       		<form method="post" action="./data/write_edit_ok.jsp" onsubmit="return checkForm()">
-      			<p>제목 : <input type="text" name="no_title" id="no_title"></p>
-      			<p>작성자 : <input type="text" name="no_writer" id="no_writer"></p>
+      			<p>제목 : <input type="text" name="noTitle" id="no_title"></p>
+      			<p>작성자 : <input type="text" name="noWriter" id="no_writer"></p>
       			<p>내용</p>
-      			<p><textarea name="no_content" id="no_content"></textarea></p>
-      			<p><input type="file" name="no_file"></p>
-      			<input type="hidden" value="" name="og_file" id="og_file">
-      			<p>게시글을 감추시겠습니까? <label for="no_hiddenyse">예 </label><input type="radio" name="no_hidden" id="no_hiddenyse" value="y"> <label for="no_hiddenno">아니요 </label><input type="radio" name="no_hidden" id="no_hiddenno" value="n"></p>
+      			<p><textarea name="noContent" id="no_content"></textarea></p>
+      			<p><input type="file" name="noFile"></p>
+      			<input type="hidden" value="" name="ogFile" id="og_file">
+      			<p>게시글을 감추시겠습니까? <label for="no_hiddenyse">예 </label><input type="radio" name="noHidden" id="no_hiddenyse" value="y"> <label for="no_hiddenno">아니요 </label><input type="radio" name="noHidden" id="no_hiddenno" value="n"></p>
+      			<input type="hidden" name="noIdx" id="noIdx">
       			<p id="btn_wrap">
       				<input type="submit" value="작성" id="btn_write" name="btn_write">
       			</p>

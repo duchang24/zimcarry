@@ -15,6 +15,60 @@ public class NoticeDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
+	public boolean insertNotice(NoticeDTO noticeDTO) {
+		try {
+			conn = DBConn.getConnection();
+			String sql = "INSERT INTO tb_notice (no_title, no_content, no_writer, no_file, no_hidden) VALUES (?, ?, ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noticeDTO.getNoTitle());
+			pstmt.setString(2, noticeDTO.getNoContent());
+			pstmt.setString(3, noticeDTO.getNoWriter());
+			pstmt.setString(4, noticeDTO.getNoFile());
+			pstmt.setString(5, noticeDTO.getNoHidden());
+			if (pstmt.executeUpdate() > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return false;
+	}
+	
+	public boolean editNotice(NoticeDTO noticeDTO) {
+		try {
+			conn = DBConn.getConnection();
+			if (noticeDTO.getNoFile() == null || noticeDTO.getNoFile().equals("")) {
+				String sql = "UPDATE tb_notice SET no_title = ?, no_content = ?, no_writer = ?, no_hidden = ? WHERE no_idx = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, noticeDTO.getNoTitle());
+				pstmt.setString(2, noticeDTO.getNoContent());
+				pstmt.setString(3, noticeDTO.getNoWriter());
+				pstmt.setString(4, noticeDTO.getNoHidden());
+				pstmt.setLong(5, noticeDTO.getNoIdx());
+			} else {
+				String sql = "UPDATE tb_notice SET no_title = ?, no_content = ?, no_writer = ?, no_file = ?, no_hidden = ? WHERE no_idx = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, noticeDTO.getNoTitle());
+				pstmt.setString(2, noticeDTO.getNoContent());
+				pstmt.setString(3, noticeDTO.getNoWriter());
+				pstmt.setString(4, noticeDTO.getNoFile());
+				pstmt.setString(5, noticeDTO.getNoHidden());
+				pstmt.setLong(6, noticeDTO.getNoIdx());
+			}
+			if (pstmt.executeUpdate() > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return false;
+	}
+	
+	
 	public List<NoticeDTO> getNoticeList(String allList) {
 		
 		List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
@@ -49,7 +103,6 @@ public class NoticeDAO {
 					}
 				}
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
