@@ -175,8 +175,8 @@
 		<%@ include file="../../common/popup.jsp" %>
 		<!-- pop-up end -->
 	</div>
-	<script src="../js/jquery-3.5.1.min.js"></script>
-	<script src="../js/customer.js"></script>
-   	<script src="../js/main.js"></script>
+	<script src="../../js/jquery-3.5.1.min.js"></script>
+	<script src="../../js/customer.js"></script>
+   	<script src="../../js/main.js"></script>
 </body>
 </html>

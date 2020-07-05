@@ -29,7 +29,7 @@
                             <li><a href="./customer_review.jsp" class="on">이용후기</a></li>
                         </ul>
                     </nav>
-                    <div class="sub_indicator box_inner"> https://github.com/duchang24/zimcarry.git ! [rejected] master -> master (fetch first)
+                    <div class="sub_indicator box_inner">
                         <h2>이용후기</h2>
                         <ul>
                             <li>Home</li>
@@ -107,8 +107,8 @@
    		<%@ include file="../../common/popup.jsp" %>
    		<!-- pop-up end -->
 	</div>
-	<script src="../js/jquery-3.5.1.min.js"></script>
-	<script src="../js/customer.js"></script>
-   	<script src="../js/main.js"></script>
+	<script src="../../js/jquery-3.5.1.min.js"></script>
+	<script src="../../js/customer.js"></script>
+   	<script src="../../js/main.js"></script>
 </body>
 </html>
