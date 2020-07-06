@@ -42,6 +42,7 @@
 			            <dl class="faq_list">
 			                <dt>
 			                    <p>예약을 취소 / 환불 받고 싶어요.</p>
+			                    <p>tnwjd</p>
 			                </dt>
 			                <dd style="display: none;">
 			                   <div class="big">A</div>
