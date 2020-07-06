@@ -11,7 +11,7 @@ public class DBConn {
 	public static Connection getConnection() {
 		Connection conn = null;
 		try {
-			String url = "jdbc:mariadb://127.0.0.1:3306/zimcarry";
+			String url = "jdbc:mariadb://210.100.221.140:3306/zimcarry";
 			String user = "root";
 			String pw = "1234";
 			Class.forName("org.mariadb.jdbc.Driver");
