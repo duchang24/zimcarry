@@ -15,27 +15,32 @@
 %>
 <!DOCTYPE html>
 <html lang="ko">
+
 <!-- head -->
 <%@ include file="./head.jsp" %>
 
 <style>
-	h3 { margin-bottom: 20px; }
-	.hotel_content { width: 90%; margin: 70px auto 60px; }
+	@import url("../assets/css/Z_style.css");
+	/* hotel */
+	/* .hotel_content { margin-top: 70px; } */
 	
-	.hotel_content #find_hotel { position: relative; }
-	.hotel_content #find_hotel input { width: 88%; height: 50px; padding: 10px; }
-	.hotel_content #find_hotel button { width: 10%; height: 50px; position: absolute; bottom: 0; right: 0; }
+	.hotel_content .hotel { width: 90%; min-height: 200px; margin: 0 auto 30px;	padding: 30px; border: 1px solid #cdcdcd; border-radius: 10px; background-color: #f6f6f6; box-shadow: 8px 8px 20px #ccc; }
+	.hotel_content .hotel_find div { position: relative; }
+	.hotel_content .hotel_find div input { width: 80%; height: 50px; padding: 10px; }
+	.hotel_content .hotel_find div button { width: 15%; height: 50px; position: absolute; bottom: 0; right: 0; }
 	
-	.hotel_content #hotel_table table { border: 3px solid gray; width: 100%; border-collapse: collapse; }
-	.hotel_content #hotel_table table th { border: 1px solid #ddd; height: 50px; text-align: center; font-size: 18px; }
-	.hotel_content #hotel_table table td { border: 1px solid #ddd; height: 35px; font-size: 16px; }
-	.hotel_content #hotel_table table tr:first-child th:nth-child(1) { width: 10%; }
-	.hotel_content #hotel_table table tr:first-child th:nth-child(2) { width: 20%; }
-	.hotel_content #hotel_table table tr:first-child th:nth-child(3) { width: 50%; }
-	.hotel_content #hotel_table table tr:first-child th:nth-child(4) { width: 20%; }
-	.hotel_content #hotel_table table td:first-child, .hotel_content #hotel_table table td:nth-child(2), .hotel_content #hotel_table table td:last-child { text-align: center; }
-	.hotel_content #hotel_table #page { width: 100%; margin-top: 20px; text-align: center; font-size: 20px; line-height: 40px; }
-	.hotel_content #hotel_table button { float: right; width: 100px; height: 40px; line-height: 0; }
+	.hotel_content .hotel_list table { width: 100%; text-align: center; }
+	.hotel_content .hotel_list table th { height: 50px; background-color: #ecf0f1; border-bottom: 2px solid #34495e; }
+	.hotel_content .hotel_list table td { height: 50px; border-bottom: 1px solid #bdc3c7; }
+	.hotel_content .hotel_list table tr:first-child th:nth-child(1) { width: 15%; }
+	.hotel_content .hotel_list table tr:first-child th:nth-child(2) { width: 45%; }
+	.hotel_content .hotel_list table tr:first-child th:nth-child(3) { width: 20%; }
+	.hotel_content .hotel_list table tr:first-child th:nth-child(4) { width: 20%; }
+	.hotel_content .hotel_list table td:nth-child(2) { text-align: left; }
+	.hotel_content .hotel_list #page { width: 100%; margin-top: 20px; text-align: center; font-size: 20px; line-height: 40px; }
+
+	.hotel_content .hotel_view
+	
 	
 	.hotel_content #add_hotel form p { font-size: 20px; position: relative; margin: 16px 0; line-height: 50px; }
 	.hotel_content #add_hotel form input { width: 70%; height: 50px; padding: 10px; position: absolute; right: 0; font-size: 16px; }
@@ -64,27 +69,87 @@
       </nav>
       <!-- End Navbar -->
       <div class="hotel_content">
-      	<div id="find_hotel">
+      	<div class="hotel_find hotel">
       		<h3>제휴 호텔 검색</h3>
-      		<input type="text" name="find_hotel" id="find_hotel" placeholder="검색할 호텔을 입력하세요."> <button onclick="input()">검색</button>
+      		<div>
+      			<input type="text" name="find_hotel" id="find_hotel" placeholder="검색할 호텔을 입력하세요.">
+      			<button onclick="input()">검색</button>
+      		</div>
       	</div>
-      	<hr>
-      	<div id="hotel_table">
+      	<div class="hotel_list hotel">
       		<h3>현재 제휴 호텔</h3>
       		<table>
       			<tr>
       				<th>번호</th>
-      				<th>현재 제휴</th>
       				<th>이름</th>
-      				<th>할인</th>      				
+      				<th>할인</th>
+      				<th>현재 제휴</th>      				
       			</tr>
-
+				<tr>
+					<td>01</td>
+					<td>00호텔</td>
+					<td>O</td>
+					<td>O</td>
+				</tr>
+				<tr>
+					<td>01</td>
+					<td>00호텔</td>
+					<td>O</td>
+					<td>O</td>
+				</tr>
+				<tr>
+					<td>01</td>
+					<td>00호텔</td>
+					<td>O</td>
+					<td>O</td>
+				</tr>
+				<tr>
+					<td>01</td>
+					<td>00호텔</td>
+					<td>O</td>
+					<td>O</td>
+				</tr>
+				<tr>
+					<td>01</td>
+					<td>00호텔</td>
+					<td>O</td>
+					<td>O</td>
+				</tr>
+				<tr>
+					<td>01</td>
+					<td>00호텔</td>
+					<td>O</td>
+					<td>O</td>
+				</tr>
+				<tr>
+					<td>01</td>
+					<td>00호텔</td>
+					<td>O</td>
+					<td>O</td>
+				</tr>
+				<tr>
+					<td>01</td>
+					<td>00호텔</td>
+					<td>O</td>
+					<td>O</td>
+				</tr>
+				<tr>
+					<td>01</td>
+					<td>00호텔</td>
+					<td>O</td>
+					<td>O</td>
+				</tr>
+				<tr>
+					<td>01</td>
+					<td>00호텔</td>
+					<td>O</td>
+					<td>O</td>
+				</tr>
       		</table>
       		<p id="page">1 2 3 4 5 6 7 8 9 10</p>
       	</div>
-      	<div id="add_hotel">
+      	<div class="hotel_view hotel">
       		<h3>제휴 호텔 추가</h3>
-      		<hr>
       		<form method="post" action="./data/hotel_ok.jsp" enctype="multipart/form-data">
       			<p>호텔 사진 <input type="file" name="h_file"></p>
       			<p>호텔 명 <input type="text" name="h_name"></p>
