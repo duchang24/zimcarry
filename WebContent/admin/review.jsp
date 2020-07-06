@@ -26,8 +26,25 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-      	<div 
-      
+      	<div class="review_list">
+      		<table>
+      			<thead>
+      				<tr>
+      					<td>번호</td>
+      					<td>제목</td>
+      					<td>작성자</td>
+      					<td>구간</td>
+      					<td>이용날짜</td>
+      					<td></td>
+      				</tr>
+      			</thead>
+      			<tbody>
+      				<tr>
+      					
+      				</tr>
+      			</tbody>
+      		</table>
+      	</div>
       </div>
       <!-- footer -->
       <%@ include file="./footer.jsp" %>
