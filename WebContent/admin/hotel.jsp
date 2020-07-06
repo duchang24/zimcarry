@@ -24,7 +24,7 @@
 	/* hotel */
 	/* .hotel_content { margin-top: 70px; } */
 	
-	.hotel_content .hotel { width: 90%; min-height: 200px; margin: 0 auto 30px;	padding: 30px; border: 1px solid #cdcdcd; border-radius: 10px; background-color: #f6f6f6; box-shadow: 8px 8px 20px #ccc; }
+	.hotel_content .hotel { width: 80%; min-height: 200px; margin: 0 auto 30px;	padding: 30px; border: 1px solid #cdcdcd; border-radius: 10px; background-color: #f6f6f6; box-shadow: 8px 8px 20px #ccc; }
 	.hotel_content .hotel_find div { position: relative; }
 	.hotel_content .hotel_find div input { width: 80%; height: 50px; padding: 10px; }
 	.hotel_content .hotel_find div button { width: 15%; height: 50px; position: absolute; bottom: 0; right: 0; }
