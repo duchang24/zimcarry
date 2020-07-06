@@ -25,9 +25,9 @@
                 <div id="sub_content" class="box_inner sub_content">
                     <nav class="sub_navi">
                         <ul>
-                            <li><a href="./service_zimcarry.jsp">짐캐리란</a></li>
-                            <li><a href="./service_delivery.jsp">운송서비스</a></li>
-                            <li><a href="./service_carry.jsp">보관서비스</a></li>
+                            <li><a href="#">짐캐리란</a></li>
+                            <li><a href="#">운송서비스</a></li>
+                            <li><a href="#">보관서비스</a></li>
                         </ul>
                     </nav>
                     <div class="sub_indicator box_inner">
@@ -188,36 +188,40 @@
                 </div>
                 <!-- 이용요금 -->
                 <div class="deli_price">
-                    <div class="size_img">
-                        <img src="../../images/img/deliver_cont4_img1.png" alt="캐리어 사이즈 이미지">
+                    <div class="price_wrap box_inner">
+                        <div class="size_img">
+                            <img src="../../images/img/deliver_cont4_img1.png" alt="캐리어 사이즈 이미지">
+                        </div>
+                        <div class="price_box">
+                            <div class="price_info">
+                                <h2>운송서비스 이용요금</h2>
+                                <ul>
+                                    <li>
+                                        <span>서면/광안리/해운대</span>
+                                        <span class="price">10,000원</span>
+                                    </li>
+                                    <li>
+                                        <span>송정/기장(일부지역)</span>
+                                        <span class="price">13,000원</span>
+                                    </li>
+                                    <li>
+                                        <span>김해공항(국내선/국제선)</span>
+                                        <span class="price">15,000원</span>
+                                    </li>
+                                    <li>
+                                        <span>추가요금(26인치 이상)</span>
+                                        <span class="price">5,000원</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <ul class="price_caution">
+                                <li>고객님의 짐은 숙소에서 16:00~18:00 사이에 도착합니다.</li>
+                                <li>당일 교통상황에 따라 지연될 수 있습니다.</li>
+                                <li>숙소에 짐을 11시 이전 프런트에 짐을 맡겨주시고, '짐캐리에서 픽업한다'고 말씀해 주시면 됩니다.</li>
+                                <li>부산역, 공항에는 15:00 이후부터 찾을 수 있습니다.</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="price_info">
-                        <h2>운송서비스 이용요금</h2>
-                        <ul>
-                            <li>
-                                <span>서면/광안리/해운대</span>
-                                <span class="price">10,000원</span>
-                            </li>
-                            <li>
-                                <span>송정/기장(일부지역)</span>
-                                <span class="price">13,000원</span>
-                            </li>
-                            <li>
-                                <span>김해공항(국내선/국제선)</span>
-                                <span class="price">15,000원</span>
-                            </li>
-                            <li>
-                                <span>추가요금(26인치 이상)</span>
-                                <span class="price">5,000원</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <ul class="price_caution">
-                        <li>고객님의 짐은 숙소에서 16:00~18:00 사이에 도착합니다.</li>
-                        <li>당일 교통상황에 따라 지연될 수 있습니다.</li>
-                        <li>숙소에 짐을 11시 이전 프런트에 짐을 맡겨주시고, '짐캐리에서 픽업한다'고 말씀해 주시면 됩니다.</li>
-                        <li>부산역, 공항에는 15:00 이후부터 찾을 수 있습니다.</li>
-                    </ul>
                 </div>
                 <!-- 이용요금 끝-->
                 <!-- 매장안내도 -->
