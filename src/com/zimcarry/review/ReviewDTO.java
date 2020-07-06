@@ -9,7 +9,6 @@ public class ReviewDTO {
 	private String reContent;
 	private Date reWritedate;
 	private long reBookIdx;
-	
 	public long getReIdx() {
 		return reIdx;
 	}
@@ -46,5 +45,4 @@ public class ReviewDTO {
 	public void setReBookIdx(long reBookIdx) {
 		this.reBookIdx = reBookIdx;
 	}
-	
 }
