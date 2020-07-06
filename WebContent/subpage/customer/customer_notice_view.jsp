@@ -1,55 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.sql.Connection"%>
-<%@ page import="java.sql.PreparedStatement"%>
-<%@ page import="java.sql.ResultSet"%>
-<%@ page import="java.sql.DriverManager"%>
+<%@ page isELIgnored="false" %>
+<%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%	request.setCharacterEncoding("UTF-8"); %>
-<%
-	if (request.getParameter("no_idx") == null) {
-%>
+<jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
+<jsp:useBean id="noticeDTO" class="com.zimcarry.notice.NoticeDTO" />
+<c:if test="${empty param.noIdx}" >
 	<script>
 		alert('잘못된 접근입니다.');
-		location.href='./customer_notice.jsp';
+		location.href='../notice.jsp';
 	</script>
-<%
-	}
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-
-	String no_idx = "", no_title = "", no_content = "", no_writer = "", no_writedate = "", no_hit = "";
-	
-	String sql = "";
-	String dbID = "root";
-	String dbPw = "1234";
-	String url = "jdbc:mariadb://localhost:3306/zimcarry";
-	try {
-		Class.forName("org.mariadb.jdbc.Driver");
-		conn = DriverManager.getConnection(url, dbID, dbPw);
-		if (conn != null) {
-			sql = "UPDATE tb_notice SET no_hit = no_hit + 1";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			sql = "SELECT no_title, no_content, no_writer, no_writedate, no_hit FROM tb_notice WHERE no_idx = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, (String)request.getParameter("no_idx"));
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				no_title = rs.getString("no_title");
-				no_content = rs.getString("no_content");
-				no_writer = rs.getString("no_writer");
-				no_writedate = rs.getString("no_writedate").substring(0, 10);
-				no_hit = rs.getString("no_hit");
-			}
-		}
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
-%>
-
+</c:if>
+<c:set var="noticeDTO" value="${noticeDAO.viewNotice(param.noIdx)}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,15 +58,15 @@
                                     <th>조회</th>
                                 </tr>
                                 <tr>
-                                    <td><a href="#"><%=no_title%></a></td>
-                                    <td><%=no_writer%></td>
-                                    <td><%=no_writedate%></td>
-                                    <td><%=no_hit%></td>
+                                    <td><a href="#">${noticeDTO.noTitle}</a></td>
+                                    <td>${noticeDTO.noWriter}</td>
+                                    <td>${noticeDTO.noWritedate}</td>
+                                    <td>${noticeDTO.noHit}</td>
                                 </tr>
                             </table>
                         </div>
                         <div class="notice_content">
-                        	<%=no_content%>
+                        	${noticeDTO.noContent}
                         </div>
                         <div class="button_wrap">
                             <button onclick="javascript:location.href='./customer_notice.jsp'" class="btn_base btn_yellow">목록으로</button>
