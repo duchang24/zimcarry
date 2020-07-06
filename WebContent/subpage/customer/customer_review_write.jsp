@@ -43,28 +43,31 @@
                             <form method="post" onsubmit="return checkReview()" action="write_ok.jsp">
                                 <fieldset>
                                     <legend>이용후기 작성</legend>
-                                    <p>별점을 선택하세요</p>
-                                    <ul class="star_list clear2">
-                                        <li><a href="#" class="">0.5</a></li>
-                                        <li><a href="#" class="">1</a></li>
-                                        <li><a href="#" class="">1.5</a></li>
-                                        <li><a href="#" class="">2</a></li>
-                                        <li><a href="#" class="">2.5</a></li>
-                                        <li><a href="#" class="">3</a></li>
-                                        <li><a href="#" class="">3.5</a></li>
-                                        <li><a href="#" class="">4</a></li>
-                                        <li><a href="#" class="">4.5</a></li>
-                                        <li><a href="#" class="">5</a></li>
-                                    </ul>
-                                    <input type="hidden" name="star_score" id="star_score" value="">
                                     <p class="input_area">
-	                                    <input type="text" name="review_name" id="review_name" placeholder="이름을 입력하세요">
-	                                    <input type="text" name="review_hp" id="review_hp" placeholder="전화번호 뒷자리(비밀번호)">
+	                                    <input type="text" name="review_name" id="review_name" placeholder="전화번호 뒷자리를 입력하세요">
+	                                    <input type="text" name="review_hp" id="review_hp" placeholder="예약번호를 입력하세요">
+                                    	<input type="button" id="book_check_btn">
                                     </p>
-                                    <input type="text" name="review_title" id="review_title" placeholder="제목을 입력해주세요">
-                                    <iframe id="ckditor_iframe" src="./ckeditor.html"></iframe>
-                                    <div class="btn_wrap">
-                                        <input class="btn_base btn_yellow" type="submit" value="후기 등록">
+                                    <div class="">
+	                                    <p>별점을 선택하세요</p>
+	                                    <ul class="star_list clear2">
+	                                        <li><a href="#" class="">0.5</a></li>
+	                                        <li><a href="#" class="">1</a></li>
+	                                        <li><a href="#" class="">1.5</a></li>
+	                                        <li><a href="#" class="">2</a></li>
+	                                        <li><a href="#" class="">2.5</a></li>
+	                                        <li><a href="#" class="">3</a></li>
+	                                        <li><a href="#" class="">3.5</a></li>
+	                                        <li><a href="#" class="">4</a></li>
+	                                        <li><a href="#" class="">4.5</a></li>
+	                                        <li><a href="#" class="">5</a></li>
+	                                    </ul>
+	                                    <input type="hidden" name="star_score" id="star_score" value="">
+	                                    <input type="text" name="review_title" id="review_title" placeholder="제목을 입력해주세요">
+	                                    <iframe id="ckditor_iframe" src="./ckeditor.html"></iframe>
+	                                    <div class="btn_wrap">
+	                                        <input class="btn_base btn_yellow" type="submit" value="후기 등록">
+	                                    </div>
                                     </div>
                                 </fieldset>
                             </form>
