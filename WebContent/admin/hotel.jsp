@@ -11,26 +11,7 @@
 	String uid = "root";
 	String upw = "1234";
 	
-	try{
-		Class.forName("org.mariadb.jdbc.Driver");
-		conn = DriverManager.getConnection(url, uid, upw);
-		
-		if(conn != null){
-			//sql = "SELECT count(b_idx) as cnt FROM tb_board";
-			// 필드 이름으로 가져올 수 있으나 좋은 방법이 아님. 필드명으로 불러오는게 좋음. 그래서 필드명을 만들어줌
-			//pstmt = conn.prepareStatement(sql);
-		//	rs = pstmt.executeQuery();
-		//	if(rs.next()){
-		//		totCnt = rs.getInt("cnt");
-		//	}
-			
-			sql = "SELECT h_idx, h_file, h_name, h_address, h_map, h_discount, h_partner FROM tb_hotel order by h_idx asc";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-		}
-	}catch(Exception e){
-		e.printStackTrace();
-	}
+	
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -97,25 +78,7 @@
       				<th>이름</th>
       				<th>할인</th>      				
       			</tr>
-<%
-			while(rs.next()){
-				int h_idx = rs.getInt("h_idx");
-				String h_file = rs.getString("h_file");
-				String h_name = rs.getString("h_name");
-				String h_address = rs.getString("h_address");
-				String h_map = rs.getString("h_map");
-				String h_discount = rs.getString("h_discount");
-				String h_partner = rs.getString("h_partner");
-%>
-				<tr>
-					<td><%=h_idx%></td>
-					<td><%=h_partner%></td>
-					<td><%=h_name%></td>
-					<td><%=h_discount%></td>
-				</tr>
-<%
-	}
-%>
+
       		</table>
       		<p id="page">1 2 3 4 5 6 7 8 9 10</p>
       	</div>
