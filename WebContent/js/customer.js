@@ -41,6 +41,30 @@ $(function() {
         $(this).parent().nextAll().children().removeClass('click'); //4점일때 3점을 클릭시 3.5, 4, 4.5, 5는 흑백별
         $('#star_score').attr('value', $(this).html());
     })
+    
+    // 후기작성 ( 예약확인 버튼 이벤트 리스너)
+    let numCheck = RegExp(/^[0-9\b]+$/);
+    $('#reHp').on('keyup', function() {
+    	if (!numCheck.test($('#reHp').val())) {
+    		alert('숫자만 입력할 수 있습니다.');
+    		$('#reHp').val('');
+    		$('#reHp').focus();
+    	}
+    });
+    $('#reBookidx').on('keyup', function() {
+    	if (!numCheck.test($('#reHp').val())) {
+    		alert('숫자만 입력할 수 있습니다.');
+    		$('#reBookidx').val('');
+    		$('#reBookidx').focus();
+    	}
+    });
+    
+    $('#book_check_btn').on('click', function() {
+    	if (checkBook()) {
+    		
+    	}
+    });
+    
 });
 
 // 리뷰작성 검증
@@ -69,4 +93,18 @@ function checkReview() {
         return false;
     }
     return true;
+}
+
+function checkBook() {
+	if ($('#reHp').val() == '') {
+		alert('전화번호 뒷자리를 입력하세요');
+		$('#reHp').focus();
+		return false;
+	}
+	if ($('#reBookidx').val() == '') {
+		alert('예약번호를 입력하세요.');
+		$('#reBookidx').focus();
+		return false;
+	}
+	return true;
 }

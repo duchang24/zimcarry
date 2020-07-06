@@ -44,9 +44,10 @@
                                 <fieldset>
                                     <legend>이용후기 작성</legend>
                                     <p class="input_area">
-	                                    <input type="text" name="review_name" id="review_name" placeholder="전화번호 뒷자리를 입력하세요">
-	                                    <input type="text" name="review_hp" id="review_hp" placeholder="예약번호를 입력하세요">
+	                                    <input type="text" name="reHp" id="reHp" placeholder="전화번호 뒷자리를 입력하세요">
+	                                    <input type="text" name="reBookidx" id="reBookidx" placeholder="예약번호를 입력하세요">
                                     	<input type="button" id="book_check_btn" value="예약확인">
+                                    	
                                     </p>
                                     <div class="">
 	                                    <p>별점을 선택하세요</p>
