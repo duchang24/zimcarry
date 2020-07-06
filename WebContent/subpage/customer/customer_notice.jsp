@@ -65,7 +65,7 @@
                             <c:forEach var="notice" items="${noticeList}" varStatus="status">
 	                            <tr>
 	                                <td>${noticeList.size() - status.index}</td>
-	                                <td><a href="./customer_notice_view.jsp?no_idx=${notice.noIdx}">${notice.noTitle}</a></td>
+	                                <td><a href="./customer_notice_view.jsp?noIdx=${notice.noIdx}">${notice.noTitle}</a></td>
 	                                <td>${notice.noWriter}</td>
 	                                <td>${notice.noWritedate}</td>
 	                                <td>${notice.noHit}</td>

@@ -59,7 +59,7 @@
                                     <input type="hidden" name="star_score" id="star_score" value="">
                                     <p class="input_area">
 	                                    <input type="text" name="review_name" id="review_name" placeholder="이름을 입력하세요">
-	                                    <input type="text" name="review_hp" id="review_hp" placeholder="전화번호 뒷자리를 입력하세요">
+	                                    <input type="text" name="review_hp" id="review_hp" placeholder="전화번호 뒷자리(비밀번호)">
                                     </p>
                                     <input type="text" name="review_title" id="review_title" placeholder="제목을 입력해주세요">
                                     <iframe id="ckditor_iframe" src="./ckeditor.html"></iframe>
@@ -83,8 +83,8 @@
    		<%@ include file="../../common/popup.jsp" %>
    		<!-- pop-up end -->
 	</div>
-	<script src="../js/jquery-3.5.1.min.js"></script>
-	<script src="../js/customer.js"></script>
-   	<script src="../js/main.js"></script>
+	<script src="../../js/jquery-3.5.1.min.js"></script>
+	<script src="../../js/customer.js"></script>
+   	<script src="../../js/main.js"></script>
 </body>
 </html>
