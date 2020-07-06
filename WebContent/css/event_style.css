@@ -1,0 +1,32 @@
+ @import url("common.css");
+
+/* event */
+.sub_content_wrap .event_content { position: relative; height: 100%; background-color: #fff; }
+.white .sub_content .container { display: flex; flex-wrap: nowrap; justify-content: center; align-items: space-around; }
+.white .sub_content .container .item { flex: 1; padding: 60px 10px; display: flex; }
+.white .sub_content .container .item img { max-width: 357px; max-height: 357px; }
+.white .sub_content .container .item .content h4 { width: 357px; display: block; font-size: 30px; white-space: nowrap; overflow: hidden; text-align: center; text-overflow: ellipsis; margin-top: 60px; padding-bottom: 5px; }
+
+.white .sub_content .container .item .festival { box-shadow: 10px 10px 10px rgba(101, 101, 101, 0.2); height: 550px; cursor: pointer; }
+.white .sub_content .container .item .festival .event_ico { position: relative; border: 1px solid #f7b618; width: 100px; height: 55px; text-align: center; line-height: 50px; background-color: #f7b618; color: white; bottom: 583px; right: 110px; }
+.white .sub_content .container .item .festival .event_ico1 { position: relative; border: 1px solid #f7b618; width: 100px; height: 55px; text-align: center; line-height: 50px; background-color: #f7b618; color: white; bottom: 592px; right: 110px; }
+.white .sub_content .container .item .content div { margin-left: 110px; position: relative; }
+.white .sub_content .container .item .content div.text { position: relative; box-sizing: border-box; font-size: 16px; text-align: center; border: 1px solid #ccc; margin: 50px auto; width: 130px; height: 40px; padding-top: 10px; background-color: #F5F5F5; bottom: 20px; }
+
+.white .sub_content .border_page ul { display: flex; flex-wrap: nowrap; justify-content: center; align-items: space-around; flex-direction: row; }
+.white .sub_content .border_page ul li { padding: 5px 10px; }
+.white .sub_content .border_page ul li:hover { text-align: center; background-color: #f5f5f5; }
+.white .sub_content .border_page ul li a { color: #555; cursor: pointer; }
+.white .sub_content .border_page ul { position: relative; box-sizing: border-box; top: 50px; }
+.white .sub_content .border_page ul .btn2 a { color:#f7b618; }
+
+/*이벤트게시판*/
+.event_basic_list { box-sizing: border-box; border-top: 2px solid #000; margin-top: 60px; text-align: center; border-left:none; border-right:none; }
+table thead { width: 192px; background-color: #f5f5f5; border-bottom: 1px solid #dddddd; }
+table thead tr th { padding: 10px 0; }
+.event_basic_list tbody td, .event_basic_list tbody th { padding: 2%; }
+table {  width: 1200px; border: 1px solid #ccc; border-bottom: 1px solid #dddddd; }
+
+#event_notice_board .event_basic_picture { margin-top: 50px; text-align: center; border-bottom: 1px solid #dddddd;   text-align: center }
+#event_notice_board .event_listbtn { border: 1px solid #555; width: 150px; height: 60px; }
+/* event end */

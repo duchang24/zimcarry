@@ -52,9 +52,7 @@
  /* section2 */
  .sec2 { display: -webkit-box; display: flex; -webkit-box-align: center; align-items: center; -webkit-box-pack: center; justify-content: center; padding: 30px 10px; -webkit-transition: background .4s ease-in; transition: background .4s ease-in; background-color: #f6f6f6; }
  .container_radio h2 { font-size: 38px; font-weight: bold; padding: 40px 0; }
- .container_radio .sec2_btn button { position: relative; font-size: 15px; height: 50px; width: 120px; font-weight: bold; left: 500px; bottom: 80px; border: 2px solid #999; border-radius: 20px 0; letter-spacing: -0.5px; overflow: hidden; }
- .container_radio .sec2_btn button:hover, .container_radio .sec2_btn button:active, .container_radio .sec2_btn button:focus { background: #ffd204; color: white; }
-
+ 
  .sec2 .container_radio input[type=radio] { display: none; }
  .container_radio { width: 100%; max-width: 800px; max-height: 600px; height: 100%; -webkit-transform-style: preserve-3d; transform-style: preserve-3d; display: -webkit-box; display: flex; -webkit-box-pack: center; justify-content: center; -webkit-box-orient: vertical; -webkit-box-direction: normal; flex-direction: column; -webkit-box-align: center; align-items: center; }
  .container_radio .cards { position: relative; width: 100%; height: 500px; margin-bottom: 20px; }
@@ -127,8 +125,6 @@
  /* section1 끝 */
  
  /* section2 */
- .container_radio .sec2_btn button { display: none; }
- 
  .container_radio .cards { width: 80%; position: relative; right: 14px; }
  .container_radio .cards .card { position: absolute; width: 60%; height: 100%; }
  .container_radio .cards .card img { width: 120%; height: 100%; }

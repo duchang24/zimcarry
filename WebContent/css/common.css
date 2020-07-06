@@ -34,26 +34,25 @@ caption, legend { font-size: 0; width: 0; height: 0; line-height: 0; text-indent
  header .header_area { position: relative; }
  header .header_area h1 { position: relative; float: left; padding: 45px 0 0; bottom: 30px; }
  header .header_area h1 a { background: url(../images/logo.png) no-repeat; display: block; width: 270px; height: 71px; text-indent: -9999px; overflow: hidden; }
- header .header_area .openMOgnb { display: none; }
  header .header_area .openMOgnb { display: none; } /*여기는 모바일 부분이라 pc에서 감췄다. */
  header .header_area .menu-list { display: none; }
  .header_cont { width: 1020px; }
  .header_cont .gnb { margin: 0 auto; box-sizing: border-box; padding-top: 5px; }
  .header_cont .gnb li { float: left; }
- .header_cont .gnb li a { padding: 26px 40px; font-size: 18px; color: #000;  text-align: center;}
+ .header_cont .gnb li a { padding: 26px 40px; font-size: 18px; color: #000;  text-align: center; }
  .header_cont .gnb li:last-child a { padding-right: 0; }
  .header_cont .closePop { display: none; } /* 닫기가 사라짐 */
 
  /* menubar */               
  #blogMenu { left: 250px; top: 50px; position: absolute; display: table; transform: translateY(-50%); margin-top:15px; }
  #blogMenu ul { list-style: none; position: relative; float: left; margin: 0; padding: 0; }
- #blogMenu ul a { display: block; color: #333; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 34px; padding: 0 25px; }
- #blogMenu ul li { position: relative; float: left;	margin: 0; padding: 0; margin-left: 80px; margin-bottom: 30px; }
+ #blogMenu ul a { display: block; color: #333; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 58px; padding: 20px 25px; }
+ #blogMenu ul li { position: relative; float: left;	margin: 0; padding: 0; margin-left: 160px; margin-bottom: 30px; }
  #blogMenu ul li:hover > div ul { display: block; }
  #blogMenu ul div { position: relative; right: 45px; }
  #blogMenu ul div ul { display: none; position: absolute;	top: 100%; left: 0; right: -90px; background :#ffffffea; padding: 0; }
  
- #blogMenu ul div ul li { float: none; width: 200px; right: 60px; }
+ #blogMenu ul div ul li { float: none; width: 200px; right: 142px; }
  #blogMenu ul div ul li a{ line-height: 120%; padding: 10px 15px; margin-right: 40px; }
  /* menubar 끝 */
  /* header 끝 */

@@ -24,7 +24,7 @@
                                 <div class="txt_box">
                                     <p class="boxin_titl"></p>
                                     <div class="btn-container">
-                                        <button>
+                                        <button onclick="location.href='../../subpage/service/service_carry.jsp'">
                                             <span class="text"> 자세히보기 </span>
                                             <div class="icon-container"> > </div>
                                         </button>
@@ -36,7 +36,7 @@
                         <div class="res_btnbox">
                             <div>
                                 <div class="reg">
-                                    <a href="#">예약하기</a>
+                                    <a href="../../subpage/reservation/1.jsp">예약하기</a>
                                 </div>
                                 <div class="chk">
                                     <a href="#">예약확인</a>
@@ -85,9 +85,7 @@
             <section class="sec2">
                 <div class="container_radio">
                     <h2>짐캐리 이벤트</h2>
-                    <div class="sec2_btn">
-                        <button onclick="">더보기</button>
-                    </div>
+
                     <input type="radio" name="slider" id="item-1" checked>
                     <input type="radio" name="slider" id="item-2">
                     <input type="radio" name="slider" id="item-3">
@@ -116,7 +114,7 @@
                           <div class="title">부산시티투어</div>
                           <div class="sub-line">
                             <div class="subtitle">
-                              <button onclick="">자세히보기</button>
+                              <button onclick="location.href='../../subpage/event/event_Busan_City_Tour.jsp'">자세히보기</button>
                             </div>
                           </div>
                         </label>
@@ -124,7 +122,7 @@
                           <div class="title">부산타워 입장권</div>
                           <div class="sub-line">
                             <div class="subtitle">
-                              <button onclick="">자세히보기</button>
+                              <button onclick="location.href='../../subpage/event/event_Busan_Tower.jsp'">자세히보기</button>
                             </div>
                           </div>
                         </label>
@@ -132,7 +130,7 @@
                           <div class="title">나잇스위밍</div>
                           <div class="sub-line">
                             <div class="subtitle">
-                              <button onclick="">자세히보기</button>
+                              <button onclick="location.href='../../subpage/event/event_Night_Swimming.jsp'">자세히보기</button>
                             </div>
                           </div>
                         </label>
