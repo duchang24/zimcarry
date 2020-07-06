@@ -44,15 +44,15 @@ $(function() {
     
     // 후기작성 ( 예약확인 버튼 이벤트 리스너)
     let numCheck = RegExp(/^[0-9\b]+$/);
-    $('#reHp').on('keyup', function() {
-    	if (!numCheck.test($('#reHp').val())) {
+    $('#bHp').on('keyup', function() {
+    	if (!numCheck.test($('#bHp').val())) {
     		alert('숫자만 입력할 수 있습니다.');
-    		$('#reHp').val('');
-    		$('#reHp').focus();
+    		$('#bHp').val('');
+    		$('#bHp').focus();
     	}
     });
     $('#reBookidx').on('keyup', function() {
-    	if (!numCheck.test($('#reHp').val())) {
+    	if (!numCheck.test($('#reBookidx').val())) {
     		alert('숫자만 입력할 수 있습니다.');
     		$('#reBookidx').val('');
     		$('#reBookidx').focus();
@@ -60,8 +60,28 @@ $(function() {
     });
     
     $('#book_check_btn').on('click', function() {
+    	console.log($('#bHp').val());
+    	console.log($('#reBookidx').val());
+    	
     	if (checkBook()) {
-    		
+    		$.ajax({
+    			type: 'POST',
+    			url: './bookCheck.jsp',
+    			data: {
+    				bHp: $('#bHp').val(),
+    				reBookidx: $('#reBookidx').val()
+    			},
+    			datatype: 'JSON',
+    			success: function(bookJSON) {
+    				let isData = bookJSON.isData;
+    				let bName = bookJSON.bName;
+    				let bStart = bookJSON.bStart;
+    				let bEnd = bookJSON.bEnd;
+    				let bStartdate = bookJSON.bStartdate;
+    				let bEnddate = bookJSON.bStartdate;
+    				console.log(isData);
+    			}
+    		})
     	}
     });
     
@@ -73,22 +93,12 @@ function checkReview() {
         alert('별점을 선택해주세요');
         return false;
     }
-    if ($('#review_name').val() == '') {
-    	alert('이름을 입력해주세요');
-    	$('#review_name').focus();
-    	return false;
-    }
-    if ($('#review_hp').val() == '') {
-    	alert('전화번호 뒷자리를 입력해주세요');
-    	$('#review_hp').focus();
-    	return false;
-    }
-    if ($('#review_title').val() == '') {
+    if ($('#reTitle').val() == '') {
         alert('제목을 입력해주세요');
-        $('#review_title').focus();
+        $('#reTitle').focus();
         return false;
     }
-    if ($('#ckditor_iframe').contents().find('.ck-content').children().text().length < 10) {
+    if ($('.ck-editor__editable').text() < 10) {
         alert('후기 내용은 10자 이상 부탁드립니다');
         return false;
     }
@@ -96,9 +106,9 @@ function checkReview() {
 }
 
 function checkBook() {
-	if ($('#reHp').val() == '') {
-		alert('전화번호 뒷자리를 입력하세요');
-		$('#reHp').focus();
+	if ($('#bHp').val() == '') {
+		alert('전화번호를 입력하세요');
+		$('#bHp').focus();
 		return false;
 	}
 	if ($('#reBookidx').val() == '') {
@@ -108,3 +118,31 @@ function checkBook() {
 	}
 	return true;
 }
+
+ClassicEditor
+.create( document.querySelector( '#reContent' ), {
+    toolbar: {
+        items: [
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'link',
+            '|',
+            'indent',
+            'outdent',
+            '|',
+            'blockQuote',
+            'undo',
+            'redo'
+        ]
+    },
+    language: 'ko',
+    licenseKey: '',
+} )
+.then( editor => {
+    window.editor = editor;
+} )
+.catch( error => {
+    console.error( error );
+} );

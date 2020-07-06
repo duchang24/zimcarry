@@ -6,4 +6,5 @@
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
 <c:if test="${not empty noticeDAO.noticeDataToJSON(param.noIdx)}" >
 	${noticeDAO.noticeDataToJSON(param.noIdx)}
+	<%System.out.println(noticeDAO.noticeDataToJSON("1")); %>
 </c:if>
