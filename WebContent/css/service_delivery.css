@@ -111,6 +111,7 @@
 
   /* 운송서비스 - 숙소지역 */
 .deli_hotel { height: 660px; }
+.deli_hotel .sub_content { padding-bottom: 0 !important; }
 .deli_hotel .sub_content h2 {
   font-size: 30px;
   text-align: center;
