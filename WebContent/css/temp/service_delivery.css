@@ -111,7 +111,6 @@
 
   /* 운송서비스 - 숙소지역 */
 .deli_hotel { height: 660px; }
-.deli_hotel .sub_content { padding-bottom: 0 !important; }
 .deli_hotel .sub_content h2 {
   font-size: 30px;
   text-align: center;
@@ -420,9 +419,8 @@ nav.map_list li.on {
     background-position-x: 26%;
     padding: 5%;
   }
-  .deli_price .size_img { width: 35%; height: 36%; margin-left: 30%; margin-top: 0; }
-  .deli_price .size_img img { width: 100%; height: auto; top: 0; left: 0; }
-  .deli_price .price_box { padding: 0; width: 100%; margin: 0; }
+  .deli_price .size_img { width: 35%; height: auto; margin-left: 31%; margin-top: 0; }
+  .deli_price .size_img img { width: 100%; height: 100%; }
   .deli_price .price_info { width: 100%; margin: 0; height: 250px; }
   .deli_price .price_info h2 { font-size: 1.5rem; text-align: center; color: black; }
   .deli_price .price_info ul { width: 100%; height: 72%; border-bottom: none; }
@@ -431,7 +429,7 @@ nav.map_list li.on {
     font-size: 15px; color: #555; font-weight: 600; }
   .deli_price .price_info ul span.price { width: 35%; padding-left: 0;
     font-weight: 600; color: #333; }
-  .deli_price .price_caution { width: 100%; margin: 0; height: fit-content; margin-top: 0; }
+  .deli_price .price_caution { width: 100%; margin: 0; height: fit-content; margin-top: 3.5%; }
   .deli_price .price_caution li { font-size: 15px; line-height: 25px; margin-bottom: 1%; }
   /* 운송서비스 - 이용요금 끝 */
 
