@@ -62,7 +62,7 @@
     <script>
   	$(function () {
   		$('.sidebar-wrapper ul.nav li').removeClass("active");
-  		$('.sidebar-wrapper ul.nav li:eq(5)').addClass("active");
+  		$('.sidebar-wrapper ul.nav li:eq(6)').addClass("active");
   	})
   </script>
 </body>
