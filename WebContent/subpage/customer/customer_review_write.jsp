@@ -7,15 +7,6 @@
     <title>짐 없는 여행의 시작! 짐캐리</title>
     <link href="../../css/customer_center_style.css" rel="stylesheet">
     <link href="../../images/ico_tit.ico" rel="shortcut icon" type="image/x-icon">
-    <style>
-    	.ck.ck-editor {
-    		max-width: 610px;
-    		margin: 0 auto !important;
-    	}
-    	.ck-editor__editable {
-    		min-height: 300px;
-    	}
-    </style>
 </head>
 <body>
 	<div id="wrap">
@@ -48,7 +39,7 @@
                     </div>
                     <div class="review_area box_inner">
                         <div class="write_wrap">
-                            <form method="post" onsubmit="return checkReview()" action="write.jsp">
+                            <form method="post" onsubmit="return checkBook()" action="write.jsp">
                                 <fieldset>
                                     <legend>이용후기 작성</legend>
                                     <div id="book_check_area">
@@ -61,9 +52,9 @@
                                     </div>
                                     <div id="isData_no" class="hidden check_result">
                                     	<h2 class="result_msg">이용내역 조회 결과</h2>
-                                    	<h1 class="no_msg">이용내역이 존재하지 않습니다 <span>:(</span></h1>
+                                    	<h1 class="no_msg">후기를 작성할 이용내역이 존재하지 않습니다 <span>:)</span></h1>
                                     </div>
-                                    <div id="isData_yes" class="check_result">
+                                    <div id="isData_yes" class="hidden check_result">
                                     	<h2 class="result_msg">이용내역 조회 결과</h2>
                                     	<table>
                                     		<thead>
@@ -76,10 +67,10 @@
                                     		</thead>
                                     		<tbody>
                                     			<tr>
-                                    				<td>김사과</td>
-                                    				<td>부산역 -> 숙소</td>
-                                    				<td>2020-07-06 09:00 ~ 2020-07-06 22:00</td>
-                                    				<td><input type="submit" value="작성"></td>
+                                    				<td id="bName">name</td>
+                                    				<td><span id="bStart">start</span> -> <span id="bEnd">end</span></td>
+                                    				<td><span id="bStartdate">start time</span> ~ <span id="bEnddate">end time</span></td>
+                                    				<td><input type="submit" value="작성" id="write_btn"></td>
                                     			</tr>
                                     		</tbody>
                                     	</table>

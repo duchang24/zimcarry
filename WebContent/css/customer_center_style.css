@@ -443,7 +443,7 @@
         }
         
         .check_result {
-        	width: 600px;
+        	width: 670px;
         	margin: 20px auto;
         	padding-top: 30px;
         	border-top: 2px solid #dfdfdf;
@@ -480,6 +480,11 @@
         }
         .check_result table input:hover {
         	background-color: #ffe866;
+        }
+        .accent {
+        	font-size: 18px;
+        	font-weight: bold;
+        	color: #ecb802;
         }
     /* review_write end */
 /* customer end */

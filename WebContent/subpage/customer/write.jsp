@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%  request.setCharacterEncoding("utf-8"); %>
+<jsp:useBean id="bookDTO" class="com.zimcarry.book.BookDTO" />
+<jsp:useBean id="bookDAO" class="com.zimcarry.book.BookDAO" />
+<jsp:setProperty property="*" name="bookDTO" />
+<jsp:setProperty property="bIdx" name="bookDTO" value="${param.reBookidx}" />
+<c:set var="bookDTO" value="${bookDAO.selectBookSimpleInfo(bookDTO.getbIdx(), bookDTO.getbHp())}" />
+<c:if test="${empty param.reBookidx}">
+	<script>
+		alert('잘못된 접근입니다.');
+		location.href='./customer_review.jsp';
+	</script>
+</c:if>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -65,10 +78,10 @@
                                     		</thead>
                                     		<tbody>
                                     			<tr>
-                                    				<td>김사과</td>
-                                    				<td>부산역 -> 숙소</td>
-                                    				<td>2020-07-06 09:00 ~ 2020-07-06 22:00</td>
-                                    				<td><input type="submit" value="작성"></td>
+                                    				<td id="bName">${bookDTO.bName}</td>
+                                    				<td><span id="bStart">${bookDTO.bStart}</span> -> <span id="bEnd">${bookDTO.bEnd}</span></td>
+                                    				<td><span id="bStartdate">${bookDTO.bStartdate}</span> ~ <span id="bEnddate">${bookDTO.bEnddate}</span></td>
+                                    				<td class="accent">후기 작성중</td>
                                     			</tr>
                                     		</tbody>
                                     	</table>
@@ -90,6 +103,8 @@
 	                                    <input type="hidden" name="reScore" id="star_score" value="">
 	                                    <input type="text" name="reTitle" id="reTitle" placeholder="제목을 입력해주세요">
 	                                    <textarea name="reContent" id="reContent" placeholder="짐캐리 이용 후기를 남겨주세요"></textarea>
+	                                    <input type="hidden" name="reBookidx" id="reBookidx" value="${bookDTO.bIdx}">
+	                                    ${bookDTO.bIdx}
 	                                    <div class="btn_wrap">
 	                                        <input class="btn_base btn_yellow" type="submit" value="후기 등록">
 	                                    </div>
@@ -113,6 +128,7 @@
 	</div>
 	<script src="../../js/jquery-3.5.1.min.js"></script>
 	<script src="../../js/ckeditor5/build/ckeditor.js"></script>
+	<script src="../../js/ckeditor.js"></script>
 	<script src="../../js/customer.js"></script>
    	<script src="../../js/main.js"></script>
 </body>

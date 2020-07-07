@@ -81,14 +81,21 @@ $(function() {
     				let bEnddate = bookJSON.bStartdate;
     				let bIsreview = bookJSON.bIsreview;
     				
-    				if (isData == 'yes') {
+    				if (isData == 'yes' && bIsreview == 'n') {
     					$('#isData_no').addClass('hidden');
     					$('#isData_yes').removeClass('hidden');
-    				} else if (isData == 'no') {
+    					$('#bName').html(bName);
+    					$('#bStart').html(bStart);
+    					$('#bEnd').html(bEnd);
+    					$('#bStartdate').html(bStartdate);
+    					$('#bEnddate').html(bEnddate);
+    					$('#bHp').add('#reBookidx').on('keyup', function() {
+    						$('#isData_yes').addClass('hidden');
+        					$('#isData_no').removeClass('hidden');
+    					});
+    				} else {
     					$('#isData_yes').addClass('hidden');
     					$('#isData_no').removeClass('hidden');
-    				} else {
-    					
     				}
     			}
     		})
@@ -129,30 +136,3 @@ function checkBook() {
 	return true;
 }
 
-ClassicEditor
-.create( document.querySelector( '#reContent' ), {
-    toolbar: {
-        items: [
-            'heading',
-            '|',
-            'bold',
-            'italic',
-            'link',
-            '|',
-            'indent',
-            'outdent',
-            '|',
-            'blockQuote',
-            'undo',
-            'redo'
-        ]
-    },
-    language: 'ko',
-    licenseKey: '',
-} )
-.then( editor => {
-    window.editor = editor;
-} )
-.catch( error => {
-    console.error( error );
-} );
