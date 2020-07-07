@@ -53,11 +53,11 @@
                                     <legend>이용후기 작성</legend>
                                     <div id="book_check_area">
                                     	<p><img src="../../images/ico/ico_logo_title.png" alt="짐캐리 로고" ></p>
-                                    	<p class="text">클린한 이용후기를 위해 이용 고객만 작성이 가능합니다.</p>
-                                    	<p class="text">이용후기 작성을 위해 예약조회를 먼저 해주세요.</p>
+                                    	<p class="text">클린한 이용 후기를 위해 이용 고객만 작성이 가능합니다.</p>
+                                    	<p class="text">이용 후기 작성을 위해 이용내역조회를 먼저 해주세요.</p>
 	                                    <input type="text" name="bHp" id="bHp" placeholder="전화번호를 입력하세요 (-제외)">
 	                                    <input type="text" name="reBookidx" id="reBookidx" placeholder="예약번호를 입력하세요">
-                                    	<input type="button" id="book_check_btn" value="예약확인">
+                                    	<input type="button" id="book_check_btn" value="이용내역조회">
                                     </div>
                                     <div class="hidden input_area">
 	                                    <p class="mid_text">별점을 선택하세요</p>
