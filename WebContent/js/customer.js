@@ -79,7 +79,17 @@ $(function() {
     				let bEnd = bookJSON.bEnd;
     				let bStartdate = bookJSON.bStartdate;
     				let bEnddate = bookJSON.bStartdate;
-    				console.log(isData);
+    				let bIsreview = bookJSON.bIsreview;
+    				
+    				if (isData == 'yes') {
+    					$('#isData_no').addClass('hidden');
+    					$('#isData_yes').removeClass('hidden');
+    				} else if (isData == 'no') {
+    					$('#isData_yes').addClass('hidden');
+    					$('#isData_no').removeClass('hidden');
+    				} else {
+    					
+    				}
     			}
     		})
     	}

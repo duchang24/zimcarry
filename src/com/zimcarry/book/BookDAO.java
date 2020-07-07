@@ -19,7 +19,7 @@ public class BookDAO {
 		jobj.put("isData", "no");
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT b_idx, b_name, b_hp, b_start, b_end, b_bookingdate, b_startdate, b_enddate, b_over26, b_under26, b_price, b_point FROM tb_book WHERE b_idx = ? AND b_hp = ? ORDER BY b_idx DESC";
+			String sql = "SELECT b_idx, b_name, b_hp, b_start, b_end, b_startdate, b_enddate, b_isreview FROM tb_book WHERE b_idx = ? AND b_hp = ? ORDER BY b_idx DESC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, reBookidx);
 			pstmt.setString(2, bHp);
@@ -27,11 +27,14 @@ public class BookDAO {
 			if (rs.next()) {
 				jobj.clear();
 				jobj.put("isData", "yes");
+				jobj.put("bIdx", rs.getString("b_idx"));
 				jobj.put("bName", rs.getString("b_name"));
+				jobj.put("bHp", rs.getString("b_hp"));
 				jobj.put("bStart", rs.getString("b_start"));
 				jobj.put("bEnd", rs.getString("b_end"));
 				jobj.put("bStartdate", rs.getString("b_startdate"));
 				jobj.put("bEnddate", rs.getString("b_enddate"));
+				jobj.put("bIsreview", rs.getString("b_isreview"));
 				return jobj.toString();
 			} 
 		} catch (Exception e) {

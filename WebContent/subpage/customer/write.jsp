@@ -48,21 +48,10 @@
                     </div>
                     <div class="review_area box_inner">
                         <div class="write_wrap">
-                            <form method="post" onsubmit="return checkReview()" action="write.jsp">
+                            <form method="post" onsubmit="return checkReview()" action="write_ok.jsp">
                                 <fieldset>
                                     <legend>이용후기 작성</legend>
-                                    <div id="book_check_area">
-                                    	<p><img src="../../images/ico/ico_logo_title.png" alt="짐캐리 로고" ></p>
-                                    	<p class="text">클린한 이용 후기를 위해 이용 고객만 작성이 가능합니다.</p>
-                                    	<p class="text">이용 후기 작성을 위해 이용내역조회를 먼저 해주세요.</p>
-	                                    <input type="text" name="bHp" id="bHp" placeholder="전화번호를 입력하세요 (-제외)">
-	                                    <input type="text" name="reBookidx" id="reBookidx" placeholder="예약번호를 입력하세요">
-                                    	<input type="button" id="book_check_btn" value="이용내역조회">
-                                    </div>
-                                    <div id="isData_no" class="hidden check_result">
-                                    	<h2 class="result_msg">이용내역 조회 결과</h2>
-                                    	<h1 class="no_msg">이용내역이 존재하지 않습니다 <span>:(</span></h1>
-                                    </div>
+                                    
                                     <div id="isData_yes" class="check_result">
                                     	<h2 class="result_msg">이용내역 조회 결과</h2>
                                     	<table>
@@ -83,6 +72,27 @@
                                     			</tr>
                                     		</tbody>
                                     	</table>
+                                    </div>
+                                    <div class="input_area">
+	                                    <p class="mid_text">별점을 선택하세요</p>
+	                                    <ul class="star_list clear2">
+	                                        <li><a href="#" class="">0.5</a></li>
+	                                        <li><a href="#" class="">1</a></li>
+	                                        <li><a href="#" class="">1.5</a></li>
+	                                        <li><a href="#" class="">2</a></li>
+	                                        <li><a href="#" class="">2.5</a></li>
+	                                        <li><a href="#" class="">3</a></li>
+	                                        <li><a href="#" class="">3.5</a></li>
+	                                        <li><a href="#" class="">4</a></li>
+	                                        <li><a href="#" class="">4.5</a></li>
+	                                        <li><a href="#" class="">5</a></li>
+	                                    </ul>
+	                                    <input type="hidden" name="reScore" id="star_score" value="">
+	                                    <input type="text" name="reTitle" id="reTitle" placeholder="제목을 입력해주세요">
+	                                    <textarea name="reContent" id="reContent" placeholder="짐캐리 이용 후기를 남겨주세요"></textarea>
+	                                    <div class="btn_wrap">
+	                                        <input class="btn_base btn_yellow" type="submit" value="후기 등록">
+	                                    </div>
                                     </div>
                                 </fieldset>
                             </form>

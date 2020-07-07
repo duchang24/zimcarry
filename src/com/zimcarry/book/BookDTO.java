@@ -15,6 +15,7 @@ public class BookDTO {
 	private int bUnder26;
 	private int bPrice;
 	private int bPoint;
+	private String bIsreview;
 	
 	public long getbIdx() {
 		return bIdx;
@@ -87,5 +88,11 @@ public class BookDTO {
 	}
 	public void setbPoint(int bPoint) {
 		this.bPoint = bPoint;
+	}
+	public String getbIsreview() {
+		return bIsreview;
+	}
+	public void setbIsreview(String bIsreview) {
+		this.bIsreview = bIsreview;
 	}
 }
