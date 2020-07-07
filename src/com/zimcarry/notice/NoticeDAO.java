@@ -3,7 +3,6 @@ package com.zimcarry.notice;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -153,8 +152,9 @@ public class NoticeDAO {
 		
 		try {
 			conn = DBConn.getConnection();
-			String sql = "UPDATE tb_notice SET no_hit = no_hit + 1";
+			String sql = "UPDATE tb_notice SET no_hit = no_hit + 1 WHERE no_idx = ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noIdx);
 			rs = pstmt.executeQuery();
 			
 			sql = "SELECT no_idx, no_title, no_content, no_writer, no_writedate, no_hit FROM tb_notice WHERE no_idx = ?";

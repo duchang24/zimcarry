@@ -7,6 +7,15 @@
     <title>짐 없는 여행의 시작! 짐캐리</title>
     <link href="../../css/customer_center_style.css" rel="stylesheet">
     <link href="../../images/ico_tit.ico" rel="shortcut icon" type="image/x-icon">
+    <style>
+    	.ck.ck-editor {
+    		max-width: 610px;
+    		margin: 0 auto !important;
+    	}
+    	.ck-editor__editable {
+    		min-height: 300px;
+    	}
+    </style>
 </head>
 <body>
 	<div id="wrap">
@@ -39,32 +48,37 @@
                     </div>
                     <div class="review_area box_inner">
                         <div class="write_wrap">
-                            <h3>짐캐리 이용고객 후기 작성</h3>
                             <form method="post" onsubmit="return checkReview()" action="write_ok.jsp">
                                 <fieldset>
                                     <legend>이용후기 작성</legend>
-                                    <p>별점을 선택하세요</p>
-                                    <ul class="star_list clear2">
-                                        <li><a href="#" class="">0.5</a></li>
-                                        <li><a href="#" class="">1</a></li>
-                                        <li><a href="#" class="">1.5</a></li>
-                                        <li><a href="#" class="">2</a></li>
-                                        <li><a href="#" class="">2.5</a></li>
-                                        <li><a href="#" class="">3</a></li>
-                                        <li><a href="#" class="">3.5</a></li>
-                                        <li><a href="#" class="">4</a></li>
-                                        <li><a href="#" class="">4.5</a></li>
-                                        <li><a href="#" class="">5</a></li>
-                                    </ul>
-                                    <input type="hidden" name="star_score" id="star_score" value="">
-                                    <p class="input_area">
-	                                    <input type="text" name="review_name" id="review_name" placeholder="이름을 입력하세요">
-	                                    <input type="text" name="review_hp" id="review_hp" placeholder="전화번호 뒷자리(비밀번호)">
-                                    </p>
-                                    <input type="text" name="review_title" id="review_title" placeholder="제목을 입력해주세요">
-                                    <iframe id="ckditor_iframe" src="./ckeditor.html"></iframe>
-                                    <div class="btn_wrap">
-                                        <input class="btn_base btn_yellow" type="submit" value="후기 등록">
+                                    <div id="book_check_area">
+                                    	<p><img src="../../images/ico/ico_logo_title.png" alt="짐캐리 로고" ></p>
+                                    	<p class="text">클린한 이용후기를 위해 이용 고객만 작성이 가능합니다.</p>
+                                    	<p class="text">이용후기 작성을 위해 예약조회를 먼저 해주세요.</p>
+	                                    <input type="text" name="bHp" id="bHp" placeholder="전화번호를 입력하세요 (-제외)">
+	                                    <input type="text" name="reBookidx" id="reBookidx" placeholder="예약번호를 입력하세요">
+                                    	<input type="button" id="book_check_btn" value="예약확인">
+                                    </div>
+                                    <div class="hidden input_area">
+	                                    <p class="mid_text">별점을 선택하세요</p>
+	                                    <ul class="star_list clear2">
+	                                        <li><a href="#" class="">0.5</a></li>
+	                                        <li><a href="#" class="">1</a></li>
+	                                        <li><a href="#" class="">1.5</a></li>
+	                                        <li><a href="#" class="">2</a></li>
+	                                        <li><a href="#" class="">2.5</a></li>
+	                                        <li><a href="#" class="">3</a></li>
+	                                        <li><a href="#" class="">3.5</a></li>
+	                                        <li><a href="#" class="">4</a></li>
+	                                        <li><a href="#" class="">4.5</a></li>
+	                                        <li><a href="#" class="">5</a></li>
+	                                    </ul>
+	                                    <input type="hidden" name="reScore" id="star_score" value="">
+	                                    <input type="text" name="reTitle" id="reTitle" placeholder="제목을 입력해주세요">
+	                                    <textarea name="reContent" id="reContent" placeholder="짐캐리 이용 후기를 남겨주세요"></textarea>
+	                                    <div class="btn_wrap">
+	                                        <input class="btn_base btn_yellow" type="submit" value="후기 등록">
+	                                    </div>
                                     </div>
                                 </fieldset>
                             </form>
@@ -84,6 +98,7 @@
    		<!-- pop-up end -->
 	</div>
 	<script src="../../js/jquery-3.5.1.min.js"></script>
+	<script src="../../js/ckeditor5/build/ckeditor.js"></script>
 	<script src="../../js/customer.js"></script>
    	<script src="../../js/main.js"></script>
 </body>

@@ -24,7 +24,8 @@ $(function () {
 				no_content = noticeJSON.no_content;
 				no_hidden = noticeJSON.no_hidden;
 				no_file = noticeJSON.no_file;
-					
+				
+				console.log(no_title);
 				$('#noIdx').val(no_idx);
 				$('#no_title').val(no_title);
 				$('#no_writer').val(no_writer);
