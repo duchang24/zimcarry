@@ -6,7 +6,7 @@
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:useBean id="reviewDTO" class="com.zimcarry.review.ReviewDTO" />
 
-<c:set var="reviewList" value="${reviewDAO.getreviewList()}" scope="page" />
+<c:set var="reviewList" value="${reviewDAO.getReviewList()}" scope="page" />
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -32,21 +32,21 @@
       		<table>
       			<thead>
       				<tr>
-      					<td>번호</td>
-      					<td>제목</td>
-      					<td>작성자</td>
-      					<td>구간</td>
-      					<td>만족도</td>
+      					<th>번호</th>
+      					<th>제목</th>
+      					<th>작성자</th>
+      					<th>구간</th>
+      					<th>만족도</th>
       				</tr>
       			</thead>
       			<tbody>
       				<c:forEach var="reviewItem" items='${ reviewList }' varStatus="status">
 	      				<tr>
-	      					<td></td>
-	      					<td></td>
-	      					<td></td>
-	      					<td></td>
-	      					<td></td>
+	      					<td>${ reviewItem.reIdx }</td>
+	      					<td><a href="review_viewpage.jsp">${ reviewItem.reTitle }</a></td>
+	      					<td>${ reviewItem.reWriter }</td>
+	      					<td>${ reviewItem.reRoute }</td>
+	      					<td>${ reviewItem.reScore }</td>
 	      				</tr>
       				</c:forEach>
       			</tbody>

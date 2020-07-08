@@ -99,3 +99,39 @@
 	width: 150px;
 	height: 35px;
 }
+/* review */
+
+.content .review_list {
+	width: 80%;
+	min-height: 300px;
+	margin: 0 auto;
+	padding: 30px;
+	border: 1px solid #D0CFCF;
+	border-radius: 10px;
+	background-color: #f6f6f6;
+	box-shadow: 8px 8px 20px #ccc;
+}
+.content .review_list table {
+	width: 100%;
+	text-align: center;
+}
+.content .review_list table th {
+	height: 50px;
+	background-color: #D9D9D9;
+	color: black;
+	border-bottom: 2px solid black;
+}
+.content .review_list table td {
+	height: 50px;
+	border-bottom: 1px solid #D0CFCF;
+}
+
+
+
+
+
+
+
+
+
+
