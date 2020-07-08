@@ -15,7 +15,6 @@
 .hotel_content .hotel_list table tr:first-child th:nth-child(2) { width: 45%; }
 .hotel_content .hotel_list table tr:first-child th:nth-child(3) { width: 20%; }
 .hotel_content .hotel_list table tr:first-child th:nth-child(4) { width: 20%; }
-.hotel_content .hotel_list table td:nth-child(2) { text-align: left; }
 .hotel_content .hotel_list #page { width: 100%; margin-top: 20px; text-align: center; font-size: 20px; line-height: 40px; }
 
 .hotel_content .hotel_view form p { position: relative; line-height: 40px; margin: 16px 0; }
@@ -27,3 +26,4 @@
 .hotel_content .hotel_view form input#radio1_1, .hotel_content .hotel_view form input#radio2_1 { width: 30px; height: 30px; top: 10px; right: 63%; }
 .hotel_content .hotel_view form input#radio1_2, .hotel_content .hotel_view form input#radio2_2 { width: 30px; height: 30px; top: 10px; right: 53%; }
 .hotel_content .hotel_view form input[type="submit"] { width: 150px; position: relative; margin: 20px 0; font-size: 20px; line-height: 30px; }
+.hotel_content .hotel_view form input[type="button"] { width: 150px; position: relative; margin: 20px 0; font-size: 20px; line-height: 30px; }

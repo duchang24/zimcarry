@@ -1,18 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*"%>
+<%@ page isELIgnored="false"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:useBean class="com.zimcarry.hotel.HotelDTO" id="hotelDTO"/>
+<jsp:useBean class="com.zimcarry.hotel.HotelDAO" id="hotelDAO"/>
 <%
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
+	int recNum = 10; // 페이지당 글 개수
+	int start = 0;	// 시작글 번호
+	int totCnt = hotelDAO.totCnt();
 	
-	String sql = "";
-	String url = "jdbc:mariadb://localhost:3306/zimcarry";
-	String uid = "root";
-	String upw = "1234";
+	String pagenum = request.getParameter("pagenum");
+	if(pagenum != null && !pagenum.equals("")){
+		start = (Integer.parseInt(pagenum)-1) * recNum;
+	}else{
+		pagenum = "1";
+		start = 0;
+	}
 	
+	int pageCnt = (totCnt / recNum) + 1;
 	
+	String nowpage = request.getParameter("pagenum");
 %>
+<c:set var="nowpage" value="<%=nowpage%>"/>
+<c:set var="start" value="<%=start%>"/>
+<c:set var="recNum" value="<%=recNum%>"/>
+
+<c:set var="hotelList" value="${hotelDAO.selectHotel(start, recNum)}"/>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -49,71 +64,62 @@
       				<th>할인</th>
       				<th>현재 제휴</th>      				
       			</tr>
+      			<c:forEach var="item" items="${hotelList}" varStatus="status">
 				<tr>
-					<td>01</td>
-					<td><a href="">00호텔</a></td>
-					<td>O</td>
-					<td>O</td>
+					<td>${status.count}</td>
+					<td><a href="hotel.jsp?pagenum=${nowpage}&hIdx=${item.hIdx}">${item.hName}</a></td>
+					<td>${item.hDiscount}</td>
+					<td>${item.hPartner}</td>
 				</tr>
-				<tr>
-					<td>01</td>
-					<td>00호텔</td>
-					<td>O</td>
-					<td>O</td>
-				</tr>
-				<tr>
-					<td>01</td>
-					<td>00호텔</td>
-					<td>O</td>
-					<td>O</td>
-				</tr>
-				<tr>
-					<td>01</td>
-					<td>00호텔</td>
-					<td>O</td>
-					<td>O</td>
-				</tr>
-				<tr>
-					<td>01</td>
-					<td>00호텔</td>
-					<td>O</td>
-					<td>O</td>
-				</tr>
-				<tr>
-					<td>01</td>
-					<td>00호텔</td>
-					<td>O</td>
-					<td>O</td>
-				</tr>
-				<tr>
-					<td>01</td>
-					<td>00호텔</td>
-					<td>O</td>
-					<td>O</td>
-				</tr>
-				<tr>
-					<td>01</td>
-					<td>00호텔</td>
-					<td>O</td>
-					<td>O</td>
-				</tr>
-				<tr>
-					<td>01</td>
-					<td>00호텔</td>
-					<td>O</td>
-					<td>O</td>
-				</tr>
-				<tr>
-					<td>01</td>
-					<td>00호텔</td>
-					<td>O</td>
-					<td>O</td>
-				</tr>
+				</c:forEach>
       		</table>
-      		<p id="page">1 2 3 4 5 6 7 8 9 10</p>
+      		<p id="page" class="paging">
+			<%
+				for(int i=1; i<=pageCnt; i++){
+					out.print("<a href='hotel.jsp?pagenum="+i+"'>" + i + "</a>" + " ");	
+				}
+			%>
+			</p>
       	</div>
       	<div class="hotel_view hotel">
       		<h3>제휴 호텔</h3>
+      		<input type="hidden" name="h_idx" value="0">
+   		<%
+      		String h_idx = request.getParameter("hIdx");
+      		if(h_idx != null && !h_idx.equals("")){
+      	%>
+      		<c:set var="h_idx" value="<%=h_idx%>"/>
+      		<c:set var="viewHotel" value="${hotelDAO.viewHotel(h_idx)}"/>
+      		<form method="post" action="./data/hotel_ok.jsp" enctype="multipart/form-data">
+      			<p>호텔 사진 ${viewHotel.hFile}</p>
+      			<p><input type="file" name="h_file"></p>
+      			<p>호텔 명 <input type="text" name="h_name" value="${viewHotel.hName}"></p>
+      			<p>호텔 주소 <input type="text" name="h_address" value="${viewHotel.hAddress}"></p>
+      			<p>호텔 지도 <input type="text" name="h_map" id="h_map" value="${viewHotel.hMap}"></p>
+      			<p>호텔 할인 <label id="label1_1">O</label><input type="radio" name="h_discount" value="O" id="radio1_1" 
+      			<c:if test="${viewHotel.hDiscount == 'O'}">
+					checked
+				</c:if>
+      			> <label id="label1_2">X</label><input type="radio" name="h_discount" value="X" id="radio1_2"
+      			<c:if test="${viewHotel.hDiscount == 'X'}">
+					checked
+				</c:if>
+      			></p>
+      			<br>
+      			<p>현재 제휴 상황 <label id="label2_1">O</label><input type="radio" name="h_partner" value="O" id="radio2_1"
+      			<c:if test="${viewHotel.hPartner == 'O'}">
+					checked
+				</c:if>
+      			> <label id="label2_2">X</label><input type="radio" name="h_partner" value="X" id="radio2_2"
+      			<c:if test="${viewHotel.hPartner == 'X'}">
+					checked
+				</c:if>
+      			></p>
+      			<p><input type="submit" value="수정"> <input type="button" value="비우기" onclick="location.href='hotel.jsp?pagenum=${nowpage}'"></p>
+      		</form>
+      	<%
+      		}else{
+      	%>
       		<form method="post" action="./data/hotel_ok.jsp" enctype="multipart/form-data">
       			<p>호텔 사진 <input type="file" name="h_file"></p>
       			<p>호텔 명 <input type="text" name="h_name"></p>
@@ -124,6 +130,9 @@
       			<p>현재 제휴 상황 <label id="label2_1">O</label><input type="radio" name="h_partner" value="O" id="radio2_1" checked> <label id="label2_2">X</label><input type="radio" name="h_partner" value="X" id="radio2_2"></p>
       			<p><input type="submit" value="추가"></p>
       		</form>
+      	<%
+      		}
+   		%>
       	</div>
       </div>
       <!-- footer -->
