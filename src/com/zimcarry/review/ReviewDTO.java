@@ -7,10 +7,7 @@ public class ReviewDTO {
 	private double reScore;
 	private String reTitle;
 	private String reContent;
-	private String reWriter;
 	private Date reWritedate;
-	private String reRoute;
-	private long reBookIdx;
 	private long reBookidx;
 	
 	public long getReIdx() {
@@ -49,18 +46,5 @@ public class ReviewDTO {
 	public void setReBookidx(long reBookidx) {
 		this.reBookidx = reBookidx;
 	}
-	public String getReWriter() {
-		return reWriter;
-	}
-	public void setReWriter(String reWriter) {
-		this.reWriter = reWriter;
-	}
-	public String getReRoute() {
-		return reRoute;
-	}
-	public void setReRoute(String reRoute) {
-		this.reRoute = reRoute;
-	}
-	
 	
 }

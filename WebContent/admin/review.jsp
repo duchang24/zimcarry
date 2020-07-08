@@ -3,23 +3,16 @@
 <%@ page isELIgnored="false" %>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
-<<<<<<< HEAD
-=======
+
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:useBean id="reviewDTO" class="com.zimcarry.review.ReviewDTO" />
 
-<<<<<<< HEAD
 <c:set var="reviewList" value="${reviewDAO.getReviewList()}" scope="page" />
-=======
-<c:set var="reviewList" value="${reviewDAO.getreviewList()}" scope="page" />
->>>>>>> 93be6e0ee2dffc76ddc7a900fa58aa2491515c60
->>>>>>> 472f9cb63f3766aad57e3349f9a9ced8eec2fd5d
 
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
 <%@ include file="./head.jsp" %>
-
 <body class="">
   <div class="wrapper ">
     <!-- side menu -->
@@ -35,68 +28,33 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-<<<<<<< HEAD
       	<div class="review_table">
-=======
-      	<div class="review_list">
->>>>>>> 93be6e0ee2dffc76ddc7a900fa58aa2491515c60
       		<table>
       			<thead>
       				<tr>
-<<<<<<< HEAD
-      					<th>번호</th>
-      					<th>제목</th>
+						<th>번호</th>
+      					<td>제목</th>
       					<th>작성자</th>
-      					<th>구간</th>
       					<th>만족도</th>
-=======
-      					<td>번호</td>
-      					<td>제목</td>
-      					<td>작성자</td>
-<<<<<<< HEAD
-      					<td>만족도</td>
-      					<td>이용날짜</td>
-      					<td>숨김여부</td>
-      				</tr>
-      			</thead>
-      			<tbody>
-      				<c:forEach var="reviewItem" items='${ reveiwList }' varStatus="status">
-      					<tr>
-	      					<td></td>
-=======
-      					<td>구간</td>
-      					<td>만족도</td>
->>>>>>> 472f9cb63f3766aad57e3349f9a9ced8eec2fd5d
+      					<th>이용날짜</th>
+      					<th>숨김여부</th>
       				</tr>
       			</thead>
       			<tbody>
       				<c:forEach var="reviewItem" items='${ reviewList }' varStatus="status">
 	      				<tr>
-<<<<<<< HEAD
 	      					<td>${ reviewItem.reIdx }</td>
 	      					<td><a href="review_viewpage.jsp">${ reviewItem.reTitle }</a></td>
-	      					<td>${ reviewItem.reWriter }</td>
-	      					<td>${ reviewItem.reRoute }</td>
 	      					<td>${ reviewItem.reScore }</td>
-=======
->>>>>>> 93be6e0ee2dffc76ddc7a900fa58aa2491515c60
-	      					<td></td>
-	      					<td></td>
-	      					<td></td>
-	      					<td></td>
-	      					<td></td>
->>>>>>> 472f9cb63f3766aad57e3349f9a9ced8eec2fd5d
+	      					<td>${ reviewItem.reScore }</td>
+	      					<td>${ reviewItem.reScore }</td>
+	      					<td>${ reviewItem.reScore }</td>
 	      				</tr>
       				</c:forEach>
       			</tbody>
       		</table>
-<<<<<<< HEAD
-      		
       	</div>
         <!--  review_table end -->
-=======
-      	</div>
->>>>>>> 93be6e0ee2dffc76ddc7a900fa58aa2491515c60
       </div>
       <!-- footer -->
       <%@ include file="./footer.jsp" %>
@@ -111,5 +69,4 @@
   	})
   </script>
 </body>
-
 </html>

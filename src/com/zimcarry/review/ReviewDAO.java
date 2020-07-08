@@ -3,10 +3,7 @@ package com.zimcarry.review;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-<<<<<<< HEAD
 import java.sql.SQLException;
-=======
->>>>>>> 472f9cb63f3766aad57e3349f9a9ced8eec2fd5d
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +19,8 @@ public class ReviewDAO {
 		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
 		ReviewDTO review = null;
 		conn = DBConn.getConnection();
-		String sql = "SELECT re_idx, re_title, re_score, re_content, re_writedate FROM tb_review WHERE order by re_idx desc";
+		String sql = "SELECT re_idx, re_title, re_score, re_content, re_writedate "
+				+ "FROM tb_review WHERE order by re_idx desc";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -37,13 +35,10 @@ public class ReviewDAO {
 			}
 			sql = "SELECT b_name, b_start, b_end FROM tb_book WHERE b_idx=?";
 			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setLong(1, review.getReBookIdx());
+			pstmt.setLong(1, review.getReBookidx());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				review.setReWriter(rs.getString("b_name"));
-				review.setReRoute(rs.getString("b_start") + "→" + rs.getString("b_end"));
-				reviewList.add(review);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,13 +47,6 @@ public class ReviewDAO {
 		}
 		return reviewList;
 	}
-	public boolean insertReview() {
-		conn = DBConn.getConnection();
-		String sql = "INSERT INTO (re_hp, re_title, re_content, re_score, re_writedate, re_bookIdx) VALUES"
-				+ "(?, ?, ?, ?, ?, ?)";
-		pstmt = conn.prepareStatement(sql);
-//		pstmt.setString(1,  );
-
 	public boolean insertReview(ReviewDTO reviewDTO) {
 		try {
 			String sql = "INSERT INTO tb_review(re_score, re_title, re_content, re_bookidx) VALUES(?, ?, ?, ?)";
@@ -89,9 +77,9 @@ public class ReviewDAO {
 	
 	public List<ReviewDTO> selectReviewList() {
 		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
-		
 		try {
-			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx FROM tb_review";
+			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate,"
+					+ "re_bookidx FROM tb_review";
 			conn = DBConn.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
