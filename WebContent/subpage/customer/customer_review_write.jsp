@@ -39,36 +39,41 @@
                     </div>
                     <div class="review_area box_inner">
                         <div class="write_wrap">
-                            <h3>짐캐리 이용고객 후기 작성</h3>
-                            <form method="post" onsubmit="return checkReview()" action="write_ok.jsp">
+                            <form method="post" onsubmit="return checkBook()" action="write.jsp">
                                 <fieldset>
                                     <legend>이용후기 작성</legend>
-                                    <p class="input_area">
-	                                    <input type="text" name="reHp" id="reHp" placeholder="전화번호 뒷자리를 입력하세요">
+                                    <div id="book_check_area">
+                                    	<p><img src="../../images/ico/ico_logo_title.png" alt="짐캐리 로고" ></p>
+                                    	<p class="text">클린한 이용 후기를 위해 이용 고객만 작성이 가능합니다.</p>
+                                    	<p class="text">이용 후기 작성을 위해 이용내역조회를 먼저 해주세요.</p>
+	                                    <input type="text" name="bHp" id="bHp" placeholder="전화번호를 입력하세요 (-제외)">
 	                                    <input type="text" name="reBookidx" id="reBookidx" placeholder="예약번호를 입력하세요">
-                                    	<input type="button" id="book_check_btn" value="예약확인">
-                                    	
-                                    </p>
-                                    <div class="">
-	                                    <p>별점을 선택하세요</p>
-	                                    <ul class="star_list clear2">
-	                                        <li><a href="#" class="">0.5</a></li>
-	                                        <li><a href="#" class="">1</a></li>
-	                                        <li><a href="#" class="">1.5</a></li>
-	                                        <li><a href="#" class="">2</a></li>
-	                                        <li><a href="#" class="">2.5</a></li>
-	                                        <li><a href="#" class="">3</a></li>
-	                                        <li><a href="#" class="">3.5</a></li>
-	                                        <li><a href="#" class="">4</a></li>
-	                                        <li><a href="#" class="">4.5</a></li>
-	                                        <li><a href="#" class="">5</a></li>
-	                                    </ul>
-	                                    <input type="hidden" name="star_score" id="star_score" value="">
-	                                    <input type="text" name="review_title" id="review_title" placeholder="제목을 입력해주세요">
-	                                    <iframe id="ckditor_iframe" src="./ckeditor.html"></iframe>
-	                                    <div class="btn_wrap">
-	                                        <input class="btn_base btn_yellow" type="submit" value="후기 등록">
-	                                    </div>
+                                    	<input type="button" id="book_check_btn" value="이용내역조회">
+                                    </div>
+                                    <div id="isData_no" class="hidden check_result">
+                                    	<h2 class="result_msg">이용내역 조회 결과</h2>
+                                    	<h1 class="no_msg">후기를 작성할 이용내역이 존재하지 않습니다 <span>:)</span></h1>
+                                    </div>
+                                    <div id="isData_yes" class="hidden check_result">
+                                    	<h2 class="result_msg">이용내역 조회 결과</h2>
+                                    	<table>
+                                    		<thead>
+                                    			<tr>
+                                    				<th>이름</th>
+                                    				<th>구간</th>
+                                    				<th>날짜</th>
+                                    				<th>이용 후기 작성</th>
+                                   				</tr>
+                                    		</thead>
+                                    		<tbody>
+                                    			<tr>
+                                    				<td id="bName">name</td>
+                                    				<td><span id="bStart">start</span> -> <span id="bEnd">end</span></td>
+                                    				<td><span id="bStartdate">start time</span> ~ <span id="bEnddate">end time</span></td>
+                                    				<td><input type="submit" value="작성" id="write_btn"></td>
+                                    			</tr>
+                                    		</tbody>
+                                    	</table>
                                     </div>
                                 </fieldset>
                             </form>
@@ -88,6 +93,7 @@
    		<!-- pop-up end -->
 	</div>
 	<script src="../../js/jquery-3.5.1.min.js"></script>
+	<script src="../../js/ckeditor5/build/ckeditor.js"></script>
 	<script src="../../js/customer.js"></script>
    	<script src="../../js/main.js"></script>
 </body>

@@ -37,6 +37,12 @@
         </a>
       </li>
       <li class="nav-item ">
+        <a class="nav-link" href="./faq.jsp">
+          <i class="material-icons">library_books</i>
+          <p>FAQ 관리</p>
+        </a>
+      </li>
+      <li class="nav-item ">
         <a class="nav-link" href="./review.jsp">
           <i class="material-icons">library_books</i>
           <p>이용후기 관리</p>

@@ -11,6 +11,7 @@ public class ReviewDTO {
 	private Date reWritedate;
 	private String reRoute;
 	private long reBookIdx;
+	private long reBookidx;
 	
 	public long getReIdx() {
 		return reIdx;
@@ -42,11 +43,11 @@ public class ReviewDTO {
 	public void setReWritedate(Date reWritedate) {
 		this.reWritedate = reWritedate;
 	}
-	public long getReBookIdx() {
-		return reBookIdx;
+	public long getReBookidx() {
+		return reBookidx;
 	}
-	public void setReBookIdx(long reBookIdx) {
-		this.reBookIdx = reBookIdx;
+	public void setReBookidx(long reBookidx) {
+		this.reBookidx = reBookidx;
 	}
 	public String getReWriter() {
 		return reWriter;
