@@ -1,19 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<% 	request.setCharacterEncoding("UTF-8"); %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>짐 없는 여행의 시작! 짐캐리</title>
-    <link href="../../css/customer_center_style.css" rel="stylesheet">
-    <link href="../../images/ico_tit.ico" rel="shortcut icon" type="image/x-icon">
-</head>
-<body>
-	<!-- 쿼리 날리는 페이지 -->
-	<%
-		out.print(request.getParameter("reContent"));
-	%>
-</body>
-</html>
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%  request.setCharacterEncoding("utf-8"); %>
+<jsp:useBean id="reviewDTO" class="com.zimcarry.review.ReviewDTO" />
+<jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
+<jsp:setProperty property="*" name="reviewDTO" />
+<c:out value="${reviewDTO.reBookidx }" />
+
+<c:if test="${reviewDAO.insertReview(reviewDTO)}" >
+	<script>
+		alert('후기작성 성공!\n정성스러운 후기 작성 감사합니다!');
+		location.href='./customer_review.jsp';
+	</script>
+</c:if>

@@ -7,15 +7,6 @@
     <title>짐 없는 여행의 시작! 짐캐리</title>
     <link href="../../css/customer_center_style.css" rel="stylesheet">
     <link href="../../images/ico_tit.ico" rel="shortcut icon" type="image/x-icon">
-    <style>
-    	.ck.ck-editor {
-    		max-width: 610px;
-    		margin: 0 auto !important;
-    	}
-    	.ck-editor__editable {
-    		min-height: 300px;
-    	}
-    </style>
 </head>
 <body>
 	<div id="wrap">
@@ -48,7 +39,7 @@
                     </div>
                     <div class="review_area box_inner">
                         <div class="write_wrap">
-                            <form method="post" onsubmit="return checkReview()" action="write_ok.jsp">
+                            <form method="post" onsubmit="return checkBook()" action="write.jsp">
                                 <fieldset>
                                     <legend>이용후기 작성</legend>
                                     <div id="book_check_area">
@@ -59,26 +50,30 @@
 	                                    <input type="text" name="reBookidx" id="reBookidx" placeholder="예약번호를 입력하세요">
                                     	<input type="button" id="book_check_btn" value="이용내역조회">
                                     </div>
-                                    <div class="hidden input_area">
-	                                    <p class="mid_text">별점을 선택하세요</p>
-	                                    <ul class="star_list clear2">
-	                                        <li><a href="#" class="">0.5</a></li>
-	                                        <li><a href="#" class="">1</a></li>
-	                                        <li><a href="#" class="">1.5</a></li>
-	                                        <li><a href="#" class="">2</a></li>
-	                                        <li><a href="#" class="">2.5</a></li>
-	                                        <li><a href="#" class="">3</a></li>
-	                                        <li><a href="#" class="">3.5</a></li>
-	                                        <li><a href="#" class="">4</a></li>
-	                                        <li><a href="#" class="">4.5</a></li>
-	                                        <li><a href="#" class="">5</a></li>
-	                                    </ul>
-	                                    <input type="hidden" name="reScore" id="star_score" value="">
-	                                    <input type="text" name="reTitle" id="reTitle" placeholder="제목을 입력해주세요">
-	                                    <textarea name="reContent" id="reContent" placeholder="짐캐리 이용 후기를 남겨주세요"></textarea>
-	                                    <div class="btn_wrap">
-	                                        <input class="btn_base btn_yellow" type="submit" value="후기 등록">
-	                                    </div>
+                                    <div id="isData_no" class="hidden check_result">
+                                    	<h2 class="result_msg">이용내역 조회 결과</h2>
+                                    	<h1 class="no_msg">후기를 작성할 이용내역이 존재하지 않습니다 <span>:)</span></h1>
+                                    </div>
+                                    <div id="isData_yes" class="hidden check_result">
+                                    	<h2 class="result_msg">이용내역 조회 결과</h2>
+                                    	<table>
+                                    		<thead>
+                                    			<tr>
+                                    				<th>이름</th>
+                                    				<th>구간</th>
+                                    				<th>날짜</th>
+                                    				<th>이용 후기 작성</th>
+                                   				</tr>
+                                    		</thead>
+                                    		<tbody>
+                                    			<tr>
+                                    				<td id="bName">name</td>
+                                    				<td><span id="bStart">start</span> -> <span id="bEnd">end</span></td>
+                                    				<td><span id="bStartdate">start time</span> ~ <span id="bEnddate">end time</span></td>
+                                    				<td><input type="submit" value="작성" id="write_btn"></td>
+                                    			</tr>
+                                    		</tbody>
+                                    	</table>
                                     </div>
                                 </fieldset>
                             </form>
