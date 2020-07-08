@@ -324,6 +324,12 @@
             line-height: 20px;
             letter-spacing: -1px;
         }
+        .review_area .review_list .review_content .contents a {
+        	color: #555;
+        }
+        .review_area .review_list .review_content .contents a:hover {
+        	color: #FF6F61;
+        }
     /* review end */
 
     /* review_write */

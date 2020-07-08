@@ -5,7 +5,6 @@
 <jsp:useBean id="reviewDTO" class="com.zimcarry.review.ReviewDTO" />
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:setProperty property="*" name="reviewDTO" />
-<%-- <jsp:setProperty property="reBookidx" name="reviewDTO" value="${param.reBookidx}"/> --%>
 <c:out value="${reviewDTO.reBookidx }" />
 
 <c:if test="${reviewDAO.insertReview(reviewDTO)}" >

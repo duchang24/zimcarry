@@ -104,7 +104,6 @@
 	                                    <input type="text" name="reTitle" id="reTitle" placeholder="제목을 입력해주세요">
 	                                    <textarea name="reContent" id="reContent" placeholder="짐캐리 이용 후기를 남겨주세요"></textarea>
 	                                    <input type="hidden" name="reBookidx" id="reBookidx" value="${bookDTO.bIdx}">
-	                                    ${bookDTO.bIdx}
 	                                    <div class="btn_wrap">
 	                                        <input class="btn_base btn_yellow" type="submit" value="후기 등록">
 	                                    </div>

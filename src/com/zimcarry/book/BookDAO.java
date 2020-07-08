@@ -85,4 +85,32 @@ public class BookDAO {
 		}
 		return bookDTO; //null
 	}
+	
+	public BookDTO selectBookWhereIdx(String bIdx) {
+		BookDTO bookDTO = null;
+		try {
+			String sql = "SELECT b_idx, b_name, b_start, b_end, b_bookingdate, b_startdate, b_enddate, b_isreview FROM tb_book WHERE b_idx = ?";
+			conn = DBConn.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bIdx);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				bookDTO = new BookDTO();
+				bookDTO.setbIdx(rs.getLong("b_idx"));
+				bookDTO.setbName(rs.getString("b_name"));
+				bookDTO.setbStart(rs.getString("b_start"));
+				bookDTO.setbEnd(rs.getString("b_end"));
+				bookDTO.setbBookingdate(rs.getDate("b_bookingdate"));
+				bookDTO.setbStartdate(rs.getDate("b_startdate"));
+				bookDTO.setbEnddate(rs.getDate("b_enddate"));
+				bookDTO.setbIsreview(rs.getString("b_isreview"));
+				return bookDTO;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return bookDTO;
+	}
 }
