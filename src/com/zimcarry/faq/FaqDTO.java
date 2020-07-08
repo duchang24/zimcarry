@@ -1,16 +1,18 @@
 package com.zimcarry.faq;
 
+import java.util.Date;
+
 public class FaqDTO {
-	private long fIdx;
+	private int fIdx;
 	private String fQuestion;
 	private String fAnswer;
-	private String fWritedate;
+	private Date fWritedate;
 	private String fHidden;
 	
-	public long getfIdx() {
+	public int getfIdx() {
 		return fIdx;
 	}
-	public void setfIdx(long fIdx) {
+	public void setfIdx(int fIdx) {
 		this.fIdx = fIdx;
 	}
 	public String getfQuestion() {
@@ -25,10 +27,10 @@ public class FaqDTO {
 	public void setfAnswer(String fAnswer) {
 		this.fAnswer = fAnswer;
 	}
-	public String getfWritedate() {
+	public Date getfWritedate() {
 		return fWritedate;
 	}
-	public void setfWritedate(String fWritedate) {
+	public void setfWritedate(Date fWritedate) {
 		this.fWritedate = fWritedate;
 	}
 	public String getfHidden() {
