@@ -48,7 +48,7 @@
       				<c:set var="bookDTO" value="${bookDAO.selectBookWhereIdx(reviewItem.reBookidx)}" />
 	      				<tr>
 	      					<td>${ reviewItem.reIdx }</td>
-	      					<td><a href='review_view.jsp=?re_idx=${reviewItem.reBookidx}'>${ reviewItem.reTitle }</a></td>
+	      					<td><a href='review.jsp=?re_idx=${reviewItem.reBookidx}'>${ reviewItem.reTitle }</a></td>
 	      					<td>${ bookDTO.bName }</td>
 	      					<td>${ reviewItem.reScore }</td>
 	      					<td>${ bookDTO.bStartdate }</td>
@@ -61,14 +61,16 @@
         <!--  review_table end -->
         <!-- review detail -->
         <div class="review_detail">
-   
+        <c:set var="review_d" value="${ reviewDAO.selectReview(reviewDTO.reIdx) }" />
+        <c:set var="bookDTO1" value="${bookDAO.selectBookWhereIdx(reviewItem.reBookidx)}" />
         	<p>
-	        	<span class="left">글 번호 : </span> <span>이용날짜 : </span><br> 
-	        	<span class="left">제목 : </span> <span>작성자 : </span><br>
-	        	<span>만족도 : </span>
+	        	<span class="left">글 번호 : ${ review_d.reIdx }</span> <span>작성일 : ${ review_d.reWritedate }</span> 
+	        	<span>구간 : ${ bookDTO1.bStart } → ${ bookDTO1.bEnd }</span><br> 
+	        	<span class="left">제목 : ${ review_d.reTitle }</span> <span>작성자 : ${ bookDTO1.bName }</span><br>
+	        	<span>만족도 : ${ review_d.reScore }</span>
         	</p>
         	<p class="re_content">
-        		
+        		${ review_d.reContent }
         	</p>
         	<p><label>숨김</label> <input type="radio" name="review" value="숨김"> 
         	<label>공개</label> <input type="radio" name="review" value="공개" checked="checked"></p>
@@ -88,5 +90,4 @@
   	})
   </script>
 </body>
-
 </html>

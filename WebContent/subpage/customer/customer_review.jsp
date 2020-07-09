@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false" %>
-<%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%  request.setCharacterEncoding("utf-8"); %>
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
-
-<c:set var="reviewList" value="${reviewDAO.getReviewList()}" />
+<jsp:useBean id="bookDAO" class="com.zimcarry.book.BookDAO" />
+<jsp:useBean id="util" class="com.zimcarry.util.Util" />
+<c:set var="reviewList" value="${reviewDAO.selectReviewList()}" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -48,16 +47,18 @@
                         </div>
                         <h3>짐캐리 이용고객 후기</h3>
                         <ul class="review_list">
-                        	<c:forEach var="review" items='${ reviewList }' varStatus="status">
+                            <c:forEach var="review" items="${reviewList}" varStatus="status">
+                            	<c:set var="bookDTO" value="${bookDAO.selectBookWhereIdx(review.reBookidx)}" />
+                            	<c:set var="score" value="${review.reScore}" />
 	                            <li>
 	                                <div class="review_content">
-	                                    <span class="name">${ review.reWriter }</span><span class="root">${ review.reRoute }</span><span class="use_date">${ review.reWritedate }</span>
-	                                    <p class="star five">${ review.reScore }</p>
-	                                    <p class="title">${ review.reTitle }</p><span class="write_date">${ review.reWritedate }</span>
-	                                    <p class="contents">${ review.reContent }</p>
+	                                    <span class="name">${bookDTO.bName}</span><span class="root">${bookDTO.bStart} → ${bookDTO.bEnd}</span><span class="use_date">${bookDTO.bEnddate}</span>
+	                                    <p class="star ${util.changeScoreString(review.reScore)}">${review.reScore}</p>
+	                                    <p class="title">${review.reTitle}</p><span class="write_date">${review.reWritedate}</span>
+	                                    <div class="contents">${review.reContent}</div>
 	                                </div>
 	                            </li>
-                        	</c:forEach>
+                            </c:forEach>
                         </ul>
                     </div>
                     <div class="page_wrap">

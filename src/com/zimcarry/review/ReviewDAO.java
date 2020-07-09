@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zimcarry.book.BookDTO;
 import com.zimcarry.db.DBConn;
 
 public class ReviewDAO {
@@ -66,9 +67,30 @@ public class ReviewDAO {
 		}
 		return reviewList;
 	}
-	public List<ReviewDTO> ReviewList() {
-		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
+	
+	public ReviewDTO selectReview(Long reIdx) {
+		ReviewDTO reviewDTO = null;
 		
-		return reviewList;
+		try {
+			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx"
+					+ "FROM tb_review WHERE re_idx=?";
+			conn = DBConn.getConnection();
+			pstmt.setLong(1, reIdx);
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				reviewDTO.setReIdx(rs.getLong("re_idx"));
+				reviewDTO.setReScore(rs.getDouble("re_score"));
+				reviewDTO.setReTitle(rs.getString("re_title"));
+				reviewDTO.setReContent(rs.getString("re_content"));
+				reviewDTO.setReWritedate(rs.getDate("re_writedate"));
+				reviewDTO.setReBookidx(rs.getLong("re_bookidx"));
+				return reviewDTO;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return reviewDTO;
 	}
 }
