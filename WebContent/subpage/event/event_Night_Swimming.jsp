@@ -38,7 +38,6 @@
                                         <th>제목</th>
                                         <th>작성자</th>
                                         <th>등록일</th>
-                                        <th>조회수</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,7 +45,6 @@
                                         <td>나잇스위밍</td>
                                         <td>짐캐리</td>
                                         <td>2020-03-12</td>
-                                        <td>186</td>
                                     </tr>
                                 </tbody>
                             </table>

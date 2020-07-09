@@ -38,7 +38,6 @@
                                         <th>제목</th>
                                         <th>작성자</th>
                                         <th>등록일</th>
-                                        <th>조회수</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,7 +45,6 @@
                                         <td>부산타워 입장권</td>
                                         <td>짐캐리</td>
                                         <td>2019-11-11</td>
-                                        <td>132</td>
                                     </tr>
                                 </tbody>
                             </table>
