@@ -16,6 +16,9 @@
         .page_wrap .page_list {
             display: inline-block;
         }
+        .page_wrap .page_list a.on {
+        	background-color: #fff;
+        }
         .page_wrap .page_list li { 
             float: left;
             width: 30px;

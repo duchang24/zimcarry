@@ -5,6 +5,7 @@
 <jsp:useBean id="bookDAO" class="com.zimcarry.book.BookDAO" />
 <jsp:useBean id="util" class="com.zimcarry.util.Util" />
 <c:set var="reviewList" value="${reviewDAO.selectReviewList()}" />
+<c:set var="totalpage" value="${reviewList.size()}" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -64,8 +65,6 @@
                     <div class="page_wrap">
                         <ul class="page_list">
                             <li><a href="#" class="on">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
                         </ul>
                     </div>
                 </div>

@@ -189,7 +189,7 @@ caption, legend { font-size: 0; width: 0; height: 0; line-height: 0; text-indent
 .btn_base { border: none; border-radius: 15px 0 15px 0; box-sizing: border-box; width: 150px; height: 60px; margin: 0; font-size: 16px; cursor: pointer; }
 .btn_yellow { background-color: #ffda00; }
 .btn_gray { background-color: #828282; color: #fff; }
-.on { background-color: #ffda00 !important; font-weight: bold !important; }
+.on { background-color: #ffda00; font-weight: bold; }
 
 .service { background: url(../images/img/sub01_visual_img01.jpg) no-repeat 9% 0; }
 .reservation { background: url(../images/img/sub02_visual_img.jpg) no-repeat 9% 0; }
