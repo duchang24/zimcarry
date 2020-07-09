@@ -58,6 +58,32 @@ public class HotelDAO {
 		return hotelList;
 	}
 	
+	public List<HotelDTO> selectHotel(String h_name, int start, int recNum){
+		List<HotelDTO> hotelList = new ArrayList<HotelDTO>();
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT h_idx, h_name, h_discount, h_partner FROM tb_hotel WHERE h_name=? order by h_idx asc limit ?, ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, h_name);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, recNum);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				HotelDTO hotel = new HotelDTO();
+				hotel.sethIdx(rs.getLong("h_idx"));
+				hotel.sethName(rs.getString("h_name"));
+				hotel.sethDiscount(rs.getString("h_discount"));
+				hotel.sethPartner(rs.getString("h_partner"));
+				hotelList.add(hotel);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return hotelList;
+	}
+	
 	public int insertHotel(HotelDTO hotelDTO) {
 		String sql = "INSERT INTO tb_hotel(h_file, h_name, h_address, h_map, h_discount, h_partner) VALUE(?, ?, ?, ?, ?, ?)";
 		try {
