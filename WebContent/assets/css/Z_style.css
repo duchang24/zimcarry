@@ -43,6 +43,22 @@
 	background-color: #f6f6f6;
 	box-shadow: 8px 8px 20px #ccc;
 }
+.content .list_up {
+	margin-bottom: 100px;
+}
+.content .list_up table {
+	width: 100%;
+	text-align: center;
+}
+.content .list_up table th {
+	height: 50px;
+	background-color: #ecf0f1;
+	border-bottom: 2px solid #34495e;
+}
+.content .list_up table td {
+	height: 50px;
+	border-bottom: 1px solid #bdc3c7;
+}
 
 /* notice */
 .content .notice {
@@ -55,77 +71,83 @@
 	background-color: #f6f6f6;
 	box-shadow: 8px 8px 20px #ccc;
 }
-.content .notice_list {
-	margin-bottom: 100px;
-}
-.content .notice_list table {
-	width: 100%;
-	text-align: center;
-}
-.content .notice_list table th {
-	height: 50px;
-	background-color: #ecf0f1;
-	border-bottom: 2px solid #34495e;
-}
-.content .notice_list table td {
-	height: 50px;
-	border-bottom: 1px solid #bdc3c7;
-}
-.content .notice_content #no_title {
+
+.content .list_down #no_title {
 	box-sizing: border-box;
 	width: 90%;
 	height: 40px;
 	margin-left: 20px; 
 	padding: 1 10px;
 }
-.content .notice_content #no_writer {
+.content .list_down #no_writer {
 	box-sizing: border-box;
 	width: 90%;
 	height: 40px;
 	margin-left: 5px; 
 	padding: 1 10px;
 }
-.content .notice_content #no_content {
+.content .list_down #no_content {
 	box-sizing: border-box;
 	width: 100%;
 	min-height: 200px;
 	padding: 10px 10px;
 }
-.content .notice_content label {
+.content .list_down label {
 	margin-right: 5px;
 }
-.content .notice_content input[type="button"], .content .notice_content input[type="submit"] {
+.content .list_down input[type="button"], .content .list_down input[type="submit"] {
 	box-sizing: border-box;
 	width: 150px;
 	height: 35px;
 }
-/* review */
-
-.content .review_list {
+/* 리뷰 관리 페이지 */
+.content .review_table {
 	width: 80%;
-	min-height: 300px;
+	min-height: 200px;
 	margin: 0 auto;
 	padding: 30px;
-	border: 1px solid #D0CFCF;
+	border: 1px solid #cdcdcd;
 	border-radius: 10px;
 	background-color: #f6f6f6;
 	box-shadow: 8px 8px 20px #ccc;
 }
-.content .review_list table {
+.content .review_table table {
 	width: 100%;
 	text-align: center;
 }
-.content .review_list table th {
+.content .review_table table th {
 	height: 50px;
-	background-color: #D9D9D9;
+	background-color: #ecf0f1;
 	color: black;
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid #34495e;
 }
-.content .review_list table td {
+.content .review_table td {
 	height: 50px;
-	border-bottom: 1px solid #D0CFCF;
+	border-bottom: 1px solid #34495e;
 }
-
+/****************/
+.content .review_detail {
+	width: 80%;
+	min-height: 200px;
+	margin: 50px auto 0;
+	padding: 30px;
+	border: 1px solid #cdcdcd;
+	border-radius: 10px;
+	background-color: #f6f6f6;
+	box-shadow: 8px 8px 20px #ccc;
+}
+.content .review_detail p {
+	color: black;
+	width: 100%;
+}
+.content .review_detail .re_content {
+	width: 100%;
+	height: 200px;
+	border: 1px solid #cdcdcd;
+}
+.content .review_detail span.left {
+	margin-right: 120px;
+}
 
 
 

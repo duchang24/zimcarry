@@ -3,10 +3,13 @@
 <%@ page isELIgnored="false" %>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
+
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:useBean id="reviewDTO" class="com.zimcarry.review.ReviewDTO" />
+<jsp:useBean id="bookDAO" class="com.zimcarry.book.BookDAO" />
+<jsp:useBean id="bookDTO" class="com.zimcarry.book.BookDTO" />
 
-<c:set var="reviewList" value="${reviewDAO.getReviewList()}" scope="page" />
+<c:set var="reviewList" value="${reviewDAO.selectReviewList()}" />
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -28,30 +31,49 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-      	<div class="review_list">
+      	<div class="review_table">
       		<table>
       			<thead>
       				<tr>
       					<th>번호</th>
       					<th>제목</th>
       					<th>작성자</th>
-      					<th>구간</th>
       					<th>만족도</th>
+      					<th>이용날짜</th>
+      					<th>숨김여부</th>
       				</tr>
       			</thead>
       			<tbody>
       				<c:forEach var="reviewItem" items='${ reviewList }' varStatus="status">
+      				<c:set var="bookDTO" value="${bookDAO.selectBookWhereIdx(reviewItem.reBookidx)}" />
 	      				<tr>
 	      					<td>${ reviewItem.reIdx }</td>
-	      					<td><a href="review_viewpage.jsp">${ reviewItem.reTitle }</a></td>
-	      					<td>${ reviewItem.reWriter }</td>
-	      					<td>${ reviewItem.reRoute }</td>
+	      					<td><a href='review_view.jsp=?re_idx=${reviewItem.reBookidx}'>${ reviewItem.reTitle }</a></td>
+	      					<td>${ bookDTO.bName }</td>
 	      					<td>${ reviewItem.reScore }</td>
+	      					<td>${ bookDTO.bStartdate }</td>
+	      					<td>${ bookDTO.bIsreview }</td>
 	      				</tr>
       				</c:forEach>
       			</tbody>
       		</table>
       	</div>
+        <!--  review_table end -->
+        <!-- review detail -->
+        <div class="review_detail">
+   
+        	<p>
+	        	<span class="left">글 번호 : </span> <span>이용날짜 : </span><br> 
+	        	<span class="left">제목 : </span> <span>작성자 : </span><br>
+	        	<span>만족도 : </span>
+        	</p>
+        	<p class="re_content">
+        		
+        	</p>
+        	<p><label>숨김</label> <input type="radio" name="review" value="숨김"> 
+        	<label>공개</label> <input type="radio" name="review" value="공개" checked="checked"></p>
+        	<p><input type="button" value="수정"></p>
+        </div>
       </div>
       <!-- footer -->
       <%@ include file="./footer.jsp" %>
@@ -62,7 +84,7 @@
     <script>
   	$(function () {
   		$('.sidebar-wrapper ul.nav li').removeClass("active");
-  		$('.sidebar-wrapper ul.nav li:eq(5)').addClass("active");
+  		$('.sidebar-wrapper ul.nav li:eq(6)').addClass("active");
   	})
   </script>
 </body>
