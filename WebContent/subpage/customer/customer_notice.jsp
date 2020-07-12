@@ -5,6 +5,16 @@
 <%  request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
 <c:set var="noticeList" value="${noticeDAO.getNoticeList('no')}" />
+<c:set var="totalpage" value="${noticeList.size()}" />
+<c:set var="contentCount" value="8" />
+<c:choose>
+	<c:when test="${totalpage % contentCount ne 0}">
+		<c:set var="pageCount" value="${pageCount = (totalContent / contentCount) + 1}" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="pageCount" value="${pageCount = (totalContent / contentCount)}" />
+	</c:otherwise>
+</c:choose>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +75,7 @@
                             <c:forEach var="notice" items="${noticeList}" varStatus="status">
 	                            <tr>
 	                                <td>${noticeList.size() - status.index}</td>
-	                                <td><a href="./customer_notice_view.jsp?no_idx=${notice.noIdx}">${notice.noTitle}</a></td>
+	                                <td><a href="./customer_notice_view.jsp?noIdx=${notice.noIdx}">${notice.noTitle}</a></td>
 	                                <td>${notice.noWriter}</td>
 	                                <td>${notice.noWritedate}</td>
 	                                <td>${notice.noHit}</td>

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
+<jsp:useBean id="bookDAO" class="com.zimcarry.book.BookDAO" />
+<jsp:useBean id="util" class="com.zimcarry.util.Util" />
+<c:set var="reviewList" value="${reviewDAO.selectReviewList()}" />
+<c:set var="totalpage" value="${reviewList.size()}" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -42,57 +48,23 @@
                         </div>
                         <h3>짐캐리 이용고객 후기</h3>
                         <ul class="review_list">
-                            <li>
-                                <div class="review_content">
-                                    <span class="name">김두창</span><span class="root">부산역 → 숙소</span><span class="use_date">2020-06-12</span>
-                                    <p class="star five">5</p>
-                                    <p class="title">짐캐리 서비스 수준 ㄹㅇ실화냐 냐냐냐?</p><span class="write_date">2020-06-15</span>
-                                    <p class="contents">덕분에 너무 편하게 여행 했습니다. 다음에도 이용하고싶어요!</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="review_content">
-                                    <span class="name">이름</span><span class="root">출발 → 도착</span><span class="use_date">이용 날짜</span>
-                                    <p class="star four">4</p>
-                                    <p class="title">후기가 길 경우</p><span class="write_date">작성일</span>
-                                    <p class="contents">대통령은 내란 또는 외환의 죄를 범한 경우를 제외하고는 재직중 형사상의 소추를 받지 아니한다. 여자의 근로는 특별한 보호를 받으며, 고용·임금 및 근로조건에 있어서 부당한 차별을 받지 아니한다.<br><br>
-
-                                    대통령은 필요하다고 인정할 때에는 외교·국방·통일 기타 국가안위에 관한 중요정책을 국민투표에 붙일 수 있다. 국가안전보장회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다.<br><br>
-                                    
-                                    민주평화통일자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 재의의 요구가 있을 때에는 국회는 재의에 붙이고, 재적의원과반수의 출석과 출석의원 3분의 2 이상의 찬성으로 전과 같은 의결을 하면 그 법률안은 법률로서 확정된다.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="review_content">
-                                    <span class="name">이름</span><span class="root">출발 → 도착</span><span class="use_date">이용 날짜</span>
-                                    <p class="star half">별점</p>
-                                    <p class="title">제목을 이렇게 길게 작성하는 사람이 과연 있을까? 세상은 넓고 도라이는 개많다.</p><span class="write_date">2020-06-15</span>
-                                    <p class="contents">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est natus perspiciatis saepe! Ullam quas hic ab. Voluptate architecto distinctio vel nemo incidunt quis, dicta accusamus voluptatibus accusantium, laboriosam eaque quaerat.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="review_content">
-                                    <span class="name">이름</span><span class="root">출발 → 도착</span><span class="use_date">이용 날짜</span>
-                                    <p class="star four_half">별점</p>
-                                    <p class="title">좋아요</p><span class="write_date">2020-06-15</span>
-                                    <p class="contents">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est natus perspiciatis saepe! Ullam quas hic ab. Voluptate architecto distinctio vel nemo incidunt quis, dicta accusamus voluptatibus accusantium, laboriosam eaque quaerat.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="review_content">
-                                    <span class="name">이름</span><span class="root">출발 → 도착</span><span class="use_date">이용 날짜</span>
-                                    <p class="star two">별점</p>
-                                    <p class="title">조금 실망이네여;;</p><span class="write_date">2020-06-15</span>
-                                    <p class="contents">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est natus perspiciatis saepe! Ullam quas hic ab. Voluptate architecto distinctio vel nemo incidunt quis, dicta accusamus voluptatibus accusantium, laboriosam eaque quaerat.</p>
-                                </div>
-                            </li>
+                            <c:forEach var="review" items="${reviewList}" varStatus="status">
+                            	<c:set var="bookDTO" value="${bookDAO.selectBookWhereIdx(review.reBookidx)}" />
+                            	<c:set var="score" value="${review.reScore}" />
+	                            <li>
+	                                <div class="review_content">
+	                                    <span class="name">${bookDTO.bName}</span><span class="root">${bookDTO.bStart} → ${bookDTO.bEnd}</span><span class="use_date">${bookDTO.bEnddate}</span>
+	                                    <p class="star ${util.changeScoreString(review.reScore)}">${review.reScore}</p>
+	                                    <p class="title">${review.reTitle}</p><span class="write_date">${review.reWritedate}</span>
+	                                    <div class="contents">${review.reContent}</div>
+	                                </div>
+	                            </li>
+                            </c:forEach>
                         </ul>
                     </div>
                     <div class="page_wrap">
                         <ul class="page_list">
                             <li><a href="#" class="on">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
                         </ul>
                     </div>
                 </div>

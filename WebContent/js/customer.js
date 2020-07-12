@@ -41,6 +41,67 @@ $(function() {
         $(this).parent().nextAll().children().removeClass('click'); //4점일때 3점을 클릭시 3.5, 4, 4.5, 5는 흑백별
         $('#star_score').attr('value', $(this).html());
     })
+    
+    // 후기작성 ( 예약확인 버튼 이벤트 리스너)
+    let numCheck = RegExp(/^[0-9\b]+$/);
+    $('#bHp').on('keyup', function() {
+    	if (!numCheck.test($('#bHp').val())) {
+    		alert('숫자만 입력할 수 있습니다.');
+    		$('#bHp').val('');
+    		$('#bHp').focus();
+    	}
+    });
+    $('#reBookidx').on('keyup', function() {
+    	if (!numCheck.test($('#reBookidx').val())) {
+    		alert('숫자만 입력할 수 있습니다.');
+    		$('#reBookidx').val('');
+    		$('#reBookidx').focus();
+    	}
+    });
+    
+    $('#book_check_btn').on('click', function() {
+    	console.log($('#bHp').val());
+    	console.log($('#reBookidx').val());
+    	
+    	if (checkBook()) {
+    		$.ajax({
+    			type: 'POST',
+    			url: './bookCheck.jsp',
+    			data: {
+    				bHp: $('#bHp').val(),
+    				reBookidx: $('#reBookidx').val()
+    			},
+    			datatype: 'JSON',
+    			success: function(bookJSON) {
+    				let isData = bookJSON.isData;
+    				let bName = bookJSON.bName;
+    				let bStart = bookJSON.bStart;
+    				let bEnd = bookJSON.bEnd;
+    				let bStartdate = bookJSON.bStartdate;
+    				let bEnddate = bookJSON.bStartdate;
+    				let bIsreview = bookJSON.bIsreview;
+    				
+    				if (isData == 'yes' && bIsreview == 'n') {
+    					$('#isData_no').addClass('hidden');
+    					$('#isData_yes').removeClass('hidden');
+    					$('#bName').html(bName);
+    					$('#bStart').html(bStart);
+    					$('#bEnd').html(bEnd);
+    					$('#bStartdate').html(bStartdate);
+    					$('#bEnddate').html(bEnddate);
+    					$('#bHp').add('#reBookidx').on('keyup', function() {
+    						$('#isData_yes').addClass('hidden');
+        					$('#isData_no').removeClass('hidden');
+    					});
+    				} else {
+    					$('#isData_yes').addClass('hidden');
+    					$('#isData_no').removeClass('hidden');
+    				}
+    			}
+    		})
+    	}
+    });
+    
 });
 
 // 리뷰작성 검증
@@ -49,24 +110,29 @@ function checkReview() {
         alert('별점을 선택해주세요');
         return false;
     }
-    if ($('#review_name').val() == '') {
-    	alert('이름을 입력해주세요');
-    	$('#review_name').focus();
-    	return false;
-    }
-    if ($('#review_hp').val() == '') {
-    	alert('전화번호 뒷자리를 입력해주세요');
-    	$('#review_hp').focus();
-    	return false;
-    }
-    if ($('#review_title').val() == '') {
+    if ($('#reTitle').val() == '') {
         alert('제목을 입력해주세요');
-        $('#review_title').focus();
+        $('#reTitle').focus();
         return false;
     }
-    if ($('#ckditor_iframe').contents().find('.ck-content').children().text().length < 10) {
+    if ($('.ck-editor__editable').text() < 10) {
         alert('후기 내용은 10자 이상 부탁드립니다');
         return false;
     }
     return true;
 }
+
+function checkBook() {
+	if ($('#bHp').val() == '') {
+		alert('전화번호를 입력하세요');
+		$('#bHp').focus();
+		return false;
+	}
+	if ($('#reBookidx').val() == '') {
+		alert('예약번호를 입력하세요.');
+		$('#reBookidx').focus();
+		return false;
+	}
+	return true;
+}
+

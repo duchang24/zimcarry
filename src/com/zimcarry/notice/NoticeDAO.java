@@ -146,4 +146,36 @@ public class NoticeDAO {
 		
 		return jobj.toString();
 	}
+	
+	public NoticeDTO viewNotice(String noIdx) {
+		NoticeDTO noticeDTO = null;
+		
+		try {
+			conn = DBConn.getConnection();
+			String sql = "UPDATE tb_notice SET no_hit = no_hit + 1 WHERE no_idx = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noIdx);
+			rs = pstmt.executeQuery();
+			
+			sql = "SELECT no_idx, no_title, no_content, no_writer, no_writedate, no_hit FROM tb_notice WHERE no_idx = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noIdx);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				noticeDTO = new NoticeDTO();
+				noticeDTO.setNoIdx(Long.parseLong(noIdx));
+				noticeDTO.setNoTitle(rs.getString("no_title"));
+				noticeDTO.setNoContent(rs.getString("no_content"));
+				noticeDTO.setNoWriter(rs.getString("no_writer"));
+				noticeDTO.setNoWritedate(rs.getDate("no_writedate"));
+				noticeDTO.setNoHit(rs.getLong("no_hit"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return noticeDTO;
+	}
 }

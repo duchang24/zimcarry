@@ -77,28 +77,28 @@ $(function() {
             $(this).addClass('on');
             $('#slider').animate({
                 left: '0'
-            }, 2000);
+            }, 200);
         });
         $('#map2').on('click', function() {
             $('.map_list li').removeClass('on');
             $(this).addClass('on');
             $('#slider').animate({
                 left: '-1200px'
-            }, 2000);
+            }, 200);
         });
         $('#map3').on('click', function() {
             $('.map_list li').removeClass('on');
             $(this).addClass('on');
             $('#slider').animate({
                 left: '-2400px'
-            }, 2000);
+            }, 200);
         });
         $('#map4').on('click', function() {
             $('.map_list li').removeClass('on');
             $(this).addClass('on');
             $('#slider').animate({
                 left: '-3600px'
-            }, 2000);
+            }, 200);
         });
 
         $('#leave, #arrive').on('change', function() {
