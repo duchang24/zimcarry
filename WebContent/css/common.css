@@ -205,6 +205,8 @@ caption, legend { font-size: 0; width: 0; height: 0; line-height: 0; text-indent
 .sub_content_wrap .sub_content .sub_navi ul li { width: 33%; box-sizing: border-box; }
 .sub_content_wrap .sub_content .sub_navi ul li a { display: inline-block; box-sizing: border-box; width: 100%; text-align: center; color: #444; border: 1px solid #ddd; background-color: #fff; font-size: 17px; line-height: 75px; }
 .sub_content_wrap .sub_content .sub_navi ul li a:hover { background-color: #ffda00; font-weight: bold; }
+.sub_content_wrap .sub_content .sub_navi ul li a.on { background-color: #ffda00; font-weigth: bold; }
+.sub_content_wrap .sub_content .sub_navi ul li a.on:hover { background-color: #ffe240; }
 .sub_content_wrap .sub_content .sub_navi ul li:first-child a { border-radius: 30px 0 0 0; border-right: none; }
 .sub_content_wrap .sub_content .sub_navi ul li:last-child a { border-radius: 0 0 30px 0; border-left: none; }
 .sub_content_wrap .sub_content .sub_indicator { padding-top: 100px; height: 60px; border-bottom: 1px solid #ddd; }
