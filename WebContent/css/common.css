@@ -49,7 +49,7 @@ caption, legend { font-size: 0; width: 0; height: 0; line-height: 0; text-indent
  #blogMenu ul a { display: block; color: #333; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 58px; padding: 20px 25px; }
  #blogMenu ul li { position: relative; float: left;	margin: 0; padding: 0; margin-left: 160px; margin-bottom: 30px; }
  #blogMenu ul li:hover > div ul { display: block; }
- #blogMenu ul div { position: relative; right: 45px; }
+ #blogMenu ul div { position: relative; right: 45px; top: 1px; }
  #blogMenu ul div ul { display: none; position: absolute;	top: 100%; left: 0; right: -90px; background :#ffffffea; padding: 0; }
  
  #blogMenu ul div ul li { float: none; width: 200px; right: 142px; }
