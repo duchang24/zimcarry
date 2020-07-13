@@ -8,11 +8,12 @@
 <c:set var="limit" value=", 6" />
 <c:if test="${pageNum ne null}" >
 	<c:set var="pageNum" value="${param.pageNum}" />
-	${pageNum}
+	<c:if test="${param.pageNum eq null}">
+		<c:set var="pageNum" value="1" />
+	</c:if>
 	<c:choose>
 		<c:when test="${pageNum eq 1 || pageNum eq null}">
 			<c:set var="limit" value="0, 6" />
-			${pageNum} // ${limit}
 		</c:when>
 		<c:otherwise>
 			<c:set var="start" value="${pageNum * 6 - 6}" />
@@ -21,7 +22,7 @@
 	</c:choose>
 </c:if>
 <c:set var="reviewList" value="${reviewDAO.selectReviewList(limit)}" />
-<c:set var="page" value="${util.paging(reviewList.size())}" />
+<c:set var="page" value="${util.paging(reviewDAO.reviewListSize())}" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -81,7 +82,7 @@
                     <div class="page_wrap">
                         <ul class="page_list">
                         	<c:forEach var="i" items="${page}" varStatus="status" >
-								<li><a href="./customer_review.jsp?pageNum=${status.index + 1}" class="on">${status.index + 1}</a></li>
+								<li><a href="./customer_review.jsp?pageNum=${status.index + 1}"<c:if test="${status.index + 1 eq pageNum}">class="on"</c:if>>${status.index + 1}</a></li>
                             </c:forEach>
                         </ul>
                     </div>

@@ -35,7 +35,6 @@
             text-align: center;
         }
         .page_wrap .page_list li a.on {
-/*             background-color: #efefef; */
             color: #f7b618;
             font-weight: bold;
         }
@@ -687,6 +686,51 @@
             overflow: auto;
             line-height: 20px;
             letter-spacing: -1px;
+        }
+        
+        #book_check_area p {
+        	width: 90%;
+        }
+        #book_check_area input[type="text"] {
+        	width: 90%;
+        }
+        #book_check_area #book_check_btn {
+        	width: 90%;
+        }
+        
+        .check_result {
+        	width: 100%;
+        }
+        .check_result h1 {
+        	font-size: 30px;
+        }
+        .check_result table th {
+        	font-size: 15px;
+        }
+        
+        #isData_yes table th:nth-child(1) {
+       	    width: 16%;
+        }
+        #isData_yes table th:nth-child(2) {
+        	width: 18%;
+        }
+        #isData_yes table th:nth-child(3) {
+        	width: 40%;
+        }
+        #isData_yes table th:nth-child(4) {
+        	
+        }
+        #write_btn {
+        	width: 70%;
+        	height: 35px;
+        	font-size: 12px;
+        }
+        #bEnd {
+        	display: block;
+        }
+        
+        .review_area .write_wrap p.mid_text {
+        	position
         }
     /* review end */
     /* review_write */

@@ -4,17 +4,26 @@
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
-<c:set var="noticeList" value="${noticeDAO.getNoticeList('no')}" />
-<c:set var="totalpage" value="${noticeList.size()}" />
-<c:set var="contentCount" value="8" />
-<c:choose>
-	<c:when test="${totalpage % contentCount ne 0}">
-		<c:set var="pageCount" value="${pageCount = (totalContent / contentCount) + 1}" />
-	</c:when>
-	<c:otherwise>
-		<c:set var="pageCount" value="${pageCount = (totalContent / contentCount)}" />
-	</c:otherwise>
-</c:choose>
+<jsp:useBean id="util" class="com.zimcarry.util.Util" />
+<c:set var="pageNum" value="1" />
+<c:set var="limit" value=", 10" />
+<c:if test="${pageNum ne null}" >
+	<c:set var="pageNum" value="${param.pageNum}" />
+	<c:if test="${param.pageNum eq null}">
+		<c:set var="pageNum" value="1" />
+	</c:if>
+	<c:choose>
+		<c:when test="${pageNum eq 1 || pageNum eq null}">
+			<c:set var="limit" value="0, 10" />
+		</c:when>
+		<c:otherwise>
+			<c:set var="start" value="${pageNum * 10 - 10}" />
+			<c:set var="limit" value="${start}${limit}" />
+		</c:otherwise>
+	</c:choose>
+</c:if>
+<c:set var="noticeList" value="${noticeDAO.getNoticeList('no', limit)}" />
+<c:set var="page" value="${util.paging(noticeDAO.noticeListSize())}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,7 +94,9 @@
                     </div>
                     <div class="page_wrap">
                         <ul class="page_list">
-                            <li><a href="customer_notice.jsp?" class="on">1</a></li>
+                        	<c:forEach var="i" items="${page}" varStatus="status" >
+								<li><a href="./customer_notice.jsp?pageNum=${status.index + 1}"<c:if test="${status.index + 1 eq pageNum}">class="on"</c:if>>${status.index + 1}</a></li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div>
