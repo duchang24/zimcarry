@@ -10,12 +10,12 @@
  .viewImgList li.imglist .boxin_titl { position: relative; left: 450px; top: 350px; background:url(../images/img/main_txt1.png) no-repeat; width: 296px; height: 265px; z-index: 100; }
 
  .res_btnbox { position: absolute; bottom: -4%; right: 16%; z-index: 100; }
- .res_btnbox .reg, .res_btnbox .chk { display: inline-block; font-size:20px; vertical-align: top; width: 248px; height: 100%; }
+ .res_btnbox .reg, .res_btnbox .chk { display: inline-block; font-size:20px; width: 248px; height: 100%; }
  .res_btnbox .reg { background: url(../images/ico/m_ico1.png) no-repeat #f7b618 26% 50%; border-radius: 10px 0 0 0; z-index: 100; }
  .res_btnbox .chk { background: url(../images/ico/m_ico2.png) no-repeat #ffffff 26% 50%; border-radius: 0 0 10px 0; border: solid 1px #ddd; margin-left: -5px; z-index: 100; }
 
  .res_btnbox .reg a { color: #fff; display: block; padding: 37px 57px 37px 95px; height: 100%;}
- .res_btnbox .chk a { color: #333; display: block; padding: 37px 57px 35px 95px; height: 100%;}
+ .res_btnbox .chk a { color: #333; display: block; padding: 37px 57px 37px 95px; height: 100%;}
 
  /* container */
  #container { position:relative;  width:100%; }
@@ -67,7 +67,7 @@
  .sub-line { display: -webkit-box; display: flex; -webkit-box-pack: justify; justify-content: space-between; width: 100%; }
  .subtitle { position: relative; font-size: 12px; line-height: 16px; color: #c6c5c6; left: 170px; bottom: 22px; }
  .subtitle button { background: #f7b618; font-size: 14px; font-weight: bold; color: #fff; border: none; width: 90px; height: 40px; text-align: center; padding-bottom: 10px; }
- .info-area { width: 100%; position: absolute; top: 0; left: 30px; -webkit-transition: -webkit-transform .4s ease-in; transition: -webkit-transform .4s ease-in; transition: transform .4s ease-in; transition: transform .4s ease-in, -webkit-transform .4s ease-in; }
+ .info-area { width: 80%; position: absolute; top: 0; left: 30px; -webkit-transition: -webkit-transform .4s ease-in; transition: -webkit-transform .4s ease-in; transition: transform .4s ease-in; transition: transform .4s ease-in, -webkit-transform .4s ease-in; }
 
  #item-1:checked ~ .cards #img-3, #item-2:checked ~ .cards #img-1, #item-3:checked ~ .cards #img-2 { -webkit-transform: translatex(-40%) scale(0.8); transform:  translatex(-40%) scale(0.8); opacity: .4; z-index: 0; }
  #item-1:checked ~ .cards #img-2, #item-2:checked ~ .cards #img-3, #item-3:checked ~ .cards #img-1 { -webkit-transform: translatex(40%) scale(0.8); transform: translatex(40%) scale(0.8); opacity: .4; z-index: 0; }
@@ -87,7 +87,7 @@
  .viewImgList li.imglist, .viewImgList li.imglist1 { position: relative; height: 620px; background-color: #efefef; margin: 0 auto; }
  .viewImgList li.imglist::after { position: absolute; display: block; background-size: cover; width: 100%; height: 22rem; left: 0; right: 0; top: 42.5%; margin: 0;  z-index: 1; }
  .viewImgList li.imglist .roll_content::after { position: absolute; width: 100%; height: 100%; top: 28.5%; left: 0; background-size: 50%; z-index: 100; }
- .viewImgList li.imglist .boxin_titl { position: relative; background-size: 130%; left: 0; top: 150px; width: 200px; height: 250px; z-index: 100; }
+ .viewImgList li.imglist .boxin_titl { position: absolute; background-size: 100%; left: 15px; top: 165px;  z-index: 100; }
 
  .res_btnbox { position: absolute; bottom: -4%; right: 8%; }
  .res_btnbox .reg, .res_btnbox .chk { position: relative; left: 15px; width: 155px; height: 70px; }
@@ -95,7 +95,7 @@
  .res_btnbox .chk a { padding: 24px 0 0 67px; }
  /* container */
  .btn-container { position: relative; left: 0; top: 260px; margin: 0 100px auto; width: 70px; height: 60px; --btn-bg: white; --bg: transparent; z-index: 9999; }
- .btn-container button { margin: 0 auto; width: 160px; height: 45px; border: 0; position: relative; bottom: 170px; left: 70px;}
+ .btn-container button { margin: 0 auto; width: 160px; height: 55px; border: 0; position: relative; top: 100px; left: 76px;}
  .btn-container button .icon-container { left: 17px; top: 3px; }
  /* container 끝 */
  /* main rolling 끝 */

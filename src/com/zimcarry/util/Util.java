@@ -28,4 +28,17 @@ public class Util {
 			return "style='display: none;'";
 		}
 	}
+	
+	public int[] paging(int listSize) {
+		int contentCount = 6;
+		int pageCount = 0;
+		int totalContent = listSize;
+		
+		if (totalContent % contentCount != 0) { 
+			pageCount = (totalContent / contentCount) + 1; 
+		} else {
+			pageCount = totalContent / contentCount; 
+		}
+		return new int[pageCount];
+	}
 }

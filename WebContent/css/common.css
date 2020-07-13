@@ -49,7 +49,7 @@ caption, legend { font-size: 0; width: 0; height: 0; line-height: 0; text-indent
  #blogMenu ul a { display: block; color: #333; text-decoration: none; font-weight: bold; font-size: 18px; line-height: 58px; padding: 20px 25px; }
  #blogMenu ul li { position: relative; float: left;	margin: 0; padding: 0; margin-left: 160px; margin-bottom: 30px; }
  #blogMenu ul li:hover > div ul { display: block; }
- #blogMenu ul div { position: relative; right: 45px; }
+ #blogMenu ul div { position: relative; right: 45px; top: 1px; }
  #blogMenu ul div ul { display: none; position: absolute;	top: 100%; left: 0; right: -90px; background :#ffffffea; padding: 0; }
  
  #blogMenu ul div ul li { float: none; width: 200px; right: 142px; }
@@ -189,7 +189,7 @@ caption, legend { font-size: 0; width: 0; height: 0; line-height: 0; text-indent
 .btn_base { border: none; border-radius: 15px 0 15px 0; box-sizing: border-box; width: 150px; height: 60px; margin: 0; font-size: 16px; cursor: pointer; }
 .btn_yellow { background-color: #ffda00; }
 .btn_gray { background-color: #828282; color: #fff; }
-.on { background-color: #ffda00 !important; font-weight: bold !important; }
+.on { background-color: #ffda00; font-weight: bold; }
 
 .service { background: url(../images/img/sub01_visual_img01.jpg) no-repeat 9% 0; }
 .reservation { background: url(../images/img/sub02_visual_img.jpg) no-repeat 9% 0; }
@@ -205,6 +205,8 @@ caption, legend { font-size: 0; width: 0; height: 0; line-height: 0; text-indent
 .sub_content_wrap .sub_content .sub_navi ul li { width: 33%; box-sizing: border-box; }
 .sub_content_wrap .sub_content .sub_navi ul li a { display: inline-block; box-sizing: border-box; width: 100%; text-align: center; color: #444; border: 1px solid #ddd; background-color: #fff; font-size: 17px; line-height: 75px; }
 .sub_content_wrap .sub_content .sub_navi ul li a:hover { background-color: #ffda00; font-weight: bold; }
+.sub_content_wrap .sub_content .sub_navi ul li a.on { background-color: #ffda00; font-weigth: bold; }
+.sub_content_wrap .sub_content .sub_navi ul li a.on:hover { background-color: #ffe240; }
 .sub_content_wrap .sub_content .sub_navi ul li:first-child a { border-radius: 30px 0 0 0; border-right: none; }
 .sub_content_wrap .sub_content .sub_navi ul li:last-child a { border-radius: 0 0 30px 0; border-left: none; }
 .sub_content_wrap .sub_content .sub_indicator { padding-top: 100px; height: 60px; border-bottom: 1px solid #ddd; }
@@ -238,7 +240,7 @@ caption, legend { font-size: 0; width: 0; height: 0; line-height: 0; text-indent
   header .header_area { width: 100%; }
   header .header_area h1 a { position: relative; float: none; left: 45%; background: url(../images/logo.png) no-repeat; margin: 0; padding: 0; width: 220px; height: 71px; }
   #menu-container { width: 100%; }
-  #menu-wrapper { position: relative; right: 200px; top: 25px; margin: 0; overflow: hidden; width: 50px; cursor: pointer; }
+  #menu-wrapper { position: absolute; left: 30px; top: 25px; margin: 0; overflow: hidden; width: 50px; cursor: pointer; }
   #menu-wrapper #hamburger-menu { position: relative; width: 25px; height: 20px; margin: 15px; }
   #menu-wrapper #hamburger-menu span { opacity: 1; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; left: 0; display: block; width: 100%; height: 2px; border-radius: 10px; color: black; background-color: black; position: absolute; -webkit-transform: rotate(0deg); transform: rotate(0deg); -webkit-transition: .4s ease-in-out; transition: .4s ease-in-out; }
   #menu-wrapper #hamburger-menu span:nth-child(1) { top: 0; }
@@ -250,7 +252,7 @@ caption, legend { font-size: 0; width: 0; height: 0; line-height: 0; text-indent
   #menu-container .menu-list .menu-submenu { padding:0; }
   #menu-container .menu-list .menu-submenu li a { display:block; padding:10px 0 10px 20px; }
   #menu-container .menu-list .menu-submenu li a:hover { background:#eee; }
-  #menu-container .menu-list { padding-left: 0; display: block; position: absolute; width: 100%; max-width: 450px; background: white; box-shadow: rgba(100,100,100,0.2) 6px 2px 10px; z-index: 999; overflow-y: auto; overflow-x: hidden; left: -100%; }
+  #menu-container .menu-list { padding-left: 0; margin-top: 50px; display: block; position: absolute; width: 100%; max-width: 450px; background: white; box-shadow: rgba(100,100,100,0.2) 6px 2px 10px; z-index: 999; overflow-y: auto; overflow-x: hidden; left: -100%; }
   #menu-container .menu-list li.accordion-toggle, #menu-container .menu-list .menu-login { font-size: 16px; padding: 20px; text-transform: uppercase; border-top: 1px solid #dbdcd2; }
   #menu-container .menu-list li:first-of-type { border-top: 0; }
   .accordion-toggle, .accordion-content { cursor: pointer; font-size: 16px; position: relative; letter-spacing: 1px; }

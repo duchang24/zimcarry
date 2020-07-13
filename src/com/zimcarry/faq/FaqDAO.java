@@ -16,7 +16,7 @@ public class FaqDAO {
 	public List<FaqDTO> selectFaqList() {
 		List<FaqDTO> faqList = new ArrayList<FaqDTO>();
 		try {
-			String sql = "SELECT f_idx, f_question, f_answer, f_writedate, f_hidden FROM tb_faq";
+			String sql = "SELECT f_idx, f_question, f_answer, f_writedate, f_hidden FROM tb_faq WHERE f_hidden = 'n'";
 			conn = DBConn.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();

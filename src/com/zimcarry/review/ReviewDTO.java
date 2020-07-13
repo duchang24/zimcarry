@@ -9,6 +9,7 @@ public class ReviewDTO {
 	private String reContent;
 	private Date reWritedate;
 	private long reBookidx;
+	private String reHidden;
 	
 	public long getReIdx() {
 		return reIdx;
@@ -46,5 +47,14 @@ public class ReviewDTO {
 	public void setReBookidx(long reBookidx) {
 		this.reBookidx = reBookidx;
 	}
+<<<<<<< HEAD
 	
+=======
+	public String getReHidden() {
+		return reHidden;
+	}
+	public void setReHidden(String reHidden) {
+		this.reHidden = reHidden;
+	}
+>>>>>>> 707b2909e2bc45515aafb655849e1cc09a6a66d8
 }

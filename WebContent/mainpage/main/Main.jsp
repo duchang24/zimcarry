@@ -24,7 +24,7 @@
                                 <div class="txt_box">
                                     <p class="boxin_titl"></p>
                                     <div class="btn-container">
-                                        <button onclick="location.href='../../subpage/service/service_carry.jsp'">
+                                        <button onclick="location.href='../../subpage/service/service_zimcarry.jsp'">
                                             <span class="text"> 자세히보기 </span>
                                             <div class="icon-container"> > </div>
                                         </button>
