@@ -91,12 +91,30 @@
       	</div>
       	<div class="hotel_view hotel">
       		<h3>제휴 호텔</h3>
-      		<input type="hidden" name="h_idx" id="h_idx"> <input type="hidden" name="h_discount" id="h_discount"> <input type="hidden" name="h_partner" id="h_partner">
-      		<% String h_idx = (String)request.getAttribute("hIdx"); %>
+      		<input type="hidden" name="h_idx" id="h_idx">
+      		<% 
+      			String h_idx = null;
+      			String h_discount = (String)request.getAttribute("hDiscount");
+      			String h_partner = (String)request.getAttribute("hPartner");
+				String hIdx = null;
+      			
+      			System.out.println("_____________");
+      			System.out.println(h_idx);
+      			System.out.println(h_discount);
+      			System.out.println(h_partner);
+      			
+      			if(session.getAttribute("hIdx") != null){
+      				h_idx = (String)session.getAttribute("hIdx");
+      				System.out.println(h_idx);
+      			}
+      		%>
+      		
       		<c:set var="h_idx" value="<%=h_idx%>"/>
+      		<c:set var="h_discount" value="<%=h_discount%>"/>
+      		<c:set var="h_partner" value="<%=h_partner%>"/>
       		<form method="post" action="./data/hotel_ok.jsp" enctype="multipart/form-data">
       			<div class="hIdxO" style="display: bolck;">
-      				<p>호텔 사진 <span id="h_file"></span></p>
+      				<p>${h_idx}호텔 사진 <span id="h_file"></span></p>
       				<p><input type="file" name="h_file"></p>
       			</div>
       			<div class="hIdxX" style="display: none;">
@@ -105,22 +123,22 @@
       			<p>호텔 명 <input type="text" name="h_name" id="h_name"></p>
       			<p>호텔 주소 <input type="text" name="h_address" id="h_address"></p>
       			<p>호텔 지도 <input type="text" name="h_map" id="h_map"></p>
-      			<p>호텔 할인 <label id="label1_1">O</label><input type="radio" name="h_discount" value="O" id="radio1_1" 
-      			<c:if test="${viewHotel.hDiscount == 'O'}">
+      			<p>${h_discount }호텔 할인 <label id="label1_1">O</label><input type="radio" name="h_discount" value="O" id="radio1_1" 
+      			<c:if test="${h_discount == 'O'}">
 					checked
 				</c:if>
       			> <label id="label1_2">X</label><input type="radio" name="h_discount" value="X" id="radio1_2"
-      			<c:if test="${viewHotel.hDiscount == 'X'}">
+      			<c:if test="${h_discount == 'X'}">
 					checked
 				</c:if>
       			></p>
       			<br>
       			<p>현재 제휴 상황 <label id="label2_1">O</label><input type="radio" name="h_partner" value="O" id="radio2_1"
-      			<c:if test="${viewHotel.hPartner == 'O'}">
+      			<c:if test="${h_partner == 'O'}">
 					checked
 				</c:if>
       			> <label id="label2_2">X</label><input type="radio" name="h_partner" value="X" id="radio2_2"
-      			<c:if test="${viewHotel.hPartner == 'X'}">
+      			<c:if test="${h_partner == 'X'}">
 					checked
 				</c:if>
       			></p>
