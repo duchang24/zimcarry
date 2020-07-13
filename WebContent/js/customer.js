@@ -43,16 +43,17 @@ $(function() {
     })
     
     // 후기작성 ( 예약확인 버튼 이벤트 리스너)
-    let numCheck = RegExp(/^[0-9\b]+$/);
+    let numCheck = RegExp(/[^0-9]/);
+    console.log(numCheck.test('10'));
     $('#bHp').on('keyup', function() {
-    	if (!numCheck.test($('#bHp').val())) {
+    	if (numCheck.test($('#bHp').val())) {
     		alert('숫자만 입력할 수 있습니다.');
     		$('#bHp').val('');
     		$('#bHp').focus();
     	}
     });
     $('#reBookidx').on('keyup', function() {
-    	if (!numCheck.test($('#reBookidx').val())) {
+    	if (numCheck.test($('#reBookidx').val())) {
     		alert('숫자만 입력할 수 있습니다.');
     		$('#reBookidx').val('');
     		$('#reBookidx').focus();
