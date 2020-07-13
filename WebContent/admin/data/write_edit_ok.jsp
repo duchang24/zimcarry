@@ -3,6 +3,7 @@
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page import="java.io.File"%>
+<%@ page import="com.zimcarry.util.FileService"%>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%	request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
@@ -16,6 +17,21 @@
 	String uploadFile = "";
 	int read = 0;
 	byte[] buf = new byte[1024];
+	
+	MultipartRequest multi = new MultipartRequest(request, savePath, maxSize, format, new DefaultFileRenamePolicy());
+	String noTitle = multi.getParameter("noTitle");
+	String noWriter = multi.getParameter("noWriter");
+	String noContent = multi.getParameter("noContent");
+	uploadFile = multi.getFilesystemName("noFile");
+	String noHidden = multi.getParameter("noHidden");
+	String noIdx = multi.getParameter("noIdx");
+	
+	File file = new File(savePath + "/" + uploadFile);
+	if (!file.exists()) {
+		System.out.println("디렉토리 없음");
+		file.mkdir();
+	}
+	System.out.println("file : " + file);
 	
 %>
 

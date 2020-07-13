@@ -4,7 +4,26 @@
 <%  request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="noticeDTO" class="com.zimcarry.notice.NoticeDTO" />
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
-<c:set var="noticeList" value="${noticeDAO.getNoticeList('yes')}" scope="page" />
+<jsp:useBean id="util" class="com.zimcarry.util.Util" />
+<c:set var="pageNum" value="1" />
+<c:set var="limit" value=", 20" />
+<c:if test="${pageNum ne null}" >
+	<c:set var="pageNum" value="${param.pageNum}" />
+	<c:if test="${param.pageNum eq null}">
+		<c:set var="pageNum" value="1" />
+	</c:if>
+	<c:choose>
+		<c:when test="${pageNum eq 1 || pageNum eq null}">
+			<c:set var="limit" value="0, 10" />
+		</c:when>
+		<c:otherwise>
+			<c:set var="start" value="${pageNum * 20 - 20}" />
+			<c:set var="limit" value="${start}${limit}" />
+		</c:otherwise>
+	</c:choose>
+</c:if>
+<c:set var="noticeList" value="${noticeDAO.getNoticeList('yes', limit)}" scope="page" />
+<c:set var="page" value="${util.paging(noticeDAO.noticeListSize())}" />
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
@@ -27,6 +46,8 @@
       	<div class="list_up notice">
       		<table>
       			<thead>
+      			** ${pageContext.request.contextPath} **
+      			${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/
       				<tr>
       					<th>번호</th>
       					<th>제목</th>
@@ -49,7 +70,14 @@
       				</c:forEach>
       			</tbody>
       		</table>
-      	</div>
+  			<div class="page_wrap">
+				<ul class="page_list">
+					<c:forEach var="i" items="${page}" varStatus="status" >
+						<li><a href="./notice.jsp?pageNum=${status.index + 1}"<c:if test="${status.index + 1 eq pageNum}">class="on"</c:if>>${status.index + 1}</a></li>
+					</c:forEach>
+			    </ul>
+			</div>
+		</div>
       	<div class="list_down notice">
       		<form method="post" action="./data/write_edit_ok.jsp" onsubmit="return checkForm()" enctype="multipart/form-data">
       			<p>제목 : <input type="text" name="noTitle" id="no_title"></p>
