@@ -52,4 +52,9 @@ public class HotelDTO {
 		this.hPartner = hPartner;
 	}
 	
+	@Override
+	public String toString() {
+		return  hIdx + "|" + hFile + "|" + hName + "|" + hAddress + "|" + hMap + "|" + hDiscount + "|" + hPartner;
+	}
+	
 }
