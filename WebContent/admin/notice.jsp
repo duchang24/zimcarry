@@ -2,8 +2,10 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
+
 <jsp:useBean id="noticeDTO" class="com.zimcarry.notice.NoticeDTO" />
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
+
 <c:set var="noticeList" value="${noticeDAO.getNoticeList('yes')}" scope="page" />
 <!DOCTYPE html>
 <html lang="ko">

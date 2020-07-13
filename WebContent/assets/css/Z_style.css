@@ -101,7 +101,53 @@
 	height: 35px;
 }
 /* 리뷰 관리 페이지 */
-
+.content .review_table {
+	width: 80%;
+	min-height: 200px;
+	margin: 0 auto;
+	padding: 30px;
+	border: 1px solid #cdcdcd;
+	border-radius: 10px;
+	background-color: #f6f6f6;
+	box-shadow: 8px 8px 20px #ccc;
+}
+.content .review_table table {
+	width: 100%;
+	text-align: center;
+}
+.content .review_table table th {
+	height: 50px;
+	background-color: #ecf0f1;
+	color: black;
+	border-bottom: 2px solid #34495e;
+}
+.content .review_table td {
+	height: 50px;
+	border-bottom: 1px solid #34495e;
+}
+/****************/
+.content .review_detail {
+	width: 80%;
+	min-height: 200px;
+	margin: 50px auto 0;
+	padding: 30px;
+	border: 1px solid #cdcdcd;
+	border-radius: 10px;
+	background-color: #f6f6f6;
+	box-shadow: 8px 8px 20px #ccc;
+}
+.content .review_detail p {
+	color: black;
+	width: 100%;
+}
+.content .review_detail .re_content {
+	width: 100%;
+	height: 200px;
+	border: 1px solid #cdcdcd;
+}
+.content .review_detail span.left {
+	margin-right: 120px;
+}
 
 
 

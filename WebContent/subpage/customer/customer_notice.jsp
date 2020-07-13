@@ -4,6 +4,7 @@
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
+
 <c:set var="noticeList" value="${noticeDAO.getNoticeList('no')}" />
 <!DOCTYPE html>
 <html>
