@@ -1,5 +1,7 @@
 package com.zimcarry.util;
 
+import com.zimcarry.review.ReviewDAO;
+
 public class Util {
 
 	public String changeScoreString(String score) {
@@ -27,5 +29,18 @@ public class Util {
 		default:
 			return "style='display: none;'";
 		}
+	}
+	
+	public int[] paging(String listSize) {
+		int contentCount = 6;
+		int pageCount = 0;
+		int totalContent = new ReviewDAO().reviewListSize();
+		
+		if (totalContent % contentCount != 0) { 
+			pageCount = (totalContent / contentCount) + 1; 
+		} else {
+			pageCount = totalContent / contentCount; 
+		}
+		return new int[pageCount];
 	}
 }
