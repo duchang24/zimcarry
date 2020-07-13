@@ -687,7 +687,6 @@
             line-height: 20px;
             letter-spacing: -1px;
         }
-        
         #book_check_area p {
         	width: 90%;
         }
@@ -697,7 +696,6 @@
         #book_check_area #book_check_btn {
         	width: 90%;
         }
-        
         .check_result {
         	width: 100%;
         }
@@ -743,7 +741,7 @@
        	.review_area .write_wrap #reTitle {
        		width: 100%;
        	}
-       	/* ckeditor */
+       	/* ck-editor */
        	.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
 		    box-sizing: border-box !important;
 		    width: 100% !important;
