@@ -78,9 +78,6 @@ public class ReviewDAO {
 	public List<ReviewDTO> selectReviewList(String limit) {
 		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
 		try {
-
-			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate,"
-					+ "re_bookidx FROM tb_review";
 			conn = DBConn.getConnection();
 			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx, re_hidden FROM tb_review WHERE re_hidden = 'n' ORDER BY re_idx DESC LIMIT " + limit;
 			pstmt = conn.prepareStatement(sql);
@@ -103,6 +100,7 @@ public class ReviewDAO {
 		}
 		return reviewList;
 	}
+	
 	public int reviewListSize() {
 		int size = 0;
 		try {

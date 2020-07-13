@@ -1,22 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
-<jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 
-<c:set var="reviewList" value="${reviewDAO.getReviewList()}" />
-=======
-    pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:useBean id="bookDAO" class="com.zimcarry.book.BookDAO" />
 <jsp:useBean id="util" class="com.zimcarry.util.Util" />
-<<<<<<< HEAD
-<c:set var="reviewList" value="${reviewDAO.selectReviewList()}" />
->>>>>>> 472f9cb63f3766aad57e3349f9a9ced8eec2fd5d
-=======
+
+<c:set var="reviewList" value="${reviewDAO.getReviewList()}" />
+
 <c:set var="pageNum" value="1" />
 <c:set var="limit" value=", 6" />
 <c:if test="${pageNum ne null}" >
@@ -36,7 +28,7 @@
 </c:if>
 <c:set var="reviewList" value="${reviewDAO.selectReviewList(limit)}" />
 <c:set var="page" value="${util.paging(reviewDAO.reviewListSize())}" />
->>>>>>> 707b2909e2bc45515aafb655849e1cc09a6a66d8
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -79,7 +71,6 @@
                         </div>
                         <h3>짐캐리 이용고객 후기</h3>
                         <ul class="review_list">
-<<<<<<< HEAD
                         	<c:forEach var="review" items='${ reviewList }' varStatus="status">
 	                            <li>
 	                                <div class="review_content">
@@ -90,7 +81,6 @@
 	                                </div>
 	                            </li>
                         	</c:forEach>
-=======
                             <c:forEach var="review" items="${reviewList}" varStatus="status">
                             	<c:set var="bookDTO" value="${bookDAO.selectBookWhereIdx(review.reBookidx)}" />
                             	<c:set var="score" value="${review.reScore}" />
@@ -103,7 +93,6 @@
 	                                </div>
 	                            </li>
                             </c:forEach>
->>>>>>> 472f9cb63f3766aad57e3349f9a9ced8eec2fd5d
                         </ul>
                     </div>
                     <div class="page_wrap">
