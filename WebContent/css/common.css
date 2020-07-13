@@ -186,7 +186,7 @@ caption, legend { font-size: 0; width: 0; height: 0; line-height: 0; text-indent
 
 
 /* sub_page common */
-.btn_base { border: none; border-radius: 15px 0 15px 0; box-sizing: border-box; width: 150px; height: 60px; margin: 0; font-size: 16px; }
+.btn_base { border: none; border-radius: 15px 0 15px 0; box-sizing: border-box; width: 150px; height: 60px; margin: 0; font-size: 16px; cursor: pointer; }
 .btn_yellow { background-color: #ffda00; }
 .btn_gray { background-color: #828282; color: #fff; }
 .on { background-color: #ffda00 !important; font-weight: bold !important; }

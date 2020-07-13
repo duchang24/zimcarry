@@ -9,7 +9,6 @@ public class ReviewDTO {
 	private String reContent;
 	private Date reWritedate;
 	private long reBookidx;
-
 	
 	public long getReIdx() {
 		return reIdx;

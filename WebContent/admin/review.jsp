@@ -3,19 +3,22 @@
 <%@ page isELIgnored="false" %>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
+<<<<<<< HEAD
 
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:useBean id="reviewDTO" class="com.zimcarry.review.ReviewDTO" />
-<jsp:useBean id="bookDAO" class="com.zimcarry.book.BookDAO" />
-<jsp:useBean id="bookDTO" class="com.zimcarry.book.BookDTO" />
 
-<c:set var="reviewList" value="${reviewDAO.selectReviewList()}" />
-<c:set var="review_detail" value="${ reviewDAO.selectReview('reviewList.reIdx') }" />
+<c:set var="reviewList" value="${reviewDAO.getReviewList()}" scope="page" />
+
+=======
+<jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
+<jsp:useBean id="reviewDTO" class="com.zimcarry.review.ReviewDTO" />
+<c:set var="reviewList" value="${reviewDAO.getreviewList()}" scope="page" />
+>>>>>>> 707b2909e2bc45515aafb655849e1cc09a6a66d8
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
 <%@ include file="./head.jsp" %>
-
 <body class="">
   <div class="wrapper ">
     <!-- side menu -->
@@ -35,48 +38,29 @@
       		<table>
       			<thead>
       				<tr>
-      					<th>번호</th>
-      					<th>제목</th>
+						<th>번호</th>
+      					<td>제목</th>
       					<th>작성자</th>
       					<th>만족도</th>
       					<th>이용날짜</th>
       					<th>숨김여부</th>
-      				</tr>
       			</thead>
       			<tbody>
       				<c:forEach var="reviewItem" items='${ reviewList }' varStatus="status">
-      				<c:set var="bookDTO" value="${bookDAO.selectBookWhereIdx(reviewItem.reBookidx)}" />
 	      				<tr>
 	      					<td>${ reviewItem.reIdx }</td>
-	      					<td><a href='review.jsp=?re_idx=${reviewItem.reBookidx}'>${ reviewItem.reTitle }</a></td>
-	      					<td>${ bookDTO.bName }</td>
+	      					<td><a href="review_viewpage.jsp">${ reviewItem.reTitle }</a></td>
 	      					<td>${ reviewItem.reScore }</td>
-	      					<td>${ bookDTO.bStartdate }</td>
-	      					<td>${ bookDTO.bIsreview }</td>
+	      					<td>${ reviewItem.reScore }</td>
+	      					<td>${ reviewItem.reScore }</td>
+	      					<td>${ reviewItem.reScore }</td>
 	      				</tr>
       				</c:forEach>
       			</tbody>
       		</table>
       	</div>
         <!--  review_table end -->
-        <!-- review detail -->
-        <div class="review_detail">
-	        <c:forEach var="review_d" items='${ review_detail }' varStatus="status">
-	       		<c:set var="bookDTO1" value="${bookDAO.selectBookWhereIdx(review_d.reBookidx)}" />
-	        	<p>
-		        	<span class="left">글 번호 : ${ review_d.reIdx }</span> <span>작성일 : ${ review_d.reWritedate }</span> 
-		        	<span>구간 : ${ bookDTO1.bStart } → ${ bookDTO1.bEnd }</span><br> 
-		        	<span class="left">제목 : ${ review_d.reTitle }</span> <span>작성자 : ${ bookDTO1.bName }</span><br>
-		        	<span>만족도 : ${ review_d.reScore }</span>
-	        	</p>
-	        	<p class="re_content">
-	        		${ review_d.reContent }
-	        	</p>
-	        	<p><label>숨김</label> <input type="radio" name="review" value="숨김"> 
-	        	<label>공개</label> <input type="radio" name="review" value="공개" checked="checked"></p>
-	        	<p><input type="button" value="수정"></p>
-	        </c:forEach>
-        </div>
+      	</div>
       </div>
       <!-- footer -->
       <%@ include file="./footer.jsp" %>

@@ -51,5 +51,5 @@ public class HotelDTO {
 	public void sethPartner(String hPartner) {
 		this.hPartner = hPartner;
 	}
-	
 }
+

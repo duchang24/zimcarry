@@ -17,4 +17,5 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
   <link href="../assets/css/Z_style.css" rel="stylesheet" />
+  <link href="../assets/css/Z_style2.css" rel="stylesheet"/>
 </head>
