@@ -10,12 +10,12 @@
  .viewImgList li.imglist .boxin_titl { position: relative; left: 450px; top: 350px; background:url(../images/img/main_txt1.png) no-repeat; width: 296px; height: 265px; z-index: 100; }
 
  .res_btnbox { position: absolute; bottom: -4%; right: 16%; z-index: 100; }
- .res_btnbox .reg, .res_btnbox .chk { display: inline-block; font-size:20px; vertical-align: top; width: 248px; height: 100%; }
+ .res_btnbox .reg, .res_btnbox .chk { display: inline-block; font-size:20px; width: 248px; height: 100%; }
  .res_btnbox .reg { background: url(../images/ico/m_ico1.png) no-repeat #f7b618 26% 50%; border-radius: 10px 0 0 0; z-index: 100; }
  .res_btnbox .chk { background: url(../images/ico/m_ico2.png) no-repeat #ffffff 26% 50%; border-radius: 0 0 10px 0; border: solid 1px #ddd; margin-left: -5px; z-index: 100; }
 
  .res_btnbox .reg a { color: #fff; display: block; padding: 37px 57px 37px 95px; height: 100%;}
- .res_btnbox .chk a { color: #333; display: block; padding: 37px 57px 35px 95px; height: 100%;}
+ .res_btnbox .chk a { color: #333; display: block; padding: 37px 57px 37px 95px; height: 100%;}
 
  /* container */
  #container { position:relative;  width:100%; }
