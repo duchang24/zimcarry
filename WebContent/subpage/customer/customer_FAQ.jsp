@@ -43,17 +43,15 @@
 			        <div class="faq_area box_inner">
 			            <dl class="faq_list">
 			               <c:forEach var="faq" items="${faqList}">
-			              	   <c:if test="${faq.fHidden eq 'n'}" >
-					               <dt>
-					                   ${faq.fQuestion}
-					               </dt>
-					               <dd style="display: none;">
-					                   <div class="big">A</div>
-					                   <div class="a_box">
-					                   		${faq.fAnswer}
-					                   </div>
-					               </dd>
-				               </c:if>
+				               <dt>
+				                   ${faq.fQuestion}
+				               </dt>
+				               <dd style="display: none;">
+				                   <div class="big">A</div>
+				                   <div class="a_box">
+				                   		${faq.fAnswer}
+				                   </div>
+				               </dd>
 			               </c:forEach>
 		                </dl>
 		            </div>

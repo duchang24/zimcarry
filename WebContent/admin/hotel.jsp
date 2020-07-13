@@ -95,11 +95,11 @@
       		<% String h_idx = (String)request.getAttribute("hIdx"); %>
       		<c:set var="h_idx" value="<%=h_idx%>"/>
       		<form method="post" action="./data/hotel_ok.jsp" enctype="multipart/form-data">
-      			<div id="hIdxO" style="display: bolck;">
+      			<div class="hIdxO" style="display: bolck;">
       				<p>호텔 사진 <span id="h_file"></span></p>
       				<p><input type="file" name="h_file"></p>
       			</div>
-      			<div id="hIdxX" style="display: none;">
+      			<div class="hIdxX" style="display: none;">
       				<p>호텔 사진 <input type="file" name="h_file"></p>
       			</div>
       			<p>호텔 명 <input type="text" name="h_name" id="h_name"></p>
@@ -124,12 +124,12 @@
 					checked
 				</c:if>
       			></p>
-      			<c:if test="${h_idx != null && h_idx != ''}">
-      			<p><input type="submit" value="수정"> <input type="button" value="비우기" onclick="location.href='hotel.jsp?pagenum=${nowpage}'"></p>
-     			</c:if>
-      			<c:if test="${h_idx == null || h_idx == ''}">
-      			<p><input type="submit" value="추가"></p>
-     			</c:if>
+      			<div class="hIdxO" style="display: bolck;">
+      				<p><input type="submit" value="수정"> <input type="button" value="비우기" onclick="location.href='hotel.jsp?pagenum=${nowpage}'"></p>
+      			</div>
+      			<div class="hIdxX" style="display: none;">
+      				<p><input type="submit" value="추가"></p>
+      			</div>
       		</form>
       	</div>
       </div>
@@ -151,21 +151,18 @@
 
 <script>
 	$(function(){
-		alert("2222");
+		
 		
 		if($("#h_idx").val() == null || $("#h_idx").val() == ""){
-			alert("1111");
-			$("#hIdxO").css("display", "none");
-			$("#hIdxX").css("display", "block");
-		}else if($("#h_idx").val() != null || $("#h_idx").val() != ""){
-			alert("3333");
 			
+			$(".hIdxO").css("display", "none");
+			$(".hIdxX").css("display", "block");
 		}
 	});
 
 	function findHotel(hIdx){
-		$("#hIdxO").css("display", "block");
-		$("#hIdxX").css("display", "none");
+		$(".hIdxO").css("display", "block");
+		$(".hIdxX").css("display", "none");
 		
 		let xhr = new XMLHttpRequest();
 		xhr.open("GET", "./data/request_hotel.jsp?hIdx="+hIdx, true);

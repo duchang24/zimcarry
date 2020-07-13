@@ -3,6 +3,7 @@ package com.zimcarry.notice;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,13 +69,12 @@ public class NoticeDAO {
 		return false;
 	}
 	
-	
-	public List<NoticeDTO> getNoticeList(String allList) {
+	public List<NoticeDTO> getNoticeList(String allList, String limit) {
 		
 		List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden FROM tb_notice ORDER BY no_idx DESC";
+			String sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden FROM tb_notice ORDER BY no_idx DESC LIMIT " + limit;
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -109,6 +109,24 @@ public class NoticeDAO {
 			DBConn.close(conn, pstmt, rs);
 		}
 		return noticeList;
+	}
+	
+	public int noticeListSize() {
+		int size = 0;
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT COUNT(no_idx) AS total FROM tb_notice WHERE no_hidden = 'n'";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				size = rs.getInt("total");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return size;
 	}
 	
 	@SuppressWarnings("unchecked")
