@@ -12,9 +12,13 @@
         .page_wrap {
             width: 100%;
             text-align: center;
+            margin-top: 50px;
         }
         .page_wrap .page_list {
             display: inline-block;
+        }
+        .page_wrap .page_list a.on {
+        	background-color: #fff;
         }
         .page_wrap .page_list li { 
             float: left;
@@ -31,7 +35,6 @@
             text-align: center;
         }
         .page_wrap .page_list li a.on {
-            /* background-color: #efefef; */
             color: #f7b618;
             font-weight: bold;
         }
@@ -684,6 +687,71 @@
             line-height: 20px;
             letter-spacing: -1px;
         }
+        #book_check_area p {
+        	width: 90%;
+        }
+        #book_check_area input[type="text"] {
+        	width: 90%;
+        }
+        #book_check_area #book_check_btn {
+        	width: 90%;
+        }
+        .check_result {
+        	width: 100%;
+        }
+        .check_result h1 {
+        	font-size: 30px;
+        }
+        .check_result table th {
+        	font-size: 15px;
+        }
+        
+        #isData_yes table th:nth-child(1) {
+       	    width: 16%;
+        }
+        #isData_yes table th:nth-child(2) {
+        	width: 18%;
+        }
+        #isData_yes table th:nth-child(3) {
+        	width: 40%;
+        }
+        #write_btn {
+        	width: 70%;
+        	height: 35px;
+        	font-size: 12px;
+        }
+        #bEnd {
+        	display: block;
+        }
+        .review_area .write_wrap p.mid_text {
+        	position: static;
+        	display: block;
+        	text-align: left;
+        }
+        #reTitle {
+        	width: 100%;
+        }
+        .ck-editor__editable_inline {
+        	width: 100%;
+            min-height: 500px;
+        }
+        .review_area .write_wrap .star_list {
+        	display: block;
+       	}
+       	.review_area .write_wrap #reTitle {
+       		width: 100%;
+       	}
+       	/* ck-editor */
+       	.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+		    box-sizing: border-box !important;
+		    width: 100% !important;
+		}
+		.ck.ck-toolbar.ck-toolbar_grouping>.ck-toolbar__items {
+		    overflow: none !important;
+		}
+		.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar, .ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+		    width: 99%;
+		}
     /* review end */
     /* review_write */
         .review_area {

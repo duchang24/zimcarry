@@ -51,7 +51,7 @@
       		</table>
       	</div>
       	<div class="list_down notice">
-      		<form method="post" action="./data/write_edit_ok.jsp" onsubmit="return checkForm()">
+      		<form method="post" action="./data/write_edit_ok.jsp" onsubmit="return checkForm()" enctype="multipart/form-data">
       			<p>제목 : <input type="text" name="noTitle" id="no_title"></p>
       			<p>작성자 : <input type="text" name="noWriter" id="no_writer"></p>
       			<p>내용</p>
