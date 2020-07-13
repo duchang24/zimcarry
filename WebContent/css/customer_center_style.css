@@ -717,9 +717,6 @@
         #isData_yes table th:nth-child(3) {
         	width: 40%;
         }
-        #isData_yes table th:nth-child(4) {
-        	
-        }
         #write_btn {
         	width: 70%;
         	height: 35px;
@@ -728,10 +725,35 @@
         #bEnd {
         	display: block;
         }
-        
         .review_area .write_wrap p.mid_text {
-        	position
+        	position: static;
+        	display: block;
+        	text-align: left;
         }
+        #reTitle {
+        	width: 100%;
+        }
+        .ck-editor__editable_inline {
+        	width: 100%;
+            min-height: 500px;
+        }
+        .review_area .write_wrap .star_list {
+        	display: block;
+       	}
+       	.review_area .write_wrap #reTitle {
+       		width: 100%;
+       	}
+       	/* ckeditor */
+       	.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+		    box-sizing: border-box !important;
+		    width: 100% !important;
+		}
+		.ck.ck-toolbar.ck-toolbar_grouping>.ck-toolbar__items {
+		    overflow: none !important;
+		}
+		.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar, .ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+		    width: 99%;
+		}
     /* review end */
     /* review_write */
         .review_area {
