@@ -12,6 +12,8 @@
 
 <c:set var="reviewList" value="${reviewDAO.selectReviewList()}" />
 
+<c:set var="reviewList" value="${reviewDAO.getreviewList()}" scope="page" />
+
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
@@ -42,19 +44,18 @@
       					<th>만족도</th>
       					<th>이용날짜</th>
       					<th>숨김여부</th>
-      				</tr>
       			</thead>
       			<tbody>
       				<c:forEach var="reviewItem" items='${ reviewList }' varStatus="status">
       					<c:set var="bookDTO" value="${bookDAO.selectBookWhereIdx(reviewItem.reBookidx)}" />
 	      				<tr>
-							<td>${ reviewItem.reIdx }</td>
+	      					<td>${ reviewItem.reIdx }</td>
 	      					<td><a href="#" onclick="review_d(${ reviewItem.reIdx }, ${ reviewItem.reBookidx })">${ reviewItem.reTitle }</a></td>
 	      					<td>${ bookDTO.bName }</td>
 	      					<td>${ reviewItem.reScore }</td>
 	      					<td>${ bookDTO.bStartdate }</td>
 	      					<td>${ bookDTO.bIsreview }</td>
-	      				</tr>
+						</tr>
       				</c:forEach>
       			</tbody>
       		</table>
@@ -83,10 +84,10 @@
   <!--   Core JS Files   -->
   <%@ include file="./core_js.jsp" %>
     <script>
-  	$(function () {
-  		$('.sidebar-wrapper ul.nav li').removeClass("active");
-  		$('.sidebar-wrapper ul.nav li:eq(6)').addClass("active");
-  	});
-  </script>
+	  	$(function () {
+	  		$('.sidebar-wrapper ul.nav li').removeClass("active");
+	  		$('.sidebar-wrapper ul.nav li:eq(6)').addClass("active");
+	  	});
+  	</script>
 </body>
 </html>

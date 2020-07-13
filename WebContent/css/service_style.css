@@ -34,9 +34,10 @@
 .white1_1 { width: 100%; height: 900px; background: #fff; }
 
 #sub_content .sub_navi a.on { background: #FFDA00; color: #333333; font-weight: 600; }
+#sub_content { padding-bottom: 0; }
 #serve_content h3 { margin-top: 91px; margin-bottom: 44px; font-size: 30px; letter-spacing: -3px; text-align: center; }
 #serve_content p { text-align: center; line-height: 32px; font-size: 20px; }
-#serve_content p span { font-weight: bold;}
+#serve_content p span { font-weight: bold; }
 #serve_content .serve_content_box { margin-top: 50px; margin-bottom: 70px; }
 #serve_content .serve_content_box li { width: 280px; height: 360px; border: 2px solid #ddd; border-radius: 20px 0 20px 0 / 20px 0 20px 0; float: left; margin-right: 26.5px; box-sizing: border-box; position: relative; }
 #serve_content .serve_content_box li:last-child { margin-right: 0; }
@@ -167,21 +168,19 @@
 /* service end */
 
 @media screen and (max-width: 800px) {
-    .service { background: none; }
-    .sub_title { display: none; }
+    .sub_title { display: block; }
 
     /*  */
     /* #menu-wrapper { margin: 0; left: -255px; right: 0; } */
-    header .header_area h1 a { width: 240px; }
     
-    .sub_content_wrap .sub_content .sub_navi { width: 100vw; height: 4.2%; top: 101px; left: 0; }
-    .sub_content_wrap .sub_content .sub_navi ul { height: 100%; }
-    .sub_content_wrap .sub_content .sub_navi ul li { width: 33%; }
-    .sub_content_wrap .sub_content .sub_navi ul li:last-child { width: 34%; }
+    .sub_content_wrap .sub_content { width: 100%; }
+    .sub_content_wrap .sub_content .sub_navi{ width: 100%; left: 0; top: 101px; }
+    .sub_content_wrap .sub_content .sub_navi ul { width: 100%; height: 100%; }
+    .sub_content_wrap .sub_content .sub_navi ul li { width: 33.35%; }
     .sub_content_wrap .sub_content .sub_navi ul li:first-child a { border-radius: 0; border-right: none; }
     .sub_content_wrap .sub_content .sub_navi ul li:last-child a { border-radius: 0; border-left: none; }
-    .sub_content_wrap .sub_content .sub_navi ul li a { height: 100%; line-height: 50px; }
-    .sub_content_wrap .sub_content .sub_indicator { padding-top: 200px; width: 90vw; height: 4em; }
+    .sub_content_wrap .sub_content .sub_navi ul li a { height: 100%; } 
+    .sub_content_wrap .sub_content .sub_indicator { padding-top: 50px; width: 90vw; height: 8em; }
     .sub_content_wrap .sub_content .sub_indicator h2 { font-size: 1.95em; }
     .sub_content_wrap .sub_content .sub_indicator ul { display: none; }
 
@@ -248,18 +247,10 @@
     #room_infor ul li .room_content .room_addr { width: 100%; height: 32%; margin: 0; padding: 0 0.8em; text-align: left; font-size: 1.1em; box-sizing: border-box; display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
     #room_infor ul li .room_content .room_btn { width: 8em; height: 20%; position: absolute; bottom: 1.1em; left: 1em; z-index: 100; }
 
-
-
     #room_infor .num_click { margin: 1.5em 0;}
     #room_infor .num_click ul li:hover { background: none; }
     #room_infor .num_click div a:first-child { left: 7%; }
     #room_infor .num_click div a:last-child { right: 7%; }
-
-
-
-
-
-
 }
 
 
