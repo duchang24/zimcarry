@@ -17,7 +17,7 @@
         <ul class="menu-list accordion">
             <li id="nav1" class="toggle accordion-toggle"> 
                 <span class="icon-plus"></span>
-                <a class="menu-link" href="../../subpage/service/service_zimcarry.jsp">서비스</a>
+                <a class="menu-link" href="#">서비스</a>
             </li>
             <ul class="menu-submenu accordion-content">
                 <li><a class="head" href="../../subpage/service/service_zimcarry.jsp">짐캐리란</a></li>
@@ -26,7 +26,7 @@
             </ul> 
             <li id="nav2" class="toggle accordion-toggle"> 
                 <span class="icon-plus"></span>
-                <a class="menu-link" href="../../subpage/reservation/1.jsp">예약하기</a>
+                <a class="menu-link" href="#">예약하기</a>
             </li>
             <ul class="menu-submenu accordion-content">
                 <li><a class="head" href="#">숙소조회</a></li>
@@ -35,7 +35,7 @@
             </ul>
             <li id="nav3" class="toggle accordion-toggle"> 
                 <span class="icon-plus"></span>
-                <a class="menu-link" href="../../subpage/customer/customer_FAQ.jsp">고객센터</a>
+                <a class="menu-link" href="#">고객센터</a>
             </li>
             <ul class="menu-submenu accordion-content">
                 <li><a class="head" href="../../subpage/customer/customer_notice.jsp">공지사항</a></li>
