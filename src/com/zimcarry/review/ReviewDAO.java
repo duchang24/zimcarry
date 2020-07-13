@@ -68,14 +68,15 @@ public class ReviewDAO {
 		return reviewList;
 	}
 	
-	public ReviewDTO selectReview(Long reIdx) {
+	public List<ReviewDTO> selectReview(String reIdx) {
 		ReviewDTO reviewDTO = null;
+		List<ReviewDTO> contentList = new ArrayList<ReviewDTO>();
 		
 		try {
 			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx"
 					+ "FROM tb_review WHERE re_idx=?";
 			conn = DBConn.getConnection();
-			pstmt.setLong(1, reIdx);
+			pstmt.setString(1, reIdx);
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -86,11 +87,12 @@ public class ReviewDAO {
 				reviewDTO.setReContent(rs.getString("re_content"));
 				reviewDTO.setReWritedate(rs.getDate("re_writedate"));
 				reviewDTO.setReBookidx(rs.getLong("re_bookidx"));
-				return reviewDTO;
+				contentList.add(reviewDTO);
+				return contentList;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return reviewDTO;
+		return contentList;
 	}
 }
