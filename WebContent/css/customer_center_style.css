@@ -12,6 +12,7 @@
         .page_wrap {
             width: 100%;
             text-align: center;
+            margin-top: 50px;
         }
         .page_wrap .page_list {
             display: inline-block;

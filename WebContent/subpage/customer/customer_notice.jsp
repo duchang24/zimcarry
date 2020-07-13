@@ -83,6 +83,11 @@
                             </c:forEach>
                         </table>
                     </div>
+                    <div class="page_wrap">
+                        <ul class="page_list">
+                            <li><a href="customer_notice.jsp?" class="on">1</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
