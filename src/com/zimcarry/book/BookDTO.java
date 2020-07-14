@@ -95,4 +95,16 @@ public class BookDTO {
 	public void setbIsreview(String bIsreview) {
 		this.bIsreview = bIsreview;
 	}
+	@Override
+	public String toString() {
+		return bName + "|" + bStart + "|" + bEnd;
+	}
 }
+
+
+
+
+
+
+
+

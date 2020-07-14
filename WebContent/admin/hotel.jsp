@@ -21,6 +21,7 @@
 	int pageCnt = (totCnt / recNum) + 1;
 	
 	String nowpage = request.getParameter("pagenum");
+	
 %>
 <c:set var="nowpage" value="<%=nowpage%>"/>
 <c:set var="start" value="<%=start%>"/>
@@ -30,6 +31,8 @@
 
 <!DOCTYPE html>
 <html lang="ko">
+
+<script src="./data/jquery-3.5.1.min.js"></script>
 
 <!-- head -->
 <%@ include file="./head.jsp" %>
@@ -53,7 +56,8 @@
       		<h3>제휴 호텔 검색</h3>
       		<div>
       			<p id="findArea"><input type="search" name="find_hotel" id="find_hotel" placeholder="검색할 호텔을 입력하세요."> <button onclick="find()">검색</button></p>
-      			<p id="listBtn"><button onclick="list()">전체 리스트</button></p>
+      			<p id="listBtn"><button onclick="list()">전체 리스트</button> <input type="hidden" name="findName" id="findName"></p>
+      			
       		</div>
       	</div>
       	<div class="hotel_list hotel">
@@ -65,13 +69,17 @@
       				<th>현재 제휴</th>      				
       			</tr>
       			<c:forEach var="item" items="${hotelList}" varStatus="status">
+      			
 				<tr>
 					<td>${status.count}</td>
-					<td><a href="hotel.jsp?pagenum=${nowpage}&hIdx=${item.hIdx}">${item.hName}</a></td>
+					<td><a href="#" onclick="findHotel(${item.hIdx})">${item.hName}</a></td>
+					
 					<td>${item.hDiscount}</td>
 					<td>${item.hPartner}</td>
 				</tr>
+				
 				</c:forEach>
+				
       		</table>
       		<p id="page" class="paging">
 			<%
@@ -83,19 +91,20 @@
       	</div>
       	<div class="hotel_view hotel">
       		<h3>제휴 호텔</h3>
-      		<input type="hidden" name="h_idx" value="0">
-   		<%
-      		String h_idx = request.getParameter("hIdx");
-      		if(h_idx != null && !h_idx.equals("")){
-      	%>
+      		<input type="hidden" name="h_idx" id="h_idx"> <input type="hidden" name="h_discount" id="h_discount"> <input type="hidden" name="h_partner" id="h_partner">
+      		<% String h_idx = (String)request.getAttribute("hIdx"); %>
       		<c:set var="h_idx" value="<%=h_idx%>"/>
-      		<c:set var="viewHotel" value="${hotelDAO.viewHotel(h_idx)}"/>
       		<form method="post" action="./data/hotel_ok.jsp" enctype="multipart/form-data">
-      			<p>호텔 사진 <span>${viewHotel.hFile}</span></p>
-      			<p><input type="file" name="h_file"></p>
-      			<p>호텔 명 <input type="text" name="h_name" value="${viewHotel.hName}"></p>
-      			<p>호텔 주소 <input type="text" name="h_address" value="${viewHotel.hAddress}"></p>
-      			<p>호텔 지도 <input type="text" name="h_map" id="h_map" value="${viewHotel.hMap}"></p>
+      			<div class="hIdxO" style="display: bolck;">
+      				<p>호텔 사진 <span id="h_file"></span></p>
+      				<p><input type="file" name="h_file"></p>
+      			</div>
+      			<div class="hIdxX" style="display: none;">
+      				<p>호텔 사진 <input type="file" name="h_file"></p>
+      			</div>
+      			<p>호텔 명 <input type="text" name="h_name" id="h_name"></p>
+      			<p>호텔 주소 <input type="text" name="h_address" id="h_address"></p>
+      			<p>호텔 지도 <input type="text" name="h_map" id="h_map"></p>
       			<p>호텔 할인 <label id="label1_1">O</label><input type="radio" name="h_discount" value="O" id="radio1_1" 
       			<c:if test="${viewHotel.hDiscount == 'O'}">
 					checked
@@ -115,64 +124,13 @@
 					checked
 				</c:if>
       			></p>
-      			<p><input type="submit" value="수정"> <input type="button" value="비우기" onclick="location.href='hotel.jsp?pagenum=${nowpage}'"></p>
+      			<div class="hIdxO" style="display: bolck;">
+      				<p><input type="submit" value="수정"> <input type="button" value="비우기" onclick="location.href='hotel.jsp?pagenum=${nowpage}'"></p>
+      			</div>
+      			<div class="hIdxX" style="display: none;">
+      				<p><input type="submit" value="추가"></p>
+      			</div>
       		</form>
-      	<%
-      		}else{
-      	%>
-      		<form method="post" action="./data/hotel_ok.jsp" enctype="multipart/form-data" onsubmit="return checkform()">
-      			<p>호텔 사진 <input type="file" name="h_file" id="h_file"></p>
-      			<p>호텔 명 <input type="text" name="h_name" id="h_name"></p>
-      			<p>호텔 주소 <input type="text" name="h_address" id="h_address"></p>
-      			<p>호텔 지도 <input type="text" name="h_map" id="h_map" id="h_map"></p>
-      			<p>호텔 할인 <label id="label1_1">O</label><input type="radio" name="h_discount" value="O" id="radio1_1" checked> <label id="label1_2">X</label><input type="radio" name="h_discount" value="X" id="radio1_2"></p>
-      			<br>
-      			<p>현재 제휴 상황 <label id="label2_1">O</label><input type="radio" name="h_partner" value="O" id="radio2_1" checked> <label id="label2_2">X</label><input type="radio" name="h_partner" value="X" id="radio2_2"></p>
-      			<p><input type="submit" value="추가"></p>
-      		</form>
-      		
-      		<script>
-				function checkform(){
-										
-					if($("#h_file").val() == ""){
-						alert("파일을 선택해주세요.");
-						return false;
-					}
-					
-					if($("#h_name").val() == ""){
-						alert("이름을 입력해주세요.");
-						$("#h_name").focus();
-						return false;
-					}
-					
-					if($("#h_address").val() == ""){
-						alert("주소를 입력해주세요.");
-						$("#h_address").focus();
-						return false;
-					}
-					
-					if($("#h_map").val() == ""){
-						alert("지도를 입력해주세요.");
-						$("#h_map").focus();
-						return false;
-					}
-					
-					return true;
-				}
-				
-				function find(){
-					let h_name = $("#find_hotel").val();
-					alert(h_name);
-				}
-				
-				function list(){
-					$("#find_hotel").val("");
-				}
-			</script>
-
-      	<%
-      		}
-   		%>
       	</div>
       </div>
       <!-- footer -->
@@ -190,3 +148,69 @@
 </body>
 
 </html>
+
+<script>
+	$(function(){
+		
+		
+		if($("#h_idx").val() == null || $("#h_idx").val() == ""){
+			
+			$(".hIdxO").css("display", "none");
+			$(".hIdxX").css("display", "block");
+		}
+	});
+
+	function findHotel(hIdx){
+		$(".hIdxO").css("display", "block");
+		$(".hIdxX").css("display", "none");
+		
+		let xhr = new XMLHttpRequest();
+		xhr.open("GET", "./data/request_hotel.jsp?hIdx="+hIdx, true);
+		
+		xhr.send();
+		
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
+				let hotelInfor = new Array();
+				hotelInfor = xhr.responseText.split("|");
+				let h_idx = hotelInfor[0];
+				let h_file = hotelInfor[1];
+				let h_name = hotelInfor[2];
+				let h_address = hotelInfor[3];
+				let h_map = hotelInfor[4];
+				let h_discount = hotelInfor[5];
+				let h_partner = hotelInfor[6];
+				
+				$("#h_idx").val(hIdx);
+				$("#h_discount").val(h_discount);
+				$("#h_partner").val(h_partner);
+				$("#h_name").val(h_name);
+				$("#h_address").val(h_address);
+				$("#h_map").val(h_map);
+				document.getElementById("h_file").innerHTML = h_file;
+			}
+		}
+		
+	}
+	
+	function find(){
+		let h_name = $("#find_hotel").val();
+		
+		let xhr = new XMLHttpRequest();
+		xhr.open("GET", "./data/request_hotel.jsp?hName="+h_name+"&start="+'${start}'+"&recNum="+'${recNum}', true);
+		xhr.send();
+		
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){							
+				
+			}
+		}
+		
+	}
+	
+	function list(){
+		$("#find_hotel").val("");
+		$("#findName").val("");
+	}
+	
+</script>

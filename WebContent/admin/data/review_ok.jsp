@@ -8,10 +8,7 @@
 <%
 	String re_idx = request.getParameter("re_idx");
 	String re_bookidx = request.getParameter("re_bookidx");
+	
+	out.println(reviewDAO.reviewDetail(re_idx) + "|");
+	out.println(bookDAO.selectBookWhereIdx(re_bookidx));
 %>
-<c:set var="re_idx" value="<%=re_idx %>" />
-<c:set var="reviewDetail" value="${reviewDAO.reviewDetail(re_idx)}" />
-<%
-	out.print(reviewDetail);
-%>
-<c:set var="bookdao" value="${bookDAO.selectBookWhereIdx(re_bookidx)}" />

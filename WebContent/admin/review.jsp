@@ -9,10 +9,27 @@
 <jsp:useBean id="reviewDTO" class="com.zimcarry.review.ReviewDTO" />
 <jsp:useBean id="bookDAO" class="com.zimcarry.book.BookDAO" />
 <jsp:useBean id="bookDTO" class="com.zimcarry.book.BookDTO" />
+<jsp:useBean id="util" class="com.zimcarry.util.Util" />
 
-<c:set var="reviewList" value="${reviewDAO.selectReviewList()}" />
-
-<c:set var="reviewList" value="${reviewDAO.getreviewList()}" scope="page" />
+<c:set var="pageNum" value="1" />
+<c:set var="limit" value=", 10" />
+<c:if test="${pageNum ne null}" >
+	<c:set var="pageNum" value="${param.pageNum}" />
+	<c:if test="${param.pageNum eq null}">
+		<c:set var="pageNum" value="1" />
+	</c:if>
+	<c:choose>
+		<c:when test="${pageNum eq 1 || pageNum eq null}">
+			<c:set var="limit" value="0, 10" />
+		</c:when>
+		<c:otherwise>
+			<c:set var="start" value="${pageNum * 10 - 10}" />
+			<c:set var="limit" value="${start}${limit}" />
+		</c:otherwise>
+	</c:choose>
+</c:if>
+<c:set var="reviewList" value="${reviewDAO.selectReviewList(limit)}" />
+<c:set var="page" value="${util.paging(reviewDAO.reviewListSize())}" />
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -54,26 +71,37 @@
 	      					<td>${ bookDTO.bName }</td>
 	      					<td>${ reviewItem.reScore }</td>
 	      					<td>${ bookDTO.bStartdate }</td>
-	      					<td>${ bookDTO.bIsreview }</td>
+	      					<td>${ reviewItem.reHidden}</td>
 						</tr>
       				</c:forEach>
       			</tbody>
       		</table>
+      		<div class="page_wrap">
+	            <ul class="page_list">
+	            	<c:forEach var="i" items="${page}" varStatus="status">
+						<li>
+							<a href="./review.jsp?pageNum=${status.index + 1}"
+								<c:if test="${status.index + 1 eq pageNum}">class="on"</c:if>>${status.index + 1}
+							</a>
+						</li>
+	                </c:forEach>
+	            </ul>
+            </div>
       	</div>
         <!--  review_table end -->
         <!-- review detail -->
         <div class="review_detail">
-	        <form method="get" action="./data/review_ok.jsp">
+	        <form method="get" action="./data/review_edit.jsp">
 	        	<input type="hidden" name="re_idx" id="re_idx">
-	        	<p><span class="left" id="re_num">글 번호 : </span> <span id="re_writedate">작성일 : </span> <span id="re_route">구간 : </span></p>
-		        <p><span class="left" id="re_title">제목 : </span> <span id="re_writer">작성자 : </span></p>
-		       	<p><span id="re_score">만족도 : </span></p>
-	        	<p class="re_content" id="re_content">
-	        		
-	        	</p>
-	        	<p><label>숨김</label> <input type="radio" name="review_view" id="review_view" value="숨김"> 
-	        	<label>공개</label> <input type="radio" name="review_view" id="review_view" value="공개" checked="checked"></p>
-	        	<p><input type="button" value="수정" id="btn_review_edit"></p>
+	        	<p>글 번호 : <span class="left" id="re_num" name="re_idx"></span> 작성일 : <span id="re_writedate"></span></p>
+		        <p>작성자 : <span id="re_writer" class="left"></span> 만족도 : <span id="re_score" class="left"></span> 구간 : <span id="re_route"></span></p>
+		       	<p>제목 : <span class="left" id="re_title"></span></p>
+	        	<div class="re_content">
+	        		<p id="re_content"></p> 
+	        	</div>
+	        	<div class="radio"><label class="rad_label">공개</label> <input type="radio" name="review_hv" id="re_hidden_n" value="n" checked="checked"> 
+	        	<label class="rad_label">숨김</label> <input type="radio" name="review_hv" id="re_hidden_y" value="y"></div>
+	        	<p class="button"><input type="button" value="수정" id="btn_review_edit"></p>
 	        </form>
         </div>
       </div>
@@ -89,5 +117,7 @@
 	  		$('.sidebar-wrapper ul.nav li:eq(6)').addClass("active");
 	  	});
   	</script>
+  	<script src="./data/jquery-3.5.1.min.js"></script>
+  	<script src="../assets/js/review_a.js"></script>
 </body>
 </html>

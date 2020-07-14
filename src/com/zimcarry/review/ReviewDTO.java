@@ -53,4 +53,8 @@ public class ReviewDTO {
 	public void setReHidden(String reHidden) {
 		this.reHidden = reHidden;
 	}
+	@Override
+	public String toString() {
+		return reIdx + "|" + reScore + "|" + reTitle + "|" + reContent + "|" + reWritedate + "|" + reHidden;
+	}
 }
