@@ -101,8 +101,13 @@
 	width: 150px;
 	height: 35px;
 }
-/* 리뷰 관리 페이지 */
-
+/* FAQ 관리 페이지 */
+.content textarea {
+	width: 100%;
+	min-height: 200px;
+	padding: 10px 20px;
+	
+}
 
 
 
