@@ -169,7 +169,7 @@
 
 <script>
 	$(function(){
-		
+		alert('1234');
 		
 		if($("#h_idx").val() == null || $("#h_idx").val() == ""){
 			
