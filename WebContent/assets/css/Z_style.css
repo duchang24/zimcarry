@@ -65,6 +65,7 @@
 	width: 80%;
 	min-height: 200px;
 	margin: 0 auto;
+	margin-bottom: 50px;
 	padding: 30px;
 	border: 1px solid #cdcdcd;
 	border-radius: 10px;
@@ -100,8 +101,13 @@
 	width: 150px;
 	height: 35px;
 }
-/* 리뷰 관리 페이지 */
-
+/* FAQ 관리 페이지 */
+.content textarea {
+	width: 100%;
+	min-height: 200px;
+	padding: 10px 20px;
+	
+}
 
 
 

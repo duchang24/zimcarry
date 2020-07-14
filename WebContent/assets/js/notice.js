@@ -9,7 +9,7 @@ $(function () {
 		let no_writer = "";
 		let no_content = "";
 		let no_hidden = "";
-		let no_file = "";
+		let no_filename = "";
 			
 		let noticeContent = new Array();
 		let no_idx = $(this).parent().prev().html();
@@ -23,7 +23,7 @@ $(function () {
 				no_writer = noticeJSON.no_writer;
 				no_content = noticeJSON.no_content;
 				no_hidden = noticeJSON.no_hidden;
-				no_file = noticeJSON.no_file;
+				no_filename = noticeJSON.no_filename;
 				
 				console.log(no_title);
 				$('#noIdx').val(no_idx);
@@ -31,7 +31,8 @@ $(function () {
 				$('#no_writer').val(no_writer);
 				$('#no_content').val(no_content);
 				$('#no_content').html(no_content);
-				$('#og_file').val(no_file);
+				$('#og_filename').val(no_filename);
+				$('#ogFile').html(no_filename);
 				if (no_hidden == 'n') {
 					$("input:radio[name='noHidden']:radio[value='n']").prop('checked', true);
 				} else {

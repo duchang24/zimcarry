@@ -22,7 +22,7 @@
 	</c:choose>
 </c:if>
 <c:set var="reviewList" value="${reviewDAO.selectReviewList(limit)}" />
-<c:set var="page" value="${util.paging(reviewDAO.reviewListSize())}" />
+<c:set var="page" value="${util.paging(reviewDAO.reviewListSize(), 6)}" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>

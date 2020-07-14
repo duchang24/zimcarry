@@ -39,9 +39,10 @@
       	</div>
       	<div class="list_down notice">
       		<form method="post" action="./data/faq_ok.jsp" onsubmit="return checkForm()">
-      			<p>질문 : <input type="text" name="fQuestion" id="fQuestion"></p>
+      			<p>질문</p>
+      			<p><textarea name="fQuestion" id="fQuestion" placeholder="질문을 작성하세요"></textarea></p>
       			<p>답변</p>
-      			<p><textarea name="fAnswer" id="fAnswer"></textarea></p>
+      			<p><textarea name="fAnswer" id="fAnswer" placeholder="답변을 작성하세요"></textarea></p>
       			<p>게시글을 감추시겠습니까? <label for="fHiddenyse">예 </label><input type="radio" name="fHidden" id="no_hiddenyse" value="y"> <label for="fHiddenno">아니요 </label><input type="radio" name="fHidden" id="fHiddenno" value="n"></p>
       			<input type="hidden" name="noIdx" id="noIdx">
       			<p id="btn_wrap">
