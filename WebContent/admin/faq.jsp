@@ -1,8 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
-<%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
+<%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="faqDTO" class="com.zimcarry.faq.FaqDTO" />
+<jsp:useBean id="faqDAO" class="com.zimcarry.faq.FaqDAO" />
+<jsp:useBean id="util" class="com.zimcarry.util.Util" />
+<c:set var="pageNum" value="1" />
+<c:set var="limit" value=", 8" />
+<c:if test="${pageNum ne null}" >
+	<c:set var="pageNum" value="${param.pageNum}" />
+	<c:if test="${param.pageNum eq null}">
+		<c:set var="pageNum" value="1" />
+	</c:if>
+	<c:choose>
+		<c:when test="${pageNum eq 1 || pageNum eq null}">
+			<c:set var="limit" value="0, 8" />
+		</c:when>
+		<c:otherwise>
+			<c:set var="start" value="${pageNum * 8 - 8}" />
+			<c:set var="limit" value="${start}${limit}" />
+		</c:otherwise>
+	</c:choose>
+</c:if>
+<c:set var="noticeList" value="${noticeDAO.getNoticeList('y', limit)}" scope="page" />
+<c:set var="page" value="${util.paging(noticeDAO.noticeListSize(), 8)}" />
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
