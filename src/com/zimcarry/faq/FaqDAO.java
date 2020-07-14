@@ -56,10 +56,10 @@ public class FaqDAO {
 		return size;
 	}
 	
-	public List<FaqDTO> selectFaqList() {
+	public List<FaqDTO> selectFaqListHiddenNo() {
 		List<FaqDTO> faqList = new ArrayList<FaqDTO>();
 		try {
-			String sql = "SELECT f_idx, f_question, f_answer, f_writedate, f_hidden FROM tb_faq WHERE f_hidden = 'n'";
+			String sql = "SELECT f_idx, f_question, f_answer, f_writedate, f_hidden FROM tb_faq WHERE f_hidden = 'x'";
 			conn = DBConn.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();

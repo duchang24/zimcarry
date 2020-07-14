@@ -106,10 +106,34 @@
 	width: 100%;
 	min-height: 200px;
 	padding: 10px 20px;
+}
+.content .list_up dl dt .btn {
 	
 }
-
-
+.content .list_up dl dd {
+	border-bottom: 2px solid #444;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+}
+.content .list_up .q_area p {
+	font-size: 20px;
+	font-weight: bold;
+	padding: 10px 0;
+}
+.content .list_up .q_area p::before {
+	content: "질문: ";
+	font-size: 18px;
+	padding-right: 10px;
+	color: #ff9800;
+}
+.content .list_up dl dd span {
+	font-size: 18px;
+	font-weight: bold;
+	color: #444;
+}
+.ck-editor__editable {
+	min-height: 150px;
+}
 
 
 
