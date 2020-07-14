@@ -62,9 +62,9 @@ public class HotelDAO {
 		List<HotelDTO> hotelList = new ArrayList<HotelDTO>();
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT h_idx, h_name, h_discount, h_partner FROM tb_hotel WHERE h_name=? order by h_idx asc limit ?, ?";
+			String sql = "SELECT h_idx, h_name, h_discount, h_partner FROM tb_hotel WHERE h_name LIKE ? order by h_idx asc limit ?, ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, h_name);
+			pstmt.setString(1, "%"+h_name+"%");
 			pstmt.setInt(2, start);
 			pstmt.setInt(3, recNum);
 			rs = pstmt.executeQuery();
@@ -129,5 +129,28 @@ public class HotelDAO {
 			DBConn.close(conn, pstmt, rs);
 		}
 		return null;
+	}
+	
+	public int updateHotel(HotelDTO hotelDTO) {
+		String sql = "UPDATE tb_hotel SET h_file=?, h_name=?, h_address=?, h_map=?, h_discount=?, h_partner=? WHERE h_idx=?";
+		try {
+			conn = DBConn.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, hotelDTO.gethFile());
+			pstmt.setString(2, hotelDTO.gethName());
+			pstmt.setString(3, hotelDTO.gethAddress());
+			pstmt.setString(4, hotelDTO.gethMap());
+			pstmt.setString(5, hotelDTO.gethDiscount());
+			pstmt.setString(6, hotelDTO.gethPartner());
+			pstmt.setLong(7, hotelDTO.gethIdx());
+			if(pstmt.executeUpdate() != 0) {
+				return 1;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(conn, pstmt);
+		}
+		return 0;
 	}
 }
