@@ -12,15 +12,6 @@
 	
 	if(request.getParameter("hIdx") != null){
 		hIdx = request.getParameter("hIdx");
-		
-		request.setAttribute("hIdx1", hIdx);
-		
-		session.setAttribute("hIdx", hIdx);
-		
-		
-		
-		request.setAttribute("hDiscount", hotelDAO.viewHotel(hIdx).gethDiscount());
-		request.setAttribute("hPartner", hotelDAO.viewHotel(hIdx).gethPartner());
 		out.println(hotelDAO.viewHotel(hIdx));
 	}
 
@@ -28,7 +19,8 @@
 		hName = request.getParameter("hName");
 		start = Integer.parseInt(request.getParameter("start"));
 		recNum = Integer.parseInt(request.getParameter("recNum"));
-		//List<HotelDTO> hotelList = hotel 
+		List<HotelDTO> hotelList = hotelDAO.selectHotel(hName, start, recNum);
+		out.println(hotelList);
 	}
 	
 %>
