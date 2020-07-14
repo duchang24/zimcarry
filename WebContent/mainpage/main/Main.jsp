@@ -13,6 +13,7 @@
 <div id="wrap">
 		<!-- header -->
 		<%@ include file="../../common/header.jsp" %>
+		<!-- header end -->
 		        <!-- container -->
           <div id="container">
             <div class="main_rolling">
@@ -24,7 +25,7 @@
                                 <div class="txt_box">
                                     <p class="boxin_titl"></p>
                                     <div class="btn-container">
-                                        <button onclick="location.href='../../subpage/service/service_carry.jsp'">
+                                        <button onclick="location.href='../../subpage/service/service_zimcarry.jsp'">
                                             <span class="text"> 자세히보기 </span>
                                             <div class="icon-container"> > </div>
                                         </button>
@@ -32,7 +33,7 @@
                                 </div>
                             </div>
                         </li>
-
+					
                         <div class="res_btnbox">
                             <div>
                                 <div class="reg">
@@ -43,6 +44,7 @@
                                 </div>
                             </div>
                         </div>
+                    </ul>
                 </div>
             </div>
             <!-- container 끝 -->
@@ -91,13 +93,13 @@
                     <input type="radio" name="slider" id="item-3">
                   <div class="cards">
                     <label class="card" for="item-1" id="img-1">
-                      <img src="../../images/2019111116333159121.jpg" alt="부산시티투어">
+                      <img src="../../images/2019111116333159121.jpg" alt="부산시티투어" class="card_img">
                     </label>
                     <label class="card" for="item-2" id="img-2">
-                      <img src="../../images/2019111116334868723.jpg" alt="부산타워 입장권">
+                      <img src="../../images/2019111116334868723.jpg" alt="부산타워 입장권" class="card_img">
                     </label>
                     <label class="card" for="item-3" id="img-3">
-                      <img src="../../images/2020031216041098253.jpg" alt="나잇스위밍">
+                      <img src="../../images/2020031216041098253.jpg" alt="나잇스위밍" class="card_img">
                     </label>
                   </div>
                 
