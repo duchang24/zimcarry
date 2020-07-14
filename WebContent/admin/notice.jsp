@@ -22,8 +22,8 @@
 		</c:otherwise>
 	</c:choose>
 </c:if>
-<c:set var="noticeList" value="${noticeDAO.getNoticeList('yes', limit)}" scope="page" />
-<c:set var="page" value="${util.paging(noticeDAO.noticeListSize())}" />
+<c:set var="noticeList" value="${noticeDAO.getNoticeList('y', limit)}" scope="page" />
+<c:set var="page" value="${util.paging(noticeDAO.noticeListSize(), 10)}" />
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
@@ -82,8 +82,9 @@
       			<p>작성자 : <input type="text" name="noWriter" id="no_writer"></p>
       			<p>내용</p>
       			<p><textarea name="noContent" id="no_content"></textarea></p>
+				<p>업로드된 파일 : <span id="ogFile"></span></p>
       			<p><input type="file" name="noFilename"></p>
-      			<input type="hidden" value="" name="ogFile" id="og_file">
+      			<input type="hidden" value="" name="ogFilename" id="og_filename">
       			<p>게시글을 감추시겠습니까? <label for="no_hiddenyse">예 </label><input type="radio" name="noHidden" id="no_hiddenyse" value="y"> <label for="no_hiddenno">아니요 </label><input type="radio" name="noHidden" id="no_hiddenno" value="n"></p>
       			<input type="hidden" name="noIdx" id="noIdx">
       			<p id="btn_wrap">

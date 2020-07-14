@@ -43,6 +43,23 @@ public class FileService {
 		return true;
 	}
 	
+	public boolean updateFileNotice(String noIdx, String noTitle, String noWriter, String noContent, String noHidden, File file, String ogFilename) {
+		NoticeDTO noticeDTO = new NoticeDTO();
+		noticeDTO.setNoIdx(Long.parseLong(noIdx));
+		noticeDTO.setNoTitle(noTitle);
+		noticeDTO.setNoWriter(noWriter);
+		noticeDTO.setNoContent(noContent);
+		noticeDTO.setNoHidden(noHidden);
+		noticeDTO.setNoFilename(file.getName());
+		noticeDTO = noticeDAO.editFileNotice(noticeDTO);
+		System.out.println("업데이트 파일 수정" + noticeDTO);
+		if (noticeDTO != null) {
+			moveFile(noticeDTO, file);
+		}
+		return true;
+	}
+	
+	
 	public void moveFile(NoticeDTO noticeDTO, File file) {
 		File dir = new File(realPath + "/" + getToday());
 		if(!dir.isDirectory()) {

@@ -24,17 +24,15 @@
 	String noWriter = multi.getParameter("noWriter");
 	String noContent = multi.getParameter("noContent");
 	uploadFile = multi.getFilesystemName("noFilename");
+	String ogFilename = multi.getParameter("ogFilename");
 	String noHidden = multi.getParameter("noHidden");
 	String noIdx = multi.getParameter("noIdx");
-	
-	System.out.println("업로드된 파일" + uploadFile);
 	
 	File file = new File(savePath + "/" + uploadFile);
 	if (!file.exists()) {
 		System.out.println("파일 또는 디렉토리 없음");
 		file.mkdir();
 	}
-	System.out.println("file : " + file);
 	
 	String btn = "";
 	
@@ -43,18 +41,38 @@
 	} else if (multi.getParameter("btn_edit") != null) {
 		btn = multi.getParameter("btn_edit");
 	}
-	System.out.println("btn" + btn);
 	
 	if (btn.equals("작성")) {
-		System.out.println("결과 - 작성");
 		if (uploadFile != null) {
-			fs.insertFileNotice(noTitle, noWriter, noContent, noHidden, file);
+			if (fs.insertFileNotice(noTitle, noWriter, noContent, noHidden, file)) {
+				out.print("<script>");
+				out.print("alert('공지사항 작성 성공!');");
+				out.print("location.href='../notice.jsp'");
+				out.print("</script>");
+			}
 		} else {
-			noticeDAO.insertNotice(noTitle, noWriter, noContent, noHidden);
+			if (noticeDAO.insertNotice(noTitle, noWriter, noContent, noHidden)) {
+				out.print("<script>");
+				out.print("alert('공지사항 작성 성공!');");
+				out.print("location.href='../notice.jsp'");
+				out.print("</script>");
+			}
 		}
 	} else {
-		System.out.println("결과 - 수정");
-		
+		if (uploadFile != null) {
+			if (fs.updateFileNotice(noIdx, noTitle, noWriter, noContent, noHidden, file, ogFilename)) {
+				out.print("<script>");
+				out.print("alert('공지사항 수정 성공!');");
+				out.print("location.href='../notice.jsp'");
+				out.print("</script>");
+			}
+		} else {
+			if (noticeDAO.editNoice(noIdx, noTitle, noWriter, noContent, noHidden)) {
+				out.print("<script>");
+				out.print("alert('공지사항 수정 성공!');");
+				out.print("location.href='../notice.jsp'");
+				out.print("</script>");
+			}
+		}
 	}
-	
 %>

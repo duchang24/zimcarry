@@ -3,6 +3,7 @@ package com.zimcarry.notice;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,19 +33,38 @@ public class NoticeDAO {
 			try (ResultSet geneResultKey = pstmt.getGeneratedKeys()){
 				if(geneResultKey.next()) {
 					noticeDTO.setNoIdx(geneResultKey.getLong("noIdx"));
-					System.out.println("noidx " + noticeDTO.getNoIdx());
 				}
 			}
 			if (result > 0) {
 				noticeDTO = this.updateFilepath(noticeDTO);
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBConn.close(conn, pstmt, rs);
 		}
 		return noticeDTO;
+	}
+	
+	public boolean insertNotice(String noTitle, String noWriter, String noContent, String noHidden) {
+		try {
+			conn = DBConn.getConnection();
+			String sql = "INSERT INTO tb_notice (no_title, no_content, no_writer, no_hidden) VALUES (?, ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noTitle);
+			pstmt.setString(2, noContent);
+			pstmt.setString(3, noWriter);
+			pstmt.setString(4, noHidden);
+			int result = pstmt.executeUpdate();
+			if (result > 0) {
+				System.out.println("파일없는 인서트");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt);
+		}
+		return true;
 	}
 	
 	public NoticeDTO updateFilepath(NoticeDTO noticeDTO) {
@@ -66,82 +86,69 @@ public class NoticeDAO {
 		}
 		return noticeDTO;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public boolean editNotice(NoticeDTO noticeDTO) {
+	public boolean editNoice(String noIdx, String noTitle, String noWriter, String noContent, String noHidden) {
 		try {
+			String sql = "UPDATE tb_notice SET no_title = ?, no_writer = ?, no_content = ?, no_hidden = ? WHERE no_idx = ?";
 			conn = DBConn.getConnection();
-			if (noticeDTO.getNoFilename() == null || noticeDTO.getNoFilename().equals("")) {
-				String sql = "UPDATE tb_notice SET no_title = ?, no_content = ?, no_writer = ?, no_hidden = ? WHERE no_idx = ?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, noticeDTO.getNoTitle());
-				pstmt.setString(2, noticeDTO.getNoContent());
-				pstmt.setString(3, noticeDTO.getNoWriter());
-				pstmt.setString(4, noticeDTO.getNoHidden());
-				pstmt.setLong(5, noticeDTO.getNoIdx());
-			} else {
-				String sql = "UPDATE tb_notice SET no_title = ?, no_content = ?, no_writer = ?, no_filename = ?, no_hidden = ? WHERE no_idx = ?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, noticeDTO.getNoTitle());
-				pstmt.setString(2, noticeDTO.getNoContent());
-				pstmt.setString(3, noticeDTO.getNoWriter());
-				pstmt.setString(4, noticeDTO.getNoFilename());
-				pstmt.setString(5, noticeDTO.getNoHidden());
-				pstmt.setLong(6, noticeDTO.getNoIdx());
-			}
-			if (pstmt.executeUpdate() > 0) {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noTitle);
+			pstmt.setString(2, noWriter);
+			pstmt.setString(3, noContent);
+			pstmt.setString(4, noHidden);
+			pstmt.setString(5, noIdx);
+			int result = pstmt.executeUpdate();
+			if (result > 0) {
 				return true;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			DBConn.close(conn, pstmt, rs);
 		}
 		return false;
 	}
 	
-	public List<NoticeDTO> getNoticeList(String allList, String limit) {
-		
-		List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
+	public NoticeDTO editFileNotice(NoticeDTO noticeDTO) {
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden FROM tb_notice ORDER BY no_idx DESC LIMIT " + limit;
+			String sql = "UPDATE tb_notice SET no_title = ?, no_content = ?, no_writer = ?, no_filename = ?, no_filepath = ?, no_hidden = ? WHERE no_idx = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noticeDTO.getNoTitle());
+			pstmt.setString(2, noticeDTO.getNoContent());
+			pstmt.setString(3, noticeDTO.getNoWriter());
+			pstmt.setString(4, noticeDTO.getNoFilename());
+			pstmt.setString(5, noticeDTO.getNoFilepath());
+			pstmt.setString(6, noticeDTO.getNoHidden());
+			pstmt.setLong(7, noticeDTO.getNoIdx());
+			int result = pstmt.executeUpdate();
+			if (result > 0) {
+				return noticeDTO;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return noticeDTO;
+	}
+	
+	public List<NoticeDTO> getNoticeList(String allList, String limit) {
+		List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
+		String sql = "";
+		try {
+			conn = DBConn.getConnection();
+			if (allList.equals("y")) {
+				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden FROM tb_notice ORDER BY no_idx DESC LIMIT " + limit;
+			} else if (allList.equals("n")) {
+				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden FROM tb_notice WHERE no_hidden = 'n' ORDER BY no_idx DESC LIMIT " + limit;
+			}
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
-			if (allList.equals("yes")) {
-				while (rs.next()) {
-					NoticeDTO notice = new NoticeDTO();
-					notice.setNoIdx(rs.getLong("no_idx"));
-					notice.setNoTitle(rs.getString("no_title"));
-					notice.setNoWriter(rs.getString("no_writer"));
-					notice.setNoWritedate(rs.getDate("no_writedate"));
-					notice.setNoHit(rs.getLong("no_hit"));
-					notice.setNoHidden(rs.getString("no_hidden"));
-					noticeList.add(notice);
-				}
-			} else if (allList.equals("no")) {
-				while (rs.next()) {
-					if (rs.getString("no_hidden").equals("n")) {
-						NoticeDTO notice = new NoticeDTO();
-						notice.setNoIdx(rs.getLong("no_idx"));
-						notice.setNoTitle(rs.getString("no_title"));
-						notice.setNoWriter(rs.getString("no_writer"));
-						notice.setNoWritedate(rs.getDate("no_writedate"));
-						notice.setNoHit(rs.getLong("no_hit"));
-						notice.setNoHidden(rs.getString("no_hidden"));
-						noticeList.add(notice);
-					}
-				}
+			while(rs.next()) {
+				NoticeDTO notice = new NoticeDTO();
+				notice.setNoIdx(rs.getLong("no_idx"));
+				notice.setNoTitle(rs.getString("no_title"));
+				notice.setNoWriter(rs.getString("no_writer"));
+				notice.setNoWritedate(rs.getDate("no_writedate"));
+				notice.setNoHit(rs.getLong("no_hit"));
+				notice.setNoHidden(rs.getString("no_hidden"));
+				noticeList.add(notice);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -151,11 +158,32 @@ public class NoticeDAO {
 		return noticeList;
 	}
 	
+	//숨겨진 글 빼고 개수 카운트
+	public int noticeListSize(String hidden) {
+		int size = 0;
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT COUNT(no_idx) AS total FROM tb_notice WHERE no_hidden = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, hidden);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				size = rs.getInt("total");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return size;
+	}
+	
+	//파라미터가 없으면 숨김 여부 상관없이 모든 글 개수 카운트
 	public int noticeListSize() {
 		int size = 0;
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT COUNT(no_idx) AS total FROM tb_notice WHERE no_hidden = 'n'";
+			String sql = "SELECT COUNT(no_idx) AS total FROM tb_notice";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {

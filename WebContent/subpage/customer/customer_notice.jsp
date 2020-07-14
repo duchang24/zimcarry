@@ -22,8 +22,8 @@
 		</c:otherwise>
 	</c:choose>
 </c:if>
-<c:set var="noticeList" value="${noticeDAO.getNoticeList('no', limit)}" />
-<c:set var="page" value="${util.paging(noticeDAO.noticeListSize())}" />
+<c:set var="noticeList" value="${noticeDAO.getNoticeList('n', limit)}" />
+<c:set var="page" value="${util.paging(noticeDAO.noticeListSize(n), 10)}" />
 <!DOCTYPE html>
 <html>
 <head>
