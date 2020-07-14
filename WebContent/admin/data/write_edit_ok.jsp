@@ -11,8 +11,9 @@
 <jsp:setProperty property="*" name="noticeDTO" />
 <%
 	FileService fs = new FileService();
+	fs.setRealPath(request.getRealPath("uploads"));
 	int maxSize = 100 * 1024 * 1024;
-	String savePath = fs.SAVE_PATH;
+	String savePath = fs.getRealPath();
 	String format = "UTF-8";
 	String uploadFile = "";
 	int read = 0;
@@ -22,48 +23,38 @@
 	String noTitle = multi.getParameter("noTitle");
 	String noWriter = multi.getParameter("noWriter");
 	String noContent = multi.getParameter("noContent");
-	uploadFile = multi.getFilesystemName("noFile");
+	uploadFile = multi.getFilesystemName("noFilename");
 	String noHidden = multi.getParameter("noHidden");
 	String noIdx = multi.getParameter("noIdx");
 	
+	System.out.println("업로드된 파일" + uploadFile);
+	
 	File file = new File(savePath + "/" + uploadFile);
 	if (!file.exists()) {
-		System.out.println("디렉토리 없음");
+		System.out.println("파일 또는 디렉토리 없음");
 		file.mkdir();
 	}
 	System.out.println("file : " + file);
 	
+	String btn = "";
+	
+	if (multi.getParameter("btn_write") != null) {
+		btn = multi.getParameter("btn_write");
+	} else if (multi.getParameter("btn_edit") != null) {
+		btn = multi.getParameter("btn_edit");
+	}
+	System.out.println("btn" + btn);
+	
+	if (btn.equals("작성")) {
+		System.out.println("결과 - 작성");
+		if (uploadFile != null) {
+			fs.insertFileNotice(noTitle, noWriter, noContent, noHidden, file);
+		} else {
+			noticeDAO.insertNotice(noTitle, noWriter, noContent, noHidden);
+		}
+	} else {
+		System.out.println("결과 - 수정");
+		
+	}
+	
 %>
-
-
-
-<c:if test="${empty param.noTitle}" >
-	<script>
-		alert('잘못된 접근입니다.');
-		location.href='../notice.jsp';
-	</script>
-</c:if>
-<c:if test="${not empty param.btn_write and param.btn_write == '작성'}" >
-	<c:if test="${noticeDAO.insertNotice(noticeDTO) eq 'true'}" >
-		<script>
-			alert('공지사항 작성 성공');
-			location.href='../notice.jsp';
-		</script>
-	</c:if>
-	<script>
-		alert('공지사항 작성 실패');
-		history.back();
-	</script>
-</c:if>
-<c:if test="${not empty param.btn_edit and param.btn_edit == '수정'}" >
-	<c:if test="${noticeDAO.editNotice(noticeDTO) eq 'true'}" >
-		<script>
-			alert('공지사항 수정 성공');
-			location.href='../notice.jsp';
-		</script>
-	</c:if>
-	<script>
-		alert('공지사항 수정 실패');
-		history.back();
-	</script>
-</c:if>

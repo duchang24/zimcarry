@@ -3,44 +3,84 @@ package com.zimcarry.notice;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.simple.JSONObject;
 
 import com.zimcarry.db.DBConn;
+import com.zimcarry.util.FileService;
 
 public class NoticeDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	public boolean insertNotice(NoticeDTO noticeDTO) {
+	public NoticeDTO insertFileNotice(NoticeDTO noticeDTO) {
+		String[] generatedColumns = {"no_idx"};
 		try {
 			conn = DBConn.getConnection();
-			String sql = "INSERT INTO tb_notice (no_title, no_content, no_writer, no_file, no_hidden) VALUES (?, ?, ?, ?, ?)";
-			pstmt = conn.prepareStatement(sql);
+			String sql = "INSERT INTO tb_notice (no_title, no_content, no_writer, no_filename, no_hidden) VALUES (?, ?, ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql, generatedColumns);
 			pstmt.setString(1, noticeDTO.getNoTitle());
 			pstmt.setString(2, noticeDTO.getNoContent());
 			pstmt.setString(3, noticeDTO.getNoWriter());
-			pstmt.setString(4, noticeDTO.getNoFile());
+			pstmt.setString(4, noticeDTO.getNoFilename());
 			pstmt.setString(5, noticeDTO.getNoHidden());
-			if (pstmt.executeUpdate() > 0) {
-				return true;
+			int result = pstmt.executeUpdate();
+			
+			try (ResultSet geneResultKey = pstmt.getGeneratedKeys()){
+				if(geneResultKey.next()) {
+					noticeDTO.setNoIdx(geneResultKey.getLong("noIdx"));
+					System.out.println("noidx " + noticeDTO.getNoIdx());
+				}
 			}
+			if (result > 0) {
+				noticeDTO = this.updateFilepath(noticeDTO);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBConn.close(conn, pstmt, rs);
 		}
-		return false;
+		return noticeDTO;
 	}
+	
+	public NoticeDTO updateFilepath(NoticeDTO noticeDTO) {
+		try {
+			String sql = "UPDATE tb_notice SET no_filepath = ? WHERE no_idx = ?";
+			conn = DBConn.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			String tmp = "/" + FileService.getToday() + "/" + noticeDTO.getNoIdx() + ".zim";
+			noticeDTO.setNoFilepath(tmp);
+			pstmt.setString(1, tmp);
+			pstmt.setLong(2, noticeDTO.getNoIdx());
+			pstmt.executeUpdate();
+			System.out.println("tmp = " + tmp);
+			System.out.println(noticeDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt);
+		}
+		return noticeDTO;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public boolean editNotice(NoticeDTO noticeDTO) {
 		try {
 			conn = DBConn.getConnection();
-			if (noticeDTO.getNoFile() == null || noticeDTO.getNoFile().equals("")) {
+			if (noticeDTO.getNoFilename() == null || noticeDTO.getNoFilename().equals("")) {
 				String sql = "UPDATE tb_notice SET no_title = ?, no_content = ?, no_writer = ?, no_hidden = ? WHERE no_idx = ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, noticeDTO.getNoTitle());
@@ -49,12 +89,12 @@ public class NoticeDAO {
 				pstmt.setString(4, noticeDTO.getNoHidden());
 				pstmt.setLong(5, noticeDTO.getNoIdx());
 			} else {
-				String sql = "UPDATE tb_notice SET no_title = ?, no_content = ?, no_writer = ?, no_file = ?, no_hidden = ? WHERE no_idx = ?";
+				String sql = "UPDATE tb_notice SET no_title = ?, no_content = ?, no_writer = ?, no_filename = ?, no_hidden = ? WHERE no_idx = ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, noticeDTO.getNoTitle());
 				pstmt.setString(2, noticeDTO.getNoContent());
 				pstmt.setString(3, noticeDTO.getNoWriter());
-				pstmt.setString(4, noticeDTO.getNoFile());
+				pstmt.setString(4, noticeDTO.getNoFilename());
 				pstmt.setString(5, noticeDTO.getNoHidden());
 				pstmt.setLong(6, noticeDTO.getNoIdx());
 			}
@@ -131,10 +171,10 @@ public class NoticeDAO {
 	
 	@SuppressWarnings("unchecked")
 	public String noticeDataToJSON(String no_idx) {
-		String no_title = "", no_content = "", no_writer = "", no_writedate = "", no_hit = "", no_file = "", no_hidden = "";
+		String no_title = "", no_content = "", no_writer = "", no_writedate = "", no_hit = "", no_filename = "", no_hidden = "";
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT no_title, no_content, no_writer, no_writedate, no_hit, no_file, no_hidden FROM tb_notice WHERE no_idx = ?";
+			String sql = "SELECT no_title, no_content, no_writer, no_writedate, no_hit, no_filename, no_hidden FROM tb_notice WHERE no_idx = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, no_idx);
 			rs = pstmt.executeQuery();
@@ -145,7 +185,7 @@ public class NoticeDAO {
 				no_writer = rs.getString("no_writer");
 				no_writedate = rs.getString("no_writedate");
 				no_hit = rs.getString("no_hit");
-				no_file = rs.getString("no_file");
+				no_filename = rs.getString("no_filename");
 				no_hidden = rs.getString("no_hidden");
 			}
 		} catch (Exception e) {
@@ -159,7 +199,7 @@ public class NoticeDAO {
 		jobj.put("no_writer", no_writer);
 		jobj.put("no_writedate", no_writedate);
 		jobj.put("no_hit", no_hit);
-		jobj.put("no_file", no_file);
+		jobj.put("no_filename", no_filename);
 		jobj.put("no_hidden", no_hidden);
 		
 		return jobj.toString();

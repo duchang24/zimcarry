@@ -6,7 +6,7 @@
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
 <jsp:useBean id="util" class="com.zimcarry.util.Util" />
 <c:set var="pageNum" value="1" />
-<c:set var="limit" value=", 20" />
+<c:set var="limit" value=", 10" />
 <c:if test="${pageNum ne null}" >
 	<c:set var="pageNum" value="${param.pageNum}" />
 	<c:if test="${param.pageNum eq null}">
@@ -17,7 +17,7 @@
 			<c:set var="limit" value="0, 10" />
 		</c:when>
 		<c:otherwise>
-			<c:set var="start" value="${pageNum * 20 - 20}" />
+			<c:set var="start" value="${pageNum * 10 - 10}" />
 			<c:set var="limit" value="${start}${limit}" />
 		</c:otherwise>
 	</c:choose>
@@ -46,8 +46,6 @@
       	<div class="list_up notice">
       		<table>
       			<thead>
-      			** ${pageContext.request.contextPath} **
-      			${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/
       				<tr>
       					<th>번호</th>
       					<th>제목</th>
@@ -84,7 +82,7 @@
       			<p>작성자 : <input type="text" name="noWriter" id="no_writer"></p>
       			<p>내용</p>
       			<p><textarea name="noContent" id="no_content"></textarea></p>
-      			<p><input type="file" name="noFile"></p>
+      			<p><input type="file" name="noFilename"></p>
       			<input type="hidden" value="" name="ogFile" id="og_file">
       			<p>게시글을 감추시겠습니까? <label for="no_hiddenyse">예 </label><input type="radio" name="noHidden" id="no_hiddenyse" value="y"> <label for="no_hiddenno">아니요 </label><input type="radio" name="noHidden" id="no_hiddenno" value="n"></p>
       			<input type="hidden" name="noIdx" id="noIdx">
