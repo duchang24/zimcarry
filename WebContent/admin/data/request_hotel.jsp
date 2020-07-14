@@ -13,7 +13,14 @@
 	if(request.getParameter("hIdx") != null){
 		hIdx = request.getParameter("hIdx");
 		
-		request.setAttribute("hIdx", hIdx);
+		request.setAttribute("hIdx1", hIdx);
+		
+		session.setAttribute("hIdx", hIdx);
+		
+		
+		
+		request.setAttribute("hDiscount", hotelDAO.viewHotel(hIdx).gethDiscount());
+		request.setAttribute("hPartner", hotelDAO.viewHotel(hIdx).gethPartner());
 		out.println(hotelDAO.viewHotel(hIdx));
 	}
 
