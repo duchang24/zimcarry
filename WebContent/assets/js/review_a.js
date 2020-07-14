@@ -16,10 +16,7 @@ function review_d(reIdx, reBookidx) {
 			let re_hidden = reviewInfo[5];
 			let re_writer = reviewInfo[6];
 			let re_route = reviewInfo[7] + " → " + reviewInfo[8];
-			for(let i = 0; i < reviewInfo.length; i++) {
-				console.log(i+1 + " : " + reviewInfo[i]);
-			}
-			
+
 			$("#re_num").html(re_num);
 			$("#re_score").html(re_score);
 			$("#re_title").html(re_title);

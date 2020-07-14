@@ -126,6 +126,7 @@
 	border-bottom: 1px solid #34495e;
 }
 /****************/
+
 .content .review_detail {
 	width: 80%;
 	min-height: 200px;
@@ -163,15 +164,39 @@
 	width: 20px;
 	height: 20px
 }
-.review_detail p.button {
+.review_detail p.submit {
 	text-align: right;
 	margin-top: 15px;
 }
-.review_detail p.button input[type="button"] {
+.review_detail p.button input[type="submit"] {
 	width: 60px;
 	height: 40px;
 }
-
+/*** reviewList - pageing ***/
+.review_table .page_wrap {
+	width: 100%;
+	height: 30px;
+	margin-top: 30px;
+}
+.review_table .page_list {
+	width: fit-content;
+	height: 100%;
+	padding: 0;
+	margin: 0 auto;
+}
+.review_table .page_list li {
+	float: left;
+	list-style: none;
+	margin-right: 20px;
+}
+.review_table .page_list li a {
+	padding: 5px 10px;
+	border-radius: 5px 5px;
+}
+.review_table .page_list li a:hover {
+	background-color: #BCC6E6;
+	color: black;
+}
 
 
 

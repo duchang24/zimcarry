@@ -3,14 +3,9 @@
 <%@ page isELIgnored="false" %>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
-<<<<<<< HEAD
 
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:useBean id="reviewDTO" class="com.zimcarry.review.ReviewDTO" />
-<<<<<<< HEAD
-
-<c:set var="reviewList" value="${reviewDAO.getReviewList()}" scope="page" />
-=======
 <jsp:useBean id="bookDAO" class="com.zimcarry.book.BookDAO" />
 <jsp:useBean id="bookDTO" class="com.zimcarry.book.BookDTO" />
 <jsp:useBean id="util" class="com.zimcarry.util.Util" />
@@ -34,13 +29,7 @@
 </c:if>
 <c:set var="reviewList" value="${reviewDAO.selectReviewList(limit)}" />
 <c:set var="page" value="${util.paging(reviewDAO.reviewListSize())}" />
->>>>>>> master
 
-=======
-<jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
-<jsp:useBean id="reviewDTO" class="com.zimcarry.review.ReviewDTO" />
-<c:set var="reviewList" value="${reviewDAO.getreviewList()}" scope="page" />
->>>>>>> 707b2909e2bc45515aafb655849e1cc09a6a66d8
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
@@ -65,7 +54,7 @@
       			<thead>
       				<tr>
 						<th>번호</th>
-      					<td>제목</th>
+      					<th>제목</th>
       					<th>작성자</th>
       					<th>만족도</th>
       					<th>이용날짜</th>
@@ -73,23 +62,15 @@
       			</thead>
       			<tbody>
       				<c:forEach var="reviewItem" items='${ reviewList }' varStatus="status">
+      					<c:set var="bookDTO" value="${ bookDAO.selectBookWhereIdx(reviewItem.reBookidx) }" />
 	      				<tr>
 	      					<td>${ reviewItem.reIdx }</td>
-<<<<<<< HEAD
-	      					<td><a href="review_viewpage.jsp">${ reviewItem.reTitle }</a></td>
-	      					<td>${ reviewItem.reScore }</td>
-	      					<td>${ reviewItem.reScore }</td>
-	      					<td>${ reviewItem.reScore }</td>
-	      					<td>${ reviewItem.reScore }</td>
-	      				</tr>
-=======
-	      					<td><a href="#" onclick="review_d(${ reviewItem.reIdx }, ${ reviewItem.reBookidx })">${ reviewItem.reTitle }</a></td>
+	      					<td><a href="#" onclick="review_d(${reviewItem.reIdx}, ${reviewItem.reBookidx})">${reviewItem.reTitle}</a></td>
 	      					<td>${ bookDTO.bName }</td>
 	      					<td>${ reviewItem.reScore }</td>
 	      					<td>${ bookDTO.bStartdate }</td>
 	      					<td>${ reviewItem.reHidden}</td>
 						</tr>
->>>>>>> master
       				</c:forEach>
       			</tbody>
       		</table>
@@ -106,9 +87,6 @@
             </div>
       	</div>
         <!--  review_table end -->
-<<<<<<< HEAD
-      	</div>
-=======
         <!-- review detail -->
         <div class="review_detail">
 	        <form method="get" action="./data/review_edit.jsp">
@@ -121,32 +99,23 @@
 	        	</div>
 	        	<div class="radio"><label class="rad_label">공개</label> <input type="radio" name="review_hv" id="re_hidden_n" value="n" checked="checked"> 
 	        	<label class="rad_label">숨김</label> <input type="radio" name="review_hv" id="re_hidden_y" value="y"></div>
-	        	<p class="button"><input type="button" value="수정" id="btn_review_edit"></p>
+	        	<p class="submit"><input type="submit" value="수정" id="btn_review_edit"></p>
 	        </form>
         </div>
->>>>>>> master
       </div>
       <!-- footer -->
       <%@ include file="./footer.jsp" %>
     </div>
-  </div>
+    </div>
   <!--   Core JS Files   -->
   <%@ include file="./core_js.jsp" %>
     <script>
-<<<<<<< HEAD
   	$(function () {
   		$('.sidebar-wrapper ul.nav li').removeClass("active");
   		$('.sidebar-wrapper ul.nav li:eq(6)').addClass("active");
   	})
   </script>
-=======
-	  	$(function () {
-	  		$('.sidebar-wrapper ul.nav li').removeClass("active");
-	  		$('.sidebar-wrapper ul.nav li:eq(6)').addClass("active");
-	  	});
-  	</script>
   	<script src="./data/jquery-3.5.1.min.js"></script>
   	<script src="../assets/js/review_a.js"></script>
->>>>>>> master
 </body>
 </html>
