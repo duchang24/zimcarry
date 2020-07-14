@@ -4,11 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
-
-import org.json.simple.JSONObject;
-
 import com.zimcarry.db.DBConn;
 
 public class ReviewDAO {
@@ -39,20 +36,20 @@ public class ReviewDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}  finally {
+		} finally {
 			DBConn.close(conn, pstmt);
 		}
 		return false;
 	}
-	public List<ReviewDTO> selectReviewList() {
+	public List<ReviewDTO> selectReviewList(String limit) {
+
 		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
 		
 		try {
-			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx FROM tb_review";
 			conn = DBConn.getConnection();
+			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx, re_hidden FROM tb_review WHERE re_hidden = 'n' ORDER BY re_idx DESC LIMIT " + limit;
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
 			while (rs.next()) {
 				ReviewDTO reviewDTO = new ReviewDTO();
 				reviewDTO.setReIdx(rs.getLong("re_idx"));
@@ -61,13 +58,17 @@ public class ReviewDAO {
 				reviewDTO.setReContent(rs.getString("re_content"));
 				reviewDTO.setReWritedate(rs.getDate("re_writedate"));
 				reviewDTO.setReBookidx(rs.getLong("re_bookidx"));
+				reviewDTO.setReHidden(rs.getString("re_hidden"));
 				reviewList.add(reviewDTO);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
 		}
 		return reviewList;
 	}
+<<<<<<< HEAD
 	public List<ReviewDTO> selectReview(String reIdx) {
 		ReviewDTO reviewDTO = null;
 		List<ReviewDTO> contentList = new ArrayList<ReviewDTO>();
@@ -81,12 +82,42 @@ public class ReviewDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
+=======
+	
+	public int reviewListSize() {
+		int size = 0;
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT COUNT(re_idx) AS total FROM tb_review WHERE re_hidden = 'n'";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				size = rs.getInt("total");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return size;
+	}
+	public ReviewDTO reviewDetail(String re_idx) {
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx, re_hidden FROM tb_review WHERE re_idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, re_idx);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ReviewDTO reviewDTO = new ReviewDTO();
+>>>>>>> master
 				reviewDTO.setReIdx(rs.getLong("re_idx"));
 				reviewDTO.setReScore(rs.getDouble("re_score"));
 				reviewDTO.setReTitle(rs.getString("re_title"));
 				reviewDTO.setReContent(rs.getString("re_content"));
 				reviewDTO.setReWritedate(rs.getDate("re_writedate"));
 				reviewDTO.setReBookidx(rs.getLong("re_bookidx"));
+<<<<<<< HEAD
 				contentList.add(reviewDTO);
 				return contentList;
 			}
@@ -131,6 +162,53 @@ public class ReviewDAO {
 //		
 //		return re_json.toString();
 //	}
+=======
+				reviewDTO.setReHidden(rs.getString("re_hidden"));
+				return reviewDTO;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return null;
+	}
+	
+	public int review_show(String re_idx) {
+		try {
+			conn = DBConn.getConnection();
+			String sql = "UPDATE tb_review SET re_hidden='n' WHERE re_idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, re_idx);
+			int result = pstmt.executeUpdate();
+			if(result >= 1) {
+				return 1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return 0;
+	}
+	public int review_hide(String re_idx) {
+		try {
+			conn = DBConn.getConnection();
+			String sql = "UPDATE tb_review SET re_hidden='y' WHERE re_idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, re_idx);
+			int result = pstmt.executeUpdate();
+			if(result >= 1) {
+				return 1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return 0;
+	}
+>>>>>>> master
 }
 
 

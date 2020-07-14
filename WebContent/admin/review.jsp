@@ -7,8 +7,34 @@
 
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:useBean id="reviewDTO" class="com.zimcarry.review.ReviewDTO" />
+<<<<<<< HEAD
 
 <c:set var="reviewList" value="${reviewDAO.getReviewList()}" scope="page" />
+=======
+<jsp:useBean id="bookDAO" class="com.zimcarry.book.BookDAO" />
+<jsp:useBean id="bookDTO" class="com.zimcarry.book.BookDTO" />
+<jsp:useBean id="util" class="com.zimcarry.util.Util" />
+
+<c:set var="pageNum" value="1" />
+<c:set var="limit" value=", 10" />
+<c:if test="${pageNum ne null}" >
+	<c:set var="pageNum" value="${param.pageNum}" />
+	<c:if test="${param.pageNum eq null}">
+		<c:set var="pageNum" value="1" />
+	</c:if>
+	<c:choose>
+		<c:when test="${pageNum eq 1 || pageNum eq null}">
+			<c:set var="limit" value="0, 10" />
+		</c:when>
+		<c:otherwise>
+			<c:set var="start" value="${pageNum * 10 - 10}" />
+			<c:set var="limit" value="${start}${limit}" />
+		</c:otherwise>
+	</c:choose>
+</c:if>
+<c:set var="reviewList" value="${reviewDAO.selectReviewList(limit)}" />
+<c:set var="page" value="${util.paging(reviewDAO.reviewListSize())}" />
+>>>>>>> master
 
 =======
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
@@ -49,18 +75,56 @@
       				<c:forEach var="reviewItem" items='${ reviewList }' varStatus="status">
 	      				<tr>
 	      					<td>${ reviewItem.reIdx }</td>
+<<<<<<< HEAD
 	      					<td><a href="review_viewpage.jsp">${ reviewItem.reTitle }</a></td>
 	      					<td>${ reviewItem.reScore }</td>
 	      					<td>${ reviewItem.reScore }</td>
 	      					<td>${ reviewItem.reScore }</td>
 	      					<td>${ reviewItem.reScore }</td>
 	      				</tr>
+=======
+	      					<td><a href="#" onclick="review_d(${ reviewItem.reIdx }, ${ reviewItem.reBookidx })">${ reviewItem.reTitle }</a></td>
+	      					<td>${ bookDTO.bName }</td>
+	      					<td>${ reviewItem.reScore }</td>
+	      					<td>${ bookDTO.bStartdate }</td>
+	      					<td>${ reviewItem.reHidden}</td>
+						</tr>
+>>>>>>> master
       				</c:forEach>
       			</tbody>
       		</table>
+      		<div class="page_wrap">
+	            <ul class="page_list">
+	            	<c:forEach var="i" items="${page}" varStatus="status">
+						<li>
+							<a href="./review.jsp?pageNum=${status.index + 1}"
+								<c:if test="${status.index + 1 eq pageNum}">class="on"</c:if>>${status.index + 1}
+							</a>
+						</li>
+	                </c:forEach>
+	            </ul>
+            </div>
       	</div>
         <!--  review_table end -->
+<<<<<<< HEAD
       	</div>
+=======
+        <!-- review detail -->
+        <div class="review_detail">
+	        <form method="get" action="./data/review_edit.jsp">
+	        	<input type="hidden" name="re_idx" id="re_idx">
+	        	<p>글 번호 : <span class="left" id="re_num" name="re_idx"></span> 작성일 : <span id="re_writedate"></span></p>
+		        <p>작성자 : <span id="re_writer" class="left"></span> 만족도 : <span id="re_score" class="left"></span> 구간 : <span id="re_route"></span></p>
+		       	<p>제목 : <span class="left" id="re_title"></span></p>
+	        	<div class="re_content">
+	        		<p id="re_content"></p> 
+	        	</div>
+	        	<div class="radio"><label class="rad_label">공개</label> <input type="radio" name="review_hv" id="re_hidden_n" value="n" checked="checked"> 
+	        	<label class="rad_label">숨김</label> <input type="radio" name="review_hv" id="re_hidden_y" value="y"></div>
+	        	<p class="button"><input type="button" value="수정" id="btn_review_edit"></p>
+	        </form>
+        </div>
+>>>>>>> master
       </div>
       <!-- footer -->
       <%@ include file="./footer.jsp" %>
@@ -69,10 +133,20 @@
   <!--   Core JS Files   -->
   <%@ include file="./core_js.jsp" %>
     <script>
+<<<<<<< HEAD
   	$(function () {
   		$('.sidebar-wrapper ul.nav li').removeClass("active");
   		$('.sidebar-wrapper ul.nav li:eq(6)').addClass("active");
   	})
   </script>
+=======
+	  	$(function () {
+	  		$('.sidebar-wrapper ul.nav li').removeClass("active");
+	  		$('.sidebar-wrapper ul.nav li:eq(6)').addClass("active");
+	  	});
+  	</script>
+  	<script src="./data/jquery-3.5.1.min.js"></script>
+  	<script src="../assets/js/review_a.js"></script>
+>>>>>>> master
 </body>
 </html>
