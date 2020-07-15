@@ -140,52 +140,6 @@
 </html>
 
 <script>
-<<<<<<< HEAD
-	$(function(){
-		alert('1234');
-		
-		if($("#h_idx").val() == null || $("#h_idx").val() == ""){
-			
-			$(".hIdxO").css("display", "none");
-			$(".hIdxX").css("display", "block");
-		}
-	});
-
-	function findHotel(hIdx){
-		$(".hIdxO").css("display", "block");
-		$(".hIdxX").css("display", "none");
-		
-		let xhr = new XMLHttpRequest();
-		xhr.open("GET", "./data/request_hotel.jsp?hIdx="+hIdx, true);
-		
-		xhr.send();
-		
-		xhr.onreadystatechange = function(){
-			if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
-				let hotelInfor = new Array();
-				hotelInfor = xhr.responseText.split("|");
-				let h_idx = hotelInfor[0];
-				let h_file = hotelInfor[1];
-				let h_name = hotelInfor[2];
-				let h_address = hotelInfor[3];
-				let h_map = hotelInfor[4];
-				let h_discount = hotelInfor[5];
-				let h_partner = hotelInfor[6];
-				
-				$("#h_idx").val(hIdx);
-				$("#h_discount").val(h_discount);
-				$("#h_partner").val(h_partner);
-				$("#h_name").val(h_name);
-				$("#h_address").val(h_address);
-				$("#h_map").val(h_map);
-				document.getElementById("h_file").innerHTML = h_file;
-			}
-		}
-		
-	}
-=======
->>>>>>> master
-	
 	function find(){
 		let h_name = $("#find_hotel").val();
 		
@@ -210,6 +164,10 @@
 					let h_partner = hotelInfor[6];
 					
 					// table찾아서 tr 추가해주기
+					$("tr:last-child").after("<tr class='hotelList2'><td>"+(i+1)+"</td><td><a href='#' onclick='findHotel("+h_idx+")'>"+h_name+"</a></td><td>"+h_discount+"</td><td>"+h_partner+"</td></tr>");
+					
+					
+					
 				}
 				
 				

@@ -117,7 +117,6 @@ public class HotelDAO {
 				hotel.sethDiscount(rs.getString("h_discount"));
 				hotel.sethPartner(rs.getString("h_partner"));
 				hotelList.add(hotel);
-				System.out.println(hotel);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
