@@ -84,9 +84,9 @@
       			<p>답변</p>
       			<p><textarea name="fAnswer" id="fAnswer" placeholder="답변을 작성하세요"></textarea></p>
       			<p>게시글을 감추시겠습니까? <label for="fHiddenyse">예 </label><input type="radio" name="fHidden" id="no_hiddenyse" value="o"> <label for="fHiddenno">아니요 </label><input type="radio" name="fHidden" id="fHiddenno" value="x"></p>
-      			<input type="hidden" name="noIdx" id="noIdx">
+      			<input type="hidden" name="fIdx" id="fIdx">
       			<p id="btn_wrap">
-      				<input type="submit" value="등록" id="btn_write" name="btn_write">
+      				<input type="submit" value="등록" id="btn_write" name="write">
       			</p>
       		</form>
       	</div>
@@ -103,7 +103,6 @@
   		$('.sidebar-wrapper ul.nav li:eq(5)').addClass("active");
   	});
   </script>
-  
   <script src="../assets/js/ckeditor5/build/ckeditor.js"></script>
   <script src="../assets/js/faq.js"></script>
 </body>

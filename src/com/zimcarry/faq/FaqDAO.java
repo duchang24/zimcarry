@@ -13,10 +13,68 @@ public class FaqDAO {
 	PreparedStatement pstmt;
 	ResultSet rs;
 
+	public boolean insertFAQ(FaqDTO faqDTO) {
+		try {
+			String sql = "INSERT INTO tb_faq(f_question, f_answer, f_hidden) VALUES (?, ?, ?)";
+			conn = DBConn.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, faqDTO.getfQuestion());
+			pstmt.setString(2, faqDTO.getfAnswer());
+			pstmt.setString(3, faqDTO.getfHidden());
+			int result = pstmt.executeUpdate();
+			if (result > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt);
+		}
+		return false;
+	}
+	
+	public boolean editFAQ(FaqDTO faqDTO) {
+		try {
+			String sql = "UPDATE tb_faq SET f_question = ?, f_answer = ?, f_hidden = ? WHERE f_idx = ?";
+			conn = DBConn.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, faqDTO.getfQuestion());
+			pstmt.setString(2, faqDTO.getfAnswer());
+			pstmt.setString(3, faqDTO.getfHidden());
+			pstmt.setInt(4, faqDTO.getfIdx());
+			int result = pstmt.executeUpdate();
+			if (result > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt);
+		}
+		return false;
+	}
+	
+	public void hidden(int fIdx, String fHidden) {
+		try {
+			String sql = "UPDATE tb_faq SET f_hidden = ? WHERE f_idx = ?";
+			conn = DBConn.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fHidden);
+			pstmt.setInt(2, fIdx);
+			int result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt);
+		}
+	}
+	
+	
+	
 	public List<FaqDTO> selectFaqList(String limit) {
 		List<FaqDTO> faqList = new ArrayList<FaqDTO>();
 		try {
-			String sql = "SELECT f_idx, f_question, f_answer, f_writedate, f_hidden FROM tb_faq LIMIT " + limit;
+			String sql = "SELECT f_idx, f_question, f_answer, f_writedate, f_hidden FROM tb_faq ORDER BY f_idx DESC LIMIT " + limit;
 			conn = DBConn.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -32,7 +90,7 @@ public class FaqDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}  finally {
+		} finally {
 			DBConn.close(conn, pstmt, rs);
 		}
 		return faqList;
