@@ -10,7 +10,7 @@
 	int recNum = 0;
 	String hIdx = null;
 	
-	if(request.getParameter("hIdx") != null){
+	if(request.getParameter("hIdx") != null || request.getParameter("hIdx") != "0"){
 		hIdx = request.getParameter("hIdx");
 		out.println(hotelDAO.viewHotel(hIdx));
 	}

@@ -3,24 +3,25 @@
 <%@ page isELIgnored="false"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean class="com.zimcarry.hotel.HotelDTO" id="hotelDTO"/>
 <jsp:useBean class="com.zimcarry.hotel.HotelDAO" id="hotelDAO"/>
 
-<c:set var="pagenum" value="0"/>
+<c:set var="currentpage" value="1"/>
 <c:set var="recNum" value="12"/>
 <c:set var="start" value="0"/>
 <c:set var="totCnt" value="${hotelDAO.totCnt()}"/>
 <c:choose>
-	<c:when test="${pagenum ne null || pagenum ne 0}">
-		<c:set var="start" value="${(pagenum-1)*recNum}"/>
+	<c:when test="${currentpage ne null || currentpage ne 1}">
+		<c:set var="start" value="${(currentpage-1)*recNum}"/>
 	</c:when>
 	<c:otherwise>
-		<c:set var="pagenum" value="1" />
+		<c:set var="currentpage" value="1" />
 		<c:set var="start" value="0" />
 	</c:otherwise>
 </c:choose>
-<c:set var="pageCnt" value="${(totCnt/recNum)+1}"/>
-<c:set var="nowpage" value="${pagenum}"/>
+<fmt:parseNumber var="pageCnt" value="${(totCnt/recNum)+1}" integerOnly="true"/>
+<c:set var="firstpage" value="${(((currentpage-1)/10)*10)+1 }"/>
 <c:set var="hotelList" value="${hotelDAO.selectHotel(start, recNum)}"/>
 
 <!DOCTYPE html>
@@ -39,6 +40,7 @@
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <a class="navbar-brand" href="javascript:;">제휴 호텔 관리</a>
+            <p>start : ${start} | recNum : ${recNum} | totCnt : ${totCnt} | pageCnt : ${pageCnt} | currentpage : ${currentpage}</p>
           </div>
         </div>
       </nav>
@@ -58,14 +60,14 @@
       				<th>할인</th>
       				<th>현재 제휴</th>      				
       			</tr>
-      			<c:forEach var="item" items="${hotelList}" varStatus="status">
+      			<c:forEach var="hotel" items="${hotelList}" varStatus="status">
       			
 				<tr class="hotelList1">
 					<td>${status.count}</td>
-					<td><a href="#" onclick="findHotel(${item.hIdx})">${item.hName}</a></td>
+					<td><a href="javascript:findHotel(${hotel.hIdx})">${hotel.hName}</a></td>
 					
-					<td>${item.hDiscount}</td>
-					<td>${item.hPartner}</td>
+					<td>${hotel.hDiscount}</td>
+					<td>${hotel.hPartner}</td>
 				</tr>
 				
 				</c:forEach>
@@ -73,9 +75,28 @@
 				<tr>
 					<td colspan="4" id="page" class="paging">
 					
-					<c:forEach var="paging" items="10" varStatus="page">
-						<a>${page.count}</a>
+					<c:if test="${fistpage > 10}">
+						<a><c:out value="${ first_page - 1 }"/>[이전]</a>
+					</c:if>
+					
+					<c:forEach var="paging" begin="${firstpage}" end="${firstpage+9}">
+						<c:if test="${paging <= pageCnt}">
+							<c:choose>
+								<c:when test="${paging == pageCnt}">
+									<a href="javascript:paging(${paging}, ${recNum})"><c:out value="${paging}"/></a>
+									
+								</c:when>
+								<c:when test="${paging != pageCnt}">
+									<a href="javascript:paging(${paging}, ${recNum})"><c:out value="${paging}"/></a>
+									<c:set var="currentpage" value="${paging}"/>
+								</c:when>
+							</c:choose>
+						</c:if>
 					</c:forEach>
+					
+					<c:if test="${firstpage+9 < pageCnt}">
+						<a><c:out value="${firstpage+10}"/>[다음]</a>
+					</c:if>
 					
 					</td>
 				</tr>
