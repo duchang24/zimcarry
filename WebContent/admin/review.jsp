@@ -3,13 +3,11 @@
 <%@ page isELIgnored="false" %>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
-
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:useBean id="reviewDTO" class="com.zimcarry.review.ReviewDTO" />
 <jsp:useBean id="bookDAO" class="com.zimcarry.book.BookDAO" />
 <jsp:useBean id="bookDTO" class="com.zimcarry.book.BookDTO" />
 <jsp:useBean id="util" class="com.zimcarry.util.Util" />
-
 <c:set var="pageNum" value="1" />
 <c:set var="limit" value=", 10" />
 <c:if test="${pageNum ne null}" >
@@ -28,8 +26,7 @@
 	</c:choose>
 </c:if>
 <c:set var="reviewList" value="${reviewDAO.selectAll(limit)}" />
-<c:set var="page" value="${util.paging(reviewDAO.reviewListSize())}" />
-
+<c:set var="page" value="${util.paging(reviewDAO.reviewListSize(), 10)}" />
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
@@ -112,7 +109,7 @@
     <script>
   	$(function () {
   		$('.sidebar-wrapper ul.nav li').removeClass("active");
-  		$('.sidebar-wrapper ul.nav li:eq(6)').addClass("active");
+  		$('.sidebar-wrapper ul.nav li:eq(5)').addClass("active");
   	})
   </script>
   	<script src="./data/jquery-3.5.1.min.js"></script>

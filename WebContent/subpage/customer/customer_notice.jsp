@@ -4,8 +4,6 @@
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
-
-<c:set var="noticeList" value="${noticeDAO.getNoticeList('no')}" />
 <jsp:useBean id="util" class="com.zimcarry.util.Util" />
 <c:set var="pageNum" value="1" />
 <c:set var="limit" value=", 10" />
@@ -24,14 +22,8 @@
 		</c:otherwise>
 	</c:choose>
 </c:if>
-<<<<<<< HEAD
-<c:set var="noticeList" value="${noticeDAO.getNoticeList('no', limit)}" />
-<c:set var="page" value="${util.paging(noticeDAO.noticeListSize())}" />
-
-=======
 <c:set var="noticeList" value="${noticeDAO.getNoticeList('n', limit)}" />
 <c:set var="page" value="${util.paging(noticeDAO.noticeListSize(n), 10)}" />
->>>>>>> 99144a0470b3f30d2031a0465d5052321296fdf1
 <!DOCTYPE html>
 <html>
 <head>

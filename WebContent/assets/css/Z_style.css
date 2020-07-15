@@ -101,7 +101,6 @@
 	width: 150px;
 	height: 35px;
 }
-<<<<<<< HEAD
 /* 리뷰 관리 페이지 */
 .content .review_table {
 	width: 80%;
@@ -175,33 +174,30 @@
 	height: 40px;
 }
 /*** reviewList - pageing ***/
-.review_table .page_wrap {
+.page_wrap {
 	width: 100%;
 	height: 30px;
 	margin-top: 30px;
 }
-.review_table .page_list {
+.page_list {
 	width: fit-content;
 	height: 100%;
 	padding: 0;
 	margin: 0 auto;
 }
-.review_table .page_list li {
+.page_list li {
 	float: left;
 	list-style: none;
 	margin-right: 20px;
 }
-.review_table .page_list li a {
+.page_list li a {
 	padding: 5px 10px;
 	border-radius: 5px 5px;
 }
-.review_table .page_list li a:hover {
+.page_list li a:hover {
 	background-color: #BCC6E6;
 	color: black;
 }
-
-
-=======
 /* FAQ 관리 페이지 */
 .content textarea {
 	width: 100%;
@@ -235,7 +231,6 @@
 .ck-editor__editable {
 	min-height: 150px;
 }
->>>>>>> 99144a0470b3f30d2031a0465d5052321296fdf1
 
 
 

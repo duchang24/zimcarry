@@ -30,9 +30,9 @@ public class Util {
 	}
 	
 	public int[] paging(int listSize, int contentCnt) {
-		int contentCount = contentCnt; //6
+		int contentCount = contentCnt; 
 		int pageCount = 0;
-		int totalContent = listSize; //3
+		int totalContent = listSize; 
 		
 		if (totalContent % contentCount != 0) { 
 			pageCount = (totalContent / contentCount) + 1; 

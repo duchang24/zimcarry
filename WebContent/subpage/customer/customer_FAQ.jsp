@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="faqDAO" class="com.zimcarry.faq.FaqDAO"/>
-<c:set var="faqList" value="${faqDAO.selectFaqList('0, 100')}" />
+<c:set var="faqList" value="${faqDAO.selectFaqListHiddenNo()}" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>

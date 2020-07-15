@@ -2,13 +2,8 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
-
 <jsp:useBean id="noticeDTO" class="com.zimcarry.notice.NoticeDTO" />
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
-<<<<<<< HEAD
-
-<c:set var="noticeList" value="${noticeDAO.getNoticeList('yes')}" scope="page" />
-=======
 <jsp:useBean id="util" class="com.zimcarry.util.Util" />
 <c:set var="pageNum" value="1" />
 <c:set var="limit" value=", 10" />
@@ -29,7 +24,6 @@
 </c:if>
 <c:set var="noticeList" value="${noticeDAO.getNoticeList('y', limit)}" scope="page" />
 <c:set var="page" value="${util.paging(noticeDAO.noticeListSize(), 10)}" />
->>>>>>> 99144a0470b3f30d2031a0465d5052321296fdf1
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
@@ -108,7 +102,7 @@
     <script>
   	$(function () {
   		$('.sidebar-wrapper ul.nav li').removeClass("active");
-  		$('.sidebar-wrapper ul.nav li:eq(4)').addClass("active");
+  		$('.sidebar-wrapper ul.nav li:eq(3)').addClass("active");
   	});
   </script>
   <script src="../assets/js/notice.js"></script>
