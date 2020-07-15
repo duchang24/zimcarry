@@ -1,8 +1,37 @@
+let noEditor;
+ClassicEditor
+.create( document.querySelector( '#no_content' ), {
+    toolbar: {
+        items: [
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'link',
+            '|',
+            'indent',
+            'outdent',
+            '|',
+            'blockQuote',
+            'undo',
+            'redo'
+        ]
+    },
+    language: 'ko',
+    licenseKey: '',
+} )
+.then( editor => {
+    noEditor = editor;
+} )
+.catch( error => {
+    console.error( error );
+} );
+
 $(function () {
 	$('table tr td a').on('click', function () {
 		$('#no_title').val('');
 		$('#no_writer').val('');
-		$('#no_content').html('');
+		noEditor.setData('');
 		$('#og_file').val('');
 		
 		let no_title = "";
@@ -29,8 +58,7 @@ $(function () {
 				$('#noIdx').val(no_idx);
 				$('#no_title').val(no_title);
 				$('#no_writer').val(no_writer);
-				$('#no_content').val(no_content);
-				$('#no_content').html(no_content);
+				noEditor.setData(no_content);
 				$('#og_filename').val(no_filename);
 				$('#ogFile').html(no_filename);
 				if (no_hidden == 'n') {
@@ -42,7 +70,8 @@ $(function () {
 	  		$('#btn_clear').on('click', function () {
 	  	 		$('#no_title').val('');
 	  			$('#no_writer').val('');
-	  			$('#no_content').val('');
+	  			noEditor.setData('');
+	  			$('#ogFile').html('');
 	  			$("input:radio[name='noHidden']").removeAttr("checked");
 	  			$('#btn_wrap').html('<input type="submit" value="작성" id="btn_write" name="btn_write">');
 	  		});
@@ -63,7 +92,7 @@ function checkForm() {
 		alert('작성자를 입력해주세요');
 		return false;
 	}
-	if ($('#no_content').val() == '') {
+	if (noEditor.getData() == '') {
 		alert('내용을 입력해주세요');
 		return false;
 	}
