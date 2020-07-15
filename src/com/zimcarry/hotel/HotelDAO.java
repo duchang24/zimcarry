@@ -14,12 +14,26 @@ public class HotelDAO {
 	ResultSet rs;
 	
 	public int totCnt() {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		try {
 			conn = DBConn.getConnection();
 			String sql = "SELECT count(h_idx) as cnt FROM tb_hotel";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt("cnt");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return 0;
+	}
+	
+	public int hotelCnt() {
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT count(h_idx) as cnt FROM tb_hotel WHERE h_partner='O'";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -75,6 +89,35 @@ public class HotelDAO {
 				hotel.sethDiscount(rs.getString("h_discount"));
 				hotel.sethPartner(rs.getString("h_partner"));
 				hotelList.add(hotel);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return hotelList;
+	}
+	
+	public List<HotelDTO> getHotel(int start, int recNum){
+		List<HotelDTO> hotelList = new ArrayList<HotelDTO>();
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT h_idx, h_file, h_name, h_address, h_map, h_discount, h_partner FROM tb_hotel WHERE h_partner='O' order by h_idx asc LIMIT ?, ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, recNum);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				HotelDTO hotel = new HotelDTO();
+				hotel.sethIdx(rs.getLong("h_idx"));
+				hotel.sethFile(rs.getString("h_file"));
+				hotel.sethName(rs.getString("h_name"));
+				hotel.sethAddress(rs.getString("h_address"));
+				hotel.sethMap(rs.getString("h_map"));
+				hotel.sethDiscount(rs.getString("h_discount"));
+				hotel.sethPartner(rs.getString("h_partner"));
+				hotelList.add(hotel);
+				System.out.println(hotel);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
