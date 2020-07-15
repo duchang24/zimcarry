@@ -4,6 +4,8 @@
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%	request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="faqDAO" class="com.zimcarry.faq.FaqDAO" />
-<c:if test="${not empty faqDAO.faqDataToJSON(param.fIdx)}" >
-	${faqDAO.faqDataToJSON(param.fIdx)}
+<jsp:useBean id="faqDTO" class="com.zimcarry.faq.FaqDTO" />
+<jsp:setProperty property="*" name="faqDTO" />
+<c:if test="${faqDAO.regFAQ()}" >
+
 </c:if>
