@@ -127,7 +127,7 @@
 	border-bottom: 1px solid #34495e;
 }
 /****************/
-
+.content .review_detail.off { display: none; }
 .content .review_detail {
 	width: 80%;
 	min-height: 200px;
@@ -142,36 +142,55 @@
 	width: 100%;
 	min-height: 200px;
 	border: 1px solid #cdcdcd;
+	margin-top: 30px;
 }
 .content .review_detail p {
 	color: black;
 	width: 100%;
 }
-.content .review_detail span.left {
+.content .review_detail span.m {
 	margin-right: 170px;
+}
+.review_detail .m_small {
+	margin-right: 105px;
 }
 .content .review_detail .radio {
 	width: 100%;
 	text-align: right;
-	margin-top: 30px;
+	margin-top: 10px;
 }
 .content .review_detail .radio input[type="radio"] {
 	width: 30px;
 }
 .content .review_detail .radio label.rad_label {
 	font-size: 18px;
+	color: black;
 }
 .review_detail .radio input#re_hidden_n, .review_detail .radio input#re_hidden_y {
 	width: 20px;
 	height: 20px
 }
+.review_detail .radio p {
+	font-size: 17px;
+	font-weight: bold;
+	color: black;
+}
 .review_detail p.submit {
 	text-align: right;
-	margin-top: 15px;
+	margin-top: 10px;
 }
-.review_detail p.button input[type="submit"] {
-	width: 60px;
+.review_detail p.submit input[type="submit"] {
+	background-color: #C5C5C5;
+	border: none;
+	width: 70px;
 	height: 40px;
+	font-size: 17px;
+}
+.review_detail .bold {
+	font-weight: bold;
+}
+.review_detail span {
+	font-weight: normal;
 }
 /*** reviewList - pageing ***/
 .page_wrap {

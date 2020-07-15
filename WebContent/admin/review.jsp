@@ -85,17 +85,20 @@
       	</div>
         <!--  review_table end -->
         <!-- review detail -->
-        <div class="review_detail">
+        <div class="review_detail off">
 	        <form method="post" action="./data/review_edit.jsp">
 	        	<input type="hidden" name="re_idx" id="re_idx" value="0">
-	        	<p>글 번호 : <span class="left" id="re_num"></span> 작성일 : <span id="re_writedate"></span></p>
-		        <p>작성자 : <span id="re_writer" class="left"></span> 만족도 : <span id="re_score" class="left"></span> 구간 : <span id="re_route"></span></p>
-		       	<p>제목 : <span class="left" id="re_title"></span></p>
+	        	<p class="bold">글 번호 : <span class="m" id="re_num"></span> 작성자 : <span id="re_writer" class="m"></span> 작성일 : <span id="re_writedate"></span></p>
+		        <p class="bold">구간 : <span id="re_route" class="m_small"></span> 만족도 : <span id="re_score"></span></p>
+		       	<p class="bold">제목 : <span id="re_title"></span></p>
 	        	<div class="re_content">
 	        		<p id="re_content"></p> 
 	        	</div>
-	        	<div class="radio"><label class="rad_label">공개</label> <input type="radio" name="review_hv" id="re_hidden_n" value="n" checked="checked"> 
-	        	<label class="rad_label">숨김</label> <input type="radio" name="review_hv" id="re_hidden_y" value="y"></div>
+	        	<div class="radio">
+	        		<p>리뷰 숨김 여부 설정</p>
+		        	<label class="rad_label">공개</label> <input type="radio" name="review_hv" id="re_hidden_n" value="n" checked="checked"> 
+		        	<label class="rad_label">숨김</label> <input type="radio" name="review_hv" id="re_hidden_y" value="y">
+	        	</div>
 	        	<p class="submit"><input type="submit" value="수정" id="btn_review_edit"></p>
 	        </form>
         </div>
@@ -106,13 +109,12 @@
     </div>
   <!--   Core JS Files   -->
   <%@ include file="./core_js.jsp" %>
-    <script>
+   s<script>
   	$(function () {
   		$('.sidebar-wrapper ul.nav li').removeClass("active");
   		$('.sidebar-wrapper ul.nav li:eq(5)').addClass("active");
   	})
   </script>
-  	<script src="./data/jquery-3.5.1.min.js"></script>
   	<script src="../assets/js/review_a.js"></script>
 </body>
 </html>

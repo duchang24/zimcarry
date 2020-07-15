@@ -1,6 +1,8 @@
 function review_d(reIdx, reBookidx) {
-	var xhr = new XMLHttpRequest();
 	
+	$(".content .review_detail.off").removeClass('off');
+	
+	var xhr = new XMLHttpRequest();
 	var url = "../admin/data/review_ok.jsp?re_idx=" + reIdx + "&re_bookidx=" + reBookidx;
 	xhr.open("GET", url, true);
 	xhr.send();
