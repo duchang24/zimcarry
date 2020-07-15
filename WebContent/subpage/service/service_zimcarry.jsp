@@ -1,5 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%  request.setCharacterEncoding("utf-8"); %>
+<jsp:useBean id="hotelDTO" class="com.zimcarry.hotel.HotelDTO" />
+<jsp:useBean id="hotelDAO" class="com.zimcarry.hotel.HotelDAO" />
+<jsp:useBean id="util" class="com.zimcarry.util.Util" />
+<c:set var="pagenum" value="1" />
+<c:set var="recNum" value=", 10" />
+<c:if test="${pagenum ne null}" >
+	<c:set var="pagenum" value="${param.pagenum}" />
+	<c:if test="${param.pagenum eq null}">
+		<c:set var="pagenum" value="1" />
+	</c:if>
+	<c:choose>
+		<c:when test="${pagenum eq 1 || pagenum eq null}">
+			<c:set var="recNum" value="0, 10" />
+		</c:when>
+		<c:otherwise>
+			<c:set var="start" value="${pagenum * 10 - 10}" />
+			<c:set var="recNum" value="${start}${recNum}" />
+		</c:otherwise>
+	</c:choose>
+</c:if>
+<c:set var="hotelList" value="${noticeDAO.getHotel('O', limit)}" scope="page" />
+<c:set var="page" value="${util.paging(noticeDAO.noticeListSize(), 10)}" />
 <!DOCTYPE html>
 <html>
 <head>
