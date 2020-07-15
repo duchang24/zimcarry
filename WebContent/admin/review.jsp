@@ -27,7 +27,7 @@
 		</c:otherwise>
 	</c:choose>
 </c:if>
-<c:set var="reviewList" value="${reviewDAO.selectReviewList(limit)}" />
+<c:set var="reviewList" value="${reviewDAO.selectAll(limit)}" />
 <c:set var="page" value="${util.paging(reviewDAO.reviewListSize())}" />
 
 <!DOCTYPE html>
@@ -89,9 +89,9 @@
         <!--  review_table end -->
         <!-- review detail -->
         <div class="review_detail">
-	        <form method="get" action="./data/review_edit.jsp">
-	        	<input type="hidden" name="re_idx" id="re_idx">
-	        	<p>글 번호 : <span class="left" id="re_num" name="re_idx"></span> 작성일 : <span id="re_writedate"></span></p>
+	        <form method="post" action="./data/review_edit.jsp">
+	        	<input type="hidden" name="re_idx" id="re_idx" value="0">
+	        	<p>글 번호 : <span class="left" id="re_num"></span> 작성일 : <span id="re_writedate"></span></p>
 		        <p>작성자 : <span id="re_writer" class="left"></span> 만족도 : <span id="re_score" class="left"></span> 구간 : <span id="re_route"></span></p>
 		       	<p>제목 : <span class="left" id="re_title"></span></p>
 	        	<div class="re_content">

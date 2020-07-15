@@ -13,33 +13,34 @@ public class ReviewDAO {
 	Connection conn;
 	PreparedStatement pstmt;
 	ResultSet rs;
-	
-//	public List<ReviewDTO> getreviewList() {
-//		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
-//		
-//		try {
-//			conn = DBConn.getConnection();
-//			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx, re_hidden FROM tb_review order by re_idx desc";
-//			pstmt = conn.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//			while (rs.next()) {
-//				ReviewDTO reviewDTO = new ReviewDTO();
-//				reviewDTO.setReIdx(rs.getLong("re_idx"));
-//				reviewDTO.setReScore(rs.getDouble("re_score"));
-//				reviewDTO.setReTitle(rs.getString("re_title"));
-//				reviewDTO.setReContent(rs.getString("re_content"));
-//				reviewDTO.setReWritedate(rs.getDate("re_writedate"));
-//				reviewDTO.setReBookidx(rs.getLong("re_bookidx"));
-//				reviewDTO.setReHidden(rs.getString("re_hidden"));
-//				reviewList.add(reviewDTO);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			DBConn.close(conn, pstmt, rs);
-//		}
-//		return reviewList;
-//	}
+
+	public List<ReviewDTO> selectAll(String limit) {
+
+		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
+		
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx, re_hidden FROM tb_review ORDER BY re_idx DESC LIMIT " + limit;
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ReviewDTO reviewDTO = new ReviewDTO();
+				reviewDTO.setReIdx(rs.getLong("re_idx"));
+				reviewDTO.setReScore(rs.getDouble("re_score"));
+				reviewDTO.setReTitle(rs.getString("re_title"));
+				reviewDTO.setReContent(rs.getString("re_content"));
+				reviewDTO.setReWritedate(rs.getDate("re_writedate"));
+				reviewDTO.setReBookidx(rs.getLong("re_bookidx"));
+				reviewDTO.setReHidden(rs.getString("re_hidden"));
+				reviewList.add(reviewDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return reviewList;
+	}
 	
 	public boolean insertReview(ReviewDTO reviewDTO) {
 		try {
@@ -147,7 +148,7 @@ public class ReviewDAO {
 			pstmt.setString(1, re_hidden);
 			pstmt.setString(2, re_idx);
 			int result = pstmt.executeUpdate();
-			if(result > 1) {
+			if(result >= 1) {
 				return 1;
 			}
 		} catch (Exception e) {
@@ -158,22 +159,4 @@ public class ReviewDAO {
 		return 0;
 	}
 	
-	public int review_hide(String re_hidden, String re_idx) {
-		try {
-			conn = DBConn.getConnection();
-			String sql = "UPDATE tb_review SET re_hidden=? WHERE re_idx=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, re_hidden);
-			pstmt.setString(2, re_idx);
-			int result = pstmt.executeUpdate();
-			if(result > 1) {
-				return 1;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBConn.close(conn, pstmt, rs);
-		}
-		return 0;
-	}
 }

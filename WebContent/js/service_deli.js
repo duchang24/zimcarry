@@ -5,9 +5,9 @@ $(function() {
         $('#map1').addClass('m_on');
 
         $('#map1').on('click', function() {
-            $('.map_list li').removeClass('m_on');
+            $('.map_list ul li').removeClass('m_on');
             $(this).addClass('m_on');
-            
+			
             $('#slider li').removeClass('invisible');
             $('li#slide2').addClass('invisible');
             $('li#slide3').addClass('invisible');

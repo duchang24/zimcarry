@@ -17,6 +17,7 @@ function review_d(reIdx, reBookidx) {
 			let re_writer = reviewInfo[6];
 			let re_route = reviewInfo[7] + " → " + reviewInfo[8];
 
+			$("#re_idx").val(re_num);
 			$("#re_num").html(re_num);
 			$("#re_score").html(re_score);
 			$("#re_title").html(re_title);
