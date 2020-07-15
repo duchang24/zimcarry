@@ -216,7 +216,7 @@
                       
 					<c:forEach var="item" items="${hotelList}" varStatus="status">
 						<li>
-                           	<div class="room_img" style="background: url('../../images/room/${item.hFile}') center;"></div>
+                           	<div class="room_img" style="background: url('../../uploadHotel/${item.hFile}') center;"></div>
 	                        <div class="room_content">
 	                            <h3 class="room_name">${item.hName}</h3>
 	                            <p class="room_addr">${item.hAddress}</p>

@@ -5,34 +5,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean class="com.zimcarry.hotel.HotelDTO" id="hotelDTO"/>
 <jsp:useBean class="com.zimcarry.hotel.HotelDAO" id="hotelDAO"/>
-<%
-	int recNum = 12; // 페이지당 글 개수
-	int start = 0;	// 시작글 번호
-	int totCnt = hotelDAO.totCnt();
-	
-	String pagenum = request.getParameter("pagenum");
-	if(pagenum != null && !pagenum.equals("")){
-		start = (Integer.parseInt(pagenum)-1) * recNum;
-	}else{
-		pagenum = "1";
-		start = 0;
-	}
-	
-	int pageCnt = (totCnt / recNum) + 1;
-	
-	String nowpage = request.getParameter("pagenum");
-	
-%>
-<c:set var="nowpage" value="<%=nowpage%>"/>
-<c:set var="start" value="<%=start%>"/>
-<c:set var="recNum" value="<%=recNum%>"/>
 
+<c:set var="pagenum" value="0"/>
+<c:set var="recNum" value="12"/>
+<c:set var="start" value="0"/>
+<c:set var="totCnt" value="${hotelDAO.totCnt()}"/>
+<c:choose>
+	<c:when test="${pagenum ne null || pagenum ne 0}">
+		<c:set var="start" value="${(pagenum-1)*recNum}"/>
+	</c:when>
+	<c:otherwise>
+		<c:set var="pagenum" value="1" />
+		<c:set var="start" value="0" />
+	</c:otherwise>
+</c:choose>
+<c:set var="pageCnt" value="${(totCnt/recNum)+1}"/>
+<c:set var="nowpage" value="${pagenum}"/>
 <c:set var="hotelList" value="${hotelDAO.selectHotel(start, recNum)}"/>
 
 <!DOCTYPE html>
 <html lang="ko">
-
-<script src="./data/jquery-3.5.1.min.js"></script>
 
 <!-- head -->
 <%@ include file="./head.jsp" %>
@@ -55,9 +47,7 @@
       	<div class="hotel_find hotel">
       		<h3>제휴 호텔 검색</h3>
       		<div>
-      			<p id="findArea"><input type="search" name="find_hotel" id="find_hotel" placeholder="검색할 호텔을 입력하세요."> <button onclick="find()">검색</button></p>
-      			<p id="listBtn"><button onclick="list()">전체 리스트</button> <input type="hidden" name="findName" id="findName"></p>
-      			
+      			<p id="findArea"><input type="search" name="find_hotel" id="find_hotel" placeholder="검색할 호텔을 입력하세요."> <button id="findBtn" onclick="find(${start}, ${recNum})">검색</button> <button id="listBtn" onclick="list()">전체 리스트</button> <input type="hidden" name="findName" id="findName"></p>
       		</div>
       	</div>
       	<div class="hotel_list hotel">
@@ -80,15 +70,16 @@
 				
 				</c:forEach>
 				
-				
+				<tr>
+					<td colspan="4" id="page" class="paging">
+					
+					<c:forEach var="paging" items="10" varStatus="page">
+						<a>${page.count}</a>
+					</c:forEach>
+					
+					</td>
+				</tr>
       		</table>
-      		<p id="page" class="paging">
-			<%
-				for(int i=1; i<=pageCnt; i++){
-					out.print("<a href='hotel.jsp?pagenum="+i+"'>" + i + "</a>" + " ");	
-				}
-			%>
-			</p>
       	</div>
       	<div class="hotel_view hotel">
       		<h3>제휴 호텔</h3>
@@ -138,49 +129,3 @@
 </body>
 
 </html>
-
-<script>
-	function find(){
-		let h_name = $("#find_hotel").val();
-		
-		let xhr = new XMLHttpRequest();
-		xhr.open("GET", "./data/request_hotel.jsp?hName="+h_name+"&start="+'${start}'+"&recNum="+'${recNum}', true);
-		xhr.send();
-		
-		xhr.onreadystatechange = function(){
-			if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){							
-				let hotelList = xhr.responseText;
-				hotelList = hotelList.replace('[','');
-				hotelList = hotelList.replace(']','');
-				
-				let hotel = new Array();
-				hotel = hotelList.split(", ");
-				for(let i=0; i<hotel.length; i++){
-					let hotelInfor = new Array();
-					hotelInfor = hotel[i].split("|");
-					let h_idx = hotelInfor[0];
-					let h_name = hotelInfor[2];
-					let h_discount = hotelInfor[5];
-					let h_partner = hotelInfor[6];
-					
-					// table찾아서 tr 추가해주기
-					$("tr:last-child").after("<tr class='hotelList2'><td>"+(i+1)+"</td><td><a href='#' onclick='findHotel("+h_idx+")'>"+h_name+"</a></td><td>"+h_discount+"</td><td>"+h_partner+"</td></tr>");
-					
-					
-					
-				}
-				
-				
-				$(".hotelList1").css("display", "none");
-			}
-		}
-		
-	}
-	
-	function list(){
-		$("#find_hotel").val("");
-		$("#findName").val("");
-	}
-	
-	
-</script>
