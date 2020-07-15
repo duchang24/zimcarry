@@ -6,7 +6,7 @@
 <jsp:useBean class="com.zimcarry.hotel.HotelDTO" id="hotelDTO"/>
 <jsp:useBean class="com.zimcarry.hotel.HotelDAO" id="hotelDAO"/>
 <%
-	int recNum = 10; // 페이지당 글 개수
+	int recNum = 12; // 페이지당 글 개수
 	int start = 0;	// 시작글 번호
 	int totCnt = hotelDAO.totCnt();
 	
@@ -70,7 +70,7 @@
       			</tr>
       			<c:forEach var="item" items="${hotelList}" varStatus="status">
       			
-				<tr>
+				<tr class="hotelList1">
 					<td>${status.count}</td>
 					<td><a href="#" onclick="findHotel(${item.hIdx})">${item.hName}</a></td>
 					
@@ -79,6 +79,7 @@
 				</tr>
 				
 				</c:forEach>
+				
 				
       		</table>
       		<p id="page" class="paging">
@@ -91,43 +92,31 @@
       	</div>
       	<div class="hotel_view hotel">
       		<h3>제휴 호텔</h3>
-      		<input type="hidden" name="h_idx" id="h_idx"> <input type="hidden" name="h_discount" id="h_discount"> <input type="hidden" name="h_partner" id="h_partner">
-      		<% String h_idx = (String)request.getAttribute("hIdx"); %>
-      		<c:set var="h_idx" value="<%=h_idx%>"/>
-      		<form method="post" action="./data/hotel_ok.jsp" enctype="multipart/form-data">
-      			<div class="hIdxO" style="display: bolck;">
-      				<p>호텔 사진 <span id="h_file"></span></p>
-      				<p><input type="file" name="h_file"></p>
+      		<form method="post" action="./data/hotel_ok.jsp" enctype="multipart/form-data" onsubmit="return checkform()">
+      			<input type="hidden" name="h_idx" id="h_idx" value="0">
+      			<div class="hIdxO">
+      				<p>호텔 사진 <span id="fileoriginname"></span><input type="hidden" name="h_fileoriginname" id="h_fileoriginname"></p>
+      				<p><input type="file" name="h_file2" id="h_file2"></p>
       			</div>
-      			<div class="hIdxX" style="display: none;">
-      				<p>호텔 사진 <input type="file" name="h_file"></p>
+      			<div class="hIdxX">
+      				<p>호텔 사진 <input type="file" name="h_file1" id="h_file1"></p>
       			</div>
       			<p>호텔 명 <input type="text" name="h_name" id="h_name"></p>
       			<p>호텔 주소 <input type="text" name="h_address" id="h_address"></p>
       			<p>호텔 지도 <input type="text" name="h_map" id="h_map"></p>
-      			<p>호텔 할인 <label id="label1_1">O</label><input type="radio" name="h_discount" value="O" id="radio1_1" 
-      			<c:if test="${viewHotel.hDiscount == 'O'}">
-					checked
-				</c:if>
-      			> <label id="label1_2">X</label><input type="radio" name="h_discount" value="X" id="radio1_2"
-      			<c:if test="${viewHotel.hDiscount == 'X'}">
-					checked
-				</c:if>
-      			></p>
+      			<p>호텔 할인 
+      				<label id="label1_1">O</label><input type="radio" name="h_discount" value="O" id="radio1_1"> 
+      				<label id="label1_2">X</label><input type="radio" name="h_discount" value="X" id="radio1_2">
+      			</p>
       			<br>
-      			<p>현재 제휴 상황 <label id="label2_1">O</label><input type="radio" name="h_partner" value="O" id="radio2_1"
-      			<c:if test="${viewHotel.hPartner == 'O'}">
-					checked
-				</c:if>
-      			> <label id="label2_2">X</label><input type="radio" name="h_partner" value="X" id="radio2_2"
-      			<c:if test="${viewHotel.hPartner == 'X'}">
-					checked
-				</c:if>
-      			></p>
-      			<div class="hIdxO" style="display: bolck;">
-      				<p><input type="submit" value="수정"> <input type="button" value="비우기" onclick="location.href='hotel.jsp?pagenum=${nowpage}'"></p>
+      			<p>현재 제휴 상황 
+      				<label id="label2_1">O</label><input type="radio" name="h_partner" value="O" id="radio2_1"> 
+      				<label id="label2_2">X</label><input type="radio" name="h_partner" value="X" id="radio2_2">
+      			</p>
+      			<div class="hIdxO">
+      				<p><input type="submit" value="수정"> <input type="button" value="비우기" onclick="resetInfor()"></p>
       			</div>
-      			<div class="hIdxX" style="display: none;">
+      			<div class="hIdxX">
       				<p><input type="submit" value="추가"></p>
       			</div>
       		</form>
@@ -145,54 +134,12 @@
   		$('.sidebar-wrapper ul.nav li:eq(2)').addClass("active");
   	})
   </script>
+  <script src="../assets/js/hotel.js"></script>
 </body>
 
 </html>
 
 <script>
-	$(function(){
-		
-		
-		if($("#h_idx").val() == null || $("#h_idx").val() == ""){
-			
-			$(".hIdxO").css("display", "none");
-			$(".hIdxX").css("display", "block");
-		}
-	});
-
-	function findHotel(hIdx){
-		$(".hIdxO").css("display", "block");
-		$(".hIdxX").css("display", "none");
-		
-		let xhr = new XMLHttpRequest();
-		xhr.open("GET", "./data/request_hotel.jsp?hIdx="+hIdx, true);
-		
-		xhr.send();
-		
-		xhr.onreadystatechange = function(){
-			if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
-				let hotelInfor = new Array();
-				hotelInfor = xhr.responseText.split("|");
-				let h_idx = hotelInfor[0];
-				let h_file = hotelInfor[1];
-				let h_name = hotelInfor[2];
-				let h_address = hotelInfor[3];
-				let h_map = hotelInfor[4];
-				let h_discount = hotelInfor[5];
-				let h_partner = hotelInfor[6];
-				
-				$("#h_idx").val(hIdx);
-				$("#h_discount").val(h_discount);
-				$("#h_partner").val(h_partner);
-				$("#h_name").val(h_name);
-				$("#h_address").val(h_address);
-				$("#h_map").val(h_map);
-				document.getElementById("h_file").innerHTML = h_file;
-			}
-		}
-		
-	}
-	
 	function find(){
 		let h_name = $("#find_hotel").val();
 		
@@ -202,7 +149,29 @@
 		
 		xhr.onreadystatechange = function(){
 			if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){							
+				let hotelList = xhr.responseText;
+				hotelList = hotelList.replace('[','');
+				hotelList = hotelList.replace(']','');
 				
+				let hotel = new Array();
+				hotel = hotelList.split(", ");
+				for(let i=0; i<hotel.length; i++){
+					let hotelInfor = new Array();
+					hotelInfor = hotel[i].split("|");
+					let h_idx = hotelInfor[0];
+					let h_name = hotelInfor[2];
+					let h_discount = hotelInfor[5];
+					let h_partner = hotelInfor[6];
+					
+					// table찾아서 tr 추가해주기
+					$("tr:last-child").after("<tr class='hotelList2'><td>"+(i+1)+"</td><td><a href='#' onclick='findHotel("+h_idx+")'>"+h_name+"</a></td><td>"+h_discount+"</td><td>"+h_partner+"</td></tr>");
+					
+					
+					
+				}
+				
+				
+				$(".hotelList1").css("display", "none");
 			}
 		}
 		
@@ -212,5 +181,6 @@
 		$("#find_hotel").val("");
 		$("#findName").val("");
 	}
+	
 	
 </script>

@@ -543,11 +543,13 @@
 	.sub_content_wrap .sub_content .sub_navi ul li:last-child a { 
 		border-radius: 0px; 
 	}
-	
 	.sub_content_wrap .sub_content .sub_indicator { 
 		height: 60px; 
 		padding-top: 50px;
 		border-bottom: 1px solid #ddd; 
+	}
+	.sub_content_wrap .sub_content .sub_indicator ul {
+		display: none;
 	}
 	.sub_content_wrap .sub_content .sub_indicator h2 { 
 		float: left; 

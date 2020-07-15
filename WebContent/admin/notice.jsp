@@ -5,8 +5,31 @@
 
 <jsp:useBean id="noticeDTO" class="com.zimcarry.notice.NoticeDTO" />
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
+<<<<<<< HEAD
 
 <c:set var="noticeList" value="${noticeDAO.getNoticeList('yes')}" scope="page" />
+=======
+<jsp:useBean id="util" class="com.zimcarry.util.Util" />
+<c:set var="pageNum" value="1" />
+<c:set var="limit" value=", 10" />
+<c:if test="${pageNum ne null}" >
+	<c:set var="pageNum" value="${param.pageNum}" />
+	<c:if test="${param.pageNum eq null}">
+		<c:set var="pageNum" value="1" />
+	</c:if>
+	<c:choose>
+		<c:when test="${pageNum eq 1 || pageNum eq null}">
+			<c:set var="limit" value="0, 10" />
+		</c:when>
+		<c:otherwise>
+			<c:set var="start" value="${pageNum * 10 - 10}" />
+			<c:set var="limit" value="${start}${limit}" />
+		</c:otherwise>
+	</c:choose>
+</c:if>
+<c:set var="noticeList" value="${noticeDAO.getNoticeList('y', limit)}" scope="page" />
+<c:set var="page" value="${util.paging(noticeDAO.noticeListSize(), 10)}" />
+>>>>>>> 99144a0470b3f30d2031a0465d5052321296fdf1
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
@@ -51,15 +74,23 @@
       				</c:forEach>
       			</tbody>
       		</table>
-      	</div>
+  			<div class="page_wrap">
+				<ul class="page_list">
+					<c:forEach var="i" items="${page}" varStatus="status" >
+						<li><a href="./notice.jsp?pageNum=${status.index + 1}"<c:if test="${status.index + 1 eq pageNum}">class="on"</c:if>>${status.index + 1}</a></li>
+					</c:forEach>
+			    </ul>
+			</div>
+		</div>
       	<div class="list_down notice">
       		<form method="post" action="./data/write_edit_ok.jsp" onsubmit="return checkForm()" enctype="multipart/form-data">
       			<p>제목 : <input type="text" name="noTitle" id="no_title"></p>
       			<p>작성자 : <input type="text" name="noWriter" id="no_writer"></p>
       			<p>내용</p>
       			<p><textarea name="noContent" id="no_content"></textarea></p>
-      			<p><input type="file" name="noFile"></p>
-      			<input type="hidden" value="" name="ogFile" id="og_file">
+				<p>업로드된 파일 : <span id="ogFile"></span></p>
+      			<p><input type="file" name="noFilename"></p>
+      			<input type="hidden" value="" name="ogFilename" id="og_filename">
       			<p>게시글을 감추시겠습니까? <label for="no_hiddenyse">예 </label><input type="radio" name="noHidden" id="no_hiddenyse" value="y"> <label for="no_hiddenno">아니요 </label><input type="radio" name="noHidden" id="no_hiddenno" value="n"></p>
       			<input type="hidden" name="noIdx" id="noIdx">
       			<p id="btn_wrap">

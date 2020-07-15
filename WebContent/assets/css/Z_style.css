@@ -65,6 +65,7 @@
 	width: 80%;
 	min-height: 200px;
 	margin: 0 auto;
+	margin-bottom: 50px;
 	padding: 30px;
 	border: 1px solid #cdcdcd;
 	border-radius: 10px;
@@ -100,6 +101,7 @@
 	width: 150px;
 	height: 35px;
 }
+<<<<<<< HEAD
 /* 리뷰 관리 페이지 */
 .content .review_table {
 	width: 80%;
@@ -199,6 +201,41 @@
 }
 
 
+=======
+/* FAQ 관리 페이지 */
+.content textarea {
+	width: 100%;
+	min-height: 200px;
+	padding: 10px 20px;
+}
+.content .list_up dl dt .btn {
+	
+}
+.content .list_up dl dd {
+	border-bottom: 2px solid #444;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+}
+.content .list_up .q_area p {
+	font-size: 20px;
+	font-weight: bold;
+	padding: 10px 0;
+}
+.content .list_up .q_area p::before {
+	content: "질문: ";
+	font-size: 18px;
+	padding-right: 10px;
+	color: #ff9800;
+}
+.content .list_up dl dd span {
+	font-size: 18px;
+	font-weight: bold;
+	color: #444;
+}
+.ck-editor__editable {
+	min-height: 150px;
+}
+>>>>>>> 99144a0470b3f30d2031a0465d5052321296fdf1
 
 
 
