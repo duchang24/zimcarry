@@ -77,7 +77,7 @@
 			</div>
 		</div>
       	<div class="list_down notice">
-      		<form method="post" action="./data/write_edit_ok.jsp" onsubmit="return checkForm()" enctype="multipart/form-data">
+      		<form method="post" action="./data/write_edit_ok.jsp" onsubmit="return checkForm()" enctype="multipart/form-data" id="noForm">
       			<p>제목 : <input type="text" name="noTitle" id="no_title"></p>
       			<p>작성자 : <input type="text" name="noWriter" id="no_writer"></p>
       			<p>내용</p>
@@ -105,6 +105,7 @@
   		$('.sidebar-wrapper ul.nav li:eq(3)').addClass("active");
   	});
   </script>
+  <script src="../assets/js/ckeditor5/build/ckeditor.js"></script>
   <script src="../assets/js/notice.js"></script>
 </body>
 

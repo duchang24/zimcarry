@@ -23,8 +23,6 @@
 			hotelDTO.sethDiscount(multi.getParameter("h_discount"));
 			hotelDTO.sethPartner(multi.getParameter("h_partner"));
 			
-			System.out.println(hotelDTO);
-			
 			if(hotelDAO.insertHotel(hotelDTO) == 0){
 				out.println("<script>alert('추가가 실패하였습니다.');history.back();</scrip>");
 			}else{

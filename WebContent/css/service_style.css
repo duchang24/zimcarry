@@ -2,7 +2,7 @@
 
 /* notice_style.css */
 /* customer */
-.sub_content .sub_navi ul li:first-child a { font-weight: bold; background: #FFD204; }
+.sub_content .sub_navi ul li:first-child a { font-weight: bold; background: #ffda00; }
 .sub_content .notice_area { box-sizing: border-box; padding-top: 60px; height: 100%; }
 .sub_content .notice_area .minisrch_form { display: flex; float: right; margin-bottom: 40px; }
 .sub_content .notice_area .minisrch_form select { box-sizing: border-box; width: 80px; height: 40px; border: 1px solid #bbb; cursor: pointer; padding-left: 10px; font-weight: bold; }

@@ -44,7 +44,10 @@
 			            <dl class="faq_list">
 			               <c:forEach var="faq" items="${faqList}">
 				               <dt>
-				                   ${faq.fQuestion}
+				                   <div class="big q">Q</div>
+				                   <div class="q_box">
+				                   		${faq.fQuestion}
+				                   </div>
 				               </dt>
 				               <dd style="display: none;">
 				                   <div class="big">A</div>

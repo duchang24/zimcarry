@@ -28,8 +28,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
+<style>
+	.ck-editor__editable_inline {
+   		min-height: 400px;
+	}
+</style>
 <%@ include file="./head.jsp" %>
-
 <body class="">
   <div class="wrapper ">
     <!-- side menu -->
@@ -59,7 +63,10 @@
 	      					</p>
       					</p>
       				</div>
-      				<div class="q_area">${faq.fQuestion}</div>
+      				<div class="q_area">
+      					<span>질문: </span>
+      					${faq.fQuestion}
+      				</div>
       			</dt>
       			<dd>
   					<span>답변: </span>

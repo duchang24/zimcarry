@@ -72,7 +72,9 @@
 	background-color: #f6f6f6;
 	box-shadow: 8px 8px 20px #ccc;
 }
-
+#noForm .ck-editor__editable_inline {
+    min-height: 400px;
+}
 .content .list_down #no_title {
 	box-sizing: border-box;
 	width: 90%;
@@ -223,8 +225,9 @@
 	min-height: 200px;
 	padding: 10px 20px;
 }
-.content .list_up dl dt .btn {
-	
+.content .list_up dl dt {
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 15px;
 }
 .content .list_up dl dd {
 	border-bottom: 2px solid #444;
@@ -236,7 +239,7 @@
 	font-weight: bold;
 	padding: 10px 0;
 }
-.content .list_up .q_area p::before {
+.content .list_up .q_area span {
 	content: "질문: ";
 	font-size: 18px;
 	padding-right: 10px;

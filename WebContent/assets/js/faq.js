@@ -5,8 +5,6 @@ ClassicEditor
 .create( document.querySelector( '#fQuestion' ), {
     toolbar: {
         items: [
-            'heading',
-            '|',
             'bold',
             'italic',
             '|',
@@ -120,12 +118,11 @@ $(document).ready(function() {
 					"fHidden": fHidden
 				},
 				success: function() {
-					
+					location.reload();
 				}
 			});
 		}
 	});
-	
 });
 
 function checkFaq() {
