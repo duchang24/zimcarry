@@ -28,8 +28,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
+<style>
+	.ck-editor__editable_inline {
+   		min-height: 400px;
+	}
+</style>
 <%@ include file="./head.jsp" %>
-
 <body class="">
   <div class="wrapper ">
     <!-- side menu -->
