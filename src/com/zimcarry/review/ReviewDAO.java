@@ -112,6 +112,9 @@ public class ReviewDAO {
 		} finally {
 			DBConn.close(conn, pstmt, rs);
 		}
+		if (size == 0) {
+			size = 1;
+		}
 		return size;
 	}
 	public ReviewDTO reviewDetail(String re_idx) {

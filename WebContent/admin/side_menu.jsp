@@ -25,12 +25,6 @@
         </a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="./event.jsp">
-          <i class="material-icons">library_books</i>
-          <p>이벤트 게시글 관리</p>
-        </a>
-      </li>
-      <li class="nav-item ">
         <a class="nav-link" href="./notice.jsp">
           <i class="material-icons">library_books</i>
           <p>공지사항 게시글 관리</p>

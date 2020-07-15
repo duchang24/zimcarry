@@ -97,14 +97,7 @@ public class BookDTO {
 	}
 	@Override
 	public String toString() {
-<<<<<<< HEAD
 		return bName + "|" + bStart + "|" + bEnd;
-=======
-		return "BookDTO [bIdx=" + bIdx + ", bName=" + bName + ", bHp=" + bHp + ", bStart=" + bStart + ", bEnd=" + bEnd
-				+ ", bBookingdate=" + bBookingdate + ", bStartdate=" + bStartdate + ", bEnddate=" + bEnddate
-				+ ", bOver26=" + bOver26 + ", bUnder26=" + bUnder26 + ", bPrice=" + bPrice + ", bPoint=" + bPoint
-				+ ", bIsreview=" + bIsreview + "]";
->>>>>>> 99144a0470b3f30d2031a0465d5052321296fdf1
 	}
 }
 
