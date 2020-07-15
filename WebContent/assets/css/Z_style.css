@@ -204,8 +204,9 @@
 	min-height: 200px;
 	padding: 10px 20px;
 }
-.content .list_up dl dt .btn {
-	
+.content .list_up dl dt {
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 15px;
 }
 .content .list_up dl dd {
 	border-bottom: 2px solid #444;
@@ -217,7 +218,7 @@
 	font-weight: bold;
 	padding: 10px 0;
 }
-.content .list_up .q_area p::before {
+.content .list_up .q_area span {
 	content: "질문: ";
 	font-size: 18px;
 	padding-right: 10px;

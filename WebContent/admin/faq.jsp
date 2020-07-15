@@ -59,7 +59,10 @@
 	      					</p>
       					</p>
       				</div>
-      				<div class="q_area">${faq.fQuestion}</div>
+      				<div class="q_area">
+      					<span>질문: </span>
+      					${faq.fQuestion}
+      				</div>
       			</dt>
       			<dd>
   					<span>답변: </span>
