@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String userid = "admin";
-	if(session.getAttribute("id") != null){
-		userid = (String)session.getAttribute("id");
+	request.setCharacterEncoding("utf-8");
+%>
+<%
+	String admin_id = "";
+	if(session.getAttribute("admin_id") != null){
+		admin_id = (String)session.getAttribute("admin_id");
 	}
 %>
 <!DOCTYPE html>
@@ -27,27 +30,22 @@
       <!-- End Navbar -->
       <div class="content">
       <%
-      	if (userid == null) {
+      	if (admin_id == null || admin_id.equals("")) {
       %>
       	<div class="login_wrap">
-          <form method="post" action="login,jsp">
-          	<p>Admin ID <input type="text" name="ad_adminid" id="ad_adminid"></p>
-          	<p>Password <input type="password" name="ad_adminpw" id="ad_adminpw"></p>
+          <form method="post" action="admin_ok.jsp">
+          	<p>Admin ID <input type="text" name="admin_id" id="admin_id"></p>
+          	<p>Password <input type="password" name="admin_pw" id="admin_pw"></p>
           	<p><input type="submit" value="LOGIN"></p>
+          	<p><input type="button" value="REGIST" onclick="location.href='admin_reg.jsp'"></p>
           </form>
       	</div>
       	<%
       	} else {
       	%>
       	<div class="logged_in_wrap">
-      		<h3><%=userid%> 님 반갑습니다.</h3>
+      		<h3><%=admin_id%> 님 반갑습니다.</h3>
       		<div class="two_div_wrap">
-	      		<div class="two ">
-	      			관리자 리스트
-	      		</div>
-	      		<div class="two ">
-	      			관리자 추가 수정 삭제
-	      		</div>
       		</div>
       	</div>
       	<%
@@ -65,7 +63,25 @@
   		$('.sidebar-wrapper ul.nav li').removeClass("active");
   		$('.sidebar-wrapper ul.nav li:eq(0)').addClass("active");
   		$('#ad_adminid').focus();
-  	})
+  		
+  		$('.sidebar-wrapper ul.nav li:eq(1)').addClass("off");
+		$('.sidebar-wrapper ul.nav li:eq(2)').addClass("off");
+		$('.sidebar-wrapper ul.nav li:eq(3)').addClass("off");
+		$('.sidebar-wrapper ul.nav li:eq(4)').addClass("off");
+		$('.sidebar-wrapper ul.nav li:eq(5)').addClass("off");
+		<%
+			if(session.getAttribute("admin_id") != null){
+		%>
+			$('.sidebar-wrapper ul.nav li:eq(1)').removeClass("off");
+			$('.sidebar-wrapper ul.nav li:eq(2)').removeClass("off");
+			$('.sidebar-wrapper ul.nav li:eq(3)').removeClass("off");
+			$('.sidebar-wrapper ul.nav li:eq(4)').removeClass("off");
+			$('.sidebar-wrapper ul.nav li:eq(5)').removeClass("off");
+		<%
+			}
+		%>
+
+  	});
   </script>
 </body>
 
