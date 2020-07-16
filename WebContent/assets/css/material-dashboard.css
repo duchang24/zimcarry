@@ -15268,7 +15268,9 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   position: absolute;
   right: 6px;
 }
-
+.sidebar .nav li.off {
+	display: none;
+}
 .sidebar .nav li>a:hover,
 .sidebar .nav li>a:focus {
   background-color: transparent;

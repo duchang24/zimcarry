@@ -24,9 +24,8 @@
 </c:if>
 <c:set var="noticeList" value="${noticeDAO.getNoticeList('n', limit)}" />
 <c:set var="page" value="${util.paging(noticeDAO.noticeListSize(n), 10)}" />
-${param.keyword ne null}
 <c:if test="${param.keyword ne null}">
-	<c:set var="noticeList" value="${noticeDAO.getNoticeList('n', limit, param.search, param.keyword)}" />
+	<c:set var="noticeList" value="${noticeDAO.getNoticeList(limit, param.search, param.keyword)}" />
 </c:if>
 <!DOCTYPE html>
 <html>
@@ -74,6 +73,7 @@ ${param.keyword ne null}
                                 </select>
                                 <input type="text" name="keyword" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요">
                                 <input type="button" value="검색" id="search_btn">
+                                <input type="button" value="전체보기" id="reset_btn">
                             </fieldset>
                         </form>
                         <table class="notice_list">
