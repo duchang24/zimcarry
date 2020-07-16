@@ -144,6 +144,12 @@
         .sub_content .notice_area .notice_content img { 
             margin: 10px auto; 
         }
+        .sub_content .notice_area .notice_content figure {
+        	width: 100%;
+        }
+        .sub_content .notice_area .notice_content figure img {
+        	max-width: 100% !important;
+        }
     /* notice_in end */
 
     /* FAQ */

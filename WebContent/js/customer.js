@@ -108,6 +108,12 @@ $(function() {
 		$(this).siblings().removeClass('on');
 	})
 	
+	$('#search_btn').on('click', function() {
+		$('.minisrch_form').submit();
+	});
+    $('#reset_btn').on('click', function() {
+    	location.href='./customer_notice.jsp?pageNum=1';
+    });
 });
 
 // 리뷰작성 검증
@@ -142,3 +148,11 @@ function checkBook() {
 	return true;
 }
 
+function checkSearch() {
+	if ($('input:text[name="keyword"]').val() == '') {
+		alert('검색어를 입력하세요');
+		$('input:text[name="keyword"]').focus();
+		return false;
+	}
+	return true;
+}

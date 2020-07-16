@@ -15,7 +15,7 @@
 	try{
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "UTF-8", new DefaultFileRenamePolicy());
 		
-		if(multi.getParameter("h_idx").equals("0")){	// h_idx가 0일 때 (호텔 추가)
+		if(multi.getParameter("h_idx").equals("0")){	// h_idx가 0일 때 (호텔 추가)			
 			hotelDTO.sethFile(multi.getFilesystemName("h_file1"));
 			hotelDTO.sethName(multi.getParameter("h_name"));
 			hotelDTO.sethAddress(multi.getParameter("h_address"));

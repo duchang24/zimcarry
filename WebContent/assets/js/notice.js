@@ -1,4 +1,5 @@
 let noEditor;
+
 ClassicEditor
 .create( document.querySelector( '#no_content' ), {
     toolbar: {
@@ -14,8 +15,18 @@ ClassicEditor
             '|',
             'blockQuote',
             'undo',
-            'redo'
+            'redo',
+            '|',
+            'imageUpload',
+            'imageTextAlternative',
+            'imageStyle:full',
+            'imageStyle:side',
+            '|'
         ]
+    },
+    cloudServices: {
+        tokenUrl: 'https://73243.cke-cs.com/token/dev/65889948d462409ed570e59ae3944b55f7c904a40ac5c9602726e4b98ce8',
+        uploadUrl: 'https://73243.cke-cs.com/easyimage/upload/'
     },
     language: 'ko',
     licenseKey: '',
@@ -79,8 +90,6 @@ $(function () {
 		});
 	});
 });
-
-
 
 function checkForm() {
 	
