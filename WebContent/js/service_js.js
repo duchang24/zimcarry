@@ -7,7 +7,7 @@ if(currentpage != null || currentpage != 1){
 	currentpage = 1;
 	start = 0;
 }
-let firstpage = (((currentpage-1)/10)*10)+1;
+let firstpage = (((currentpage-1)/5)*5)+1;
 let totCnt = $("#totCnt").val();
 let pageCnt = (totCnt/recNum)+1;
 
@@ -80,20 +80,38 @@ $(function(){
                 left: '-3600px'
             },1000)
         });
-
-		currentpage = 1;	
-		for(let i=firstpage; i<=pageCnt; i++){
-			if(currentpage <= pageCnt){
-				if(currentpage == pageCnt){
-					$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
-				}else if(currentpage != pageCnt){
-					$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
-				}
-			}
-		}
-		
-		$(".paging a:first-child").addClass('aOn');
     }
+    
+    currentpage = 1;
+    
+    if(pageCnt > 5){
+    	for(let i=1; i<=5; i++){
+    		if(currentpage <= pageCnt){
+    			if(currentpage == pageCnt){
+    				$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
+    			}else if(currentpage != pageCnt){
+    				$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
+    			}
+    		}
+    	}
+    }else{
+    	for(let i=1; i<=5; i++){
+    		if(currentpage <= pageCnt){
+    			if(currentpage == pageCnt){
+    				$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
+    			}else if(currentpage != pageCnt){
+    				$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
+    			}
+    		}
+    	}
+    }
+	
+	
+	$(".paging a:first-child").addClass('aOn');
+	
+	if(pageCnt > 5){
+		$(".paging").append("<a href='javascript:paging("+((((currentpage-1)/5)*5)+6)+", "+totCnt+")'>[다음]</a>");
+	}
 
     // .white1_2에 버튼
 
@@ -169,7 +187,7 @@ $(function(){
     // }
 });
 
-function paging(paging){
+function paging(paging, totalCnt){
 	$(".paging a.aOn").removeClass('aOn');
 	$(".paging").children().remove();
 	
@@ -206,6 +224,9 @@ function paging(paging){
 				}
 			}
 			
+			pageCnt = (totalCnt/recNum)+1;
+			firstpage = (((paging-1)/5)*5)+1;
+			
 			if(firstpage > 10){
 				$(".paging").append("<a href='#'>[이전]</a>");
 			}
@@ -213,23 +234,90 @@ function paging(paging){
 			for(let i=firstpage; i<=pageCnt; i++){
 				if(paging <= pageCnt){
 					if(paging == pageCnt){
-						$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
+						$(".paging").append("<a href='javascript:paging("+i+", "+totalCnt+")'>"+i+"</a>");
 					}else if(paging != pageCnt){
-						$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
+						$(".paging").append("<a href='javascript:paging("+i+", "+totalCnt+")'>"+i+"</a>");
 						currentpage = paging;
 					}
 				}
 			}
 			
-			/*if(firstpage < pageCnt){
-				$(".paging").append("<a href='#'>[다음]</a>");
-			}*/
+//			if(pageCnt > 5){
+//				$(".paging").append("<a href='#'>[다음]</a>");
+//			}
 			
-			$(".paging a:nth-child("+currentpage+")").addClass("aOn");
+			$(".paging a:nth-child("+paging+")").addClass("aOn");
 		}
 	}
 }
 
 function find(){
-	alert($("#find_room input").val());
+	$(".paging a.aOn").removeClass('aOn');
+	$(".paging").children().remove();
+	$("#room_infor h2").remove();
+	
+	let h_name = $("#find_room input").val();
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open("GET", "../../admin/data/request_hotelMain.jsp?hName="+h_name+"&start="+start+"&recNum="+recNum, true);
+	xhr.send();
+	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
+			$("#room_infor div").nextAll("ul").remove();
+			$("#find_room").after("<ul class='clear2 on3'></ul>");
+			
+			console.log(xhr.responseText);
+			
+			if(xhr.responseText.trim() == '[]'){
+				$("#room_infor h2").remove();
+				$("#room_infor ul").after("<h2>'"+h_name+"' 검색된 숙소가 없습니다.</h2>").remove();
+				$("#room_infor h2").css("text-align", "center");
+				//$(".num_click").remove();
+			}else{
+				let hotelList = xhr.responseText;
+				
+				hotelList = hotelList.replace('[','');
+				hotelList = hotelList.replace(']','');
+				
+				let hotel = new Array();
+				hotel = hotelList.split("null, ");
+				let findCnt = 0;
+				for(let i=0; i<hotel.length; i++){
+					let hotelInfor = new Array();
+					hotelInfor = hotel[i].split("|");
+					let h_idx = hotelInfor[0];
+					let h_file = hotelInfor[1];
+					let h_name = hotelInfor[2];
+					let h_address = hotelInfor[3];
+					let h_map = hotelInfor[4];
+					let h_discount = hotelInfor[5];
+					
+					if(h_discount == "O"){
+						$("#room_infor ul").append("<li><div class='room_img' style='background: url('..\/..\/uploadHotel\/"+h_file+"') center;'></div><div class='room_content'><h3 class='room_name'>"+h_name+"</h3><p class='room_addr'>"+h_address+"</p><div class='room_btn'><a href='"+h_map+"' target='_blank'>지도보기</a></div></div><div class='room_discount'><span>20%</span> OFF</div></li>");
+						findCnt++;
+					}else if(h_discount == "X"){
+						$("#room_infor ul").append("<li><div class='room_img' style='background: url('..\/..\/uploadHotel\/"+h_file+"') center;'></div><div class='room_content'><h3 class='room_name'>"+h_name+"</h3><p class='room_addr'>"+h_address+"</p><div class='room_btn'><a href='"+h_map+"' target='_blank'>지도보기</a></div></div></li>");
+						findCnt++;
+					}
+				}
+				
+				pageCnt = (findCnt/recNum)+1;
+				
+				$("tr:last-child").after("<tr><td  colspan='4' id='page' class='paging'></td></tr>");
+				
+				currentpage = 1;
+				for(let i=firstpage; i<=pageCnt; i++){
+					if(currentpage <= pageCnt){
+						if(currentpage == pageCnt){
+							$(".paging").append("<a href='javascript:paging("+i+", "+findCnt+")'>"+i+"</a>");
+						}else if(currentpage != pageCnt){
+							$(".paging").append("<a href='javascript:paging("+i+", "+findCnt+")'>"+i+"</a>");
+						}
+					}
+				}
+				$(".paging a:nth-child("+currentpage+")").addClass("aOn");
+			}
+		}
+	}
 }

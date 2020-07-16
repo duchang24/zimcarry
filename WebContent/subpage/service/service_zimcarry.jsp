@@ -4,31 +4,10 @@
 <%  request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="hotelDTO" class="com.zimcarry.hotel.HotelDTO" />
 <jsp:useBean id="hotelDAO" class="com.zimcarry.hotel.HotelDAO" />
-<jsp:useBean id="util" class="com.zimcarry.util.Util" />
-<%
-	int recNum = 4; // 페이지당 글 개수
-	int start = 0;	// 시작글 번호
-	int totCnt = hotelDAO.hotelCnt();
-	
-	String pagenum = request.getParameter("pagenum");
-	if(pagenum != null && !pagenum.equals("")){
-		start = (Integer.parseInt(pagenum)-1) * recNum;
-	}else{
-		pagenum = "1";
-		start = 0;
-	}
-	
-	int pageCnt = (totCnt / recNum) + 1;
-	
-	String nowpage = request.getParameter("pagenum");
-	
-%>
-<c:set var="nowpage" value="<%=nowpage%>"/>
-<c:set var="start" value="<%=start%>"/>
-<c:set var="recNum" value="<%=recNum%>"/>
 
 <c:set var="totCnt" value="${hotelDAO.hotelCnt()}"/>
 <c:set var="hotelList" value="${hotelDAO.getHotelMain(0, 4)}"/>
+
 <!DOCTYPE html>
 <html>
 <head>

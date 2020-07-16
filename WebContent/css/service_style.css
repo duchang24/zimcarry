@@ -104,6 +104,10 @@
 #room_infor #find_room { padding-top: 70px; width: 600px; height: 57px; margin: 0 auto 70px; position: relative; }
 #room_infor #find_room input { width: 100%; height: 100%; border: 2px solid #FFD100; border-radius: 20px; padding: 0 0 0 25px; }
 #room_infor #find_room input::placeholder { color: #F7B618; font-size: 16px; }
+
+#room_infor #find_room input::-ms-clear, #room_infor #find_room input::-ms-reveal {display: none; width : 0; height: 0;}
+#room_infor #find_room input::-webkit-search-decoration, #room_infor #find_room input::-webkit-search-cancel-button,
+#room_infor #find_room input::-webkit-search-results-button, #room_infor #find_room input::-webkit-search-results-decoration { display: none; }
 #room_infor #find_room button { position: absolute; width: 35px; height: 35px; background: url('../images/ico/search_ico.jpg') no-repeat; right: 18px; bottom: 11px; }
 
 #room_infor .box_inner > ul { width: 100%;  margin-bottom: 50px; display: none; }
@@ -241,7 +245,7 @@
     #room_infor ul li .room_img { width: 45%; height: 81%; display: inline-block; box-sizing: border-box; position: relative; top: 1.2em; left: 1em; background-size: cover !important; background-repeat: no-repeat !important; }
     #room_infor ul li .room_content { width: 50%; height: 100%; box-sizing: border-box; float: right; position: relative; }
     #room_infor ul li .room_content::after { clear: both; }
-    #room_infor ul li .room_content .room_name { padding: 1.3em 0 0.5em 0.8em; font-size: 1.3em; text-align: left; width: 100%; display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; box-sizing: border-box; }
+    #room_infor ul li .room_content .room_name { padding: 1.3em 0 0.5em 0.8em; font-size: 1.3em; text-align: left; width: 100%; display: inline-block; box-sizing: border-box; word-break: keep-all; }
     #room_infor ul li .room_content .room_addr { width: 100%; height: 32%; margin: 0; padding: 0 0.8em; text-align: left; font-size: 1.1em; box-sizing: border-box; display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
     #room_infor ul li .room_content .room_btn { width: 8em; height: 20%; position: absolute; bottom: 1.1em; left: 1em; z-index: 100; }
 

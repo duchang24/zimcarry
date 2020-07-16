@@ -200,7 +200,7 @@ public class HotelDAO {
 		List<HotelDTO> hotelList = new ArrayList<HotelDTO>();
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT h_idx, h_file, h_name, h_address, h_map, h_discount FROM tb_hotel WHERE h_partner='O' h_name LIKE ? order by h_idx asc limit ?, ?";
+			String sql = "SELECT h_idx, h_file, h_name, h_address, h_map, h_discount FROM tb_hotel WHERE h_partner='O' AND h_name LIKE ? order by h_idx asc LIMIT ?, ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+h_name+"%");
 			pstmt.setInt(2, start);
