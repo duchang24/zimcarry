@@ -34,7 +34,7 @@
       	<div class="hotel_find hotel">
       		<h3>제휴 호텔 검색</h3>
       		<div>
-      			<p id="findArea"><input type="search" name="find_hotel" id="find_hotel" placeholder="검색할 호텔을 입력하세요."> <button id="findBtn" onclick="find(${start})">검색</button> <button id="listBtn" onclick="list()">전체 리스트</button> <input type="hidden" name="findName" id="findName"></p>
+      			<p id="findArea"><input type="search" name="find_hotel" id="find_hotel" placeholder="검색할 호텔을 입력하세요."> <button id="findBtn" onclick="find()">검색</button> <button id="listBtn" onclick="list()">전체 리스트</button> <input type="hidden" name="findName" id="findName"></p>
       		</div>
       	</div>
       	<div class="hotel_list hotel">

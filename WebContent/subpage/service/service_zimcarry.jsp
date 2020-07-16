@@ -27,7 +27,8 @@
 <c:set var="start" value="<%=start%>"/>
 <c:set var="recNum" value="<%=recNum%>"/>
 
-<c:set var="hotelList" value="${hotelDAO.getHotel(start, recNum)}"/>
+<c:set var="totCnt" value="${hotelDAO.hotelCnt()}"/>
+<c:set var="hotelList" value="${hotelDAO.getHotelMain(0, 4)}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -210,7 +211,7 @@
 			<div id="room_infor">
 				<div class="box_inner">
 					<div id="find_room">
-						<input type="search" placeholder="숙소를 검색해 보세요">
+						<input type="search" placeholder="숙소를 검색해 보세요"> <button onclick="find()"></button>
 					</div>
 					<ul id="1" class="clear2 on3">
                       
@@ -235,12 +236,8 @@
 					
 	                      
 					<div class="num_click">
+						<input type="hidden" name="totCnt" id="totCnt" value="${totCnt}">
 						<p id="page" class="paging">
-						<%
-							for(int i=1; i<=pageCnt; i++){
-								out.print("<a href='service_zimcarry.jsp?pagenum="+i+"'>" + i + "</a>" + " ");	
-							}
-						%>
 						</p>
 	                    
 	                    <!-- <div>

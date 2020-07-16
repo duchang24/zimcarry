@@ -18,8 +18,6 @@ $(function(){
 		$(".hIdxX").css("display", "block");
 	}
 	
-	
-	
 	currentpage = 1;	
 	for(let i=firstpage; i<=pageCnt; i++){
 		if(currentpage <= pageCnt){
@@ -75,7 +73,7 @@ function findHotel(hIdx){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
 			let hotelInfor = new Array();
-			hotelInfor = xhr.responseText.split("|");
+			hotelInfor = xhr.responseText.trim().split("|");
 			let h_idx = hotelInfor[0];
 			let h_file = hotelInfor[1];
 			let h_name = hotelInfor[2];
@@ -117,11 +115,11 @@ function resetInfor(){
 	$(".hIdxX").css("display", "block");
 }
 
-function find(start1){
+function find(){
 	let h_name = $("#find_hotel").val();
 	
 	let xhr = new XMLHttpRequest();
-	xhr.open("GET", "./data/request_hotel.jsp?hName="+h_name+"&start="+start1+"&recNum="+recNum, true);
+	xhr.open("GET", "./data/request_hotel.jsp?hName="+h_name+"&start="+start+"&recNum="+recNum, true);
 	xhr.send();
 	
 	xhr.onreadystatechange = function(){
@@ -132,7 +130,7 @@ function find(start1){
 				$("tr:last-child").after("<tr><td colspan='4'>검색 결과가 없습니다.</td></tr>");
 			}else{
 				
-				let hotelList = xhr.responseText;
+				let hotelList = xhr.responseText.trim();
 				
 				hotelList = hotelList.replace('[','');
 				hotelList = hotelList.replace(']','');
@@ -190,7 +188,7 @@ function paging(paging){
 		if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
 			$("table tr:first-child").nextAll("tr").remove();
 			
-			let hotelList = xhr.responseText;
+			let hotelList = xhr.responseText.trim();
 				
 			hotelList = hotelList.replace('[','');
 			hotelList = hotelList.replace(']','');
