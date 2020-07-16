@@ -46,6 +46,7 @@
       	<div class="logged_in_wrap">
       		<h3><%=admin_id%> 님 반갑습니다.</h3>
       		<div class="two_div_wrap">
+      			<button onclick="location.href='./logout.jsp'">LOGOUT</button>
       		</div>
       	</div>
       	<%
