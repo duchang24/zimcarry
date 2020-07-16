@@ -3,7 +3,6 @@ package com.zimcarry.notice;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +16,14 @@ public class NoticeDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
+	/**
+	 * <p><strong><i>insertFileNotice</i></strong></p>
+	 * 파일을 포함한 공지사항 작성시 작동하는 메소드<br />
+	 * 공지사항 내용 insert시 pk를 받아와 filepath 업데이트 해주고 DTO를 리턴
+	 * @param noticeDTO
+	 * @return NoticeDTO
+	 * @author duchang
+	 */
 	public NoticeDTO insertFileNotice(NoticeDTO noticeDTO) {
 		String[] generatedColumns = {"no_idx"};
 		try {
@@ -46,6 +53,17 @@ public class NoticeDAO {
 		return noticeDTO;
 	}
 	
+	/**
+	 * <p><strong><i>insertNotice</i></strong></p>
+	 * 파일이 없는 공지사항 작성시 작동하는 메소드<br />
+	 * insert성공시 true 리턴 실패시 false리턴<br />
+	 * @param noTitle
+	 * @param noWriter
+	 * @param noContent
+	 * @param noHidden
+	 * @return boolean
+	 * @author duchang
+	 */
 	public boolean insertNotice(String noTitle, String noWriter, String noContent, String noHidden) {
 		try {
 			conn = DBConn.getConnection();
@@ -67,6 +85,14 @@ public class NoticeDAO {
 		return true;
 	}
 	
+	/**
+	 * <p><strong><i>updateFilepath</i></strong></p>
+	 * 파일 경로를 수정해서 update해주는 메소드
+	 * 
+	 * @param noticeDTO
+	 * @return NoticeDTO
+	 * @author duchang
+	 */
 	public NoticeDTO updateFilepath(NoticeDTO noticeDTO) {
 		try {
 			String sql = "UPDATE tb_notice SET no_filepath = ? WHERE no_idx = ?";
@@ -77,8 +103,6 @@ public class NoticeDAO {
 			pstmt.setString(1, tmp);
 			pstmt.setLong(2, noticeDTO.getNoIdx());
 			pstmt.executeUpdate();
-			System.out.println("tmp = " + tmp);
-			System.out.println(noticeDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -149,6 +173,65 @@ public class NoticeDAO {
 				notice.setNoHit(rs.getLong("no_hit"));
 				notice.setNoHidden(rs.getString("no_hidden"));
 				noticeList.add(notice);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return noticeList;
+	}
+	
+	public List<NoticeDTO> getNoticeList(String allList, String limit, String search, String keyword) {
+		String sqlSearch = "";
+		if (search.equals("제목")) {
+			sqlSearch = "no_title";
+		} else {
+			sqlSearch = "no_content";
+		}
+		
+		System.out.println(sqlSearch + " // " + keyword);
+		List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
+		String sql = "";
+		try {
+			conn = DBConn.getConnection();
+			if (allList.equals("y")) {
+				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden FROM tb_notice ORDER BY no_idx DESC LIMIT " + limit;
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					NoticeDTO notice = new NoticeDTO();
+					notice.setNoIdx(rs.getLong("no_idx"));
+					notice.setNoTitle(rs.getString("no_title"));
+					notice.setNoWriter(rs.getString("no_writer"));
+					notice.setNoWritedate(rs.getDate("no_writedate"));
+					notice.setNoHit(rs.getLong("no_hit"));
+					notice.setNoHidden(rs.getString("no_hidden"));
+					noticeList.add(notice);
+					System.out.println(notice + "/");
+				}
+			} else if (allList.equals("n")) {
+				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden FROM tb_notice "
+						+ "WHERE no_hidden = 'n' AND ? LIKE ? OR ? LIKE ? OR ? LIKE ? ORDER BY no_idx DESC LIMIT " + limit;
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, sqlSearch);
+				pstmt.setString(2, "%" + keyword + "%");
+				pstmt.setString(3, sqlSearch);
+				pstmt.setString(4, keyword + "%");
+				pstmt.setString(5, sqlSearch);
+				pstmt.setString(6, "%" + keyword);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					NoticeDTO notice = new NoticeDTO();
+					notice.setNoIdx(rs.getLong("no_idx"));
+					notice.setNoTitle(rs.getString("no_title"));
+					notice.setNoWriter(rs.getString("no_writer"));
+					notice.setNoWritedate(rs.getDate("no_writedate"));
+					notice.setNoHit(rs.getLong("no_hit"));
+					notice.setNoHidden(rs.getString("no_hidden"));
+					noticeList.add(notice);
+					System.out.println(notice + "/");
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -61,7 +61,7 @@ public class FaqDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, fHidden);
 			pstmt.setInt(2, fIdx);
-			int result = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
