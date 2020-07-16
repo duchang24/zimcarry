@@ -44,8 +44,15 @@
       	} else {
       	%>
       	<div class="logged_in_wrap">
+<<<<<<< HEAD
       		<p id="admin_ok"><img src="../assets/img/ico_logo_title.png" alt="짐캐리 로고" /><%=admin_id%> 님 반갑습니다.</p>
       		<p id="admin_logout"><input type="button" value="로그아웃" name="logout_btn" onclick="location.href='admin_logout.jsp'" /></p>
+=======
+      		<h3><%=admin_id%> 님 반갑습니다.</h3>
+      		<div class="two_div_wrap">
+      			<button onclick="location.href='./logout.jsp'">LOGOUT</button>
+      		</div>
+>>>>>>> 605601c6828a194a2c370c261cafaac021f8d9ae
       	</div>
       	<%
       	}
