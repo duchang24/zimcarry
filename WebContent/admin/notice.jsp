@@ -105,7 +105,7 @@
   		$('.sidebar-wrapper ul.nav li:eq(3)').addClass("active");
   	});
   </script>
-	<script src="../assets/js/ckeditor5_notice/build/ckeditor.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>
   	<script src="../assets/js/notice.js"></script>
 </body>
 
