@@ -182,56 +182,32 @@ public class NoticeDAO {
 		return noticeList;
 	}
 	
-	public List<NoticeDTO> getNoticeList(String allList, String limit, String search, String keyword) {
-		String sqlSearch = "";
-		if (search.equals("제목")) {
-			sqlSearch = "no_title";
-		} else {
-			sqlSearch = "no_content";
-		}
-		
-		System.out.println(sqlSearch + " // " + keyword);
+	public List<NoticeDTO> getNoticeList(String limit, String search, String keyword) {
 		List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
-		String sql = "";
 		try {
+			String sql = "";
+			if (search.equals("제목")) {
+				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden, no_content FROM tb_notice WHERE no_hidden = 'n' AND no_title LIKE ? ORDER BY no_idx DESC LIMIT " + limit;
+			} else {
+				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden, no_content FROM tb_notice WHERE no_hidden = 'n' AND no_content LIKE ? ORDER BY no_idx DESC LIMIT " + limit;
+			}
+			System.out.println(search + " // " + keyword);
+			
 			conn = DBConn.getConnection();
-			if (allList.equals("y")) {
-				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden FROM tb_notice ORDER BY no_idx DESC LIMIT " + limit;
-				pstmt = conn.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				while(rs.next()) {
-					NoticeDTO notice = new NoticeDTO();
-					notice.setNoIdx(rs.getLong("no_idx"));
-					notice.setNoTitle(rs.getString("no_title"));
-					notice.setNoWriter(rs.getString("no_writer"));
-					notice.setNoWritedate(rs.getDate("no_writedate"));
-					notice.setNoHit(rs.getLong("no_hit"));
-					notice.setNoHidden(rs.getString("no_hidden"));
-					noticeList.add(notice);
-					System.out.println(notice + "/");
-				}
-			} else if (allList.equals("n")) {
-				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden FROM tb_notice "
-						+ "WHERE no_hidden = 'n' AND ? LIKE ? OR ? LIKE ? OR ? LIKE ? ORDER BY no_idx DESC LIMIT " + limit;
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, sqlSearch);
-				pstmt.setString(2, "%" + keyword + "%");
-				pstmt.setString(3, sqlSearch);
-				pstmt.setString(4, keyword + "%");
-				pstmt.setString(5, sqlSearch);
-				pstmt.setString(6, "%" + keyword);
-				rs = pstmt.executeQuery();
-				while(rs.next()) {
-					NoticeDTO notice = new NoticeDTO();
-					notice.setNoIdx(rs.getLong("no_idx"));
-					notice.setNoTitle(rs.getString("no_title"));
-					notice.setNoWriter(rs.getString("no_writer"));
-					notice.setNoWritedate(rs.getDate("no_writedate"));
-					notice.setNoHit(rs.getLong("no_hit"));
-					notice.setNoHidden(rs.getString("no_hidden"));
-					noticeList.add(notice);
-					System.out.println(notice + "/");
-				}
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + keyword + "%");
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				NoticeDTO notice = new NoticeDTO();
+				notice.setNoIdx(rs.getLong("no_idx"));
+				notice.setNoTitle(rs.getString("no_title"));
+				notice.setNoWriter(rs.getString("no_writer"));
+				notice.setNoWritedate(rs.getDate("no_writedate"));
+				notice.setNoHit(rs.getLong("no_hit"));
+				notice.setNoHidden(rs.getString("no_hidden"));
+				noticeList.add(notice);
+				System.out.println(notice + "/");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

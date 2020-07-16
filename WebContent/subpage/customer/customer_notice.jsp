@@ -26,7 +26,8 @@
 <c:set var="page" value="${util.paging(noticeDAO.noticeListSize(n), 10)}" />
 ${param.keyword ne null}
 <c:if test="${param.keyword ne null}">
-	<c:set var="noticeList" value="${noticeDAO.getNoticeList('n', limit, param.search, param.keyword)}" />
+트루//${limit}
+	<c:set var="noticeList" value="${noticeDAO.getNoticeList(limit, param.search, param.keyword)}" />
 </c:if>
 <!DOCTYPE html>
 <html>

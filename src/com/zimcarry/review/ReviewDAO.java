@@ -20,8 +20,7 @@ public class ReviewDAO {
 		
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx, re_hidden FROM tb_review "
-					+ "WHERE re_title LIKE '%별%' ORDER BY re_idx DESC LIMIT " + limit;
+			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx, re_hidden FROM tb_review ORDER BY re_idx DESC LIMIT " + limit;
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
