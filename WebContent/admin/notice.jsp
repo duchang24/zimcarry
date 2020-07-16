@@ -81,7 +81,7 @@
       			<p>제목 : <input type="text" name="noTitle" id="no_title"></p>
       			<p>작성자 : <input type="text" name="noWriter" id="no_writer"></p>
       			<p>내용</p>
-      			<p><textarea name="noContent" id="no_content"></textarea></p>
+      			<p><textarea name="noContent" id="no_content" placeholder="이미지는 드래그 앤 드롭으로 업로드 하세요"></textarea></p>
 				<p>업로드된 파일 : <span id="ogFile"></span></p>
       			<p><input type="file" name="noFilename"></p>
       			<input type="hidden" value="" name="ogFilename" id="og_filename">
@@ -105,8 +105,8 @@
   		$('.sidebar-wrapper ul.nav li:eq(3)').addClass("active");
   	});
   </script>
-  <script src="../assets/js/ckeditor5/build/ckeditor.js"></script>
-  <script src="../assets/js/notice.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>
+  	<script src="../assets/js/notice.js"></script>
 </body>
 
 </html>

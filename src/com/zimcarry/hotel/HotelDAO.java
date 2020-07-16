@@ -98,34 +98,6 @@ public class HotelDAO {
 		return hotelList;
 	}
 	
-	public List<HotelDTO> getHotel(int start, int recNum){
-		List<HotelDTO> hotelList = new ArrayList<HotelDTO>();
-		try {
-			conn = DBConn.getConnection();
-			String sql = "SELECT h_idx, h_file, h_name, h_address, h_map, h_discount, h_partner FROM tb_hotel WHERE h_partner='O' order by h_idx asc LIMIT ?, ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, recNum);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				HotelDTO hotel = new HotelDTO();
-				hotel.sethIdx(rs.getLong("h_idx"));
-				hotel.sethFile(rs.getString("h_file"));
-				hotel.sethName(rs.getString("h_name"));
-				hotel.sethAddress(rs.getString("h_address"));
-				hotel.sethMap(rs.getString("h_map"));
-				hotel.sethDiscount(rs.getString("h_discount"));
-				hotel.sethPartner(rs.getString("h_partner"));
-				hotelList.add(hotel);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			DBConn.close(conn, pstmt, rs);
-		}
-		return hotelList;
-	}
-	
 	public int insertHotel(HotelDTO hotelDTO) {
 		String sql = "INSERT INTO tb_hotel(h_file, h_name, h_address, h_map, h_discount, h_partner) VALUE(?, ?, ?, ?, ?, ?)";
 		try {
@@ -195,4 +167,62 @@ public class HotelDAO {
 		}
 		return 0;
 	}
+	
+	// main page
+	public List<HotelDTO> getHotelMain(int start, int recNum){
+		List<HotelDTO> hotelList = new ArrayList<HotelDTO>();
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT h_idx, h_file, h_name, h_address, h_map, h_discount FROM tb_hotel WHERE h_partner='O' order by h_idx asc LIMIT ?, ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, recNum);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				HotelDTO hotel = new HotelDTO();
+				hotel.sethIdx(rs.getLong("h_idx"));
+				hotel.sethFile(rs.getString("h_file"));
+				hotel.sethName(rs.getString("h_name"));
+				hotel.sethAddress(rs.getString("h_address"));
+				hotel.sethMap(rs.getString("h_map"));
+				hotel.sethDiscount(rs.getString("h_discount"));
+				hotelList.add(hotel);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return hotelList;
+	}
+	
+	public List<HotelDTO> getHotelMain(String h_name, int start, int recNum){
+		List<HotelDTO> hotelList = new ArrayList<HotelDTO>();
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT h_idx, h_file, h_name, h_address, h_map, h_discount FROM tb_hotel WHERE h_partner='O' h_name LIKE ? order by h_idx asc limit ?, ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+h_name+"%");
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, recNum);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				HotelDTO hotel = new HotelDTO();
+				hotel.sethIdx(rs.getLong("h_idx"));
+				hotel.sethFile(rs.getString("h_file"));
+				hotel.sethName(rs.getString("h_name"));
+				hotel.sethAddress(rs.getString("h_address"));
+				hotel.sethMap(rs.getString("h_map"));
+				hotel.sethDiscount(rs.getString("h_discount"));
+				hotelList.add(hotel);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return hotelList;
+	}
+	
+	
 }

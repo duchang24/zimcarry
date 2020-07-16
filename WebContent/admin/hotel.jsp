@@ -3,25 +3,12 @@
 <%@ page isELIgnored="false"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean class="com.zimcarry.hotel.HotelDTO" id="hotelDTO"/>
 <jsp:useBean class="com.zimcarry.hotel.HotelDAO" id="hotelDAO"/>
 
-<c:set var="pagenum" value="0"/>
-<c:set var="recNum" value="12"/>
-<c:set var="start" value="0"/>
 <c:set var="totCnt" value="${hotelDAO.totCnt()}"/>
-<c:choose>
-	<c:when test="${pagenum ne null || pagenum ne 0}">
-		<c:set var="start" value="${(pagenum-1)*recNum}"/>
-	</c:when>
-	<c:otherwise>
-		<c:set var="pagenum" value="1" />
-		<c:set var="start" value="0" />
-	</c:otherwise>
-</c:choose>
-<c:set var="pageCnt" value="${(totCnt/recNum)+1}"/>
-<c:set var="nowpage" value="${pagenum}"/>
-<c:set var="hotelList" value="${hotelDAO.selectHotel(start, recNum)}"/>
+<c:set var="hotelList" value="${hotelDAO.selectHotel(0, 12)}"/>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -47,7 +34,7 @@
       	<div class="hotel_find hotel">
       		<h3>제휴 호텔 검색</h3>
       		<div>
-      			<p id="findArea"><input type="search" name="find_hotel" id="find_hotel" placeholder="검색할 호텔을 입력하세요."> <button id="findBtn" onclick="find(${start}, ${recNum})">검색</button> <button id="listBtn" onclick="list()">전체 리스트</button> <input type="hidden" name="findName" id="findName"></p>
+      			<p id="findArea"><input type="search" name="find_hotel" id="find_hotel" placeholder="검색할 호텔을 입력하세요."> <button id="findBtn" onclick="find()">검색</button> <button id="listBtn" onclick="list()">전체 리스트</button> <input type="hidden" name="findName" id="findName"></p>
       		</div>
       	</div>
       	<div class="hotel_list hotel">
@@ -58,25 +45,19 @@
       				<th>할인</th>
       				<th>현재 제휴</th>      				
       			</tr>
-      			<c:forEach var="item" items="${hotelList}" varStatus="status">
       			
-				<tr class="hotelList1">
+      			<c:forEach var="hotel" items="${hotelList}" varStatus="status">
+				<tr class="hotelList">
 					<td>${status.count}</td>
-					<td><a href="#" onclick="findHotel(${item.hIdx})">${item.hName}</a></td>
-					
-					<td>${item.hDiscount}</td>
-					<td>${item.hPartner}</td>
+					<td><a href="javascript:findHotel(${hotel.hIdx})">${hotel.hName}</a></td>
+					<td>${hotel.hDiscount}</td>
+					<td>${hotel.hPartner}</td>
 				</tr>
-				
 				</c:forEach>
 				
 				<tr>
+					<input type="hidden" name="totCnt" id="totCnt" value="${totCnt}">
 					<td colspan="4" id="page" class="paging">
-					
-					<c:forEach var="paging" items="10" varStatus="page">
-						<a>${page.count}</a>
-					</c:forEach>
-					
 					</td>
 				</tr>
       		</table>

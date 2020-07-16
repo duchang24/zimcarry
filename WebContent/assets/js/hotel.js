@@ -1,3 +1,16 @@
+let currentpage = 1;
+let recNum = 12;
+let start = 0;
+if(currentpage != null || currentpage != 1){
+	start = (currentpage-1)*recNum;
+}else{
+	currentpage = 1;
+	start = 0;
+}
+let firstpage = (((currentpage-1)/10)*10)+1;
+let totCnt = $("#totCnt").val();
+let pageCnt = (totCnt/recNum)+1;
+
 $(function(){
 	if($("#h_idx").val() == "0"){
 		
@@ -5,6 +18,18 @@ $(function(){
 		$(".hIdxX").css("display", "block");
 	}
 	
+	currentpage = 1;	
+	for(let i=firstpage; i<=pageCnt; i++){
+		if(currentpage <= pageCnt){
+			if(currentpage == pageCnt){
+				$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
+			}else if(currentpage != pageCnt){
+				$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
+			}
+		}
+	}
+	
+	$(".paging a:first-child").addClass('on');
 });
 
 function checkform(){
@@ -48,7 +73,7 @@ function findHotel(hIdx){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
 			let hotelInfor = new Array();
-			hotelInfor = xhr.responseText.split("|");
+			hotelInfor = xhr.responseText.trim().split("|");
 			let h_idx = hotelInfor[0];
 			let h_file = hotelInfor[1];
 			let h_name = hotelInfor[2];
@@ -90,7 +115,7 @@ function resetInfor(){
 	$(".hIdxX").css("display", "block");
 }
 
-function find(start, recNum){
+function find(){
 	let h_name = $("#find_hotel").val();
 	
 	let xhr = new XMLHttpRequest();
@@ -99,21 +124,20 @@ function find(start, recNum){
 	
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
-			$(".hotelList1").css("display", "none");
-			$(".hotelList2").children().remove();
+			$("table tr:first-child").nextAll("tr").remove();
 			
 			if(xhr.responseText.trim() == '[]'){
-				alert("검색결과가 없습니다.");
-				$("tr:last-child").after("<tr class='hotelList2'></tr>");
+				$("tr:last-child").after("<tr><td colspan='4'>검색 결과가 없습니다.</td></tr>");
 			}else{
 				
-				let hotelList = xhr.responseText;
+				let hotelList = xhr.responseText.trim();
 				
 				hotelList = hotelList.replace('[','');
 				hotelList = hotelList.replace(']','');
 				
 				let hotel = new Array();
 				hotel = hotelList.split(", ");
+				let findCnt = 0;
 				for(let i=0; i<hotel.length; i++){
 					let hotelInfor = new Array();
 					hotelInfor = hotel[i].split("|");
@@ -122,7 +146,24 @@ function find(start, recNum){
 					let h_discount = hotelInfor[5];
 					let h_partner = hotelInfor[6];
 					
-					$("tr:last-child").after("<tr class='hotelList2'><td>"+(i+1)+"</td><td><a href='#' onclick='findHotel("+h_idx+")'>"+h_name+"</a></td><td>"+h_discount+"</td><td>"+h_partner+"</td></tr>");
+					$("tr:last-child").after("<tr><td>"+(i+1)+"</td><td><a href='javascript:findHotel("+h_idx+")'>"+h_name+"</a></td><td>"+h_discount+"</td><td>"+h_partner+"</td></tr>");
+					
+					findCnt++;
+				}
+				
+				pageCnt = (findCnt/recNum)+1;
+				
+				$("tr:last-child").after("<tr><td  colspan='4' id='page' class='paging'></td></tr>");
+				
+				currentpage = 1;
+				for(let i=firstpage; i<=pageCnt; i++){
+					if(currentpage <= pageCnt){
+						if(currentpage == pageCnt){
+							$(".paging").append("<a href='javascript:paging("+i+", "+findCnt+")'>"+i+"</a>");
+						}else if(currentpage != pageCnt){
+							$(".paging").append("<a href='javascript:paging("+i+", "+findCnt+")'>"+i+"</a>");
+						}
+					}
 				}
 			}
 			
@@ -135,5 +176,58 @@ function list(){
 		
 	}else{
 		location.reload();
+	}
+}
+
+function paging(paging){	
+	let xhr = new XMLHttpRequest();
+	xhr.open("GET", "./data/request_hotel.jsp?paging="+paging+"&recNum="+recNum, true);
+	xhr.send();
+	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
+			$("table tr:first-child").nextAll("tr").remove();
+			
+			let hotelList = xhr.responseText.trim();
+				
+			hotelList = hotelList.replace('[','');
+			hotelList = hotelList.replace(']','');
+				
+			let hotel = new Array();
+			hotel = hotelList.split(", ");
+			for(let i=0; i<hotel.length; i++){
+				let hotelInfor = new Array();
+				hotelInfor = hotel[i].split("|");
+				let h_idx = hotelInfor[0];
+				let h_name = hotelInfor[2];
+				let h_discount = hotelInfor[5];
+				let h_partner = hotelInfor[6];
+				
+				$("tr:last-child").after("<tr><td>"+(i+1)+"</td><td><a href='javascript:findHotel("+h_idx+")'>"+h_name+"</a></td><td>"+h_discount+"</td><td>"+h_partner+"</td></tr>");
+			}
+			
+			$("tr:last-child").after("<tr><td  colspan='4' id='page' class='paging'></td></tr>");
+			
+			if(firstpage > 10){
+				$(".paging").append("<a href='#'>[이전]</a>");
+			}
+			
+			for(let i=firstpage; i<=pageCnt; i++){
+				if(paging <= pageCnt){
+					if(paging == pageCnt){
+						$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
+					}else if(paging != pageCnt){
+						$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
+						currentpage = paging;
+					}
+				}
+			}
+			
+			if(firstpage < pageCnt){
+				$(".paging").append("<a href='#'>[다음]</a>");
+			}
+			
+			$(".paging a:nth-child("+currentpage+")").addClass("on");
+		}
 	}
 }

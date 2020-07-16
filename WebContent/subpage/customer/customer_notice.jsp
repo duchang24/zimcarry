@@ -24,6 +24,9 @@
 </c:if>
 <c:set var="noticeList" value="${noticeDAO.getNoticeList('n', limit)}" />
 <c:set var="page" value="${util.paging(noticeDAO.noticeListSize(n), 10)}" />
+<c:if test="${param.keyword ne null}">
+	<c:set var="noticeList" value="${noticeDAO.getNoticeList(limit, param.search, param.keyword)}" />
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,16 +64,16 @@
                         </ul>
                     </div>
                     <div class="notice_area box_inner">
-                        <form action="#" class="minisrch_form clear2">
+                        <form action="./customer_notice.jsp" method="POST" onsubmit="return checkSearch()" class="minisrch_form clear2">
                             <fieldset>
                                 <legend>검색</legend>
-                                <select>
+                                <select name="search">
                                     <option value="제목">제목</option>
-                                    <option value="글쓴이">글쓴이</option>
                                     <option value="내용">내용</option>
                                 </select>
-                                <input type="text" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요">
-                                <input type="button" value="검색" onclick="search()">
+                                <input type="text" name="keyword" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요">
+                                <input type="button" value="검색" id="search_btn">
+                                <input type="button" value="전체보기" id="reset_btn">
                             </fieldset>
                         </form>
                         <table class="notice_list">

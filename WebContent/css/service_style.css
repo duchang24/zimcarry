@@ -101,9 +101,10 @@
 .white1_2 { width: 100%; height: 860px; background: #fff; }
 
 #room_infor { background: #fff; }
-#room_infor #find_room { padding-top: 70px; width: 600px; height: 57px; margin: 0 auto 70px; }
-#room_infor #find_room input { width: 100%; height: 100%; border: 2px solid #FFD100; border-radius: 20px; padding: 0 0 0 25px; background: url('../images/ico/search_ico.jpg') no-repeat 545px; }
+#room_infor #find_room { padding-top: 70px; width: 600px; height: 57px; margin: 0 auto 70px; position: relative; }
+#room_infor #find_room input { width: 100%; height: 100%; border: 2px solid #FFD100; border-radius: 20px; padding: 0 0 0 25px; }
 #room_infor #find_room input::placeholder { color: #F7B618; font-size: 16px; }
+#room_infor #find_room button { position: absolute; width: 35px; height: 35px; background: url('../images/ico/search_ico.jpg') no-repeat; right: 18px; bottom: 11px; }
 
 #room_infor .box_inner > ul { width: 100%;  margin-bottom: 50px; display: none; }
 #room_infor .box_inner > ul.on3 { display: block; }
