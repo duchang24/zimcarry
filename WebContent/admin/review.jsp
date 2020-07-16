@@ -1,13 +1,16 @@
+<%@page import="org.json.simple.JSONObject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
+
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:useBean id="reviewDTO" class="com.zimcarry.review.ReviewDTO" />
 <jsp:useBean id="bookDAO" class="com.zimcarry.book.BookDAO" />
 <jsp:useBean id="bookDTO" class="com.zimcarry.book.BookDTO" />
 <jsp:useBean id="util" class="com.zimcarry.util.Util" />
+
 <c:set var="pageNum" value="1" />
 <c:set var="limit" value=", 10" />
 <c:if test="${pageNum ne null}" >
@@ -25,8 +28,10 @@
 		</c:otherwise>
 	</c:choose>
 </c:if>
+
 <c:set var="reviewList" value="${reviewDAO.selectAll(limit)}" />
 <c:set var="page" value="${util.paging(reviewDAO.reviewListSize(), 10)}" />
+
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
@@ -50,12 +55,13 @@
       		<table>
       			<thead>
       				<tr>
-						<th>번호</th>
+      					<th>번호</th>
       					<th>제목</th>
       					<th>작성자</th>
       					<th>만족도</th>
       					<th>이용날짜</th>
       					<th>숨김여부</th>
+      				</tr>
       			</thead>
       			<tbody>
       				<c:forEach var="reviewItem" items='${ reviewList }' varStatus="status">
@@ -73,15 +79,16 @@
       		</table>
       		<div class="page_wrap">
 	            <ul class="page_list">
-	            	<c:forEach var="i" items="${page}" varStatus="status">
-						<li>
-							<a href="./review.jsp?pageNum=${status.index + 1}"
-								<c:if test="${status.index + 1 eq pageNum}">class="on"</c:if>>${status.index + 1}
-							</a>
-						</li>
+				 	<c:forEach var="i" items="${page}" varStatus="status" >
+					<li>
+						<a href="review.jsp?pageNum=${status.index + 1}"
+							<c:if test="${status.index + 1 eq pageNum}">class="on"</c:if>>
+							${status.index + 1}
+						</a>
+					</li>
 	                </c:forEach>
 	            </ul>
-            </div>
+        	</div>
       	</div>
         <!--  review_table end -->
         <!-- review detail -->
@@ -110,10 +117,10 @@
   <!--   Core JS Files   -->
   <%@ include file="./core_js.jsp" %>
    s<script>
-  	$(function () {
-  		$('.sidebar-wrapper ul.nav li').removeClass("active");
-  		$('.sidebar-wrapper ul.nav li:eq(5)').addClass("active");
-  	})
+   $(function () {
+ 		$('.sidebar-wrapper ul.nav li').removeClass("active");
+ 		$('.sidebar-wrapper ul.nav li:eq(5)').addClass("active");
+ 	})
   </script>
   	<script src="../assets/js/review_a.js"></script>
 </body>

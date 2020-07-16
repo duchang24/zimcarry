@@ -35,9 +35,9 @@
 		    <div class="content">
 				<div class="admin_regist">
 					<form method="post" action="admin_regist_ok.jsp">
-				          	<p>AdminId <input type="text" name="admin_id" id="admin_id"></p>
-				          	<p>Password <input type="password" name="admin_pw" id="admin_pw"></p>
-				          	<p><input type="submit" value="REGIST" id="reg_btn"></p>
+			          	<p>AdminId <input type="text" name="admin_id" id="admin_id"></p>
+			          	<p>Password <input type="password" name="admin_pw" id="admin_pw"></p>
+			          	<p><input type="submit" value="REGIST" id="reg_btn"></p>
 				    </form>
 				</div>
 			</div>
@@ -60,7 +60,6 @@
   	});
   </script>
 </body>
-
 </html>
 
 

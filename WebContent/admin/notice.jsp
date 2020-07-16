@@ -2,6 +2,12 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
+<c:if test="${empty sessionScope.admin_id}">
+	<script>
+		alert('로그인 후 이용하세요.');
+		location.href='./admin.jsp';
+	</script>
+</c:if>
 <jsp:useBean id="noticeDTO" class="com.zimcarry.notice.NoticeDTO" />
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
 <jsp:useBean id="util" class="com.zimcarry.util.Util" />

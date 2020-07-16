@@ -3,6 +3,12 @@
 <%@ page isELIgnored="false" %>
 <%  request.setCharacterEncoding("utf-8"); %>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${empty sessionScope.admin_id}">
+	<script>
+		alert('로그인 후 이용하세요.');
+		location.href='./admin.jsp';
+	</script>
+</c:if>
 <jsp:useBean id="faqDTO" class="com.zimcarry.faq.FaqDTO" />
 <jsp:useBean id="faqDAO" class="com.zimcarry.faq.FaqDAO" />
 <jsp:useBean id="util" class="com.zimcarry.util.Util" />

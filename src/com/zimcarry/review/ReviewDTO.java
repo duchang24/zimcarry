@@ -47,6 +47,7 @@ public class ReviewDTO {
 	public void setReBookidx(long reBookidx) {
 		this.reBookidx = reBookidx;
 	}
+	
 	public String getReHidden() {
 		return reHidden;
 	}
