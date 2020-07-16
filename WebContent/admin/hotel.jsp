@@ -7,22 +7,8 @@
 <jsp:useBean class="com.zimcarry.hotel.HotelDTO" id="hotelDTO"/>
 <jsp:useBean class="com.zimcarry.hotel.HotelDAO" id="hotelDAO"/>
 
-<c:set var="currentpage" value="1"/>
-<c:set var="recNum" value="12"/>
-<c:set var="start" value="0"/>
 <c:set var="totCnt" value="${hotelDAO.totCnt()}"/>
-<c:choose>
-	<c:when test="${currentpage ne null || currentpage ne 1}">
-		<c:set var="start" value="${(currentpage-1)*recNum}"/>
-	</c:when>
-	<c:otherwise>
-		<c:set var="currentpage" value="1" />
-		<c:set var="start" value="0" />
-	</c:otherwise>
-</c:choose>
-<fmt:parseNumber var="pageCnt" value="${(totCnt/recNum)+1}" integerOnly="true"/>
-<c:set var="firstpage" value="${(((currentpage-1)/10)*10)+1 }"/>
-<c:set var="hotelList" value="${hotelDAO.selectHotel(start, recNum)}"/>
+<c:set var="hotelList" value="${hotelDAO.selectHotel(0, 12)}"/>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -40,7 +26,6 @@
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <a class="navbar-brand" href="javascript:;">제휴 호텔 관리</a>
-            <p>start : ${start} | recNum : ${recNum} | totCnt : ${totCnt} | pageCnt : ${pageCnt} | currentpage : ${currentpage}</p>
           </div>
         </div>
       </nav>
@@ -49,7 +34,7 @@
       	<div class="hotel_find hotel">
       		<h3>제휴 호텔 검색</h3>
       		<div>
-      			<p id="findArea"><input type="search" name="find_hotel" id="find_hotel" placeholder="검색할 호텔을 입력하세요."> <button id="findBtn" onclick="find(${start}, ${recNum})">검색</button> <button id="listBtn" onclick="list()">전체 리스트</button> <input type="hidden" name="findName" id="findName"></p>
+      			<p id="findArea"><input type="search" name="find_hotel" id="find_hotel" placeholder="검색할 호텔을 입력하세요."> <button id="findBtn" onclick="find(${start})">검색</button> <button id="listBtn" onclick="list()">전체 리스트</button> <input type="hidden" name="findName" id="findName"></p>
       		</div>
       	</div>
       	<div class="hotel_list hotel">
@@ -60,44 +45,19 @@
       				<th>할인</th>
       				<th>현재 제휴</th>      				
       			</tr>
-      			<c:forEach var="hotel" items="${hotelList}" varStatus="status">
       			
-				<tr class="hotelList1">
+      			<c:forEach var="hotel" items="${hotelList}" varStatus="status">
+				<tr class="hotelList">
 					<td>${status.count}</td>
 					<td><a href="javascript:findHotel(${hotel.hIdx})">${hotel.hName}</a></td>
-					
 					<td>${hotel.hDiscount}</td>
 					<td>${hotel.hPartner}</td>
 				</tr>
-				
 				</c:forEach>
 				
 				<tr>
+					<input type="hidden" name="totCnt" id="totCnt" value="${totCnt}">
 					<td colspan="4" id="page" class="paging">
-					
-					<c:if test="${fistpage > 10}">
-						<a><c:out value="${ first_page - 1 }"/>[이전]</a>
-					</c:if>
-					
-					<c:forEach var="paging" begin="${firstpage}" end="${firstpage+9}">
-						<c:if test="${paging <= pageCnt}">
-							<c:choose>
-								<c:when test="${paging == pageCnt}">
-									<a href="javascript:paging(${paging}, ${recNum})"><c:out value="${paging}"/></a>
-									
-								</c:when>
-								<c:when test="${paging != pageCnt}">
-									<a href="javascript:paging(${paging}, ${recNum})"><c:out value="${paging}"/></a>
-									<c:set var="currentpage" value="${paging}"/>
-								</c:when>
-							</c:choose>
-						</c:if>
-					</c:forEach>
-					
-					<c:if test="${firstpage+9 < pageCnt}">
-						<a><c:out value="${firstpage+10}"/>[다음]</a>
-					</c:if>
-					
 					</td>
 				</tr>
       		</table>
