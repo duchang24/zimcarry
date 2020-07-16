@@ -51,10 +51,9 @@ public class HotelDTO {
 	public void sethPartner(String hPartner) {
 		this.hPartner = hPartner;
 	}
-	
 	@Override
 	public String toString() {
 		return  hIdx + "|" + hFile + "|" + hName + "|" + hAddress + "|" + hMap + "|" + hDiscount + "|" + hPartner;
 	}
-	
 }
+

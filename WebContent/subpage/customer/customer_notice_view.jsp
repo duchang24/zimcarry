@@ -8,7 +8,7 @@
 <c:if test="${empty param.noIdx}" >
 	<script>
 		alert('잘못된 접근입니다.');
-		location.href='../notice.jsp';
+		location.href='./customer_notice.jsp';
 	</script>
 </c:if>
 <c:set var="noticeDTO" value="${noticeDAO.viewNotice(param.noIdx)}" />

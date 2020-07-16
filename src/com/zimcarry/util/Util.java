@@ -29,16 +29,21 @@ public class Util {
 		}
 	}
 	
-	public int[] paging(int listSize) {
-		int contentCount = 6;
+	public int[] paging(int listSize, int contentCnt) {
+		int contentCount = contentCnt; 
 		int pageCount = 0;
-		int totalContent = listSize;
+		int totalContent = listSize; 
 		
 		if (totalContent % contentCount != 0) { 
 			pageCount = (totalContent / contentCount) + 1; 
 		} else {
 			pageCount = totalContent / contentCount; 
 		}
+		if (contentCount > totalContent) {
+			return new int[1];
+		}
 		return new int[pageCount];
 	}
 }
+
+

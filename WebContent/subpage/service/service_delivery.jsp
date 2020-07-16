@@ -75,7 +75,7 @@
                                     </div>
                                 </li>
                             </ul>
-                            <p class="book_btn"><a href="#">예약바로가기</a></p>
+                            
                         </div>
                     </div>
                 </div>

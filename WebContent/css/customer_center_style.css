@@ -144,17 +144,24 @@
         .sub_content .notice_area .notice_content img { 
             margin: 10px auto; 
         }
+        .sub_content .notice_area .notice_content figure {
+        	width: 100%;
+        }
+        .sub_content .notice_area .notice_content figure img {
+        	max-width: 100% !important;
+        }
     /* notice_in end */
 
     /* FAQ */
-        .faq_on p {
+        .faq_on {
             color: #f7b62e;
         }
-        .faq_on p::after {
-            
-            font-size: 35px !important;
-            color: #f7b62e !important;
-            content: "-" !important;
+        .faq_on::after {
+            float: right;
+		    font-size: 50px !important;
+		    color: #f7b62e !important;
+		    content: "-" !important;
+		    line-height: 20px;
         }
         .sub_content .faq_area { 
             height: 100%;
@@ -172,14 +179,22 @@
         .sub_content .faq_area .faq_list dt p {
             font-size: 18px;
         }
-        .sub_content .faq_area .faq_list dt p::before {
-            margin-right: 20px;
+        .sub_content .faq_area .faq_list dt .q_box {
+        	display: inline-block;
+        	vertical-align: middle;
+        }
+        .sub_content .faq_area .faq_list dt .q_box p {
+        	margin-bottom: 5px;
+        }
+        .sub_content .faq_area .faq_list dt .big.q {
+        	display: inline;
+        	margin-right: 20px;
             font-size: 26px;
             font-weight: bold;
             color: #f7b62e;
-            content: "Q";
+            vertical-align: middle;
         }
-        .sub_content .faq_area .faq_list dt p::after {
+        .sub_content .faq_area .faq_list dt::after {
             float: right;
             font-size: 30px;
             font-weight: bold;
@@ -543,11 +558,13 @@
 	.sub_content_wrap .sub_content .sub_navi ul li:last-child a { 
 		border-radius: 0px; 
 	}
-	
 	.sub_content_wrap .sub_content .sub_indicator { 
 		height: 60px; 
 		padding-top: 50px;
 		border-bottom: 1px solid #ddd; 
+	}
+	.sub_content_wrap .sub_content .sub_indicator ul {
+		display: none;
 	}
 	.sub_content_wrap .sub_content .sub_indicator h2 { 
 		float: left; 

@@ -9,7 +9,8 @@ public class NoticeDTO {
 	private String noWriter;
 	private Date noWritedate;
 	private long noHit;
-	private String noFile;
+	private String noFilename;
+	private String noFilepath;
 	private String noHidden;
 	
 	public long getNoIdx() {
@@ -48,11 +49,17 @@ public class NoticeDTO {
 	public void setNoHit(long noHit) {
 		this.noHit = noHit;
 	}
-	public String getNoFile() {
-		return noFile;
+	public String getNoFilename() {
+		return noFilename;
 	}
-	public void setNoFile(String noFile) {
-		this.noFile = noFile;
+	public void setNoFilename(String noFilename) {
+		this.noFilename = noFilename;
+	}
+	public String getNoFilepath() {
+		return noFilepath;
+	}
+	public void setNoFilepath(String noFilepath) {
+		this.noFilepath = noFilepath;
 	}
 	public String getNoHidden() {
 		return noHidden;
@@ -62,6 +69,9 @@ public class NoticeDTO {
 	}
 	@Override
 	public String toString() {
-		return "NoticeDTO [ noIdx : " + noIdx + ", noTitle : " + noTitle + ", noContent : " + noContent.substring(0, (int)(noContent.length() / 2)) + "..., noWriter : " + noWriter + ", noWritedate : " + noWritedate + ", noHit : " + noHit + ", noFile : " + noFile + ", noHidden : " + noHidden + " ]";
+		return "NoticeDTO [noIdx=" + noIdx + ", noTitle=" + noTitle + ", noContent=" + noContent + ", noWriter="
+				+ noWriter + ", noWritedate=" + noWritedate + ", noHit=" + noHit + ", noFilename=" + noFilename
+				+ ", noFilepath=" + noFilepath + ", noHidden=" + noHidden + "]";
 	}
+	
 }

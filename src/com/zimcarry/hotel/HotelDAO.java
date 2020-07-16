@@ -14,12 +14,26 @@ public class HotelDAO {
 	ResultSet rs;
 	
 	public int totCnt() {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		try {
 			conn = DBConn.getConnection();
 			String sql = "SELECT count(h_idx) as cnt FROM tb_hotel";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt("cnt");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return 0;
+	}
+	
+	public int hotelCnt() {
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT count(h_idx) as cnt FROM tb_hotel WHERE h_partner='O'";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -62,9 +76,9 @@ public class HotelDAO {
 		List<HotelDTO> hotelList = new ArrayList<HotelDTO>();
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT h_idx, h_name, h_discount, h_partner FROM tb_hotel WHERE h_name=? order by h_idx asc limit ?, ?";
+			String sql = "SELECT h_idx, h_name, h_discount, h_partner FROM tb_hotel WHERE h_name LIKE ? order by h_idx asc limit ?, ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, h_name);
+			pstmt.setString(1, "%"+h_name+"%");
 			pstmt.setInt(2, start);
 			pstmt.setInt(3, recNum);
 			rs = pstmt.executeQuery();
@@ -130,4 +144,85 @@ public class HotelDAO {
 		}
 		return null;
 	}
+	
+	public int updateHotel(HotelDTO hotelDTO) {
+		String sql = "UPDATE tb_hotel SET h_file=?, h_name=?, h_address=?, h_map=?, h_discount=?, h_partner=? WHERE h_idx=?";
+		try {
+			conn = DBConn.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, hotelDTO.gethFile());
+			pstmt.setString(2, hotelDTO.gethName());
+			pstmt.setString(3, hotelDTO.gethAddress());
+			pstmt.setString(4, hotelDTO.gethMap());
+			pstmt.setString(5, hotelDTO.gethDiscount());
+			pstmt.setString(6, hotelDTO.gethPartner());
+			pstmt.setLong(7, hotelDTO.gethIdx());
+			if(pstmt.executeUpdate() != 0) {
+				return 1;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(conn, pstmt);
+		}
+		return 0;
+	}
+	
+	// main page
+	public List<HotelDTO> getHotelMain(int start, int recNum){
+		List<HotelDTO> hotelList = new ArrayList<HotelDTO>();
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT h_idx, h_file, h_name, h_address, h_map, h_discount FROM tb_hotel WHERE h_partner='O' order by h_idx asc LIMIT ?, ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, recNum);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				HotelDTO hotel = new HotelDTO();
+				hotel.sethIdx(rs.getLong("h_idx"));
+				hotel.sethFile(rs.getString("h_file"));
+				hotel.sethName(rs.getString("h_name"));
+				hotel.sethAddress(rs.getString("h_address"));
+				hotel.sethMap(rs.getString("h_map"));
+				hotel.sethDiscount(rs.getString("h_discount"));
+				hotelList.add(hotel);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return hotelList;
+	}
+	
+	public List<HotelDTO> getHotelMain(String h_name, int start, int recNum){
+		List<HotelDTO> hotelList = new ArrayList<HotelDTO>();
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT h_idx, h_file, h_name, h_address, h_map, h_discount FROM tb_hotel WHERE h_partner='O' h_name LIKE ? order by h_idx asc limit ?, ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+h_name+"%");
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, recNum);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				HotelDTO hotel = new HotelDTO();
+				hotel.sethIdx(rs.getLong("h_idx"));
+				hotel.sethFile(rs.getString("h_file"));
+				hotel.sethName(rs.getString("h_name"));
+				hotel.sethAddress(rs.getString("h_address"));
+				hotel.sethMap(rs.getString("h_map"));
+				hotel.sethDiscount(rs.getString("h_discount"));
+				hotelList.add(hotel);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return hotelList;
+	}
+	
+	
 }

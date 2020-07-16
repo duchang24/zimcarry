@@ -1,15 +1,55 @@
+let noEditor;
+
+ClassicEditor
+.create( document.querySelector( '#no_content' ), {
+    toolbar: {
+        items: [
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'link',
+            '|',
+            'indent',
+            'outdent',
+            '|',
+            'blockQuote',
+            'undo',
+            'redo',
+            '|',
+            'imageUpload',
+            'imageTextAlternative',
+            'imageStyle:full',
+            'imageStyle:side',
+            '|'
+        ]
+    },
+    cloudServices: {
+        tokenUrl: 'https://73243.cke-cs.com/token/dev/65889948d462409ed570e59ae3944b55f7c904a40ac5c9602726e4b98ce8',
+        uploadUrl: 'https://73243.cke-cs.com/easyimage/upload/'
+    },
+    language: 'ko',
+    licenseKey: '',
+} )
+.then( editor => {
+    noEditor = editor;
+} )
+.catch( error => {
+    console.error( error );
+} );
+
 $(function () {
 	$('table tr td a').on('click', function () {
 		$('#no_title').val('');
 		$('#no_writer').val('');
-		$('#no_content').html('');
+		noEditor.setData('');
 		$('#og_file').val('');
 		
 		let no_title = "";
 		let no_writer = "";
 		let no_content = "";
 		let no_hidden = "";
-		let no_file = "";
+		let no_filename = "";
 			
 		let noticeContent = new Array();
 		let no_idx = $(this).parent().prev().html();
@@ -23,15 +63,15 @@ $(function () {
 				no_writer = noticeJSON.no_writer;
 				no_content = noticeJSON.no_content;
 				no_hidden = noticeJSON.no_hidden;
-				no_file = noticeJSON.no_file;
+				no_filename = noticeJSON.no_filename;
 				
 				console.log(no_title);
 				$('#noIdx').val(no_idx);
 				$('#no_title').val(no_title);
 				$('#no_writer').val(no_writer);
-				$('#no_content').val(no_content);
-				$('#no_content').html(no_content);
-				$('#og_file').val(no_file);
+				noEditor.setData(no_content);
+				$('#og_filename').val(no_filename);
+				$('#ogFile').html(no_filename);
 				if (no_hidden == 'n') {
 					$("input:radio[name='noHidden']:radio[value='n']").prop('checked', true);
 				} else {
@@ -41,7 +81,8 @@ $(function () {
 	  		$('#btn_clear').on('click', function () {
 	  	 		$('#no_title').val('');
 	  			$('#no_writer').val('');
-	  			$('#no_content').val('');
+	  			noEditor.setData('');
+	  			$('#ogFile').html('');
 	  			$("input:radio[name='noHidden']").removeAttr("checked");
 	  			$('#btn_wrap').html('<input type="submit" value="작성" id="btn_write" name="btn_write">');
 	  		});
@@ -49,8 +90,6 @@ $(function () {
 		});
 	});
 });
-
-
 
 function checkForm() {
 	
@@ -62,7 +101,7 @@ function checkForm() {
 		alert('작성자를 입력해주세요');
 		return false;
 	}
-	if ($('#no_content').val() == '') {
+	if (noEditor.getData() == '') {
 		alert('내용을 입력해주세요');
 		return false;
 	}

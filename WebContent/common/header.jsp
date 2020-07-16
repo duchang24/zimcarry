@@ -29,9 +29,8 @@
                 <a class="menu-link" href="#">예약하기</a>
             </li>
             <ul class="menu-submenu accordion-content">
-                <li><a class="head" href="#">숙소조회</a></li>
                 <li><a class="head" href="../../subpage/reservation/1.jsp">예약하기</a></li>
-                <li><a class="head" href="#">조회하기</a></li>
+                <li><a class="head" href="../../subpage/reservation/2.jsp">조회하기</a></li>
             </ul>
             <li id="nav3" class="toggle accordion-toggle"> 
                 <span class="icon-plus"></span>
@@ -69,9 +68,8 @@
                     <a href="../../subpage/reservation/1.jsp" id="openit" class="openAll2">예약하기</a>
                     <div class="gnb_depth gnb_depth2_2">
                         <ul class="submenu_list">
-                            <li><a href="#">숙소조회</a></li>
                             <li><a href="../../subpage/reservation/1.jsp">예약하기</a></li>
-                            <li><a href="#">조회하기</a></li>
+                            <li><a href="../../subpage/reservation/2.jsp">조회하기</a></li>
                         </ul>
                     </div>
                 </li>

@@ -1,14 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page isELIgnored="false" %>
-<%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%  request.setCharacterEncoding("utf-8"); %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:useBean id="bookDAO" class="com.zimcarry.book.BookDAO" />
 <jsp:useBean id="util" class="com.zimcarry.util.Util" />
-
-<c:set var="reviewList" value="${reviewDAO.getReviewList()}" />
-
 <c:set var="pageNum" value="1" />
 <c:set var="limit" value=", 6" />
 <c:if test="${pageNum ne null}" >
@@ -27,8 +22,7 @@
 	</c:choose>
 </c:if>
 <c:set var="reviewList" value="${reviewDAO.selectReviewList(limit)}" />
-<c:set var="page" value="${util.paging(reviewDAO.reviewListSize())}" />
-
+<c:set var="page" value="${util.paging(reviewDAO.reviewListSize(), 6)}" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -71,16 +65,6 @@
                         </div>
                         <h3>짐캐리 이용고객 후기</h3>
                         <ul class="review_list">
-                        	<c:forEach var="review" items='${ reviewList }' varStatus="status">
-	                            <li>
-	                                <div class="review_content">
-	                                    <span class="name">${ review.reWriter }</span><span class="root">${ review.reRoute }</span><span class="use_date">${ review.reWritedate }</span>
-	                                    <p class="star five">${ review.reScore }</p>
-	                                    <p class="title">${ review.reTitle }</p><span class="write_date">${ review.reWritedate }</span>
-	                                    <p class="contents">${ review.reContent }</p>
-	                                </div>
-	                            </li>
-                        	</c:forEach>
                             <c:forEach var="review" items="${reviewList}" varStatus="status">
                             	<c:set var="bookDTO" value="${bookDAO.selectBookWhereIdx(review.reBookidx)}" />
                             	<c:set var="score" value="${review.reScore}" />
