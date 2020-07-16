@@ -191,8 +191,6 @@ public class NoticeDAO {
 			} else {
 				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden, no_content FROM tb_notice WHERE no_hidden = 'n' AND no_content LIKE ? ORDER BY no_idx DESC LIMIT " + limit;
 			}
-			System.out.println(search + " // " + keyword);
-			
 			conn = DBConn.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%" + keyword + "%");
@@ -207,7 +205,6 @@ public class NoticeDAO {
 				notice.setNoHit(rs.getLong("no_hit"));
 				notice.setNoHidden(rs.getString("no_hidden"));
 				noticeList.add(notice);
-				System.out.println(notice + "/");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

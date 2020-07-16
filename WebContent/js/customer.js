@@ -111,6 +111,9 @@ $(function() {
 	$('#search_btn').on('click', function() {
 		$('.minisrch_form').submit();
 	});
+    $('#reset_btn').on('click', function() {
+    	location.href='./customer_notice.jsp?pageNum=1';
+    });
 });
 
 // 리뷰작성 검증
