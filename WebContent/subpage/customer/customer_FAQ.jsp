@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="faqDAO" class="com.zimcarry.faq.FaqDAO"/>
-<c:set var="faqList" value="${faqDAO.selectFaqList()}" />
+<c:set var="faqList" value="${faqDAO.selectFaqListHiddenNo()}" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -43,17 +43,18 @@
 			        <div class="faq_area box_inner">
 			            <dl class="faq_list">
 			               <c:forEach var="faq" items="${faqList}">
-			              	   <c:if test="${faq.fHidden eq 'n'}" >
-					               <dt>
-					                   ${faq.fQuestion}
-					               </dt>
-					               <dd style="display: none;">
-					                   <div class="big">A</div>
-					                   <div class="a_box">
-					                   		${faq.fAnswer}
-					                   </div>
-					               </dd>
-				               </c:if>
+				               <dt>
+				                   <div class="big q">Q</div>
+				                   <div class="q_box">
+				                   		${faq.fQuestion}
+				                   </div>
+				               </dt>
+				               <dd style="display: none;">
+				                   <div class="big">A</div>
+				                   <div class="a_box">
+				                   		${faq.fAnswer}
+				                   </div>
+				               </dd>
 			               </c:forEach>
 		                </dl>
 		            </div>

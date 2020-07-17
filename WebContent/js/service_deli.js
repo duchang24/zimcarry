@@ -5,9 +5,9 @@ $(function() {
         $('#map1').addClass('m_on');
 
         $('#map1').on('click', function() {
-            $('.map_list li').removeClass('m_on');
+            $('.map_list ul li').removeClass('m_on');
             $(this).addClass('m_on');
-            
+			
             $('#slider li').removeClass('invisible');
             $('li#slide2').addClass('invisible');
             $('li#slide3').addClass('invisible');
@@ -77,28 +77,28 @@ $(function() {
             $(this).addClass('on');
             $('#slider').animate({
                 left: '0'
-            }, 200);
+            }, 1000);
         });
         $('#map2').on('click', function() {
             $('.map_list li').removeClass('on');
             $(this).addClass('on');
             $('#slider').animate({
                 left: '-1200px'
-            }, 200);
+            }, 1000);
         });
         $('#map3').on('click', function() {
             $('.map_list li').removeClass('on');
             $(this).addClass('on');
             $('#slider').animate({
                 left: '-2400px'
-            }, 200);
+            }, 1000);
         });
         $('#map4').on('click', function() {
             $('.map_list li').removeClass('on');
             $(this).addClass('on');
             $('#slider').animate({
                 left: '-3600px'
-            }, 200);
+            }, 1000);
         });
 
         $('#leave, #arrive').on('change', function() {

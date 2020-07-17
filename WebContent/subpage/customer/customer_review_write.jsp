@@ -39,7 +39,7 @@
                     </div>
                     <div class="review_area box_inner">
                         <div class="write_wrap">
-                            <form method="post" onsubmit="return checkBook()" action="write.jsp">
+                            <form method="post" onsubmit="return checkBook()" action="write.jsp" id="reviewForm">
                                 <fieldset>
                                     <legend>이용후기 작성</legend>
                                     <div id="book_check_area">
@@ -70,7 +70,7 @@
                                     				<td id="bName">name</td>
                                     				<td><span id="bStart">start</span> -> <span id="bEnd">end</span></td>
                                     				<td><span id="bStartdate">start time</span> ~ <span id="bEnddate">end time</span></td>
-                                    				<td><input type="submit" value="작성" id="write_btn"></td>
+                                    				<td><input type="button" value="작성" id="write_btn" onclick="$('#reviewForm').submit()"></td>
                                     			</tr>
                                     		</tbody>
                                     	</table>

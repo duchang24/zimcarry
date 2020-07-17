@@ -4,17 +4,29 @@
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
-<c:set var="noticeList" value="${noticeDAO.getNoticeList('no')}" />
-<c:set var="totalpage" value="${noticeList.size()}" />
-<c:set var="contentCount" value="8" />
-<c:choose>
-	<c:when test="${totalpage % contentCount ne 0}">
-		<c:set var="pageCount" value="${pageCount = (totalContent / contentCount) + 1}" />
-	</c:when>
-	<c:otherwise>
-		<c:set var="pageCount" value="${pageCount = (totalContent / contentCount)}" />
-	</c:otherwise>
-</c:choose>
+<jsp:useBean id="util" class="com.zimcarry.util.Util" />
+<c:set var="pageNum" value="1" />
+<c:set var="limit" value=", 10" />
+<c:if test="${pageNum ne null}" >
+	<c:set var="pageNum" value="${param.pageNum}" />
+	<c:if test="${param.pageNum eq null}">
+		<c:set var="pageNum" value="1" />
+	</c:if>
+	<c:choose>
+		<c:when test="${pageNum eq 1 || pageNum eq null}">
+			<c:set var="limit" value="0, 10" />
+		</c:when>
+		<c:otherwise>
+			<c:set var="start" value="${pageNum * 10 - 10}" />
+			<c:set var="limit" value="${start}${limit}" />
+		</c:otherwise>
+	</c:choose>
+</c:if>
+<c:set var="noticeList" value="${noticeDAO.getNoticeList('n', limit)}" />
+<c:set var="page" value="${util.paging(noticeDAO.noticeListSize(n), 10)}" />
+<c:if test="${param.keyword ne null}">
+	<c:set var="noticeList" value="${noticeDAO.getNoticeList(limit, param.search, param.keyword)}" />
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,16 +64,16 @@
                         </ul>
                     </div>
                     <div class="notice_area box_inner">
-                        <form action="#" class="minisrch_form clear2">
+                        <form action="./customer_notice.jsp" method="POST" onsubmit="return checkSearch()" class="minisrch_form clear2">
                             <fieldset>
                                 <legend>검색</legend>
-                                <select>
+                                <select name="search">
                                     <option value="제목">제목</option>
-                                    <option value="글쓴이">글쓴이</option>
                                     <option value="내용">내용</option>
                                 </select>
-                                <input type="text" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요">
-                                <input type="button" value="검색" onclick="search()">
+                                <input type="text" name="keyword" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요">
+                                <input type="button" value="검색" id="search_btn">
+                                <input type="button" value="전체보기" id="reset_btn">
                             </fieldset>
                         </form>
                         <table class="notice_list">
@@ -82,6 +94,13 @@
 	                            </tr>
                             </c:forEach>
                         </table>
+                    </div>
+                    <div class="page_wrap">
+                        <ul class="page_list">
+                        	<c:forEach var="i" items="${page}" varStatus="status" >
+								<li><a href="./customer_notice.jsp?pageNum=${status.index + 1}"<c:if test="${status.index + 1 eq pageNum}">class="on"</c:if>>${status.index + 1}</a></li>
+                            </c:forEach>
+                        </ul>
                     </div>
                 </div>
             </div>

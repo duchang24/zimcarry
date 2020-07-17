@@ -14,7 +14,7 @@
 		<!-- header -->
 		<%@ include file="../../common/header.jsp" %>
 		
-<div class="customer sub_content_wrap sub_page">
+		<div class="customer sub_content_wrap sub_page">
             <div class="sub_title box_inner">
                 짐없는 여행의 시작<br>
                 <span>짐캐리</span>
@@ -50,11 +50,12 @@
                             </table>
                             <div class="event_basic_picture">
                                 <img src="../../images/2020031216035534444.jpg" alt="나잇스위스">
-                            </div>
-                        </div>
-                    </div>
+							</div>
+						</div>
+					</div>
+				</div>
             </div>
-        </div>
+		</div>
         
         <!-- footer -->
    		<%@ include file="../../common/footer.jsp" %>

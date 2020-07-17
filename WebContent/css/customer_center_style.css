@@ -12,6 +12,7 @@
         .page_wrap {
             width: 100%;
             text-align: center;
+            margin-top: 50px;
         }
         .page_wrap .page_list {
             display: inline-block;
@@ -34,7 +35,6 @@
             text-align: center;
         }
         .page_wrap .page_list li a.on {
-/*             background-color: #efefef; */
             color: #f7b618;
             font-weight: bold;
         }
@@ -144,17 +144,24 @@
         .sub_content .notice_area .notice_content img { 
             margin: 10px auto; 
         }
+        .sub_content .notice_area .notice_content figure {
+        	width: 100%;
+        }
+        .sub_content .notice_area .notice_content figure img {
+        	max-width: 100% !important;
+        }
     /* notice_in end */
 
     /* FAQ */
-        .faq_on p {
+        .faq_on {
             color: #f7b62e;
         }
-        .faq_on p::after {
-            
-            font-size: 35px !important;
-            color: #f7b62e !important;
-            content: "-" !important;
+        .faq_on::after {
+            float: right;
+		    font-size: 50px !important;
+		    color: #f7b62e !important;
+		    content: "-" !important;
+		    line-height: 20px;
         }
         .sub_content .faq_area { 
             height: 100%;
@@ -172,14 +179,22 @@
         .sub_content .faq_area .faq_list dt p {
             font-size: 18px;
         }
-        .sub_content .faq_area .faq_list dt p::before {
-            margin-right: 20px;
+        .sub_content .faq_area .faq_list dt .q_box {
+        	display: inline-block;
+        	vertical-align: middle;
+        }
+        .sub_content .faq_area .faq_list dt .q_box p {
+        	margin-bottom: 5px;
+        }
+        .sub_content .faq_area .faq_list dt .big.q {
+        	display: inline;
+        	margin-right: 20px;
             font-size: 26px;
             font-weight: bold;
             color: #f7b62e;
-            content: "Q";
+            vertical-align: middle;
         }
-        .sub_content .faq_area .faq_list dt p::after {
+        .sub_content .faq_area .faq_list dt::after {
             float: right;
             font-size: 30px;
             font-weight: bold;
@@ -543,11 +558,13 @@
 	.sub_content_wrap .sub_content .sub_navi ul li:last-child a { 
 		border-radius: 0px; 
 	}
-	
 	.sub_content_wrap .sub_content .sub_indicator { 
 		height: 60px; 
 		padding-top: 50px;
 		border-bottom: 1px solid #ddd; 
+	}
+	.sub_content_wrap .sub_content .sub_indicator ul {
+		display: none;
 	}
 	.sub_content_wrap .sub_content .sub_indicator h2 { 
 		float: left; 
@@ -687,6 +704,71 @@
             line-height: 20px;
             letter-spacing: -1px;
         }
+        #book_check_area p {
+        	width: 90%;
+        }
+        #book_check_area input[type="text"] {
+        	width: 90%;
+        }
+        #book_check_area #book_check_btn {
+        	width: 90%;
+        }
+        .check_result {
+        	width: 100%;
+        }
+        .check_result h1 {
+        	font-size: 30px;
+        }
+        .check_result table th {
+        	font-size: 15px;
+        }
+        
+        #isData_yes table th:nth-child(1) {
+       	    width: 16%;
+        }
+        #isData_yes table th:nth-child(2) {
+        	width: 18%;
+        }
+        #isData_yes table th:nth-child(3) {
+        	width: 40%;
+        }
+        #write_btn {
+        	width: 70%;
+        	height: 35px;
+        	font-size: 12px;
+        }
+        #bEnd {
+        	display: block;
+        }
+        .review_area .write_wrap p.mid_text {
+        	position: static;
+        	display: block;
+        	text-align: left;
+        }
+        #reTitle {
+        	width: 100%;
+        }
+        .ck-editor__editable_inline {
+        	width: 100%;
+            min-height: 500px;
+        }
+        .review_area .write_wrap .star_list {
+        	display: block;
+       	}
+       	.review_area .write_wrap #reTitle {
+       		width: 100%;
+       	}
+       	/* ck-editor */
+       	.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+		    box-sizing: border-box !important;
+		    width: 100% !important;
+		}
+		.ck.ck-toolbar.ck-toolbar_grouping>.ck-toolbar__items {
+		    overflow: none !important;
+		}
+		.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar, .ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+		    width: 99%;
+		}
     /* review end */
     /* review_write */
         .review_area {

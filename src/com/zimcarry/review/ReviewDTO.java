@@ -9,6 +9,7 @@ public class ReviewDTO {
 	private String reContent;
 	private Date reWritedate;
 	private long reBookidx;
+	private String reHidden;
 	
 	public long getReIdx() {
 		return reIdx;
@@ -45,5 +46,16 @@ public class ReviewDTO {
 	}
 	public void setReBookidx(long reBookidx) {
 		this.reBookidx = reBookidx;
+	}
+	
+	public String getReHidden() {
+		return reHidden;
+	}
+	public void setReHidden(String reHidden) {
+		this.reHidden = reHidden;
+	}
+	@Override
+	public String toString() {
+		return reIdx + "|" + reScore + "|" + reTitle + "|" + reContent + "|" + reWritedate + "|" + reHidden;
 	}
 }
