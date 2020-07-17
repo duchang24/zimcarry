@@ -18,6 +18,7 @@
 <jsp:useBean id="noitceDAO" class="com.zimcarry.notice.NoticeDAO" />
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:useBean id="hotelDAO" class="com.zimcarry.hotel.HotelDAO" />
+<jsp:useBean id="faqDAO" class="com.zimcarry.faq.FaqDAO" />
 <c:set var="bookList" value="${bookDAO.selectBookList()}" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -95,7 +96,7 @@
 	              <div class="card card-stats">
 	                <div class="card-header card-header-info card-header-icon">
 	                  <div class="card-icon">
-	                    <i class="fa fa-twitter"></i>
+	                    <i class="material-icons">store</i>
 	                  </div>
 	                  <p class="card-category">제휴호텔 개수</p>
 	                  <h3 class="card-title">${hotelDAO.totCnt()} 개</h3>
@@ -107,7 +108,23 @@
 	                </div>
 	              </div>
 	            </div>
-	          </div>
+		        <div class="col-lg-3 col-md-6 col-sm-6">
+	              <div class="card card-stats">
+	                <div class="card-header card-header-success card-header-icon">
+	                  <div class="card-icon">
+	                    <i class="material-icons">content_copy</i>
+	                  </div>
+	                  <p class="card-category">FAQ 개수</p>
+	                  <h3 class="card-title">${faqDAO.faqListSize()} 개</h3>
+	                </div>
+	                <div class="card-footer">
+	                  <div class="stats">
+	                    <i class="material-icons">date_range</i> FAQ 개수
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	       	 </div>
        	 </div>
        	 <div class="col-lg-6 col-md-12">
 				<div class="card">
