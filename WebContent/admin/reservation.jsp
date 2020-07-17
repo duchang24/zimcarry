@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
+<%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
 <%@ include file="./head.jsp" %>
 
 <body>
-	<div class="wrapper ">
+	<div class="wrapper">
 		<!-- side menu -->
 		<%@ include file="./side_menu.jsp" %>
 		<div class="main-panel">
@@ -20,7 +23,8 @@
 			</nav>
 			<!-- End Navbar -->
 			<div class="content">
-			
+				<h1>예약 관리</h1>
+				
 			</div>
 		<!-- footer -->
 		<%@ include file="./footer.jsp" %>
