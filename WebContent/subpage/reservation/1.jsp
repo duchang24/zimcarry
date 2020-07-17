@@ -59,13 +59,13 @@
 						<option value="">맡기는 장소</option>
 						<option value="부산역">부산역</option>
 						<option value="숙소">숙소</option>
-						<option value="벡스코">숙소</option>
+						<option value="벡스코">벡스코</option>
 					</select> 
 					<select name="b_end" id="select_op">
 						<option value="">찾는 장소</option>
 						<option value="부산역">부산역</option>
 						<option value="숙소">숙소</option>
-						<option value="벡스코">숙소</option>
+						<option value="벡스코">벡스코</option>
 					</select>
 				</div>
 
@@ -117,7 +117,8 @@
 			</div>
 		</div>
 	</div>
-	<script src="../../js/rs_Form.js" type="text/javascript"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+	<script src="../../js/main.js"></script>
 	<!-- footer -->
 	<%@ include file="../../common/footer.jsp"%>
 	<!-- footer end -->
