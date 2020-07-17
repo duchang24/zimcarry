@@ -1,22 +1,21 @@
-package com.zimcarry.book;
+package com.zimcarry.reservation;
 
 import java.util.Date;
 
-public class BookDTO {
+public class ReservationDTO {
 	private long bIdx;
-	private String bName;		//이름
-	private String bHp;			//전화번호 01011111111 (-없이)
-	private String bStart; 		//시작구간
-	private String bEnd;		//도착구간
-	private Date bBookingdate;	//예약날짜(예약한 날짜)
-	private Date bStartdate;	//맡기는 일정
-	private Date bEnddate;		//찾는 일정
-	private int bOver26;		//26인치 이상 수하물
-	private int bUnder26;		//26인치 이하 수하물
-	private int bPrice;			//금액
-	private int bPoint;			//포인트
-	private String bIsreview;	//리뷰 작성 여부	디폴트n
-	
+	private String bName;		
+	private String bHp;			
+	private String bStart; 		
+	private String bEnd;		
+	private Date bBookingdate;	
+	private Date bStartdate;	
+	private Date bEnddate;		
+	private int bOver26;		
+	private int bUnder26;		
+	private int bPrice;			
+	private int bPoint;			
+	private String bIsreview;
 	public long getbIdx() {
 		return bIdx;
 	}
@@ -97,6 +96,9 @@ public class BookDTO {
 	}
 	@Override
 	public String toString() {
-		return bName + "|" + bStart + "|" + bEnd;
+		return "reser_DTO [bIdx=" + bIdx + ", bName=" + bName + ", bHp=" + bHp + ", bStart=" + bStart + ", bEnd=" + bEnd
+				+ ", bBookingdate=" + bBookingdate + ", bStartdate=" + bStartdate + ", bEnddate=" + bEnddate
+				+ ", bOver26=" + bOver26 + ", bUnder26=" + bUnder26 + ", bPrice=" + bPrice + ", bPoint=" + bPoint
+				+ ", bIsreview=" + bIsreview + "]";
 	}
 }

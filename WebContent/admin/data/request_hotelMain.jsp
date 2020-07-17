@@ -12,21 +12,31 @@
 	
 	if(request.getParameter("hName") != null){
 		hName = request.getParameter("hName");
-		start = Integer.parseInt(request.getParameter("start"));
-		recNum = Integer.parseInt(request.getParameter("recNum"));
+		if(request.getParameter("start").equals("1")){
+			start = 0;
+			recNum = Integer.parseInt(request.getParameter("recNum"));
+			
+		}else{
+			start = Integer.parseInt(request.getParameter("start"));
+			recNum = Integer.parseInt(request.getParameter("recNum"));
+			start = (start-1)*recNum;
+			
+		}
+		
 		List<HotelDTO> hotelList = hotelDAO.getHotelMain(hName, start, recNum);
 		out.println(hotelList);
 	}
 	
 	if(request.getParameter("paging") != null){
 		if(request.getParameter("paging").equals("1")){
-			paging = Integer.parseInt(request.getParameter("paging"));
+			paging = 0;
 			recNum = Integer.parseInt(request.getParameter("recNum"));
 		}else{
 			paging = Integer.parseInt(request.getParameter("paging"));
 			recNum = Integer.parseInt(request.getParameter("recNum"));
 			paging = (paging-1)*recNum;
 		}
+		
 		List<HotelDTO> hotelList = hotelDAO.getHotelMain(paging, recNum);
 		out.println(hotelList);
 	}

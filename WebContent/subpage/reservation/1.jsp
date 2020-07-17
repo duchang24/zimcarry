@@ -25,7 +25,7 @@
 </head>
 <body>
 	<%@ include file="../../common/header.jsp"%>
-		<div class="reservation sub_content_wrap">
+	<div class="reservation sub_content_wrap">
 		<div class="sub_title box_inner">
 			짐없는 여행의 시작<br>
 			<span>짐캐리</span>
@@ -111,12 +111,9 @@
 
 				<input id="btninput" type="button" value="예약하기" onclick="chkform()">
 			</form>
+			</div>
 		</div>
 	</div>
-	<script src="../../js/rs_Form.js" type="text/javascript"></script>
-
-
-
 	<script src="../../js/rs_Form.js" type="text/javascript"></script>
 	<!-- footer -->
 	<%@ include file="../../common/footer.jsp"%>

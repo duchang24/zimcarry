@@ -22,8 +22,6 @@ public class ReviewDAO {
 			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx, re_hidden FROM tb_review ORDER BY re_idx DESC LIMIT " + limit;
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				
 			while (rs.next()) {
 				ReviewDTO reviewDTO = new ReviewDTO();
 				reviewDTO.setReIdx(rs.getLong("re_idx"));
@@ -35,14 +33,13 @@ public class ReviewDAO {
 				reviewDTO.setReHidden(rs.getString("re_hidden"));
 				reviewList.add(reviewDTO);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
 		}
-	} catch (Exception e) {
-		e.printStackTrace();
-	} finally {
-		DBConn.close(conn, pstmt, rs);
+		return reviewList;
 	}
-	return reviewList;
-}
 	public boolean insertReview(ReviewDTO reviewDTO) {
 		try {
 			String sql = "INSERT INTO tb_review(re_score, re_title, re_content, re_bookidx) VALUES(?, ?, ?, ?)";
@@ -56,7 +53,7 @@ public class ReviewDAO {
 			if (result > 0) {
 				sql = "UPDATE tb_book SET b_isreview = ? WHERE b_idx = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, "y");
+				pstmt.setString(1, "o");
 				pstmt.setLong(2, reviewDTO.getReBookidx());
 				result = pstmt.executeUpdate();
 				if (result > 0) {
@@ -75,7 +72,7 @@ public class ReviewDAO {
 		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx, re_hidden FROM tb_review WHERE re_hidden = 'n' ORDER BY re_idx DESC LIMIT " + limit;
+			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx, re_hidden FROM tb_review WHERE re_hidden = 'x' ORDER BY re_idx DESC LIMIT " + limit;
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -101,7 +98,7 @@ public class ReviewDAO {
 		int size = 0;
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT COUNT(re_idx) AS total FROM tb_review WHERE re_hidden = 'n'";
+			String sql = "SELECT COUNT(re_idx) AS total FROM tb_review WHERE re_hidden = 'x'";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {

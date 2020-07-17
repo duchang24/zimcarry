@@ -103,8 +103,8 @@
 	        	</div>
 	        	<div class="radio">
 	        		<p>리뷰 숨김 여부 설정</p>
-		        	<label class="rad_label">공개</label> <input type="radio" name="review_hv" id="re_hidden_n" value="n" checked="checked"> 
-		        	<label class="rad_label">숨김</label> <input type="radio" name="review_hv" id="re_hidden_y" value="y">
+		        	<label class="rad_label">공개</label> <input type="radio" name="review_hv" id="re_hidden_n" value="x" checked="checked"> 
+		        	<label class="rad_label">숨김</label> <input type="radio" name="review_hv" id="re_hidden_y" value="o">
 	        	</div>
 	        	<p class="submit"><input type="submit" value="수정" id="btn_review_edit"></p>
 	        </form>

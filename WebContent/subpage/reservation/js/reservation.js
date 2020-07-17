@@ -11,28 +11,33 @@ $(function() {
         currentText: '오늘 날짜', 
         closeText: '닫기', 
         dateFormat: "yy-mm-dd",
-        minDate: 1
+        minDate: 0,
+		maxDate: 2
    });
    var bOver26 = 0;
    var bUnder26 = 0;
    var sum = 0;
+   var sum1 = 0;
+   var sum2 = 0
    $("#bOver26").on('keyup',function(){
-       sum = 0;
-       $("#bPrice").val(sum+"원");
-       bOver26 = (15000*$('#bOver26').val());
-       sum += bOver26;
-       $("#bPrice").val(sum+"원");
+	sum1 = 0;
+	sum = 0;
+	bOver26 = (15000*$('#bOver26').val());
+	sum1 += bOver26;
+	sum = sum1+sum2;
+	$("#bPrice").val(sum);
    });
    $("#bUnder26").on('keyup',function(){
-       sum = 0;
-       $("#bPrice").val(sum+"원");
-       bUnder26 = (10000*$('#bUnder26').val());
-       sum += bUnder26;
-       $("#bPrice").val(sum+"원");	
+	sum2 = 0;
+	sum =0;
+	bUnder26 = (10000*$('#bUnder26').val());
+	sum2 += bUnder26;
+	sum = sum1+sum2;
+	$("#bPrice").val(sum);
    });
-   });
+}); 
 
-       function popup() {
+	function popup() {
            var name = "휴대폰 본인인증";
            var option = "width = 500, height = 500, top = 100, left = 200, location = no";
            var phone = document.getElementById("phone2").value;
@@ -59,6 +64,7 @@ $(function() {
 		}
 		return false;
 	}
+	
 	function chkform(){
 		var form = document.my_form;
 		

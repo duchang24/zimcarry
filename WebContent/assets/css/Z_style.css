@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
 /* 관리자 페이지 */
+
+.simple_wrap {
+	display: flex;
+	
+}
 .login_wrap {
 	height: 100%;
 	margin-top: 100px;
@@ -41,19 +46,22 @@
 	color: #727171;
 	font-weight: bold;
 }
-
+.login_wrap p input[type="submit"]:hover, .login_wrap p input[type="button"]:hover {
+	background-color: #FFDA00;
+	border: 3px solid #FFDA00;
+	box-shadow: 3px 3px 20px gray;
+}
 .logged_in_wrap {
 	width: 100%;
 	height: 100%;
 }
 .logged_in_wrap p {
-	position: absolute;
 	font-weight: bold;
 	text-align: center;
 }
 .logged_in_wrap p#admin_ok {
-	top: 32%;
-	left: 32%;
+	margin-left: 4%;
+	margin-right: 4%;
 	font-size: 30px;
 	color: #727171;
 	padding: 20px 17px;
@@ -66,16 +74,25 @@
 	margin-right: 15px;
 }
 .logged_in_wrap p#admin_logout {
-	top: 46%;
-	left: 58%;
+	margin: 0 4%;
+	margin-bottom: 50px;
+	text-align: right;
 }
 .logged_in_wrap input[type="button"] {
-	width: 90px;
-	height: 43px;
+	width: 150px;
+	height: 50px;
 	border-radius: 13px 13px;
-	border: 2px solid #727171;
+	border-style: solid;
+	border-image: linear-gradient(60deg, #f0ba00 0%, #fb8c00 100%);
+	border-image-slice: 1;
+	border-image-width: 5px;
 }
-
+.logged_in_wrap input[type="button"]:hover {
+	background: linear-gradient(60deg, #f0ba00 0%, #fb8c00 100%);
+	box-shadow: 3px 3px 20px gray;
+	color: #fff;
+	font-weight: bold;
+}
 .content .list_up {
 	margin-bottom: 100px;
 }
@@ -92,6 +109,8 @@
 	height: 50px;
 	border-bottom: 1px solid #bdc3c7;
 }
+
+
 /* 관리자 등록 */
 .admin_regist {
 	height: 100%;
@@ -129,7 +148,11 @@
 	color: #727171;
 	font-weight: bold;
 }
-
+.admin_regist p input[type="submit"]:hover {
+	background-color: #FFDA00;
+	border: 3px solid #FFDA00;
+	box-shadow: 3px 3px 20px gray;
+}
 
 /* notice */
 .content .notice {
@@ -174,6 +197,8 @@
 	width: 150px;
 	height: 35px;
 }
+
+
 /* 리뷰 관리 페이지 */
 .content .review_table {
 	width: 80%;
@@ -323,8 +348,4 @@
 }
 .ck-editor__editable {
 	min-height: 150px;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 605601c6828a194a2c370c261cafaac021f8d9ae

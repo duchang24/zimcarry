@@ -22,7 +22,6 @@
 </head>
 <body>
 	<%@ include file="../../common/header.jsp"%>
-	
 	<div class="reservation sub_content_wrap">
 		<div class="sub_title box_inner">
 			짐없는 여행의 시작<br>
@@ -56,7 +55,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- footer -->
 	<%@ include file="../../common/footer.jsp"%>
 	<!-- footer end -->

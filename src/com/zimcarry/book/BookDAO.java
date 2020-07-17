@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
@@ -113,5 +115,31 @@ public class BookDAO {
 		}
 		return bookDTO;
 	}
+	
+	public List<BookDTO> selectBookList() {
+		List<BookDTO> bookList = new ArrayList<BookDTO>();
+		BookDTO bookDTO = null;
+		try {
+			String sql = "SELECT b_idx, b_name, b_start, b_end, b_startdate, b_enddate, b_isreview FROM tb_book ORDER BY b_idx DESC";
+			conn = DBConn.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				bookDTO = new BookDTO();
+				bookDTO.setbIdx(rs.getLong("b_idx"));
+				bookDTO.setbName(rs.getString("b_name"));
+				bookDTO.setbStart(rs.getString("b_start"));
+				bookDTO.setbEnd(rs.getString("b_end"));
+				bookDTO.setbStartdate(rs.getDate("b_startdate"));
+				bookDTO.setbEnddate(rs.getDate("b_enddate"));
+				bookDTO.setbIsreview(rs.getString("b_isreview"));
+				bookList.add(bookDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return bookList;
+	}
 }
-

@@ -1,15 +1,19 @@
-let currentpage = 1;
-let recNum = 12;
-let start = 0;
-if(currentpage != null || currentpage != 1){
-	start = (currentpage-1)*recNum;
-}else{
-	currentpage = 1;
-	start = 0;
+let totCnt = $("#totCnt").val();	// 전체 게시물 수
+let recNum = 12;	// 한 페이지당 보여줄 개수
+let totPage = totCnt / recNum;	// 총 페이지 수
+totPage = Math.floor(totPage);
+if(totCnt % recNum > 0){
+	totPage++;
 }
-let firstpage = (((currentpage-1)/10)*10)+1;
-let totCnt = $("#totCnt").val();
-let pageCnt = (totCnt/recNum)+1;
+let currentPage = 1;	// 현재 페이지
+if(totPage < currentPage){
+	currentPage = totPage;
+}
+let start = ((currentPage-1) / 5) * 5 + 1;	// 시작 페이지 번호
+let end = start + 5 -1;
+if(end > totPage){
+	end = totPage;
+}
 
 $(function(){
 	if($("#h_idx").val() == "0"){
@@ -18,18 +22,28 @@ $(function(){
 		$(".hIdxX").css("display", "block");
 	}
 	
-	currentpage = 1;	
-	for(let i=firstpage; i<=pageCnt; i++){
-		if(currentpage <= pageCnt){
-			if(currentpage == pageCnt){
-				$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
-			}else if(currentpage != pageCnt){
-				$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
-			}
-		}
+	if(currentPage > 1){
+		$(".paging").prepend("<a id='prev' href='javascript:paging("+(currentPage-1)+", "+totCnt+")'>&lt;</a></div>");
 	}
 	
-	$(".paging a:first-child").addClass('on');
+	for(let i=start; i<=end; i++){
+		if(i == currentPage){
+			$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
+			$(".paging a").addClass("on");
+		}else{
+			$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
+		}
+		
+	}
+	
+	if(currentPage < totPage){
+		$(".paging").append("<a id='next' href='javascript:paging("+(currentPage+1)+", "+totCnt+")'>&gt;</a>");
+	}
+	
+	if(currentPage == totPage){
+		$(".paging #next").remove();
+	}
+	
 });
 
 function checkform(){
@@ -62,6 +76,8 @@ function checkform(){
 }
 
 function findHotel(hIdx){
+	$(".paging a.on").removeClass('on');
+	
 	$(".hIdxO").css("display", "block");
 	$(".hIdxX").css("display", "none");
 	
@@ -116,6 +132,8 @@ function resetInfor(){
 }
 
 function find(){
+	$(".paging a.on").removeClass('on');
+	
 	let h_name = $("#find_hotel").val();
 	
 	let xhr = new XMLHttpRequest();
@@ -151,19 +169,42 @@ function find(){
 					findCnt++;
 				}
 				
-				pageCnt = (findCnt/recNum)+1;
+				totCnt = findCnt;
+				totPage = totCnt / recNum;	// 총 페이지 수
+				totPage = Math.floor(totPage);
+				if(totCnt % recNum > 0){
+					totPage++;
+				}
+				currentPage = 1;	// 현재 페이지
+				if(totPage < currentPage){
+					currentPage = totPage;
+				}
+				start = ((currentPage-1) / 5) * 5 + 1;	// 시작 페이지 번호
+				end = start + 5 -1;
+				if(end > totPage){
+					end = totPage;
+				}
 				
-				$("tr:last-child").after("<tr><td  colspan='4' id='page' class='paging'></td></tr>");
+				if(currentPage > 1){
+					$(".paging").prepend("<a id='prev' href='javascript:paging("+(currentPage-1)+", "+totCnt+")'>&lt;</a></div>");
+				}
 				
-				currentpage = 1;
-				for(let i=firstpage; i<=pageCnt; i++){
-					if(currentpage <= pageCnt){
-						if(currentpage == pageCnt){
-							$(".paging").append("<a href='javascript:paging("+i+", "+findCnt+")'>"+i+"</a>");
-						}else if(currentpage != pageCnt){
-							$(".paging").append("<a href='javascript:paging("+i+", "+findCnt+")'>"+i+"</a>");
-						}
+				for(let i=start; i<=end; i++){
+					if(i == currentPage){
+						$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
+						$(".paging a").addClass("on");
+					}else{
+						$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
 					}
+					
+				}
+				
+				if(currentPage < totPage){
+					$(".paging").append("<a id='next' href='javascript:paging("+(currentPage+1)+", "+totCnt+")'>&gt;</a>");
+				}
+				
+				if(currentPage == totPage){
+					$(".paging #next").remove();
 				}
 			}
 			
@@ -179,7 +220,9 @@ function list(){
 	}
 }
 
-function paging(paging){	
+function paging(paging, totalCnt){	
+	$(".paging a.on").removeClass('on');
+	
 	let xhr = new XMLHttpRequest();
 	xhr.open("GET", "./data/request_hotel.jsp?paging="+paging+"&recNum="+recNum, true);
 	xhr.send();
@@ -208,26 +251,43 @@ function paging(paging){
 			
 			$("tr:last-child").after("<tr><td  colspan='4' id='page' class='paging'></td></tr>");
 			
-			if(firstpage > 10){
-				$(".paging").append("<a href='#'>[이전]</a>");
+			totCnt = totalCnt
+			totPage = totCnt / recNum;
+			totPage = Math.floor(totPage);
+			if(totCnt % recNum > 0){
+				totPage++;
+			}
+			currentPage = paging;
+			if(totPage < currentPage){
+				currentPage = totPage;
+			}
+			start = ((currentPage-1) / 5) * 5 + 1;	// 시작 페이지 번호
+			end = start + 5 -1;
+			if(end > totPage){
+				end = totPage;
 			}
 			
-			for(let i=firstpage; i<=pageCnt; i++){
-				if(paging <= pageCnt){
-					if(paging == pageCnt){
-						$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
-					}else if(paging != pageCnt){
-						$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
-						currentpage = paging;
-					}
+			if(currentPage > 1){
+				$(".paging").prepend("<a id='prev' href='javascript:paging("+(currentPage-1)+", "+totCnt+")'>&lt;</a></div>");
+			}
+			
+			for(let i=start; i<=end; i++){
+				if(i == currentPage){
+					$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
+					$(".paging a").addClass("on");
+				}else{
+					$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
 				}
+				
 			}
 			
-			if(firstpage < pageCnt){
-				$(".paging").append("<a href='#'>[다음]</a>");
+			if(currentPage < totPage){
+				$(".paging").append("<a id='next' href='javascript:paging("+(currentPage+1)+", "+totCnt+")'>&gt;</a>");
 			}
 			
-			$(".paging a:nth-child("+currentpage+")").addClass("on");
+			if(currentPage == totPage){
+					$(".paging #next").remove();
+				}
 		}
 	}
 }
