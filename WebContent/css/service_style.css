@@ -132,8 +132,8 @@
 #room_infor .num_click p a:hover { background: #f5f5f5; }
 
 
-#room_infor .num_click div a:first-child { position: absolute; top: 5px; left: 450px; }
-#room_infor .num_click div a:last-child { position: absolute; top: 5px; right: 450px; }
+#room_infor .num_click div a#prev { position: absolute; top: 5px; left: 450px; }
+#room_infor .num_click div a#next { position: absolute; top: 5px; right: 450px; }
 #room_infor .num_click a { font-size: 18px; color: #000; }
 
 
@@ -251,8 +251,8 @@
 
     #room_infor .num_click { margin: 1.5em 0;}
     #room_infor .num_click ul li:hover { background: none; }
-    #room_infor .num_click div a:first-child { left: 7%; }
-    #room_infor .num_click div a:last-child { right: 7%; }
+    #room_infor .num_click div a#prev { left: 7%; }
+    #room_infor .num_click div a#next { right: 7%; }
 }
 
 
