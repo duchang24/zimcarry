@@ -6,7 +6,7 @@
 %>
 	<script>
 		var code = prompt('접속 허용 코드를 입력하세요.');
-		if(code != "1111") {
+		if(code != "1234") {
 			alert("허용되지 않은 코드입니다.");
 			top.window.open('about:blank','_self').close();
 			top.window.opener=self;
@@ -34,7 +34,7 @@
       <!-- End Navbar -->
 		    <div class="content">
 				<div class="admin_regist">
-					<form method="post" action="admin_regist_ok.jsp">
+					<form method="post" action="./data/admin_reg_ok.jsp">
 			          	<p>AdminId <input type="text" name="admin_id" id="admin_id"></p>
 			          	<p>Password <input type="password" name="admin_pw" id="admin_pw"></p>
 			          	<p><input type="submit" value="REGIST" id="reg_btn"></p>
@@ -48,6 +48,9 @@
   <%@ include file="./core_js.jsp" %>
   <script>
   	$(function () {
+  		for(let i = 1; i <= 5; i++) {
+  			$('.sidebar-wrapper ul.nav li:eq(' + i + ')').addClass("off");
+  		}
   		$('.sidebar-wrapper ul.nav li').removeClass("active");
   		$('.sidebar-wrapper ul.nav li:eq(0)').addClass("active");
   		$('#ad_adminid').focus();

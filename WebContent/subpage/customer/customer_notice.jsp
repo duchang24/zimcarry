@@ -4,13 +4,6 @@
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-<c:set var="noticeList" value="${noticeDAO.getNoticeList('no')}" />
-=======
-=======
->>>>>>> 5fa126e6538aef483510cff10e3133d3f262e605
 <jsp:useBean id="util" class="com.zimcarry.util.Util" />
 <c:set var="pageNum" value="1" />
 <c:set var="limit" value=", 10" />
@@ -29,17 +22,11 @@
 		</c:otherwise>
 	</c:choose>
 </c:if>
-<<<<<<< HEAD
-<c:set var="noticeList" value="${noticeDAO.getNoticeList('no', limit)}" />
-<c:set var="page" value="${util.paging(noticeDAO.noticeListSize())}" />
->>>>>>> 707b2909e2bc45515aafb655849e1cc09a6a66d8
-=======
 <c:set var="noticeList" value="${noticeDAO.getNoticeList('n', limit)}" />
 <c:set var="page" value="${util.paging(noticeDAO.noticeListSize(n), 10)}" />
 <c:if test="${param.keyword ne null}">
 	<c:set var="noticeList" value="${noticeDAO.getNoticeList(limit, param.search, param.keyword)}" />
 </c:if>
->>>>>>> 5fa126e6538aef483510cff10e3133d3f262e605
 <!DOCTYPE html>
 <html>
 <head>
