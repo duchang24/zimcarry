@@ -277,7 +277,6 @@ function find(){
 						findCnt++;
 					}
 				}
-				alert(findCnt);
 				
 				totCnt = findCnt;
 				totPage = totCnt / recNum;
