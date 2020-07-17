@@ -15,22 +15,23 @@
 	
 	try {
 		conn = DBConn.getConnection();
-		String sql = "INSERT INTO tb_admin(ad_id, ad_pw) VALUES (?, PASSWORD(?))";
+		String sql = "SELECT ad_idx FROM tb_admin WHERE ad_id=? AND ad_pw=PASSWORD(?)";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, admin_id);
 		pstmt.setString(2, admin_pw);
-		int result = pstmt.executeUpdate();
-		if(result >= 1) {
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			session.setAttribute("admin_id", admin_id);
 %>	
 			<script>
-				alert("관리자 등록이 완료되었습니다.");
-				location.href="admin.jsp";
+				alert("관리자님 환영합니다.");
+				location.href="../admin.jsp";
 			</script>
 <%
 		} else {
 %>
 			<script>
-				alert("관리자 등록에 실패하였습니다.");
+				alert("아이디와 비밀번호를 확인하세요.");
 				history.back();
 			</script>
 <%
@@ -41,3 +42,12 @@
 	}
 	
 %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>	
+</body>
+</html>

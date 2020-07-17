@@ -42,6 +42,7 @@
 	font-weight: bold;
 }
 
+
 .logged_in_wrap {
 	width: 100%;
 	height: 100%;
@@ -53,7 +54,7 @@
 }
 .logged_in_wrap p#admin_ok {
 	top: 32%;
-	left: 32%;
+	left: 36%;
 	font-size: 30px;
 	color: #727171;
 	padding: 20px 17px;
@@ -66,8 +67,8 @@
 	margin-right: 15px;
 }
 .logged_in_wrap p#admin_logout {
-	top: 46%;
-	left: 58%;
+	top: 43.5%;
+	left: 56%;
 }
 .logged_in_wrap input[type="button"] {
 	width: 90px;
@@ -75,7 +76,6 @@
 	border-radius: 13px 13px;
 	border: 2px solid #727171;
 }
-
 .content .list_up {
 	margin-bottom: 100px;
 }
@@ -92,6 +92,8 @@
 	height: 50px;
 	border-bottom: 1px solid #bdc3c7;
 }
+
+
 /* 관리자 등록 */
 .admin_regist {
 	height: 100%;
@@ -174,6 +176,8 @@
 	width: 150px;
 	height: 35px;
 }
+
+
 /* 리뷰 관리 페이지 */
 .content .review_table {
 	width: 80%;
