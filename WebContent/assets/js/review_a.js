@@ -25,10 +25,10 @@ function review_d(reIdx, reBookidx) {
 			$("#re_title").html(re_title);
 			$("#re_content").html(re_content);
 			$("#re_writedate").html(re_writedate);
-			if(re_hidden.trim() == "n") {
+			if(re_hidden.trim() == "x") {
 				$("input:radio[id='re_hidden_n']").prop("checked", true);
 			} 
-			else if(re_hidden.trim() == "y"){
+			else if(re_hidden.trim() == "o"){
 				$("input:radio[id='re_hidden_y']").prop("checked", true);
 			}
 			$("#re_writer").html(re_writer);

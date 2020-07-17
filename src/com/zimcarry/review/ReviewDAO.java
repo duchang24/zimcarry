@@ -75,7 +75,7 @@ public class ReviewDAO {
 		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx, re_hidden FROM tb_review WHERE re_hidden = 'n' ORDER BY re_idx DESC LIMIT " + limit;
+			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx, re_hidden FROM tb_review WHERE re_hidden = 'x' ORDER BY re_idx DESC LIMIT " + limit;
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
