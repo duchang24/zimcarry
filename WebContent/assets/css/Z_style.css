@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
 /* 관리자 페이지 */
+
+.simple_wrap {
+	display: flex;
+	
+}
 .login_wrap {
 	height: 100%;
 	margin-top: 100px;
@@ -52,13 +57,12 @@
 	height: 100%;
 }
 .logged_in_wrap p {
-	position: absolute;
 	font-weight: bold;
 	text-align: center;
 }
 .logged_in_wrap p#admin_ok {
-	top: 32%;
-	left: 32%;
+	margin-left: 4%;
+	margin-right: 4%;
 	font-size: 30px;
 	color: #727171;
 	padding: 20px 17px;
@@ -71,17 +75,21 @@
 	margin-right: 15px;
 }
 .logged_in_wrap p#admin_logout {
-	top: 46%;
-	left: 58%;
+	margin: 0 4%;
+	margin-bottom: 50px;
+	text-align: right;
 }
 .logged_in_wrap input[type="button"] {
-	width: 90px;
-	height: 43px;
+	width: 150px;
+	height: 50px;
 	border-radius: 13px 13px;
-	border: 2px solid #727171;
+	border-style: solid;
+	border-image: linear-gradient(60deg, #f0ba00 0%, #fb8c00 100%);
+	border-image-slice: 1;
+	border-image-width: 5px;
 }
 .logged_in_wrap input[type="button"]:hover {
-	background-color: #727171;
+	background: linear-gradient(60deg, #f0ba00 0%, #fb8c00 100%);
 	box-shadow: 3px 3px 20px gray;
 	color: #fff;
 	font-weight: bold;
