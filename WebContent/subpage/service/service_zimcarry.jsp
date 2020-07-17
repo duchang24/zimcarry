@@ -218,11 +218,6 @@
 						<input type="hidden" name="totCnt" id="totCnt" value="${totCnt}">
 						<p id="page" class="paging">
 						</p>
-	                    
-                    <!-- <div>
-                        <a id="prev"><img src="../../images/ico/prev_btn.jpg" alt="이전"></a>
-                        <a id="next"><img src="../../images/ico/next_btn.jpg" alt="다음"></a>
-                    </div>  -->
 	                </div>
             	</div>
         	</div>
