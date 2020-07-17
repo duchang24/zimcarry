@@ -17,9 +17,9 @@
 	String bHp = request.getParameter("bHp");
 	String bStart = request.getParameter("bStart");
 	String bEnd = request.getParameter("bEnd");
-	String bBookingdate1 = request.getParameter("bBookingdate1");
-	String bStartdate1 = request.getParameter("bStartdate1");
-	String bStartdate2 = request.getParameter("bStartdate2");
+	String bBookingdate1 = request.getParameter("bBookingdate");
+	String bStartdate1 = request.getParameter("bBookingtime1");
+	String bStartdate2 = request.getParameter("bBookingtime2");
 	
 	String sDate = bBookingdate1 + " " + bStartdate1 + ":" + bStartdate2 + ":00";
 	Date startDate = format.parse(sDate);

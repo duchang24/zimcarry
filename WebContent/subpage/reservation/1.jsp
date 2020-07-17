@@ -47,15 +47,14 @@
 					</ul>
 				</div>
 
-			<form action="1_ok.jsp" type="post" name="my_form" id="form-1" > 
-				<input type="text" name="name2" id="name2" placeholder="이름을 입력하세요.">
-				<input type="text" name="phone2" id="phone2" placeholder="휴대폰 (예) 010-9326-3421">
+			<form action="1_ok.jsp" method="post" name="my_form" id="form-1" > 
+				<input type="text" name="bName" id="name2" placeholder="이름을 입력하세요.">
+				<input type="text" name="bHp" id="phone2" placeholder="휴대폰 (예) 010-9326-3421">
 				<input type="button" id="btninput" value="휴대폰인증" onclick="popup();">
 				<input type="hidden" name="ck_phone" value="no" id="isIdCheck">
 				
-				
 				<h1 id="h1">구간 선택</h1>
-				<div id="box_bd">
+				<div id="box_bds">
 					<select name="b_start" id="select_op">
 						<option value="">맡기는 장소</option>
 						<option value="부산역">부산역</option>
@@ -68,11 +67,11 @@
 						<option value="숙소">숙소</option>
 						<option value="벡스코">숙소</option>
 					</select>
-				<input type="text" name="bBookingdate" id="Datepickerstart"placeholder="YYYY-MM-DD">
 				</div>
 
 				<h1 id="h1">맡길 시간</h1>
 				<div id="box_bd">
+					<input type="text" name="bBookingdate" id="Datepickerstart"placeholder="YYYY-MM-DD">
 					<select name="bBookingtime1" id="select_op">
 						<option value="">시 선택</option>
 						<option value="9">오전 9시</option>
@@ -91,25 +90,29 @@
 						<option value="40">40분</option>
 						<option value="50">50분</option>
 					</select>
-					<input type="text" name="bBookingdateend" id="Datepickerend" placeholder="찾는 날짜를 입력하세요.">
+				</div>
+
+				<h1 id="h1">찾을 날짜</h1>
+				<div id="box_bds">
+				<input type="text" name="bBookingdateend" id="Datepickerend" placeholder="찾는 날짜를 입력하세요.">
 				</div>
 
 				<h1 id="h1">26인치 이상 수하물</h1>
 				<div id="box_bds">
-					<input type="text" name="bOver26" id="bOver26" class="input_sht" placeholder="수량을 입력하세요.">
+					<input type="text" name="bOver26" id="bOver26" class="input_sht" value="0" placeholder="수량을 입력하세요.">
 				</div>
 
 				<h1 id="h1">26인치 이하 수하물</h1>
 				<div id="box_bds">
-					<input type="text" name="bUnder26" id="bUnder26" class="input_sht" placeholder="수량을 입력하세요.">
+					<input type="text" name="bUnder26" id="bUnder26" class="input_sht" value="0" placeholder="수량을 입력하세요.">
 				</div>
 
 				<h1 id="h1">총 금액</h1>
 				<div id="box_bds">
-					<input type="text" name="bPrice" id="bPrice" class="input_sht" placeholder="수량을 입력하세요."> 
+					<input type="text" name="bPrice" id="bPrice" class="input_sht" value="0" placeholder="수량을 입력하세요."> 
 				</div>
 
-				<input id="btninput" type="button" value="예약하기" onclick="chkform()">
+				<input id="btninput" type="submit" value="예약하기" onclick="chkform()">
 			</form>
 			</div>
 		</div>
