@@ -56,7 +56,7 @@ public class ReviewDAO {
 			if (result > 0) {
 				sql = "UPDATE tb_book SET b_isreview = ? WHERE b_idx = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, "y");
+				pstmt.setString(1, "o");
 				pstmt.setLong(2, reviewDTO.getReBookidx());
 				result = pstmt.executeUpdate();
 				if (result > 0) {
@@ -101,7 +101,7 @@ public class ReviewDAO {
 		int size = 0;
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT COUNT(re_idx) AS total FROM tb_review WHERE re_hidden = 'n'";
+			String sql = "SELECT COUNT(re_idx) AS total FROM tb_review WHERE re_hidden = 'x'";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
