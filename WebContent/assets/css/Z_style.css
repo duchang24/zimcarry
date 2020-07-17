@@ -41,6 +41,11 @@
 	color: #727171;
 	font-weight: bold;
 }
+.login_wrap p input[type="submit"]:hover, .login_wrap p input[type="button"]:hover {
+	background-color: #FFDA00;
+	border: 3px solid #FFDA00;
+	box-shadow: 3px 3px 20px gray;
+}
 
 .logged_in_wrap {
 	width: 100%;
@@ -75,7 +80,12 @@
 	border-radius: 13px 13px;
 	border: 2px solid #727171;
 }
-
+.logged_in_wrap input[type="button"]:hover {
+	background-color: #727171;
+	box-shadow: 3px 3px 20px gray;
+	color: #fff;
+	font-weight: bold;
+}
 .content .list_up {
 	margin-bottom: 100px;
 }
@@ -129,7 +139,11 @@
 	color: #727171;
 	font-weight: bold;
 }
-
+.admin_regist p input[type="submit"]:hover {
+	background-color: #FFDA00;
+	border: 3px solid #FFDA00;
+	box-shadow: 3px 3px 20px gray;
+}
 
 /* notice */
 .content .notice {
