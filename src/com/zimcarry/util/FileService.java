@@ -15,5 +15,6 @@ public class FileService {
 	
 	public static String getToday() {
 		Calendar c = Calendar.getInstance();
+		return null;
 	}
 }
