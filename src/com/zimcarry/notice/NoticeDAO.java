@@ -110,6 +110,7 @@ public class NoticeDAO {
 		}
 		return noticeDTO;
 	}
+	
 	public boolean editNoice(String noIdx, String noTitle, String noWriter, String noContent, String noHidden) {
 		try {
 			String sql = "UPDATE tb_notice SET no_title = ?, no_writer = ?, no_content = ?, no_hidden = ? WHERE no_idx = ?";
@@ -157,10 +158,10 @@ public class NoticeDAO {
 		String sql = "";
 		try {
 			conn = DBConn.getConnection();
-			if (allList.equals("y")) {
+			if (allList.equals("o")) {
 				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden FROM tb_notice ORDER BY no_idx DESC LIMIT " + limit;
-			} else if (allList.equals("n")) {
-				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden FROM tb_notice WHERE no_hidden = 'n' ORDER BY no_idx DESC LIMIT " + limit;
+			} else if (allList.equals("x")) {
+				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden FROM tb_notice WHERE no_hidden = 'x' ORDER BY no_idx DESC LIMIT " + limit;
 			}
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -187,9 +188,9 @@ public class NoticeDAO {
 		try {
 			String sql = "";
 			if (search.equals("제목")) {
-				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden, no_content FROM tb_notice WHERE no_hidden = 'n' AND no_title LIKE ? ORDER BY no_idx DESC LIMIT " + limit;
+				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden, no_content FROM tb_notice WHERE no_hidden = 'x' AND no_title LIKE ? ORDER BY no_idx DESC LIMIT " + limit;
 			} else {
-				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden, no_content FROM tb_notice WHERE no_hidden = 'n' AND no_content LIKE ? ORDER BY no_idx DESC LIMIT " + limit;
+				sql = "SELECT no_idx, no_title, no_writer, no_writedate, no_hit, no_hidden, no_content FROM tb_notice WHERE no_hidden = 'x' AND no_content LIKE ? ORDER BY no_idx DESC LIMIT " + limit;
 			}
 			conn = DBConn.getConnection();
 			pstmt = conn.prepareStatement(sql);

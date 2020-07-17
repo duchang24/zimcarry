@@ -72,10 +72,10 @@ $(function () {
 				noEditor.setData(no_content);
 				$('#og_filename').val(no_filename);
 				$('#ogFile').html(no_filename);
-				if (no_hidden == 'n') {
-					$("input:radio[name='noHidden']:radio[value='n']").prop('checked', true);
+				if (no_hidden == 'x') {
+					$("input:radio[name='noHidden']:radio[value='x']").prop('checked', true);
 				} else {
-					$("input:radio[name='noHidden']:radio[value='y']").prop('checked', true);
+					$("input:radio[name='noHidden']:radio[value='o']").prop('checked', true);
 				}
 				$('#btn_wrap').html('<input type="submit" value="수정" id="btn_edit" name="btn_edit"> <input type="button" value="비우기" id="btn_clear">');
 	  		$('#btn_clear').on('click', function () {

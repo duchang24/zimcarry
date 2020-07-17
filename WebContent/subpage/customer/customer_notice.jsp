@@ -22,8 +22,8 @@
 		</c:otherwise>
 	</c:choose>
 </c:if>
-<c:set var="noticeList" value="${noticeDAO.getNoticeList('n', limit)}" />
-<c:set var="page" value="${util.paging(noticeDAO.noticeListSize(n), 10)}" />
+<c:set var="noticeList" value="${noticeDAO.getNoticeList('x', limit)}" />
+<c:set var="page" value="${util.paging(noticeDAO.noticeListSize('x'), 10)}" />
 <c:if test="${param.keyword ne null}">
 	<c:set var="noticeList" value="${noticeDAO.getNoticeList(limit, param.search, param.keyword)}" />
 </c:if>

@@ -67,7 +67,7 @@
 				            	<i class="material-icons">content_copy</i>
 				            </div>
 				            <p class="card-category">공지사항</p>
-				            <h3 class="card-title">${noitceDAO.noticeListSize()}(${noitceDAO.noticeListSize('n')}) 개</h3>
+				            <h3 class="card-title">${noitceDAO.noticeListSize()}(${noitceDAO.noticeListSize('x')}) 개</h3>
 			            </div>
 			            <div class="card-footer">
 				            <div class="stats">
