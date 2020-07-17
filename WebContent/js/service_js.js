@@ -131,6 +131,7 @@ function paging(paging, totalCnt){
 				let hotelInfor = new Array();
 				hotelInfor = hotel[i].split("|");
 				let h_idx = hotelInfor[0];
+				h_idx = h_idx.trim();
 				let h_file = hotelInfor[1];
 				let h_name = hotelInfor[2];
 				let h_address = hotelInfor[3];
@@ -138,9 +139,11 @@ function paging(paging, totalCnt){
 				let h_discount = hotelInfor[5];
 				
 				if(h_discount == "O"){
-					$("#room_infor ul").append("<li><div class='room_img' style='background: url('../../images/room/"+h_file+"') center;'></div><div class='room_content'><h3 class='room_name'>"+h_name+"</h3><p class='room_addr'>"+h_address+"</p><div class='room_btn'><a href='"+h_map+"' target='_blank'>지도보기</a></div></div><div class='room_discount'><span>20%</span> OFF</div></li>");
+					$("#room_infor ul").append("<li id="+h_idx+"><div class='room_img'></div><div class='room_content'><h3 class='room_name'>"+h_name+"</h3><p class='room_addr'>"+h_address+"</p><div class='room_btn'><a href='"+h_map+"' target='_blank'>지도보기</a></div></div><div class='room_discount'><span>20%</span> OFF</div></li>");
+					$("#room_infor ul #"+h_idx+" .room_img").css("background", "url('../../images/room/"+h_file+"') center");
 				}else if(h_discount == "X"){
-					$("#room_infor ul").append("<li><div class='room_img' style='background: url('../../images/room/"+h_file+"') center;'></div><div class='room_content'><h3 class='room_name'>"+h_name+"</h3><p class='room_addr'>"+h_address+"</p><div class='room_btn'><a href='"+h_map+"' target='_blank'>지도보기</a></div></div></li>");
+					$("#room_infor ul").append("<li id="+h_idx+"><div class='room_img'></div><div class='room_content'><h3 class='room_name'>"+h_name+"</h3><p class='room_addr'>"+h_address+"</p><div class='room_btn'><a href='"+h_map+"' target='_blank'>지도보기</a></div></div></li>");
+					$("#room_infor ul #"+h_idx+" .room_img").css("background", "url('../../images/room/"+h_file+"') center");
 				}
 			}			
 			
@@ -202,6 +205,8 @@ function find(){
 			$("#room_infor div").nextAll("ul").remove();
 			$("#find_room").after("<ul class='clear2 on3'></ul>");
 			
+			console.log(xhr.responseText);
+			
 			if(xhr.responseText.trim() == '[]'){
 				$("#room_infor h2").remove();
 				$("#room_infor ul").after("<h2>'"+h_name+"' 검색된 숙소가 없습니다.</h2>").remove();
@@ -220,6 +225,7 @@ function find(){
 					let hotelInfor = new Array();
 					hotelInfor = hotel[i].split("|");
 					let h_idx = hotelInfor[0];
+					h_idx = h_idx.trim();
 					let h_file = hotelInfor[1];
 					let h_name = hotelInfor[2];
 					let h_address = hotelInfor[3];
@@ -227,14 +233,16 @@ function find(){
 					let h_discount = hotelInfor[5];
 					
 					if(h_discount == "O"){
-						$("#room_infor ul").append("<li><div class='room_img' style='background: url('../../images/room/"+h_file+"') center;'></div><div class='room_content'><h3 class='room_name'>"+h_name+"</h3><p class='room_addr'>"+h_address+"</p><div class='room_btn'><a href='"+h_map+"' target='_blank'>지도보기</a></div></div><div class='room_discount'><span>20%</span> OFF</div></li>");
+						$("#room_infor ul").append("<li id="+h_idx+"><div class='room_img'></div><div class='room_content'><h3 class='room_name'>"+h_name+"</h3><p class='room_addr'>"+h_address+"</p><div class='room_btn'><a href='"+h_map+"' target='_blank'>지도보기</a></div></div><div class='room_discount'><span>20%</span> OFF</div></li>");
+						$("#room_infor ul #"+h_idx+" .room_img").css("background", "url('../../images/room/"+h_file+"') center");
 						findCnt++;
 					}else if(h_discount == "X"){
-						$("#room_infor ul").append("<li><div class='room_img' style='background: url('../../images/room/"+h_file+"') center;'></div><div class='room_content'><h3 class='room_name'>"+h_name+"</h3><p class='room_addr'>"+h_address+"</p><div class='room_btn'><a href='"+h_map+"' target='_blank'>지도보기</a></div></div></li>");
+						$("#room_infor ul").append("<li id="+h_idx+"><div class='room_img'></div><div class='room_content'><h3 class='room_name'>"+h_name+"</h3><p class='room_addr'>"+h_address+"</p><div class='room_btn'><a href='"+h_map+"' target='_blank'>지도보기</a></div></div></li>");
+						$("#room_infor ul #"+h_idx+" .room_img").css("background", "url('../../images/room/"+h_file+"') center");
 						findCnt++;
 					}
 				}
-				
+				alert(findCnt);
 				
 				totCnt = findCnt;
 				totPage = totCnt / recNum;
