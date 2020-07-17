@@ -1,0 +1,109 @@
+
+  .contant{
+    margin-top: 100px;
+    display: flex;
+    width: 100%;
+    top: 100px;
+  }
+  
+  form {
+    background-color: RGB(27,37,47);
+    color: RGB(51,64,72);
+    text-align: center;
+    margin: 30px auto;
+    max-width:50%;
+    padding-top:1%;
+    padding-bottom:1%;
+  }
+  
+  .button {
+    width: 80%;
+    border:none;
+    padding: 1rem;
+    margin-top: 20px;
+    font-size: 1.1rem;
+  }
+  .first {
+    color: RGB(86,103,105);
+    background: RGB(51, 64, 72);
+  }
+  
+  .second {
+    background-color: RGB(30, 165, 117);
+  }
+  
+  h1{
+    padding: 5%;
+    color: RGB(195, 202, 205);
+    font-weight: 300;
+    font-size: 1.7rem;
+  }
+  
+  input{ 
+    background-color: RGB(27,37,47);
+    border: RGB(86, 103, 105) 2px solid;
+    margin: 1rem;
+    width: 80%;
+    min-height: 2rem;
+    padding: 10px;
+    color: RGB(86, 103, 105); 
+    font-size: 1rem;
+  }
+
+  #btnUserid{
+    background-color: RGB(27,37,47);
+    border: RGB(86, 103, 105) 2px solid;
+    margin: 1rem;
+    width: 15%;
+    min-height: 2rem;
+    padding: 10px;
+    color: RGB(86, 103, 105); 
+    font-size: 0.5rem;
+
+  }
+  
+  input:last-child {
+   background-color: RGB(30, 165, 117);
+   border: none;
+   font-size: 1.5rem;
+   padding: 15px;
+   color: #fff;
+   letter-spacing: 1.8px;
+   width: 80%;
+  }
+  
+  p {
+    color: RGB(30, 165, 117);
+    font-size: 0.7rem;
+    margin:0 10% 0;
+    padding-top:0;
+    text-align: right;
+  }
+  
+  #signup-form :nth-child(4) {
+    width: 80%;
+  }
+  
+  #signup-form :nth-child(5) {
+    width: 80%;
+  }
+  
+  .visibility {
+    display: none;
+  }
+  
+  @media screen and (min-width: 768px) {
+    
+    #signup-form :nth-child(4) {
+      width: 37.5%;
+    }
+    
+    #signup-form :nth-child(5) {
+      width: 37.5%;
+    }
+    
+    .button {
+    width: 40%;
+    }
+   
+  }

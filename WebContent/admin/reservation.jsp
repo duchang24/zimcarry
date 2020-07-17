@@ -20,7 +20,7 @@
 			</nav>
 			<!-- End Navbar -->
 			<div class="content">
-			
+				<h1>예약 관리</h1>
 			</div>
 		<!-- footer -->
 		<%@ include file="./footer.jsp" %>
