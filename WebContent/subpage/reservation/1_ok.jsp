@@ -32,7 +32,7 @@
 	String bPrice = request.getParameter("bPrice");
 	
 	reser.setbName(bName);
-	reser.setbHp(bHp);
+	reser.setbHp(bHp.replace("-", ""));
 	reser.setbStart(bStart);
 	reser.setbEnd(bEnd);
 	reser.setbStartdate(startDate);

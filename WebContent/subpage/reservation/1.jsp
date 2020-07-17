@@ -4,7 +4,7 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,6 +46,27 @@
 						<li>예약하기</li>
 					</ul>
 				</div>
+				<form action="1_ok.jsp" method="post" name="my_form" id="form-1" > 
+					<input type="text" name="bName" id="name2" placeholder="이름을 입력하세요.">
+					<input type="text" name="bHp" id="phone2" placeholder="휴대폰 (예) 010-9326-3421">
+					<input type="button" id="btninput" value="휴대폰인증" onclick="popup();">
+					<input type="hidden" name="ck_phone" value="no" id="isIdCheck">
+					
+					<h1 id="h1">구간 선택</h1>
+					<div id="box_bds">
+						<select name="b_start" id="select_op">
+							<option value="">맡기는 장소</option>
+							<option value="부산역">부산역</option>
+							<option value="숙소">숙소</option>
+							<option value="벡스코">숙소</option>
+						</select> 
+						<select name="b_end" id="select_op">
+							<option value="">찾는 장소</option>
+							<option value="부산역">부산역</option>
+							<option value="숙소">숙소</option>
+							<option value="벡스코">숙소</option>
+						</select>
+					</div>
 
 			<form action="1_ok.jsp" method="post" name="my_form" id="form-1" > 
 				<input type="text" name="bName" id="name2" placeholder="이름을 입력하세요.">
@@ -96,6 +117,7 @@
 				<div id="box_bds">
 				<input type="text" name="bBookingdateend" id="Datepickerend" placeholder="찾는 날짜를 입력하세요.">
 				</div>
+
 
 				<h1 id="h1">26인치 이상 수하물</h1>
 				<div id="box_bds">
