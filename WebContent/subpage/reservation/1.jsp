@@ -54,13 +54,13 @@
 					
 					<h1 id="h1">구간 선택</h1>
 					<div id="box_bds">
-						<select name="b_start" id="select_op">
+						<select name="bStart" id="select_op">
 							<option value="">맡기는 장소</option>
 							<option value="부산역">부산역</option>
 							<option value="숙소">숙소</option>
 							<option value="벡스코">숙소</option>
 						</select> 
-						<select name="b_end" id="select_op">
+						<select name="bEnd" id="select_op">
 							<option value="">찾는 장소</option>
 							<option value="부산역">부산역</option>
 							<option value="숙소">숙소</option>

@@ -3,6 +3,7 @@ package com.zimcarry.book;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -141,5 +142,90 @@ public class BookDAO {
 			DBConn.close(conn, pstmt, rs);
 		}
 		return bookList;
+	}
+	
+	public List<BookDTO> selectBookList(String limit) {
+		List<BookDTO> bookList = new ArrayList<BookDTO>();
+		BookDTO bookDTO = null;
+		try {
+			String sql = "SELECT b_idx, b_name, b_start, b_end, b_startdate, b_enddate, b_isreview FROM tb_book ORDER BY b_idx DESC LIMIT " + limit;
+			conn = DBConn.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				bookDTO = new BookDTO();
+				bookDTO.setbIdx(rs.getLong("b_idx"));
+				bookDTO.setbName(rs.getString("b_name"));
+				bookDTO.setbStart(rs.getString("b_start"));
+				bookDTO.setbEnd(rs.getString("b_end"));
+				bookDTO.setbStartdate(rs.getDate("b_startdate"));
+				bookDTO.setbEnddate(rs.getDate("b_enddate"));
+				bookDTO.setbIsreview(rs.getString("b_isreview"));
+				bookList.add(bookDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return bookList;
+	}
+	/**
+	 * 과거의 예약(서비스를 이용한)일 경우 true <br />
+	 * 미래의 예약(서비스 이용 전)일 경우 false를 paramter로 전달 
+	 * @param limit
+	 * @param isPast
+	 * @return bookList (ArrayList)
+	 */
+	public List<BookDTO> selectBookList(String limit, boolean isPast) {
+		List<BookDTO> bookList = new ArrayList<BookDTO>();
+		BookDTO bookDTO = null;
+		String sql = "";
+		
+		if (isPast) { //과거 예약
+			sql = "SELECT b_idx, b_name, b_start, b_end, b_startdate, b_enddate, b_isreview FROM tb_book WHERE b_enddate < NOW() ORDER BY b_idx DESC LIMIT " + limit;
+		} else { //미래 예약
+			sql = "SELECT b_idx, b_name, b_start, b_end, b_startdate, b_enddate, b_isreview FROM tb_book WHERE b_enddate > NOW() ORDER BY b_idx DESC LIMIT " + limit;
+		}
+		try {
+			conn = DBConn.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				bookDTO = new BookDTO();
+				bookDTO.setbIdx(rs.getLong("b_idx"));
+				bookDTO.setbName(rs.getString("b_name"));
+				bookDTO.setbStart(rs.getString("b_start"));
+				bookDTO.setbEnd(rs.getString("b_end"));
+				bookDTO.setbStartdate(rs.getDate("b_startdate"));
+				bookDTO.setbEnddate(rs.getDate("b_enddate"));
+				bookDTO.setbIsreview(rs.getString("b_isreview"));
+				bookList.add(bookDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return bookList;
+	}
+	
+	public int bookListSize() {
+		int size = 0;
+		try {
+			String sql = "SELECT COUNT(b_idx) AS size FROM tb_book";
+			conn = DBConn.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				size = rs.getInt("size");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		
+		return size;
 	}
 }

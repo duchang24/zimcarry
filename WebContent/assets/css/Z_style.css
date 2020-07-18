@@ -1,6 +1,9 @@
 @charset "UTF-8";
 
 /* 관리자 페이지 */
+textarea:focus { outline: none; } 
+button:focus { outline: none; } 
+input:focus { outline: none; }
 
 .simple_wrap {
 	display: flex;
@@ -348,4 +351,51 @@
 }
 .ck-editor__editable {
 	min-height: 150px;
+}
+
+/* reservation */
+.button_wrap {
+	padding: 10px 4%;
+	margin-bottom: 50px;
+}
+.button_wrap button {
+	box-sizing: border-box;
+	width: 200px;
+	height: 50px;
+	border: none;
+	border-radius: 10px;
+	color: #fff;
+	font-weight: bold;
+}
+.button_wrap button:hover {
+	box-shadow: 4px 4px 20px gray;
+}
+.button_wrap button.on {
+	position: relative;
+	bottom: 10px;
+	border: 2px solid #555;
+}
+.button_wrap #all {
+	background: linear-gradient(60deg, #FC5C7D, #6A82FB);
+}
+.button_wrap #future {
+	background: linear-gradient(60deg, #6A82FB 0%, #36D1DC 100%);
+}
+.button_wrap #past {
+	background: linear-gradient(60deg, #36D1DC 0%, #6A82FB 100%);
+}
+.card-header.card-header-warning.all {
+	background: linear-gradient(60deg, #FC5C7D 0%, #6A82FB 100%) !important;
+}
+.card-header.card-header-warning.future {
+	background: linear-gradient(60deg, #6A82FB 0%, #36D1DC 100%) !important;
+}
+.card-header.card-header-warning.past {
+	background: linear-gradient(60deg, #36D1DC 0%, #6A82FB 100%) !important;
+}
+@media (min-width: 992px){
+	.reser .col-lg-6 {
+	    flex: 0 0 50%;
+	    max-width: 100%;
+	}
 }

@@ -19,7 +19,7 @@
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:useBean id="hotelDAO" class="com.zimcarry.hotel.HotelDAO" />
 <jsp:useBean id="faqDAO" class="com.zimcarry.faq.FaqDAO" />
-<c:set var="bookList" value="${bookDAO.selectBookList()}" />
+<c:set var="bookList" value="${bookDAO.selectBookList('0, 15')}" />
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
@@ -168,7 +168,6 @@
       <!-- footer -->
       <%@ include file="./footer.jsp" %>
     </div>
-  </div>
   <!--   Core JS Files   -->
   <%@ include file="./core_js.jsp" %>
   <script>
