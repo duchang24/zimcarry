@@ -56,6 +56,13 @@
       <!-- End Navbar -->
       <div class="content">
       	<div class="list_up notice">
+      		<div class="page_wrap">
+				<ul class="page_list">
+					<c:forEach var="i" items="${page}" varStatus="status" >
+						<li><a href="./faq.jsp?pageNum=${status.index + 1}"<c:if test="${status.index + 1 eq pageNum}">class="on"</c:if>>${status.index + 1}</a></li>
+					</c:forEach>
+			    </ul>
+			</div>
       		<dl>
       			<c:forEach var="faq" items="${noticeList}" varStatus="status">
       			<dt>

@@ -9,6 +9,7 @@
             zimcarry
           </a>
         </li>
+       </ul>
     </nav>
     <div class="copyright float-right">
       &copy;

@@ -1,10 +1,21 @@
 @charset "UTF-8";
 
 /* 관리자 페이지 */
+textarea:focus { outline: none; } 
+button:focus { outline: none; } 
+input:focus { outline: none; }
 
+input[type="button"] {
+	cursor: pointer;
+}
+input[type="button"]:hover {
+	background-color: #adadad;
+}
+.page_list li a.on {
+	background-color: #BCC6E6;
+}
 .simple_wrap {
 	display: flex;
-	
 }
 .login_wrap {
 	height: 100%;
@@ -110,7 +121,6 @@
 	border-bottom: 1px solid #bdc3c7;
 }
 
-
 /* 관리자 등록 */
 .admin_regist {
 	height: 100%;
@@ -126,7 +136,6 @@
 	font-weight: bold;
 	color: #727171;
 }
-
 .admin_regist p input[type="text"], .admin_regist p input[type="password"] {
 	float: right;
 	width: 300px;
@@ -348,4 +357,80 @@
 }
 .ck-editor__editable {
 	min-height: 150px;
+}
+
+/* reservation */
+.button_wrap {
+	padding: 10px 4%;
+	margin-bottom: 50px;
+}
+.button_wrap button {
+	box-sizing: border-box;
+	width: 200px;
+	height: 50px;
+	border: none;
+	border-radius: 10px;
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+}
+.button_wrap button:hover {
+	box-shadow: 4px 4px 20px gray;
+}
+.button_wrap button.on {
+	position: relative;
+	bottom: 10px;
+	border: 2px solid #555;
+	box-shadow: 1px 4px 10px gray;
+}
+.button_wrap #all {
+	background: linear-gradient(60deg, #FC5C7D, #6A82FB);
+}
+.button_wrap #future {
+	background: linear-gradient(60deg, #6A82FB 0%, #36D1DC 100%);
+}
+.button_wrap #past {
+	background: linear-gradient(60deg, #36D1DC 0%, #6A82FB 100%);
+}
+.card-header.card-header-warning.all {
+	background: linear-gradient(60deg, #FC5C7D 0%, #6A82FB 100%) !important;
+}
+.card-header.card-header-warning.future {
+	background: linear-gradient(60deg, #6A82FB 0%, #36D1DC 100%) !important;
+}
+.card-header.card-header-warning.past {
+	background: linear-gradient(60deg, #36D1DC 0%, #6A82FB 100%) !important;
+}
+.table-hover tr td:nth-child(3) {
+	padding-left: 5%;	
+}
+.minisearch_form_wrap {
+	text-align: right;
+	margin: 15px 0;
+}
+.minisearch_form_wrap .minisrch_form {
+	vertical-align: top;
+}
+.minisearch_form_wrap input[type="text"] {
+	box-sizing: border-box;
+	width: 200px;
+	padding-left: 10px;
+	height: 35px;
+	border: 2px soild #555;
+	border-radius: 5px;
+}
+.minisearch_form_wrap input[type="button"] {
+	box-sizing: border-box;
+	width: 100px;
+	height: 35px;
+	border: 2px soild #555;
+	border-radius: 5px;
+}
+
+
+@media (min-width: 992px){
+	.reser .col-lg-6 {
+	    flex: 0 0 50%;
+	    max-width: 100%;
+	}
 }
