@@ -1,19 +1,18 @@
 let totCnt = $("#totCnt").val();	// 전체 게시물 수
 let recNum = 12;	// 한 페이지당 보여줄 개수
+let currentPage = 1;	// 현재 페이지
+let end = currentPage + 4;
+let start = end - 4;	// 시작 페이지 번호
 let totPage = totCnt / recNum;	// 총 페이지 수
 totPage = Math.floor(totPage);
 if(totCnt % recNum > 0){
 	totPage++;
 }
-let currentPage = 1;	// 현재 페이지
-if(totPage < currentPage){
-	currentPage = totPage;
-}
-let start = ((currentPage-1) / 5) * 5 + 1;	// 시작 페이지 번호
-let end = start + 5 -1;
-if(end > totPage){
+if(totPage < end){
 	end = totPage;
 }
+let startPage = 1;
+let endPage = 5;
 
 $(function(){
 	if($("#h_idx").val() == "0"){
@@ -22,28 +21,45 @@ $(function(){
 		$(".hIdxX").css("display", "block");
 	}
 	
-	if(currentPage > 1){
-		$(".paging").prepend("<a id='prev' href='javascript:paging("+(currentPage-1)+", "+totCnt+")'>&lt;</a></div>");
-	}
-	
-	for(let i=start; i<=end; i++){
+	$(".paging").prepend("<div><a id='prev' onclick='minusPage()' href='javascript:paging("+(currentPage-1)+")'>&lt;</a></div>");
+	$("#prev").css("visibility", "hidden");
+		
+	for(let i=startPage; i<=endPage; i++){
 		if(i == currentPage){
-			$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
+			$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
 			$(".paging a").addClass("on");
 		}else{
-			$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
+			$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
+		}
+	}
+	
+	if(totPage > 5){
+		$(".paging").append("<div><a id='next' onclick='plusPage()' href='javascript:paging("+(endPage+1)+")'>&gt;</a></div>");
+	}
+	
+	if(totPage >= startPage && totPage <= endPage){
+		$("#next").remove();
+		let lastPage;
+		switch(currentPage){
+			case totPage :
+				lastPage = currentPage % 5;
+				break;
+			case totPage-1 :
+				lastPage = (currentPage % 5) + 1;
+				break;
+			case totPage-2 :
+				lastPage = (currentPage % 5) + 2;
+				break;
+			case totPage-3 :
+				lastPage = (currentPage % 5) + 3;
+				break;
+			case totPage-4 :
+				lastPage = (currentPage % 5) + 4;
+				break;
 		}
 		
+		$(".paging").children("a:nth-child("+(lastPage+1)+")").nextAll().remove();
 	}
-	
-	if(currentPage < totPage){
-		$(".paging").append("<a id='next' href='javascript:paging("+(currentPage+1)+", "+totCnt+")'>&gt;</a>");
-	}
-	
-	if(currentPage == totPage){
-		$(".paging #next").remove();
-	}
-	
 });
 
 function checkform(){
@@ -131,107 +147,21 @@ function resetInfor(){
 	$(".hIdxX").css("display", "block");
 }
 
-function find(){
+function paging(paging){	
 	$(".paging a.on").removeClass('on');
-	
-	let h_name = $("#find_hotel").val();
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("GET", "./data/request_hotel.jsp?hName="+h_name+"&start="+start+"&recNum="+recNum, true);
-	xhr.send();
-	
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
-			$("table tr:first-child").nextAll("tr").remove();
-			
-			if(xhr.responseText.trim() == '[]'){
-				$("tr:last-child").after("<tr><td colspan='4'>검색 결과가 없습니다.</td></tr>");
-			}else{
-				
-				let hotelList = xhr.responseText.trim();
-				
-				hotelList = hotelList.replace('[','');
-				hotelList = hotelList.replace(']','');
-				
-				let hotel = new Array();
-				hotel = hotelList.split(", ");
-				let findCnt = 0;
-				for(let i=0; i<hotel.length; i++){
-					let hotelInfor = new Array();
-					hotelInfor = hotel[i].split("|");
-					let h_idx = hotelInfor[0];
-					let h_name = hotelInfor[2];
-					let h_discount = hotelInfor[5];
-					let h_partner = hotelInfor[6];
-					
-					$("tr:last-child").after("<tr><td>"+(i+1)+"</td><td><a href='javascript:findHotel("+h_idx+")'>"+h_name+"</a></td><td>"+h_discount+"</td><td>"+h_partner+"</td></tr>");
-					
-					findCnt++;
-				}
-				
-				totCnt = findCnt;
-				totPage = totCnt / recNum;	// 총 페이지 수
-				totPage = Math.floor(totPage);
-				if(totCnt % recNum > 0){
-					totPage++;
-				}
-				currentPage = 1;	// 현재 페이지
-				if(totPage < currentPage){
-					currentPage = totPage;
-				}
-				start = ((currentPage-1) / 5) * 5 + 1;	// 시작 페이지 번호
-				end = start + 5 -1;
-				if(end > totPage){
-					end = totPage;
-				}
-				
-				if(currentPage > 1){
-					$(".paging").prepend("<a id='prev' href='javascript:paging("+(currentPage-1)+", "+totCnt+")'>&lt;</a></div>");
-				}
-				
-				for(let i=start; i<=end; i++){
-					if(i == currentPage){
-						$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
-						$(".paging a").addClass("on");
-					}else{
-						$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
-					}
-					
-				}
-				
-				if(currentPage < totPage){
-					$(".paging").append("<a id='next' href='javascript:paging("+(currentPage+1)+", "+totCnt+")'>&gt;</a>");
-				}
-				
-				if(currentPage == totPage){
-					$(".paging #next").remove();
-				}
-			}
-			
-		}
-	}
-}
-	
-function list(){
-	if($("#find_hotel").val() == null || $("#find_hotel").val() == ""){
-		
-	}else{
-		location.reload();
-	}
-}
-
-function paging(paging, totalCnt){	
-	$(".paging a.on").removeClass('on');
+	$(".paging").children().remove();
+	$("#prev").parent().remove();
+	$("#next").parent().remove();	
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("GET", "./data/request_hotel.jsp?paging="+paging+"&recNum="+recNum, true);
-	xhr.send();
+	xhr.send();	
 	
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
 			$("table tr:first-child").nextAll("tr").remove();
 			
-			let hotelList = xhr.responseText.trim();
+			let hotelList = xhr.responseText;
 				
 			hotelList = hotelList.replace('[','');
 			hotelList = hotelList.replace(']','');
@@ -251,7 +181,6 @@ function paging(paging, totalCnt){
 			
 			$("tr:last-child").after("<tr><td  colspan='4' id='page' class='paging'></td></tr>");
 			
-			totCnt = totalCnt
 			totPage = totCnt / recNum;
 			totPage = Math.floor(totPage);
 			if(totCnt % recNum > 0){
@@ -261,33 +190,339 @@ function paging(paging, totalCnt){
 			if(totPage < currentPage){
 				currentPage = totPage;
 			}
-			start = ((currentPage-1) / 5) * 5 + 1;	// 시작 페이지 번호
-			end = start + 5 -1;
+			start = ((currentPage-1) / 5) * 5 + 1;
+			end = start + 4;
 			if(end > totPage){
 				end = totPage;
 			}
 			
-			if(currentPage > 1){
-				$(".paging").prepend("<a id='prev' href='javascript:paging("+(currentPage-1)+", "+totCnt+")'>&lt;</a></div>");
-			}
-			
-			for(let i=start; i<=end; i++){
-				if(i == currentPage){
-					$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
-					$(".paging a").addClass("on");
-				}else{
-					$(".paging").append("<a href='javascript:paging("+i+", "+totCnt+")'>"+i+"</a>");
-				}
-				
+			if(currentPage > 5){
+				$(".paging").prepend("<div><a id='prev' onclick='minusPage()' href='javascript:paging("+(startPage-1)+")'>&lt;</a></div>");
+			}else{
+				$(".paging").prepend("<div><a id='prev' onclick='minusPage()' href='javascript:paging("+(startPage-1)+")'>&lt;</a></div>");
+				$("#prev").css("visibility", "hidden");
 			}
 			
 			if(currentPage < totPage){
-				$(".paging").append("<a id='next' href='javascript:paging("+(currentPage+1)+", "+totCnt+")'>&gt;</a>");
+				$(".paging").after("<div><a id='next' onclick='plusPage()' href='javascript:paging("+(endPage+1)+")'>&gt;</a></div>");
 			}
 			
-			if(currentPage == totPage){
-					$(".paging #next").remove();
+			for(let i=startPage; i<=endPage; i++){
+				if(i == currentPage){
+					switch(currentPage % 5){
+						case 1:
+							$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
+							$(".paging").children("a:nth-child("+2+")").addClass("on");
+							break;
+						case 2:
+							$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
+							$(".paging").children("a:nth-child("+3+")").addClass("on");
+							break;
+						case 3:
+							$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
+							$(".paging").children("a:nth-child("+4+")").addClass("on");
+							break;
+						case 4:
+							$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
+							$(".paging").children("a:nth-child("+5+")").addClass("on");
+							break;
+						case 0:
+							$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
+							$(".paging").children("a:nth-child("+6+")").addClass("on");
+							break;						
+					}
+				}else{
+					$(".paging").append("<a href='javascript:paging("+i+")'>"+i+"</a>");
 				}
+			}
+			
+			if(totPage >= startPage && totPage <= endPage){
+				$("#next").remove();
+				let lastPage;
+				
+				switch(currentPage){
+					case totPage :
+						lastPage = currentPage % 5;
+						break;
+					case totPage-1 :
+						lastPage = (currentPage % 5) + 1;
+						break;
+					case totPage-2 :
+						lastPage = (currentPage % 5) + 2;
+						break;
+					case totPage-3 :
+						lastPage = (currentPage % 5) + 3;
+						break;
+					case totPage-4 :
+						lastPage = (currentPage % 5) + 4;
+						break;
+				}
+				$(".paging").children("a:nth-child("+(lastPage+1)+")").nextAll().remove();
+			}
 		}
+	}
+}
+
+function find(){
+	startPage = 1;
+	endPage = 5;
+	$(".paging a.on").removeClass('on');
+	$(".paging").children().remove();
+	$("#prev").parent().remove();
+	$("#next").parent().remove();
+	
+	$("#room_infor h2").remove();
+	
+	let h_name = $("#find_hotel").val();
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open("GET", "./data/request_hotel.jsp?hName="+h_name, true);
+	xhr.send();
+	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
+			totCnt = xhr.responseText.trim();
+			
+			let xhr2 = new XMLHttpRequest();
+			xhr2.open("GET", "./data/request_hotel.jsp?hName="+h_name+"&start="+1+"&recNum="+recNum, true);
+			xhr2.send();
+			
+			xhr2.onreadystatechange = function(){
+				if(xhr2.readyState == XMLHttpRequest.DONE && xhr2.status == 200){
+					$("table tr:first-child").nextAll("tr").remove();
+					
+					if(xhr.responseText.trim() == '[]'){
+						$("tr:last-child").after("<tr><td colspan='4'>검색 결과가 없습니다.</td></tr>");
+					}else{
+						let hotelList = xhr.responseText;
+						
+						hotelList = hotelList.replace('[','');
+						hotelList = hotelList.replace(']','');
+						
+						let hotel = new Array();
+						hotel = hotelList.split(", ");
+						for(let i=0; i<hotel.length; i++){
+							let hotelInfor = new Array();
+							hotelInfor = hotel[i].split("|");
+							let h_idx = hotelInfor[0];
+							let h_name = hotelInfor[2];
+							let h_discount = hotelInfor[5];
+							let h_partner = hotelInfor[6];
+							
+							$("tr:last-child").after("<tr><td>"+(i+1)+"</td><td><a href='javascript:findHotel("+h_idx+")'>"+h_name+"</a></td><td>"+h_discount+"</td><td>"+h_partner+"</td></tr>");
+						}
+
+						totPage = totCnt / recNum;
+						totPage = Math.floor(totPage);
+						if(totCnt % recNum > 0){
+							totPage++;
+						}
+						currentPage = 1;
+						if(totPage < currentPage){
+							currentPage = totPage;
+						}
+						start = ((currentPage-1) / 5) * 5 + 1;
+						end = start + 4;
+						if(end > totPage){
+							end = totPage;
+						}
+						
+						if(currentPage > 5){
+							$(".paging").prepend("<div><a id='prev' onclick='minusPage()' href='javascript:findPaging("+(startPage-1)+", "+totCnt+", `"+h_name+"`)'>&lt;</a></div>");
+						}else{
+							$(".paging").prepend("<div><a id='prev' onclick='minusPage()' href='javascript:findPaging("+(startPage-1)+", "+totCnt+", `"+h_name+"`)'>&lt;</a></div>");
+							$("#prev").css("visibility", "hidden");
+						}
+						
+						if(currentPage < totPage){
+							$(".paging").after("<div><a id='next' onclick='plusPage()' href='javascript:findPaging("+(endPage+1)+", "+totCnt+", `"+h_name+"`)'>&gt;</a></div>");
+						}
+						
+						for(let i=startPage; i<=endPage; i++){
+							if(i == currentPage){
+								switch(currentPage % 5){
+									case 1:
+										$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+h_name+"`)'>"+i+"</a>");
+										$(".paging").children("a:nth-child("+2+")").addClass("on");
+										break;
+									case 2:
+										$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+h_name+"`)'>"+i+"</a>");
+										$(".paging").children("a:nth-child("+3+")").addClass("on");
+										break;
+									case 3:
+										$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+h_name+"`)'>"+i+"</a>");
+										$(".paging").children("a:nth-child("+4+")").addClass("on");
+										break;
+									case 4:
+										$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+h_name+"`)'>"+i+"</a>");
+										$(".paging").children("a:nth-child("+5+")").addClass("on");
+										break;
+									case 0:
+										$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+h_name+"`)'>"+i+"</a>");
+										$(".paging").children("a:nth-child("+6+")").addClass("on");
+										break;						
+								}
+							}else{
+								$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+h_name+"`)'>"+i+"</a>");
+							}
+						}
+						
+						if(totPage >= startPage && totPage <= endPage){
+							$("#next").remove();
+							let lastPage;
+							
+							switch(currentPage){
+								case totPage :
+									alert("1");
+									lastPage = currentPage % 5;
+									break;
+								case totPage-1 :
+									alert("2");
+									lastPage = (currentPage % 5) + 1;
+									break;
+								case totPage-2 :
+									alert("3");
+									lastPage = (currentPage % 5) + 2;
+									break;
+								case totPage-3 :
+									alert("4");
+									lastPage = (currentPage % 5) + 3;
+									break;
+								case totPage-4 :
+									alert("5");
+									lastPage = (currentPage % 5) + 4;
+									break;
+							}
+							$(".paging").children("a:nth-child("+(lastPage+1)+")").nextAll().remove();
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+function findPaging(paging, totalCnt, hName){
+	$(".paging a.on").removeClass('on');
+	$(".paging").children().remove();
+	$("#prev").parent().remove();
+	$("#next").parent().remove();
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open("GET", "./data/request_hotel.jsp?hName="+hName+"&start="+paging+"&recNum="+recNum, true);
+	xhr.send();
+	
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
+			$("table tr:first-child").nextAll("tr").remove();
+			
+			let hotelList = xhr.responseText;
+				
+			hotelList = hotelList.replace('[','');
+			hotelList = hotelList.replace(']','');
+				
+			let hotel = new Array();
+			hotel = hotelList.split(", ");
+			for(let i=0; i<hotel.length; i++){
+				let hotelInfor = new Array();
+				hotelInfor = hotel[i].split("|");
+				let h_idx = hotelInfor[0];
+				let h_name = hotelInfor[2];
+				let h_discount = hotelInfor[5];
+				let h_partner = hotelInfor[6];
+				
+				$("tr:last-child").after("<tr><td>"+(i+1)+"</td><td><a href='javascript:findHotel("+h_idx+")'>"+h_name+"</a></td><td>"+h_discount+"</td><td>"+h_partner+"</td></tr>");
+			}
+			
+			$("tr:last-child").after("<tr><td  colspan='4' id='page' class='paging'></td></tr>");
+			
+			totCnt = totalCnt;
+			totPage = totCnt / recNum;
+			totPage = Math.floor(totPage);
+			if(totCnt % recNum > 0){
+				totPage++;
+			}
+			currentPage = paging;
+			if(totPage < currentPage){
+				currentPage = totPage;
+			}
+			start = ((currentPage-1) / 5) * 5 + 1;
+			end = start + 4;
+			if(end > totPage){
+				end = totPage;
+			}
+			
+			if(currentPage > 5){
+				$(".paging").prepend("<div><a id='prev' onclick='minusPage()' href='javascript:findPaging("+(startPage-1)+", "+totCnt+", `"+hName+"`)'>&lt;</a></div>");
+			}else{
+				$(".paging").prepend("<div><a id='prev' onclick='minusPage()' href='javascript:findPaging("+(startPage-1)+", "+totCnt+", `"+hName+"`)'>&lt;</a></div>");
+				$("#prev").css("visibility", "hidden");
+			}
+			
+			if(currentPage < totPage){
+				$(".paging").after("<div><a id='next' onclick='plusPage()' href='javascript:findPaging("+(endPage+1)+", "+totCnt+", `"+hName+"`)'>&gt;</a></div>");
+			}
+			
+			for(let i=startPage; i<=endPage; i++){
+				if(i == currentPage){
+					switch(currentPage % 5){
+						case 1:
+							$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+hName+"`)'>"+i+"</a>");
+							$(".paging").children("a:nth-child("+2+")").addClass("aOn");
+							break;
+						case 2:
+							$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+hName+"`)'>"+i+"</a>");
+							$(".paging").children("a:nth-child("+3+")").addClass("aOn");
+							break;
+						case 3:
+							$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+hName+"`)'>"+i+"</a>");
+							$(".paging").children("a:nth-child("+4+")").addClass("aOn");
+							break;
+						case 4:
+							$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+hName+"`)'>"+i+"</a>");
+							$(".paging").children("a:nth-child("+5+")").addClass("aOn");
+							break;
+						case 0:
+							$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+hName+"`)'>"+i+"</a>");
+							$(".paging").children("a:nth-child("+6+")").addClass("aOn");
+							break;						
+					}
+				}else{
+					$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+hName+"`)'>"+i+"</a>");
+				}
+			}
+			
+			if(totPage >= startPage && totPage <= endPage){
+				$("#next").remove();
+				let lastPage;
+				
+				switch(currentPage){
+					case totPage :
+						lastPage = currentPage % 5;
+						break;
+					case totPage-1 :
+						lastPage = (currentPage % 5) + 1;
+						break;
+					case totPage-2 :
+						lastPage = (currentPage % 5) + 2;
+						break;
+					case totPage-3 :
+						lastPage = (currentPage % 5) + 3;
+						break;
+					case totPage-4 :
+						lastPage = (currentPage % 5) + 4;
+						break;
+				}
+				$(".paging").children("a:nth-child("+(lastPage+1)+")").nextAll().remove();
+			}			
+		}
+	}
+}
+	
+function list(){
+	if($("#find_hotel").val() == null || $("#find_hotel").val() == ""){
+		
+	}else{
+		location.reload();
 	}
 }

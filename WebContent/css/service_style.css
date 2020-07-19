@@ -108,7 +108,7 @@
 #room_infor #find_room input::-ms-clear, #room_infor #find_room input::-ms-reveal {display: none; width : 0; height: 0;}
 #room_infor #find_room input::-webkit-search-decoration, #room_infor #find_room input::-webkit-search-cancel-button,
 #room_infor #find_room input::-webkit-search-results-button, #room_infor #find_room input::-webkit-search-results-decoration { display: none; }
-#room_infor #find_room button { position: absolute; width: 35px; height: 35px; background: url('../images/ico/search_ico.jpg') no-repeat; right: 18px; bottom: 11px; }
+#room_infor #find_room a { position: absolute; width: 35px; height: 35px; background: url('../images/ico/search_ico.jpg') no-repeat; right: 18px; bottom: 11px; }
 
 #room_infor .box_inner > ul { width: 100%;  margin-bottom: 50px; display: none; }
 #room_infor .box_inner > ul.on3 { display: block; }
@@ -126,14 +126,14 @@
 #room_infor ul li .room_discount span { font-size: 20px; }
 
 #room_infor .num_click { width: 100%; margin-top: 100px; position: relative; }
-#room_infor .num_click p { text-align: center; }
-#room_infor .num_click p a { display: inline-block; width: 30px; height: 30px; line-height: 30px; }
-#room_infor .num_click p a.aOn { color: #FFD100; }
-#room_infor .num_click p a:hover { background: #f5f5f5; }
+#room_infor .num_click div { text-align: center; }
+#room_infor .num_click div a { display: inline-block; width: 30px; height: 30px; line-height: 30px; }
+#room_infor .num_click div a.aOn { color: #FFD100; }
+#room_infor .num_click div a:hover { background: #f5f5f5; }
 
 
-#room_infor .num_click div a#prev { position: absolute; top: 5px; left: 450px; }
-#room_infor .num_click div a#next { position: absolute; top: 5px; right: 450px; }
+#room_infor .num_click div a#prev { position: absolute; top: -2px; left: 450px; }
+#room_infor .num_click div a#next { position: absolute; top: -2px; right: 450px; }
 #room_infor .num_click a { font-size: 18px; color: #000; }
 
 
