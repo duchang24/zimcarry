@@ -295,11 +295,11 @@ function find(){
 					}else{
 						let hotelList = xhr2.responseText;
 						
-						console.log("hotelList" + hotelList);
 						hotelList = hotelList.replace('[','');
 						hotelList = hotelList.replace(']','');
+						
 						let hotel = new Array();
-						hotel = hotelList.split(", ");
+						hotel = hotelList.split("null, ");
 						for(let i=0; i<hotel.length; i++){
 							let hotelInfor = new Array();
 							hotelInfor = hotel[i].split("|");
@@ -310,9 +310,6 @@ function find(){
 							let h_address = hotelInfor[3];
 							let h_map = hotelInfor[4];
 							let h_discount = hotelInfor[5];
-							h_discount = h_discount.trim();
-							
-							console.log(h_name);
 							
 							if(h_discount == "O"){
 								$("#room_infor ul").append("<li id="+h_idx+"><div class='room_img'></div><div class='room_content'><h3 class='room_name'>"+h_name+"</h3><p class='room_addr'>"+h_address+"</p><div class='room_btn'><a href='"+h_map+"' target='_blank'>지도보기</a></div></div><div class='room_discount'><span>20%</span> OFF</div></li>");

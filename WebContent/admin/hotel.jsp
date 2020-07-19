@@ -6,12 +6,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean class="com.zimcarry.hotel.HotelDTO" id="hotelDTO"/>
 <jsp:useBean class="com.zimcarry.hotel.HotelDAO" id="hotelDAO"/>
-<c:if test="${empty sessionScope.admin_id}">
+<!-- <c:if test="${empty sessionScope.admin_id}">
 	<script>
 		alert('로그인 후 이용하세요.');
 		location.href='./admin.jsp';
 	</script>
-</c:if>
+</c:if> -->
 
 <c:set var="totCnt" value="${hotelDAO.totCnt()}"/>
 <c:set var="hotelList" value="${hotelDAO.selectHotel(0, 12)}"/>

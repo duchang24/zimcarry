@@ -294,10 +294,12 @@ function find(){
 					if(xhr.responseText.trim() == '[]'){
 						$("tr:last-child").after("<tr><td colspan='4'>검색 결과가 없습니다.</td></tr>");
 					}else{
-						let hotelList = xhr.responseText;
+						let hotelList = xhr2.responseText;
 						
 						hotelList = hotelList.replace('[','');
 						hotelList = hotelList.replace(']','');
+						
+						console.log(hotelList);
 						
 						let hotel = new Array();
 						hotel = hotelList.split(", ");
@@ -311,7 +313,8 @@ function find(){
 							
 							$("tr:last-child").after("<tr><td>"+(i+1)+"</td><td><a href='javascript:findHotel("+h_idx+")'>"+h_name+"</a></td><td>"+h_discount+"</td><td>"+h_partner+"</td></tr>");
 						}
-
+						$("tr:last-child").after("<tr><td  colspan='4' id='page' class='paging'></td></tr>");
+						
 						totPage = totCnt / recNum;
 						totPage = Math.floor(totPage);
 						if(totCnt % recNum > 0){
@@ -373,23 +376,18 @@ function find(){
 							
 							switch(currentPage){
 								case totPage :
-									alert("1");
 									lastPage = currentPage % 5;
 									break;
 								case totPage-1 :
-									alert("2");
 									lastPage = (currentPage % 5) + 1;
 									break;
 								case totPage-2 :
-									alert("3");
 									lastPage = (currentPage % 5) + 2;
 									break;
 								case totPage-3 :
-									alert("4");
 									lastPage = (currentPage % 5) + 3;
 									break;
 								case totPage-4 :
-									alert("5");
 									lastPage = (currentPage % 5) + 4;
 									break;
 							}
@@ -468,23 +466,23 @@ function findPaging(paging, totalCnt, hName){
 					switch(currentPage % 5){
 						case 1:
 							$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+hName+"`)'>"+i+"</a>");
-							$(".paging").children("a:nth-child("+2+")").addClass("aOn");
+							$(".paging").children("a:nth-child("+2+")").addClass("on");
 							break;
 						case 2:
 							$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+hName+"`)'>"+i+"</a>");
-							$(".paging").children("a:nth-child("+3+")").addClass("aOn");
+							$(".paging").children("a:nth-child("+3+")").addClass("on");
 							break;
 						case 3:
 							$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+hName+"`)'>"+i+"</a>");
-							$(".paging").children("a:nth-child("+4+")").addClass("aOn");
+							$(".paging").children("a:nth-child("+4+")").addClass("on");
 							break;
 						case 4:
 							$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+hName+"`)'>"+i+"</a>");
-							$(".paging").children("a:nth-child("+5+")").addClass("aOn");
+							$(".paging").children("a:nth-child("+5+")").addClass("on");
 							break;
 						case 0:
 							$(".paging").append("<a href='javascript:findPaging("+i+", "+totCnt+", `"+hName+"`)'>"+i+"</a>");
-							$(".paging").children("a:nth-child("+6+")").addClass("aOn");
+							$(".paging").children("a:nth-child("+6+")").addClass("on");
 							break;						
 					}
 				}else{
