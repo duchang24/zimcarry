@@ -30,7 +30,7 @@
 			<c:set var="limit" value="0, 10" />
 		</c:when>
 		<c:otherwise>
-			<c:set var="start" value="${pageNum * 20 - 20}" />
+			<c:set var="start" value="${pageNum * 15 - 15}" />
 			<c:set var="limit" value="${start}${limit}" />
 		</c:otherwise>
 	</c:choose>

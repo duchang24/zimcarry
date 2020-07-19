@@ -99,4 +99,12 @@ public class BookDTO {
 	public String toString() {
 		return bName + "|" + bStart + "|" + bEnd;
 	}
+	public String toString(String a) {
+		return "BookDTO [bIdx=" + bIdx + ", bName=" + bName + ", bHp=" + bHp + ", bStart=" + bStart + ", bEnd=" + bEnd
+				+ ", bBookingdate=" + bBookingdate + ", bStartdate=" + bStartdate + ", bEnddate=" + bEnddate
+				+ ", bOver26=" + bOver26 + ", bUnder26=" + bUnder26 + ", bPrice=" + bPrice + ", bPoint=" + bPoint
+				+ ", bIsreview=" + bIsreview + "]";
+	}
+	
+	
 }
