@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>짐 없는 여행의 시작! 짐캐리</title>
+    <title>짐 없는 여행의 시작! 아임캐리</title>
     <link href="../../css/customer_center_style.css" rel="stylesheet">
     <link href="../../images/ico_tit.ico" rel="shortcut icon" type="image/x-icon">
 </head>
@@ -18,7 +18,7 @@
 		<div class="customer sub_content_wrap">
             <div class="sub_title box_inner">
                 짐없는 여행의 시작<br>
-                <span>짐캐리</span>
+                <span>아임캐리</span>
             </div>
             <div class="white">
                 <div id="sub_content" class="box_inner sub_content">
@@ -43,7 +43,7 @@
                                 <fieldset>
                                     <legend>이용후기 작성</legend>
                                     <div id="book_check_area">
-                                    	<p><img src="../../images/ico/ico_logo_title.png" alt="짐캐리 로고" ></p>
+                                    	<p><img src="../../images/ico/ico_logo_title.png" alt="아임캐리 로고" ></p>
                                     	<p class="text">클린한 이용 후기를 위해 이용 고객만 작성이 가능합니다.</p>
                                     	<p class="text">이용 후기 작성을 위해 이용내역조회를 먼저 해주세요.</p>
 	                                    <input type="text" name="bHp" id="bHp" placeholder="전화번호를 입력하세요 (-제외)">

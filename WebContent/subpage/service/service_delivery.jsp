@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>짐 없는 여행의 시작! 짐캐리</title>
+    <title>짐 없는 여행의 시작! 아임캐리</title>
     <link href="../../css/service_delivery.css" rel="stylesheet">
     <link href="../../images/ico_tit.ico" rel="shortcut icon" type="image/x-icon">
 </head>
@@ -19,13 +19,13 @@
 		<div class="service_delivery sub_content_wrap">
             <div class="sub_title box_inner">
                 짐없는 여행의 시작<br>
-                <span>짐캐리</span>
+                <span>아임캐리</span>
             </div>
             <div class="white">
                 <div id="sub_content" class="box_inner sub_content">
                     <nav class="sub_navi">
                         <ul>
-                            <li><a href="./service_zimcarry.jsp">짐캐리란</a></li>
+                            <li><a href="./service_zimcarry.jsp">아임캐리란</a></li>
                             <li><a href="./service_delivery.jsp">운송서비스</a></li>
                             <li><a href="./service_carry.jsp">보관서비스</a></li>
                         </ul>
@@ -217,7 +217,7 @@
                             <ul class="price_caution">
                                 <li>고객님의 짐은 숙소에서 16:00~18:00 사이에 도착합니다.</li>
                                 <li>당일 교통상황에 따라 지연될 수 있습니다.</li>
-                                <li>숙소에 짐을 11시 이전 프런트에 짐을 맡겨주시고, '짐캐리에서 픽업한다'고 말씀해 주시면 됩니다.</li>
+                                <li>숙소에 짐을 11시 이전 프런트에 짐을 맡겨주시고, '아임캐리에서 픽업한다'고 말씀해 주시면 됩니다.</li>
                                 <li>부산역, 공항에는 15:00 이후부터 찾을 수 있습니다.</li>
                             </ul>
                         </div>
@@ -227,7 +227,7 @@
                 <!-- 매장안내도 -->
                 <div class="ivory_2">
                     <div id="sub_content" class="box_inner sub_content">
-                        <h2>짐캐리 부산 매장안내도</h2>
+                        <h2>아임캐리 부산 매장안내도</h2>
                         <nav class="map_list box_inner">
                             <ul>
                                 <li id="map1">부산역</li>
@@ -251,7 +251,7 @@
                                             <h2>부산역</h2>
                                             <ul>
                                                 <li><span>01</span>부산역 1층 2번출구 찾기</li>
-                                                <li><span>02</span>출구 앞 짐캐리로 짐을 가지고 들어가기</li>
+                                                <li><span>02</span>출구 앞 아임캐리로 짐을 가지고 들어가기</li>
                                             </ul>
                                             <p class="shop_time">운영시간 : 09:00 ~ 22:00</p>
                                         </div>
@@ -308,7 +308,7 @@
                                             </div>
                                             <h2>벡스코</h2>
                                             <ul>
-                                                <li><span>01</span>벡스코 제 1전시장 1층 2호 짐캐리 이용하기</li>
+                                                <li><span>01</span>벡스코 제 1전시장 1층 2호 아임캐리 이용하기</li>
                                             </ul>
                                             <p class="shop_time">운영시간 : 10:00~18:00</p>
                                         </div>

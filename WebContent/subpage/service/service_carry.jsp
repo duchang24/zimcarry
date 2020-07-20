@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>짐 없는 여행의 시작! 짐캐리</title>
+    <title>짐 없는 여행의 시작! 아임캐리</title>
     <link href="../../css/service_carry.css" rel="stylesheet">
     <link href="../../images/ico_tit.ico" rel="shortcut icon" type="image/x-icon">
 </head>
@@ -19,13 +19,13 @@
 		<div class="service_carry sub_content_wrap">
             <div class="sub_title box_inner">
                 짐없는 여행의 시작<br>
-                <span>짐캐리</span>
+                <span>아임캐리</span>
             </div>
             <div class="white">
                 <div id="sub_content" class="box_inner sub_content">
                     <nav class="sub_navi">
                         <ul>
-                            <li><a href="./service_zimcarry.jsp">짐캐리란</a></li>
+                            <li><a href="./service_zimcarry.jsp">아임캐리란</a></li>
                             <li><a href="./service_delivery.jsp">운송서비스</a></li>
                             <li><a href="./service_carry.jsp">보관서비스</a></li>
                         </ul>
@@ -60,7 +60,7 @@
                                     <div class="carry_img_txt">
                                         <h3>02</h3>
                                         <h4>STORAGE</h4>
-                                        <p>부산역 짐캐리 매장에서<br>짐맡기기</p>
+                                        <p>부산역 아임캐리 매장에서<br>짐맡기기</p>
                                     </div>
                                 </li>
                                 <li><img src="../../images/ico/ico_arrow.png" alt="오른쪽 방향 화살표 아이콘"></li>
@@ -124,7 +124,7 @@
                             </ul>
                             <div class="carry_caution">
                                 <p>- 22시 이후에 찾아가지 않은 짐은 다음날 오전 9시 이후 찾을 수 있으며, 동일 요금이 추가됩니다.</p>
-                                <p>- 보관은 부산역 짐캐리에서만 가능합니다.</p>
+                                <p>- 보관은 부산역 아임캐리에서만 가능합니다.</p>
                                 <p>- 보관되는 물품은 열리지 않도록 잠가주시거나 묶어 주시길 바랍니다.</p>
                                 <p>- 냉장/냉동 보관은 안됩니다.</p>
                             </div>

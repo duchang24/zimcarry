@@ -1,13 +1,16 @@
 @import url(common.css);
-.reservation { background: url(../images/img/sub01_visual_img03.jpg) no-repeat 9% 0; }
+.reservation { background: url(../images/img/sub02_visual_img.jpg) no-repeat 9% 0; }
 .sub_content_wrap {  width: 100%; height: fit-content; background-attachment: fixed; letter-spacing: -2px; position: relative; } 
 .sub_content_wrap .sub_content { margin: 0 auto; text-align: center; }
 .sub_content_wrap .sub_content .sub_navi ul li { width: 50%; }
 .sub_content .sub_navi ul li:last-child a { font-weight: bold; background: #ffda00; }
 
-p { text-align: left; line-height: 2; font-size: 24px; font-weight: 400; }
+p { line-height: 2; font-size: 24px; font-weight: 400; }
 input { background: #f8f8f8; border: RGB(86, 103, 105) 2px solid; margin: 10px auto; width: 80%; height: 60px; min-height: 2rem; padding: 10px; color: RGB(86, 103, 105); font-size: 1rem; }
 input:hover { font-weight: bold; background: #ffda00; color: #333; }
+span { font-weight: bold }
+#list { margin: 0 auto; width: 80%; text-align: left; }
+#carry { position: absolute; bottom: 120px; left: 750px; }
 
 @media screen and (max-width: 800px) {
      
@@ -25,4 +28,5 @@ input:hover { font-weight: bold; background: #ffda00; color: #333; }
 
     p { font-size: 18px; margin: 0 0 0 10px; }
     input { margin: 10px 0 0 0; padding: 0; }
+    #carry {display: none;}
 }

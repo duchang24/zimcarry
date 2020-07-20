@@ -20,7 +20,7 @@
                 <a class="menu-link" href="#">서비스</a>
             </li>
             <ul class="menu-submenu accordion-content">
-                <li><a class="head" href="../../subpage/service/service_zimcarry.jsp">짐캐리란</a></li>
+                <li><a class="head" href="../../subpage/service/service_zimcarry.jsp">아임캐리란</a></li>
                 <li><a class="head" href="../../subpage/service/service_delivery.jsp">운송서비스</a></li>
                 <li><a class="head" href="../subpage/service/service_carry.jsp">보관서비스</a></li>
             </ul> 
@@ -56,7 +56,7 @@
                     <a href="../../subpage/service/service_zimcarry.jsp" id="openit" class="openAll1">서비스</a>
                     <div class="gnb_depth gnb_depth2_1">
                         <ul class="submenu_list">
-                            <li class="submenu"><a href="../../subpage/service/service_zimcarry.jsp">짐캐리란</a></li>
+                            <li class="submenu"><a href="../../subpage/service/service_zimcarry.jsp">아임캐리란</a></li>
                             <li class="submenu"><a href="../../subpage/service/service_delivery.jsp">운송서비스</a></li>
                             <li class="submenu"><a href="../../subpage/service/service_carry.jsp">보관서비스</a></li>
                         </ul>
