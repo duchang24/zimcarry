@@ -1,3 +1,5 @@
+@import url(common.css);
+
   /* 보관서비스 */
   .reservation { background: url(../images/img/sub01_visual_img02.jpg) no-repeat 9% 0; }
   .sub_content_wrap {  width: 100%; height: fit-content; background-attachment: fixed; letter-spacing: -2px; position: relative; } 

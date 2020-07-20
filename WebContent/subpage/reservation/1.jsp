@@ -9,7 +9,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>예약하기</title>
-<link href="../../css/common.css" rel="stylesheet">
 <link href="../../images/ico_tit.ico" rel="shortcut icon"
 	type="image/x-icon">
 <link
@@ -22,9 +21,15 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="js/reservation.js"></script>
+
 </head>
 <body>
-	<%@ include file="../../common/header.jsp"%>
+	<%@ include file = "../../common/header.jsp"%>
+	<%
+
+	String se_phone = (String)session.getAttribute("p_number"); 
+	%>
+
 	<div class="reservation sub_content_wrap">
 		<div class="sub_title box_inner">
 			짐없는 여행의 시작<br>
@@ -51,26 +56,28 @@
 					<input type="text" name="bHp" id="phone2" placeholder="휴대폰 (예) 010-9326-3421">
 					<input type="button" id="btninput" value="휴대폰인증" onclick="popup();">
 					<input type="hidden" name="ck_phone" value="no" id="isIdCheck">
-					
+					<input type="text" name="ck_phone2" placeholder="전송된 인증번호를 입력하세요" id="ck_phone2">
+					<input type="hidden" value=<%=se_phone%> id="se_phone">
+					<p><%=se_phone %></p>
 					<h1 id="h1">구간 선택</h1>
 					<div id="box_bds">
 						<select name="bStart" id="select_op">
 							<option value="">맡기는 장소</option>
 							<option value="부산역">부산역</option>
 							<option value="숙소">숙소</option>
-							<option value="벡스코">숙소</option>
+							<option value="벡스코">벡스코</option>
 						</select> 
 						<select name="bEnd" id="select_op">
 							<option value="">찾는 장소</option>
 							<option value="부산역">부산역</option>
 							<option value="숙소">숙소</option>
-							<option value="벡스코">숙소</option>
+							<option value="벡스코">벡스코</option>
 						</select>
 					</div>
 
 				<h1 id="h1">맡길 시간</h1>
 				<div id="box_bd">
-					<input type="text" name="bBookingdate" id="Datepickerstart"placeholder="YYYY-MM-DD">
+					<input type="text" name="bBookingdate" id="Datepickerstart" placeholder="YYYY-MM-DD">
 					<select name="bBookingtime1" id="select_op">
 						<option value="">시 선택</option>
 						<option value="9">오전 9시</option>
@@ -112,12 +119,12 @@
 					<input type="text" name="bPrice" id="bPrice" class="input_sht" value="0" placeholder="수량을 입력하세요."> 
 				</div>
 
-				<input id="btninput" type="submit" value="예약하기" onclick="chkform()">
+				<input id="btninput" type="button" value="예약하기" onclick="chkform(this.form)">
 			</form>
 			</div>
 		</div>
 	</div>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+
 	<script src="../../js/main.js"></script>
 	<!-- footer -->
 	<%@ include file="../../common/footer.jsp"%>

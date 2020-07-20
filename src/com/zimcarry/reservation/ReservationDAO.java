@@ -2,7 +2,10 @@ package com.zimcarry.reservation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.zimcarry.db.DBConn;
 
@@ -39,5 +42,46 @@ public class ReservationDAO {
 			DBConn.close(conn, pstmt);
 		}
 		return false;
+	}
+	public List<ReservationDTO> selectJoin(String name,String phone)
+	{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<ReservationDTO> boardList = new ArrayList<ReservationDTO>();
+		System.out.println("이름과 번호:"+name+" "+phone);
+		name = "민준식";
+		phone = "01093263421";
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT b_idx, b_name, b_hp, b_start, b_end, b_bookingdate, b_startdate, b_enddate, b_over26, b_under26, b_price FROM tb_book WHERE b_name=? AND b_hp=? AND b_enddate >= CURDATE();";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ReservationDTO res_DTO = new ReservationDTO();
+				res_DTO.setbIdx(rs.getLong("b_idx"));
+				res_DTO.setbName(rs.getString("b_name"));
+				res_DTO.setbHp(rs.getString("b_hp"));
+				res_DTO.setbStart(rs.getString("b_start"));
+				res_DTO.setbEnd(rs.getString("b_end"));
+				res_DTO.setbBookingdate(rs.getDate("b_bookingdate"));
+				res_DTO.setbStartdate(rs.getDate("b_startdate"));
+				res_DTO.setbEnddate(rs.getDate("b_enddate"));
+				res_DTO.setbOver26(rs.getInt("b_over26"));
+				res_DTO.setbUnder26(rs.getInt("b_under26"));
+				res_DTO.setbPrice(rs.getInt("b_price"));
+				System.out.println(res_DTO.toString());
+				boardList.add(res_DTO);
+				System.out.println(boardList.toString());
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return boardList;
 	}
 }
