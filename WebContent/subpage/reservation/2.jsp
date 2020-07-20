@@ -18,7 +18,9 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="js/reservation.js"></script>
-
+<%
+	String se_phone = (String)session.getAttribute("p_number");
+%>
 </head>
 <body>
 	<%@ include file="../../common/header.jsp"%>
@@ -44,18 +46,19 @@
 					</ul>
 				</div>	
 		
-			<form action="#" name="my_form" id="form-2">
-				<input type="text" name="name1" placeholder="이름">
+			<form action="2_ok.jsp" name="my_form" id="form-2">
+				<input type="text" name="name1" id="name1" placeholder="이름">
 				<input type="text" name="phone2" id="phone2" placeholder="휴대폰 번호"> 
-				<input type="button" id="btninput" value="휴대폰인증"onclick="popup();">
+				<!--  input type="button" id="btninput" value="휴대폰인증"onclick="popup();"-->
 				<input type="hidden" name="ck_phone" value="no" id="isIdCheck">
-				<input type="submit" id="btninput" value="조회하기">
+				<!-- input type="text" name="ck_phone2" placeholder="전송된 인증번호를 입력하세요" id="ck_phone2"-->
+				<input type="hidden" value=<%=se_phone%> id="se_phone">
+				<input type="button" id="btninput" value="조회하기" onclick="chkforminfo(this.form)">
 			</form>
 			</div>
 		</div>
 	</div>
 	
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 	<script src="../../js/main.js"></script>
 	
 	<!-- footer -->

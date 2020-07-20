@@ -1,5 +1,9 @@
 $(function() {
-    $( "#Datepickerstart" ).datepicker({
+	
+	//$("#ck_phone2").hide();
+	
+	
+    $("#Datepickerstart").datepicker({
         showButtonPanel: true, 
         currentText: '오늘 날짜', 
         closeText: '닫기', 
@@ -11,8 +15,7 @@ $(function() {
         currentText: '오늘 날짜', 
         closeText: '닫기', 
         dateFormat: "yy-mm-dd",
-        minDate: 0,
-		maxDate: 2
+        minDate: 0
    });
    var bOver26 = 0;
    var bUnder26 = 0;
@@ -39,7 +42,7 @@ $(function() {
 
 	function popup() {
            var name = "휴대폰 본인인증";
-           var option = "width = 500, height = 500, top = 100, left = 200, location = no";
+           var option = "width = 50, height = 50, top = 50, left = 50, location = no";
            var phone = document.getElementById("phone2").value;
            var url = "js/Post.jsp?phone=";
            url = url+phone;
@@ -51,6 +54,8 @@ $(function() {
            
                window.open(url, name, option);
            }
+		$("#ck_phone2").show();
+		
        }
 
 	function isEmpty(obj, msg){
@@ -65,16 +70,29 @@ $(function() {
 		return false;
 	}
 	
-	function chkform(){
+	function chkform(form){
 		var form = document.my_form;
 		
-		if(isEmpty(form.name2,"이름을 입력하세요")) return flase;
+		var ck_phone = document.getElementById("se_phone").value;
+		var list = document.getElementById("ck_phone2").value;
+		if(ck_phone == list)
+		{
+			alert("인증번호가 확인되었습니다.");
+
+		}else{
+			alert("인증번호가 맞지않습니다.")
+			return flase;
+		}
 		
-		if(isEmpty(form.phone2,"전화번호을 입력하세요")) return flase;
+		if(isEmpty(form.bName,"이름을 입력하세요")) return flase;
 		
-		if(isEmpty(form.b_start,"구간을 입력하세요")) return flase;
+		if(isEmpty(form.bHp,"전화번호을 입력하세요")) return flase;
 		
-		if(isEmpty(form.b_end,"구간을 입력하세요")) return flase;
+		if(isEmpty(form.ck_phone2,"인증번호를 입력하세요")) return flase;
+		
+		if(isEmpty(form.bStart,"구간을 입력하세요")) return flase;
+		
+		if(isEmpty(form.bEnd,"구간을 입력하세요")) return flase;
 		
 		if(isEmpty(form.bBookingdate,"예약날짜을 입력하세요")) return flase;
 		
@@ -82,7 +100,6 @@ $(function() {
 		
 		if(isEmpty(form.bBookingtime2,"예약 시간을 입력하세요")) return flase;
 		
-		if(isEmpty(form.bBookingtime1,"예약 시간을 입력하세요")) return flase;
 		
 		if(isEmpty(form.bBookingdateend,"찾는 날짜을 입력하세요")) return flase;
 		
@@ -90,6 +107,17 @@ $(function() {
 		
 		if(isEmpty(form.bUnder26,"물건 수량을 입력하세요")) return flase;
 		
-		
-		
+		form.submit();
 	}
+	function chkforminfo(form){
+		var form = document.my_form;
+		
+		if(isEmpty(form.name1,"이름을 입력하세요")) return flase;
+		
+		if(isEmpty(form.phone2,"전화번호을 입력하세요")) return flase;
+		
+		//if(isEmpty(form.ck_phone2,"인증번호를 입력하세요")) return flase;
+		
+		form.submit();
+}
+		
