@@ -4,15 +4,24 @@
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page import="java.io.File"%>
+<%@ page import="com.zimcarry.util.FileService"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean class="com.zimcarry.hotel.HotelDAO" id="hotelDAO"/>
 <jsp:useBean class="com.zimcarry.hotel.HotelDTO" id="hotelDTO"/>
 <%
-	String uploadPath = request.getRealPath("uploadHotel");
-	
-	int size = 1024*1024*10;
-	
 	try{
+		FileService fs = new FileService();
+		File temp = new File(request.getRealPath("uploadHotel"));
+		if (!temp.exists()) {
+			System.out.println("파일 또는 디렉토리 없음");
+			temp.mkdir();
+		}
+		fs.setRealPath(request.getRealPath("uploadHotel"));
+		
+		String uploadPath = fs.getRealPath();
+		
+		int size = 1024*1024*10;
+		
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "UTF-8", new DefaultFileRenamePolicy());
 		
 		if(multi.getParameter("h_idx").equals("0")){	// h_idx가 0일 때 (호텔 추가)			
