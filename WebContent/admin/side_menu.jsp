@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="sidebar" data-color="orange" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-  <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+
+  <div class="logo"><a href="admin.jsp" class="simple-text logo-normal">
       Zimcarry admin
     </a></div>
   <div class="sidebar-wrapper">
