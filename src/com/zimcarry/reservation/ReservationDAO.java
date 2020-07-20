@@ -71,9 +71,7 @@ public class ReservationDAO {
 				res_DTO.setbOver26(rs.getInt("b_over26"));
 				res_DTO.setbUnder26(rs.getInt("b_under26"));
 				res_DTO.setbPrice(rs.getInt("b_price"));
-				System.out.println(res_DTO.toString());
 				boardList.add(res_DTO);
-				System.out.println(boardList.toString());
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

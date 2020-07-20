@@ -120,4 +120,3 @@ $(function() {
 		
 		form.submit();
 }
-		
