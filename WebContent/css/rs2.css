@@ -19,6 +19,8 @@
    input { background: #f8f8f8; border: RGB(86, 103, 105) 2px solid; margin: 1rem; width: 80%; min-height: 2rem; padding: 10px; color: RGB(86, 103, 105); font-size: 1rem; }
  
    @media screen and (max-width: 800px) {
+   	.sub_content_wrap .sub_title { height: 70px; margin: 0; padding: 150px 0 50px 4%; font-size: 26px; }
+    
      
     .white { width: 100%; }
     .white .sub_content { width: 100%; }
@@ -32,7 +34,11 @@
     .white .sub_content .sub_indicator > ul { display: none; }
     .white .sub_content .sub_indicator > h2 { font-size: 30px; color: black; font-weight: 600; }
   
-    form { margin: 0 auto;  }  
-    input { width: 150%; margin: 10px -58px; }
-    #btninput { width: 150%;  margin: 10px -45px; }
+	#reFind { width: 90%; margin: 25px auto 0; }
+	#reFind #reFind_img { padding-top: 40px; }
+	#reFind h3 { font-size: 1.3em; }
+	#reFind form { padding-bottom: 30px; }
+	#reFind form input { width: 150%; margin: 10px -58px; }
+	#reFind form #btninput { width: 150%;  margin: 20px -45px; }
+    
    }

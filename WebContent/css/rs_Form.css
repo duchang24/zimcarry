@@ -18,7 +18,8 @@
 
 
   @media screen and (max-width: 800px) {
-
+  	.sub_content_wrap .sub_title { height: 70px; margin: 0; padding: 150px 0 50px 4%; font-size: 26px; }
+    
     .white { width: 100%; }
     .white .sub_content { width: 100%; }
     .white .sub_content .sub_navi { width: 100%; left: 0; top: 0; }
