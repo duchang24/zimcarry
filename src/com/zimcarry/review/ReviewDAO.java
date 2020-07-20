@@ -16,13 +16,12 @@ public class ReviewDAO {
 	public List<ReviewDTO> selectAll(String limit) {
 
 		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
-		
+	
 		try {
 			conn = DBConn.getConnection();
 			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx, re_hidden FROM tb_review ORDER BY re_idx DESC LIMIT " + limit;
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
 				
 			while (rs.next()) {
 				ReviewDTO reviewDTO = new ReviewDTO();
@@ -35,14 +34,13 @@ public class ReviewDAO {
 				reviewDTO.setReHidden(rs.getString("re_hidden"));
 				reviewList.add(reviewDTO);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
 		}
-	} catch (Exception e) {
-		e.printStackTrace();
-	} finally {
-		DBConn.close(conn, pstmt, rs);
+		return reviewList;
 	}
-	return reviewList;
-}
 	public boolean insertReview(ReviewDTO reviewDTO) {
 		try {
 			String sql = "INSERT INTO tb_review(re_score, re_title, re_content, re_bookidx) VALUES(?, ?, ?, ?)";

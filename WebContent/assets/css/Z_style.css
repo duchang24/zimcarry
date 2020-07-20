@@ -4,7 +4,6 @@
 
 .simple_wrap {
 	display: flex;
-	
 }
 .login_wrap {
 	height: 100%;
@@ -315,6 +314,7 @@
 	background-color: #BCC6E6;
 	color: black;
 }
+
 /* FAQ 관리 페이지 */
 .content textarea {
 	width: 100%;
