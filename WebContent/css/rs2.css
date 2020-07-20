@@ -5,10 +5,17 @@
   .sub_content_wrap {  width: 100%; height: fit-content; background-attachment: fixed; letter-spacing: -2px; position: relative; } 
   .sub_content_wrap .sub_content .sub_navi ul li { width: 50%; }
   .sub_content .sub_navi ul li:last-child a { font-weight: bold; background: #ffda00; }
- 
-   form { text-align: center; margin: 20px auto; max-width:50%; padding-top:1%; padding-bottom:1%; }  
-   #btninput { background: rgb(110, 106, 106); color: #fff; height: 65px; width: 84%; font-size: 1.5em; margin-top: 30px; }
-   #btninput:hover { font-weight: bold; background: #ffda00; color: #333; }
+
+	#reFind { margin-top: 70px; background: #F7F7F7; }
+	#reFind #reFind_img { margin: 0 auto 40px; padding-top: 115px; width: 150px; }
+	#reFind h3 { font-size: 28px; font-weight: normal; line-height: 35px; text-align: center; }
+	#reFind form { text-align: center; margin: 0 auto; max-width:50%; padding-top: 20px; padding-bottom: 100px; }
+	
+	#reFind form #name1 { background: #fff; border: 1px solid #ddd; }
+	#reFind form #phone2 { background: #fff; border: 1px solid #ddd; }
+	#reFind form #btninput { background: #FFD100; border: none; color: #000; }
+	
+   #btninput { height: 65px; width: 84%; font-size: 1.4em; margin-top: 30px; }
    input { background: #f8f8f8; border: RGB(86, 103, 105) 2px solid; margin: 1rem; width: 80%; min-height: 2rem; padding: 10px; color: RGB(86, 103, 105); font-size: 1rem; }
  
    @media screen and (max-width: 800px) {
