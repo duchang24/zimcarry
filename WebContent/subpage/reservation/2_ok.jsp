@@ -18,7 +18,7 @@
 <jsp:useBean id="ReseDTO" class="com.zimcarry.reservation.ReservationDTO"/>
 <jsp:useBean id="ReseDAO" class="com.zimcarry.reservation.ReservationDAO"/>
 <c:set var="name1" value="${param.name1}"/>
-<c:set var="phone1" value="${param.phone2}"/>
+<c:set var="phone1" value="${param.phone2.replace('-', '')}"/>
 <c:set var="Reser_List" value="${ReseDAO.selectJoin(name1,phone1)}"/>
 </head>
 <body>
@@ -44,8 +44,6 @@
 						<li>예약조회</li>
 					</ul>
 				</div>
-			<p>${name1}></p>
-			<p>${phone1}</p>
 			<c:forEach var="item" items="${Reser_List}" varStatus="status">
 				<p>예약 번호 : ${item.bIdx}</p>
 				<p>예약자 이름 : ${item.bName}</p>

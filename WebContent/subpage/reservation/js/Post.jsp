@@ -93,7 +93,6 @@
             <%
                 session.setAttribute("p_number",str);
             %>
-            alert("인증번호가 발송되었습니다.")
         </script>
         <br/>이통사 정책에 따라 발신번호와 수신번호가 같은 경우 발송되지 않습니다.
     </form>
