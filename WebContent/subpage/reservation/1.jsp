@@ -54,13 +54,13 @@
 					
 					<h1 id="h1">구간 선택</h1>
 					<div id="box_bds">
-						<select name="b_start" id="select_op">
+						<select name="bStart" id="select_op">
 							<option value="">맡기는 장소</option>
 							<option value="부산역">부산역</option>
 							<option value="숙소">숙소</option>
 							<option value="벡스코">숙소</option>
 						</select> 
-						<select name="b_end" id="select_op">
+						<select name="bEnd" id="select_op">
 							<option value="">찾는 장소</option>
 							<option value="부산역">부산역</option>
 							<option value="숙소">숙소</option>
@@ -68,33 +68,34 @@
 						</select>
 					</div>
 
-					<h1 id="h1">맡길 시간</h1>
-					<div id="box_bd">
-						<input type="text" name="bBookingdate" id="Datepickerstart"placeholder="YYYY-MM-DD">
-						<select name="bBookingtime1" id="select_op">
-							<option value="">시 선택</option>
-							<option value="9">오전 9시</option>
-							<option value="10">오전 10시</option>
-							<option value="11">오전 11시</option>
-							<option value="12">오후 12시</option>
-							<option value="14">오후 1시</option>
-							<option value="15">오후 2시</option>
-						</select> 
-						<select name="bBookingtime2" id="select_op">
-							<option value="">분 선택</option>
-							<option value="0">0분</option>
-							<option value="10">10분</option>
-							<option value="20">20분</option>
-							<option value="30">30분</option>
-							<option value="40">40분</option>
-							<option value="50">50분</option>
-						</select>
-					</div>
-	
-					<h1 id="h1">찾을 날짜</h1>
-					<div id="box_bds">
-						<input type="text" name="bBookingdateend" id="Datepickerend" placeholder="찾는 날짜를 입력하세요.">
-					</div>
+				<h1 id="h1">맡길 시간</h1>
+				<div id="box_bd">
+					<input type="text" name="bBookingdate" id="Datepickerstart"placeholder="YYYY-MM-DD">
+					<select name="bBookingtime1" id="select_op">
+						<option value="">시 선택</option>
+						<option value="9">오전 9시</option>
+						<option value="10">오전 10시</option>
+						<option value="11">오전 11시</option>
+						<option value="12">오후 12시</option>
+						<option value="14">오후 1시</option>
+						<option value="15">오후 2시</option>
+					</select> 
+					<select name="bBookingtime2" id="select_op">
+						<option value="">분 선택</option>
+						<option value="0">0분</option>
+						<option value="10">10분</option>
+						<option value="20">20분</option>
+						<option value="30">30분</option>
+						<option value="40">40분</option>
+						<option value="50">50분</option>
+					</select>
+				</div>
+
+				<h1 id="h1">찾을 날짜</h1>
+				<div id="box_bds">
+				<input type="text" name="bBookingdateend" id="Datepickerend" placeholder="찾는 날짜를 입력하세요.">
+				</div>
+
 
 				<h1 id="h1">26인치 이상 수하물</h1>
 				<div id="box_bds">
@@ -116,7 +117,8 @@
 			</div>
 		</div>
 	</div>
-	<script src="../../js/rs_Form.js" type="text/javascript"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+	<script src="../../js/main.js"></script>
 	<!-- footer -->
 	<%@ include file="../../common/footer.jsp"%>
 	<!-- footer end -->

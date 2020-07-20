@@ -10,21 +10,23 @@
 	int recNum = 0;
 	int paging = 0;
 	
-	if(request.getParameter("hName") != null){
+	if(request.getParameter("hName") != null && request.getParameter("start") != null && request.getParameter("recNum") != null){
 		hName = request.getParameter("hName");
 		if(request.getParameter("start").equals("1")){
 			start = 0;
 			recNum = Integer.parseInt(request.getParameter("recNum"));
-			
 		}else{
 			start = Integer.parseInt(request.getParameter("start"));
 			recNum = Integer.parseInt(request.getParameter("recNum"));
 			start = (start-1)*recNum;
-			
 		}
-		
 		List<HotelDTO> hotelList = hotelDAO.getHotelMain(hName, start, recNum);
 		out.println(hotelList);
+		
+		
+	}else if(request.getParameter("hName") != null){
+		hName = request.getParameter("hName");
+		out.println(hotelDAO.hotelCnt(hName));
 	}
 	
 	if(request.getParameter("paging") != null){

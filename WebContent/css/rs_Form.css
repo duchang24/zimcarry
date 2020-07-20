@@ -15,7 +15,7 @@
   #box_bds { border: 3px solid #77787B; width: 534px; height: 120px; margin: 0 auto; padding: 50px 0 0 0; }
 
 
-   @media screen and (max-width: 800px) {
+  @media screen and (max-width: 800px) {
 
     .white { width: 100%; }
     .white .sub_content { width: 100%; }
@@ -29,5 +29,13 @@
     .white .sub_content .sub_indicator > ul { display: none; }
     .white .sub_content .sub_indicator > h2 { font-size: 30px; color: black; font-weight: 600; }
   
-    input { width: 80%; }
-   }
+    form { margin: 0 auto;  }  
+    input { width: 150%; margin: 10px -58px; }
+    #btninput { margin: 10px auto; }
+    #h1 { width: 130%; height: 24px; margin: 20px -40px 0; }
+    #select_op { width: 49%; height: 60px; margin: 5px 0 0 0; }
+    #box_bd { width: 350px; height: 180px; margin: 0px -84px; }
+    .input_sht { width: 89%; margin: 15px auto; }
+    #Datepickerstart, #Datepickerend { width: 90%; }
+    #box_bds { width: 350px; height: 140px; margin: 0px -84px; }
+  }

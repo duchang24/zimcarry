@@ -12,7 +12,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:300,400|Oswald:400,500"
 	rel="stylesheet">
-<link href="../../css/rs_Form.css" type="text/css" rel="stylesheet">
+<link href="../../css/rs2.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -45,7 +45,6 @@
 				</div>	
 		
 			<form action="#" name="my_form" id="form-2">
-				<h1>조회하기</h1>
 				<input type="text" name="name1" placeholder="이름">
 				<input type="text" name="phone2" id="phone2" placeholder="휴대폰 번호"> 
 				<input type="button" id="btninput" value="휴대폰인증"onclick="popup();">
@@ -55,6 +54,10 @@
 			</div>
 		</div>
 	</div>
+	
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+	<script src="../../js/main.js"></script>
+	
 	<!-- footer -->
 	<%@ include file="../../common/footer.jsp"%>
 	<!-- footer end -->

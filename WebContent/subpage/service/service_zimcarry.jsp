@@ -190,7 +190,7 @@
 			<div id="room_infor">
 				<div class="box_inner">
 					<div id="find_room">
-						<input type="search" placeholder="숙소를 검색해 보세요"> <button onclick="find()"></button>
+						<input type="search" placeholder="숙소를 검색해 보세요"> <a onclick="find()"></a>
 					</div>
 					<ul id="1" class="clear2 on3">
                       
@@ -216,13 +216,8 @@
 	                      
 					<div class="num_click">
 						<input type="hidden" name="totCnt" id="totCnt" value="${totCnt}">
-						<p id="page" class="paging">
-						</p>
-	                    
-                    <!-- <div>
-                        <a id="prev"><img src="../../images/ico/prev_btn.jpg" alt="이전"></a>
-                        <a id="next"><img src="../../images/ico/next_btn.jpg" alt="다음"></a>
-                    </div>  -->
+						<div id="page" class="paging">
+						</div>
 	                </div>
             	</div>
         	</div>

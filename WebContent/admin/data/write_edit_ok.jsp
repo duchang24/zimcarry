@@ -4,6 +4,7 @@
 <%@ page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page import="java.io.File"%>
 <%@ page import="com.zimcarry.util.FileService"%>
+<%@ page import="java.lang.IllegalArgumentException"%>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%	request.setCharacterEncoding("UTF-8"); %>
 <jsp:useBean id="noticeDAO" class="com.zimcarry.notice.NoticeDAO" />
@@ -12,6 +13,11 @@
 <%
 	try {
 		FileService fs = new FileService();
+		File temp = new File(request.getRealPath("uploads"));
+		if (!temp.exists()) {
+			System.out.println("파일 또는 디렉토리 없음");
+			temp.mkdir();
+		}
 		fs.setRealPath(request.getRealPath("uploads"));
 		int maxSize = 100 * 1024 * 1024;
 		String savePath = fs.getRealPath();
@@ -77,7 +83,12 @@
 				}
 			}
 		}
+	} catch (IllegalArgumentException e1) {
+		e1.printStackTrace();
+		System.out.println("파일오류");
+		
 	} catch (Exception e) {
+		e.printStackTrace();
 %>
 		<script>
 			alert('잘못된 접근입니다.');

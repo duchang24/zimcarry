@@ -59,7 +59,6 @@ public class FileService {
 		return true;
 	}
 	
-	
 	public void moveFile(NoticeDTO noticeDTO, File file) {
 		File dir = new File(realPath + "/" + getToday());
 		if(!dir.isDirectory()) {
