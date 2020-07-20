@@ -18,7 +18,8 @@
 <jsp:useBean id="noitceDAO" class="com.zimcarry.notice.NoticeDAO" />
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:useBean id="hotelDAO" class="com.zimcarry.hotel.HotelDAO" />
-<c:set var="bookList" value="${bookDAO.selectBookList()}" />
+<jsp:useBean id="faqDAO" class="com.zimcarry.faq.FaqDAO" />
+<c:set var="bookList" value="${bookDAO.selectBookList('0, 10')}" />
 <!DOCTYPE html>
 <html lang="ko">
 <!-- head -->
@@ -66,7 +67,7 @@
 				            	<i class="material-icons">content_copy</i>
 				            </div>
 				            <p class="card-category">공지사항</p>
-				            <h3 class="card-title">${noitceDAO.noticeListSize()}(${noitceDAO.noticeListSize('n')}) 개</h3>
+				            <h3 class="card-title">${noitceDAO.noticeListSize()}(${noitceDAO.noticeListSize('x')}) 개</h3>
 			            </div>
 			            <div class="card-footer">
 				            <div class="stats">
@@ -95,7 +96,7 @@
 	              <div class="card card-stats">
 	                <div class="card-header card-header-info card-header-icon">
 	                  <div class="card-icon">
-	                    <i class="fa fa-twitter"></i>
+	                    <i class="material-icons">store</i>
 	                  </div>
 	                  <p class="card-category">제휴호텔 개수</p>
 	                  <h3 class="card-title">${hotelDAO.totCnt()} 개</h3>
@@ -107,13 +108,29 @@
 	                </div>
 	              </div>
 	            </div>
-	          </div>
+		        <div class="col-lg-3 col-md-6 col-sm-6">
+	              <div class="card card-stats">
+	                <div class="card-header card-header-success card-header-icon">
+	                  <div class="card-icon">
+	                    <i class="material-icons">content_copy</i>
+	                  </div>
+	                  <p class="card-category">FAQ 개수</p>
+	                  <h3 class="card-title">${faqDAO.faqListSize()} 개</h3>
+	                </div>
+	                <div class="card-footer">
+	                  <div class="stats">
+	                    <i class="material-icons">date_range</i> FAQ 개수
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	       	 </div>
        	 </div>
        	 <div class="col-lg-6 col-md-12">
 				<div class="card">
 					<div class="card-header card-header-warning">
-						<h4 class="card-title">최근 예약 현황</h4>
-						<p class="card-category">${today}</p>
+						<h4 class="card-title">최근 예약 현황 / 총 예약 건수(${bookDAO.bookListSize()})</h4>
+						<p class="card-category">${today} / 최근 10개 예약</p>
 					</div>
 					<div class="card-body table-responsive">
 						<table class="table table-hover">
@@ -151,7 +168,6 @@
       <!-- footer -->
       <%@ include file="./footer.jsp" %>
     </div>
-  </div>
   <!--   Core JS Files   -->
   <%@ include file="./core_js.jsp" %>
   <script>

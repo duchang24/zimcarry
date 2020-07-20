@@ -1,5 +1,7 @@
 package com.zimcarry.util;
 
+import java.util.Date;
+
 public class Util {
 
 	public String changeScoreString(String score) {
@@ -43,6 +45,10 @@ public class Util {
 			return new int[1];
 		}
 		return new int[pageCount];
+	}
+	
+	public Date getToday() {
+		return new Date();
 	}
 }
 

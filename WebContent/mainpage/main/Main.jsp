@@ -40,7 +40,7 @@
                                     <a href="../../subpage/reservation/1.jsp">예약하기</a>
                                 </div>
                                 <div class="chk">
-                                    <a href="#">예약확인</a>
+                                    <a href="../../subpage/reservation/2.jsp">예약확인</a>
                                 </div>
                             </div>
                         </div>

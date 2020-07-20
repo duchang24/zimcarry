@@ -30,11 +30,12 @@ public class HotelDAO {
 		return 0;
 	}
 	
-	public int hotelCnt() {
+	public int totCnt(String h_name) {
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT count(h_idx) as cnt FROM tb_hotel WHERE h_partner='O'";
+			String sql = "SELECT count(h_idx) as cnt FROM tb_hotel WHERE h_name LIKE ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+h_name+"%");
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				return rs.getInt("cnt");
@@ -169,6 +170,41 @@ public class HotelDAO {
 	}
 	
 	// main page
+	public int hotelCnt() {
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT count(h_idx) as cnt FROM tb_hotel WHERE h_partner='O'";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt("cnt");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return 0;
+	}
+	
+	public int hotelCnt(String h_name) {
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT count(h_idx) as cnt FROM tb_hotel WHERE h_partner='O' AND h_name LIKE ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+h_name+"%");
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt("cnt");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		return 0;
+	}
+	
 	public List<HotelDTO> getHotelMain(int start, int recNum){
 		List<HotelDTO> hotelList = new ArrayList<HotelDTO>();
 		try {

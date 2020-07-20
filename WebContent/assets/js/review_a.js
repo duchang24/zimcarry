@@ -1,5 +1,5 @@
 function review_d(reIdx, reBookidx) {
-	
+
 	$(".content .review_detail").toggleClass('off');
 	
 	var xhr = new XMLHttpRequest();

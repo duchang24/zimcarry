@@ -185,6 +185,12 @@
         if(Result.equals("success")) {
             alert = "성공적으로 발송하였습니다.";
             alert += " 잔여건수는 "+ Count+"건 입니다.";
+            %>
+            
+            <script>
+            self.close();
+            </script>
+			<%
         }
         else if(Result.equals("reserved")) {
             alert = "성공적으로 예약되었습니다";

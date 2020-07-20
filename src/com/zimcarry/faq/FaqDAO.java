@@ -69,8 +69,6 @@ public class FaqDAO {
 		}
 	}
 	
-	
-	
 	public List<FaqDTO> selectFaqList(String limit) {
 		List<FaqDTO> faqList = new ArrayList<FaqDTO>();
 		try {
