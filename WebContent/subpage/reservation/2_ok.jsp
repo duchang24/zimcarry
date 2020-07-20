@@ -62,6 +62,11 @@
 </div>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 	<script src="../../js/main.js"></script>
+	<script>
+		$(function() {
+			$("#carry").addClass("animate");
+		});
+	</script>
 	
 	<!-- footer -->
 	<%@ include file="../../common/footer.jsp"%>
