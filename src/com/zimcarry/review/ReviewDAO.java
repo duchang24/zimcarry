@@ -16,7 +16,7 @@ public class ReviewDAO {
 	public List<ReviewDTO> selectAll(String limit) {
 
 		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
-		
+	
 		try {
 			conn = DBConn.getConnection();
 			String sql = "SELECT re_idx, re_score, re_title, re_content, re_writedate, re_bookidx, re_hidden FROM tb_review ORDER BY re_idx DESC LIMIT " + limit;
