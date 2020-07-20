@@ -47,22 +47,22 @@
 			<p>${name1}></p>
 			<p>${phone1}</p>
 			<c:forEach var="item" items="${Reser_List}" varStatus="status">
-				<p>예약 번호:${item.bIdx}</p>
-				<p>예약자 이름:${item.bName}</p>
-				<p>예약자 휴대전화번호:${item.bHp}</p>
-				<p>이동 구간:${item.bStart} -> ${item.bEnd}</p>
-				<p>예약 날짜 :${item.bBookingdate}</p>
-				<p>물건 찾으시는 날짜${item.bStartdate}</p>
-				<p>찾으시는 시간:${item.bEnddate}</p>
-				<p>26인치 이상 물건:${item.bOver26}</p>
-				<p>26인치 이하 물건 :${item.bUnder26}</p> 
-				<p>총 금액:${item.bPrice}</p>
+				<p>예약 번호 : ${item.bIdx}</p>
+				<p>예약자 이름 : ${item.bName}</p>
+				<p>예약자 휴대전화번호 : ${item.bHp}</p>
+				<p>이동 구간 : ${item.bStart} -> ${item.bEnd}</p>
+				<p>예약 날짜 : ${item.bBookingdate}</p>
+				<p>물건 찾으시는 날짜 : ${item.bStartdate}</p>
+				<p>찾으시는 시간 : ${item.bEnddate}</p>
+				<p>26인치 이상 물건 : ${item.bOver26} 개</p>
+				<p>26인치 이하 물건 : ${item.bUnder26} 개</p> 
+				<p>총 금액 : ${item.bPrice} 원</p>
 			</c:forEach>
 			<input type="button" id="btninput" value="예약취소" onclick="popup();">
 			<input type="button" id="btninput" value="돌아가기" onclick="location.href='2.jsp'">
 		</div>
 	</div>
-	</div>
+</div>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 	<script src="../../js/main.js"></script>
 	
