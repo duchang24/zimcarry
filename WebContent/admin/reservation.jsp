@@ -24,7 +24,17 @@
 			<!-- End Navbar -->
 			<div class="content">
 				<h1>예약 관리</h1>
-				
+				<div class="today">
+					<h2>Today</h2>
+					<div class="short">
+						<div>
+							오늘 예약자 수
+						</div>
+						<div>
+							총 예약자 수
+						</div>
+					</div>
+				</div>
 			</div>
 		<!-- footer -->
 		<%@ include file="./footer.jsp" %>
