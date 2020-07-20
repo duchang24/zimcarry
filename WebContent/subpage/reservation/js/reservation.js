@@ -40,6 +40,14 @@ $(function() {
    sum = sum1+sum2;
    $("#bPrice").val(sum);
    });
+   
+//   $('select[name="bStart"]').on('change', function() {
+//	  if ($(this).val() == '숙소') {
+//		  console.log('숙소');
+//		  
+//		  
+//	  }
+//   });
    $("#name2").val(localStorage.getItem('name'));
     $("#phone2").val(localStorage.getItem('phone'));
    localStorage.clear();
