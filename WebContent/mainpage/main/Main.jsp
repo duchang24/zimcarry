@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>짐 없는 여행의 시작! 짐캐리</title>
+<title>짐 없는 여행의 시작! 아임캐리</title>
 </head>
 <link href="../../css/mainstyle.css" rel="stylesheet">
 <link href="../../images/ico_tit.ico" rel="shortcut icon" type="image/x-icon">
@@ -52,7 +52,7 @@
             <!-- section1 -->
             <section class="sec1">
                 <article class="art_wrap">
-                    <h2>짐캐리 <span>간편 이용방법</span></h2>
+                    <h2>아임캐리 <span>간편 이용방법</span></h2>
                     <div class="art_inner">
 
                         <div class="art_box">
@@ -86,7 +86,7 @@
             <!-- section2 -->
             <section class="sec2">
                 <div class="container_radio">
-                    <h2>짐캐리 이벤트</h2>
+                    <h2>아임캐리 이벤트</h2>
 
                     <input type="radio" name="slider" id="item-1" checked>
                     <input type="radio" name="slider" id="item-2">

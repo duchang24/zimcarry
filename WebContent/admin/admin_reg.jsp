@@ -34,6 +34,7 @@
       <!-- End Navbar -->
 		    <div class="content">
 				<div class="admin_regist">
+			    	<h2>관리자 등록</h2>
 					<form method="post" action="./data/admin_reg_ok.jsp">
 			          	<p>AdminId <input type="text" name="admin_id" id="admin_id"></p>
 			          	<p>Password <input type="password" name="admin_pw" id="admin_pw"></p>

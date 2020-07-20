@@ -12,7 +12,7 @@
 <html>
 <head>
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>짐 없는 여행의 시작! 짐캐리</title>
+	<title>짐 없는 여행의 시작! 아임캐리</title>
 	<link href="../../css/service_style.css" rel="stylesheet">
 	<link href="../../images/ico_tit.ico" rel="shortcut icon" type="image/x-icon">
 </head>
@@ -24,29 +24,29 @@
 	<div class="service sub_content_wrap">
 		<div class="sub_title box_inner">
 			짐없는 여행의 시작<br>
-			<span>짐캐리</span>
+			<span>아임캐리</span>
 		</div>
 		<div class="white1_1">
 			<div id="sub_content" class="box_inner sub_content">
 				<nav class="sub_navi">
 					<ul>
-						<li><a href="./service_zimcarry.jsp">짐캐리란</a></li>
+						<li><a href="./service_zimcarry.jsp">아임캐리란</a></li>
 						<li><a href="./service_delivery.jsp">운송서비스</a></li>
 						<li><a href="./service_carry.jsp">보관서비스</a></li>
                       </ul>
 				</nav>
 				<div class="sub_indicator box_inner">
-					<h2>짐캐리란</h2>
+					<h2>아임캐리란</h2>
 					<ul>
 						<li>Home</li>
 						<li>서비스</li>
-						<li>짐캐리란</li>
+						<li>아임캐리란</li>
 					</ul>
 				</div>
 				<div class="box_inner clear2">
 					<div id="serve_content">
 						<h3>역·공항 수하물 보관 & 픽업 서비스</h3>
-						<p>짐캐리 서비스는 여행 · 출장객 짐을 보관하거나<br><span>[부산역 ↔ 숙소], [김해공항 ↔ 숙소], [숙소 ↔ 숙소]</span> 구간에서 <br>짐을 옮겨드리는 서비스입니다.</p>
+						<p>아임캐리 서비스는 여행 · 출장객 짐을 보관하거나<br><span>[부산역 ↔ 숙소], [김해공항 ↔ 숙소], [숙소 ↔ 숙소]</span> 구간에서 <br>짐을 옮겨드리는 서비스입니다.</p>
 						<ul class="serve_content_box clear2">
 							<li>
 								<div class="box_img"></div>
@@ -88,7 +88,7 @@
 		<div class="gray1_1">
 			<div id="serve_infor">
 				<div class="box_inner">
-					<h2>짐캐리 부산 매장안내도</h2>
+					<h2>아임캐리 부산 매장안내도</h2>
 					<ul class="infor_menu clear2">
 						<a id="s1" class="on"><li>부산역</li></a>
 						<a id="s2"><li>김해공항 국내선</li></a>
@@ -113,7 +113,7 @@
 										</li>
 										<li>
 											<div class="shop_circle clear2">02</div>
-											<p class=" clear2">출구 앞 짐캐리로 짐을 가지고 들어가기</p>
+											<p class=" clear2">출구 앞 아임캐리로 짐을 가지고 들어가기</p>
 										</li>
 									</ul>
 									<div class="infor_shop_content_time">
@@ -173,7 +173,7 @@
 									<ul>
 										<li>
 											<div class="shop_circle clear2">01</div>
-												<p>벡스코 제 1전시장 1층 2호 짐캐리 이용하기</p>
+												<p>벡스코 제 1전시장 1층 2호 아임캐리 이용하기</p>
 										</li>
 									</ul>
 									<div class="infor_shop_content_time">

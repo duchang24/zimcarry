@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>짐 없는 여행의 시작! 짐캐리</title>
+<title>짐 없는 여행의 시작! 아임캐리</title>
 </head>
 <link href="../../css/event_style.css" rel="stylesheet">
 <link href="../../images/ico_tit.ico" rel="shortcut icon" type="image/x-icon">
@@ -17,7 +17,7 @@
 		 <div class="customer sub_content_wrap sub_page">
             <div class="sub_title box_inner">
                 짐없는 여행의 시작<br>
-                <span>짐캐리</span>
+                <span>아임캐리</span>
             </div>
             <div class="white">
                 <div id="sub_content" class="box_inner sub_content event_content">
@@ -43,7 +43,7 @@
                                 <tbody>
                                     <tr>
                                         <td>부산시티투어</td>
-                                        <td>짐캐리</td>
+                                        <td>아임캐리</td>
                                         <td>2019-11-11</td>
                                     </tr>
                                 </tbody>

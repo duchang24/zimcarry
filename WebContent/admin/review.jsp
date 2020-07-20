@@ -4,7 +4,12 @@
 <%@ page isELIgnored="false" %>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%  request.setCharacterEncoding("utf-8"); %>
-
+<c:if test="${empty sessionScope.admin_id}">
+	<script>
+		alert('로그인 후 이용하세요.');
+		location.href='./admin.jsp';
+	</script>
+</c:if>
 <jsp:useBean id="reviewDAO" class="com.zimcarry.review.ReviewDAO" />
 <jsp:useBean id="reviewDTO" class="com.zimcarry.review.ReviewDTO" />
 <jsp:useBean id="bookDAO" class="com.zimcarry.book.BookDAO" />

@@ -23,7 +23,7 @@
 	<div class="reservation sub_content_wrap">
 		<div class="sub_title box_inner">
 			짐없는 여행의 시작<br>
-			<span>짐캐리</span>
+			<span>아임캐리</span>
 		</div>
 			<div class="white">
 			<div id="sub_content" class="box_inner sub_content">
@@ -41,19 +41,21 @@
 						<li>예약조회</li>
 					</ul>
 				</div>
+			<div id="list">	
 			<c:forEach var="item" items="${Reser_List}" varStatus="status">
-				<p>예약 번호 : ${item.bIdx}</p>
-				<p>예약자 이름 : ${item.bName}</p>
-				<p>예약자 휴대전화번호 : ${item.bHp}</p>
-				<p>이동 구간 : ${item.bStart} -> ${item.bEnd}</p>
-				<p>예약 날짜 : ${item.bBookingdate}</p>
-				<p>물건 찾으시는 날짜 : ${item.bStartdate}</p>
-				<p>찾으시는 시간 : ${item.bEnddate}</p>
-				<p>26인치 이상 물건 : ${item.bOver26} 개</p>
-				<p>26인치 이하 물건 : ${item.bUnder26} 개</p> 
-				<p>총 금액 : ${item.bPrice} 원</p>
+				<p><span>예약 번호</span> : ${item.bIdx}</p>
+				<p><span>예약자 이름</span> : ${item.bName}</p>
+				<p><span>예약자 휴대전화번호</span> : ${item.bHp}</p>
+				<p><span>이동 구간</span> : ${item.bStart} -> ${item.bEnd}</p>
+				<p><span>예약 날짜</span> : ${item.bBookingdate}</p>
+				<p><span>물건 찾으시는 날짜</span> : ${item.bStartdate}</p>
+				<p><span>찾으시는 시간</span> : ${item.bEnddate}</p>
+				<p><span>26인치 이상 물건</span> : ${item.bOver26} 개</p>
+				<p><span>26인치 이하 물건</span> : ${item.bUnder26} 개</p> 
+				<p><span>총 금액</span> : ${item.bPrice} 원</p>
 			</c:forEach>
-			<input type="button" id="btninput" value="예약취소" onclick="popup();">
+			</div>
+			<img src="../../images/img/carry-data.png" id="carry">
 			<input type="button" id="btninput" value="돌아가기" onclick="location.href='2.jsp'">
 		</div>
 	</div>

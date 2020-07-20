@@ -26,7 +26,7 @@
 	<div class="reservation sub_content_wrap">
 		<div class="sub_title box_inner">
 			짐없는 여행의 시작<br>
-			<span>짐캐리</span>
+			<span>아임캐리</span>
 		</div>
 		<div class="white">
 			<div id="sub_content" class="box_inner sub_content">

@@ -45,7 +45,7 @@
 %>
 	<script>
 		alert('예약성공!');
-		location.href='./1.jsp';
+		location.href='./2.jsp';
 	</script>
 <%
 	} else {

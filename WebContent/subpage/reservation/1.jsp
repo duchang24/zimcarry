@@ -33,7 +33,7 @@
 	<div class="reservation sub_content_wrap">
 		<div class="sub_title box_inner">
 			짐없는 여행의 시작<br>
-			<span>짐캐리</span>
+			<span>아임캐리</span>
 		</div>
 		<div class="white">
 			<div id="sub_content" class="box_inner sub_content">
@@ -58,7 +58,7 @@
 					<input type="hidden" name="ck_phone" value="no" id="isIdCheck">
 					<input type="text" name="ck_phone2" placeholder="전송된 인증번호를 입력하세요" id="ck_phone2">
 					<input type="hidden" value=<%=se_phone%> id="se_phone">
-					<p><%=se_phone %></p>
+
 					<h1 id="h1">구간 선택</h1>
 					<div id="box_bds">
 						<select name="bStart" id="select_op">

@@ -3,7 +3,7 @@
 <div class="sidebar" data-color="orange" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
 
   <div class="logo"><a href="admin.jsp" class="simple-text logo-normal">
-      Zimcarry admin
+      I'm carry admin
     </a></div>
   <div class="sidebar-wrapper">
     <ul class="nav">

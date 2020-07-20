@@ -13,7 +13,7 @@
 	</script>
 </c:if>
 
-<c:set var="totCnt" value="${hotelDAO.totCnt()}"/>
+<c:set var="totCnt" value="${hotelDAO.totCnt()}" /> 
 <c:set var="hotelList" value="${hotelDAO.selectHotel(0, 12)}"/>
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
 <%@ include file="./head.jsp" %>
 
 <body class="">
-  <div class="wrapper ">
+  <div class="wrapper">
     <!-- side menu -->
     <%@ include file="./side_menu.jsp" %>
     <div class="main-panel">
