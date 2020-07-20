@@ -44,14 +44,13 @@ public class ReservationDAO {
 		return false;
 	}
 	public List<ReservationDTO> selectJoin(String name,String phone)
+
 	{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<ReservationDTO> boardList = new ArrayList<ReservationDTO>();
-		System.out.println("이름과 번호:"+name+" "+phone);
-		name = "민준식";
-		phone = "01093263421";
+
 		try {
 			conn = DBConn.getConnection();
 			String sql = "SELECT b_idx, b_name, b_hp, b_start, b_end, b_bookingdate, b_startdate, b_enddate, b_over26, b_under26, b_price FROM tb_book WHERE b_name=? AND b_hp=? AND b_enddate >= CURDATE();";
