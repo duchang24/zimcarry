@@ -73,6 +73,7 @@
 							<option value="숙소">숙소</option>
 							<option value="벡스코">벡스코</option>
 						</select>
+<!-- 						<input type="text" class="hidden"> -->
 					</div>
 
 				<h1 id="h1">맡길 시간</h1>
@@ -102,7 +103,6 @@
 				<div id="box_bds">
 				<input type="text" name="bBookingdateend" id="Datepickerend" placeholder="찾는 날짜를 입력하세요.">
 				</div>
-
 
 				<h1 id="h1">26인치 이상 수하물</h1>
 				<div id="box_bds">
