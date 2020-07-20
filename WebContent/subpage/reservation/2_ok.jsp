@@ -4,17 +4,14 @@
 <%@ page isELIgnored="false" %>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>조회하기</title>
 <link href="../../css/rs3.css" rel="stylesheet">
-<link href="../../images/ico_tit.ico" rel="shortcut icon"
-	type="image/x-icon">
-<link
-	href="https://fonts.googleapis.com/css?family=Lato:300,400|Oswald:400,500"
-	rel="stylesheet">
+<link href="../../images/ico_tit.ico" rel="shortcut icon" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400|Oswald:400,500" rel="stylesheet">
 <jsp:useBean id="ReseDTO" class="com.zimcarry.reservation.ReservationDTO"/>
 <jsp:useBean id="ReseDAO" class="com.zimcarry.reservation.ReservationDAO"/>
 <c:set var="name1" value="${param.name1}"/>
@@ -44,7 +41,7 @@
 						<li>예약조회</li>
 					</ul>
 				</div>
-			<p>${name1}></p>
+			<p>${name1}</p>
 			<p>${phone1}</p>
 			<c:forEach var="item" items="${Reser_List}" varStatus="status">
 				<p>예약 번호 : ${item.bIdx}</p>
