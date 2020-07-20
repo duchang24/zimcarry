@@ -10,7 +10,14 @@ input { background: #f8f8f8; border: RGB(86, 103, 105) 2px solid; margin: 10px a
 input:hover { font-weight: bold; background: #ffda00; color: #333; }
 span { font-weight: bold }
 #list { margin: 0 auto; width: 80%; text-align: left; }
-#carry { position: absolute; bottom: 120px; left: 750px; }
+#carry {
+	position: absolute; bottom: 120px; left: 400px;
+	}
+#carry.animate {
+	transform: translateX(450px);
+	transition-duration: 2000ms;
+	transition-delay: 0.3s;
+}
 
 @media screen and (max-width: 800px) {
      
