@@ -42,25 +42,29 @@
 					</ul>
 				</div>
 			<div id="list">	
+			<img src="../../images/ico/deli_ico03.jpg" id="receipt">
 			<c:forEach var="item" items="${Reser_List}" varStatus="status">
-				<p><span>예약 번호</span> : ${item.bIdx}</p>
-				<p><span>예약자 이름</span> : ${item.bName}</p>
-				<p><span>예약자 휴대전화번호</span> : ${item.bHp}</p>
-				<p><span>이동 구간</span> : ${item.bStart} -> ${item.bEnd}</p>
-				<p><span>예약 날짜</span> : ${item.bBookingdate}</p>
-				<p><span>물건 찾으시는 날짜</span> : ${item.bStartdate}</p>
-				<p><span>찾으시는 시간</span> : ${item.bEnddate}</p>
-				<p><span>26인치 이상 물건</span> : ${item.bOver26} 개</p>
-				<p><span>26인치 이하 물건</span> : ${item.bUnder26} 개</p> 
-				<p><span>총 금액</span> : ${item.bPrice} 원</p>
+				<p><span>예약 번호 : </span> ${item.bIdx}</p>
+				<p><span>예약자 이름 : </span> ${item.bName}</p>
+				<p><span>예약자 휴대전화번호 : </span> ${item.bHp}</p>
+				<p><span>이동 구간 : </span> ${item.bStart} -> ${item.bEnd}</p>
+				<p><span>예약 날짜 : </span> ${item.bBookingdate}</p>
+				<p><span>물건 찾으시는 날짜 : </span> ${item.bStartdate}</p>
+				<p><span>찾으시는 시간 : </span> ${item.bEnddate}</p>
+				<p><span>26인치 이상 물건 : </span> ${item.bOver26} 개</p>
+				<p><span>26인치 이하 물건 : </span> ${item.bUnder26} 개</p> 
+				<p><span>총 금액 : </span> ${item.bPrice} 원</p>
 			</c:forEach>
 			</div>
-			<img src="../../images/img/carry-data.png" id="carry">
-			<input type="button" id="btninput" value="돌아가기" onclick="location.href='2.jsp'">
+			<div>
+				<img src="../../images/img/carry-data.png" id="carry">
+				<input type="button" id="btninput" value="돌아가기" onclick="location.href='2.jsp'">
+			</div>
 		</div>
 	</div>
 </div>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'>
+	</script>
 	<script src="../../js/main.js"></script>
 	<script>
 		$(function() {
