@@ -42,20 +42,8 @@
 					</ul>
 				</div>
 			<div id="list">	
-			<img src="../../images/ico/deli_ico03.jpg" id="receipt">
 			<c:forEach var="item" items="${Reser_List}" varStatus="status">
-<<<<<<< HEAD
-				<p><span>예약 번호 : </span> ${item.bIdx}</p>
-				<p><span>예약자 이름 : </span> ${item.bName}</p>
-				<p><span>예약자 휴대전화번호 : </span> ${item.bHp}</p>
-				<p><span>이동 구간 : </span> ${item.bStart} -> ${item.bEnd}</p>
-				<p><span>예약 날짜 : </span> ${item.bBookingdate}</p>
-				<p><span>물건 찾으시는 날짜 : </span> ${item.bStartdate}</p>
-				<p><span>찾으시는 시간 : </span> ${item.bEnddate}</p>
-				<p><span>26인치 이상 물건 : </span> ${item.bOver26} 개</p>
-				<p><span>26인치 이하 물건 : </span> ${item.bUnder26} 개</p> 
-				<p><span>총 금액 : </span> ${item.bPrice} 원</p>
-=======
+
 				<div id="list_1">
 					<h2 id="h2_1">예약자 입력정보</h2>
 					<p><span>예약 번호</span> : ${item.bIdx}</p>
@@ -72,10 +60,8 @@
 					<p><span>26인치 이하 물건</span> : ${item.bUnder26} 개</p> 
 					<p><span>총 금액</span> : ${item.bPrice} 원</p>
 				</div>
-				<div id="list_3">
-					
-				</div>
->>>>>>> 9077228a031b052c5be67c678439df47feaba49e
+
+
 			</c:forEach>
 			</div>
 			
