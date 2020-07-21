@@ -46,7 +46,7 @@
 			<c:forEach var="item" items="${Reser_List}" varStatus="status">
 				<p><span>예약 번호 : </span> ${item.bIdx}</p>
 				<p><span>예약자 이름 : </span> ${item.bName}</p>
-				<p><span>예약자 휴대전화번호 : </span> ${item.bHp}</p>
+				<p><span>예약자 연락처 : </span> ${item.bHp.substring(0, 3)} - ${item.bHp.substring(2, 6)} - ${item.bHp.substring(7)}</p>
 				<p><span>이동 구간 : </span> ${item.bStart} -> ${item.bEnd}</p>
 				<p><span>예약 날짜 : </span> ${item.bBookingdate}</p>
 				<p><span>물건 찾으시는 날짜 : </span> ${item.bStartdate}</p>

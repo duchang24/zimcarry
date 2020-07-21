@@ -54,7 +54,7 @@ $(document).ready(function() {
 	$('.btn_edit').on('click', function() {
 		
 		let fIdx = $(this).val();
-		let fQuestion = $(this).parent().parent().parent().find('.q_area').text().trim();
+		let fQuestion = $(this).parent().parent().parent().find('.q_area').text().trim().replace('질문:', '');
 		let fAnswer = $(this).parent().parent().parent().next().find('div').html().trim();
 		let fHidden = $(this).parent().parent().find('p.data').text().trim().split('//')[1].split(':')[1].trim();
 

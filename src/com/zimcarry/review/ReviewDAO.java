@@ -159,4 +159,23 @@ public class ReviewDAO {
 		return 0;
 	}
 	
+	public String reviewAverage() {
+		double avg = 0.0;
+		try {
+			conn = DBConn.getConnection();
+			String sql = "SELECT AVG(re_score) AS average FROM tb_review";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				avg = rs.getDouble("average");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstmt, rs);
+		}
+		
+		return String.format("%.2f", avg);
+	}
+	
 }

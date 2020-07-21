@@ -129,7 +129,7 @@ public class BookDAO {
 				bookDTO = new BookDTO();
 				bookDTO.setbIdx(rs.getLong("b_idx"));
 				bookDTO.setbName(rs.getString("b_name"));
-				bookDTO.setbHp(rs.getString("b_hp").substring(7));
+				bookDTO.setbHp(rs.getString("b_hp"));
 				bookDTO.setbStart(rs.getString("b_start"));
 				bookDTO.setbEnd(rs.getString("b_end"));
 				bookDTO.setbStartdate(rs.getDate("b_startdate"));
@@ -157,7 +157,7 @@ public class BookDAO {
 				bookDTO = new BookDTO();
 				bookDTO.setbIdx(rs.getLong("b_idx"));
 				bookDTO.setbName(rs.getString("b_name"));
-				bookDTO.setbHp(rs.getString("b_hp").substring(7));
+				bookDTO.setbHp(rs.getString("b_hp"));
 				bookDTO.setbStart(rs.getString("b_start"));
 				bookDTO.setbEnd(rs.getString("b_end"));
 				bookDTO.setbStartdate(rs.getDate("b_startdate"));
@@ -186,7 +186,7 @@ public class BookDAO {
 				bookDTO = new BookDTO();
 				bookDTO.setbIdx(rs.getLong("b_idx"));
 				bookDTO.setbName(rs.getString("b_name"));
-				bookDTO.setbHp(rs.getString("b_hp").substring(7));
+				bookDTO.setbHp(rs.getString("b_hp"));
 				bookDTO.setbStart(rs.getString("b_start"));
 				bookDTO.setbEnd(rs.getString("b_end"));
 				bookDTO.setbStartdate(rs.getDate("b_startdate"));
@@ -227,7 +227,7 @@ public class BookDAO {
 				bookDTO = new BookDTO();
 				bookDTO.setbIdx(rs.getLong("b_idx"));
 				bookDTO.setbName(rs.getString("b_name"));
-				bookDTO.setbHp(rs.getString("b_hp").substring(7));
+				bookDTO.setbHp(rs.getString("b_hp"));
 				bookDTO.setbStart(rs.getString("b_start"));
 				bookDTO.setbEnd(rs.getString("b_end"));
 				bookDTO.setbStartdate(rs.getDate("b_startdate"));
@@ -262,7 +262,7 @@ public class BookDAO {
 				bookDTO = new BookDTO();
 				bookDTO.setbIdx(rs.getLong("b_idx"));
 				bookDTO.setbName(rs.getString("b_name"));
-				bookDTO.setbHp(rs.getString("b_hp").substring(7));
+				bookDTO.setbHp(rs.getString("b_hp"));
 				bookDTO.setbStart(rs.getString("b_start"));
 				bookDTO.setbEnd(rs.getString("b_end"));
 				bookDTO.setbStartdate(rs.getDate("b_startdate"));

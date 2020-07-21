@@ -84,7 +84,7 @@
 	                    <i class="material-icons">info_outline</i>
 	                  </div>
 	                  <p class="card-category">이용 후기</p>
-	                  <h3 class="card-title">${reviewDAO.reviewListSize()} 개</h3>
+	                  <h3 class="card-title">${reviewDAO.reviewListSize()} 개 .. ${reviewDAO.reviewAverage()} 점</h3>
 	                </div>
 	                <div class="card-footer">
 	                  <div class="stats">

@@ -409,7 +409,7 @@ input[type="button"]:hover {
 	background: linear-gradient(60deg, #36D1DC 0%, #6A82FB 100%) !important;
 }
 .table-hover tr td:nth-child(3) {
-	padding-left: 5%;	
+/* 	padding-left: 5%;	 */
 }
 .minisearch_form_wrap {
 	text-align: right;

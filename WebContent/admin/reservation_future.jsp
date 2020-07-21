@@ -24,7 +24,7 @@
 					<tr>
 						<th>예약번호</th>
 						<th>이름</th>
-						<th>전화번호(뒷자리)</th>
+						<th>전화번호</th>
 						<th>경로</th>
 						<th>맡기는 일정</th>
 						<th>찾는 일정</th>
@@ -40,7 +40,7 @@
 						<tr>
 							<td class="idx">${book.bIdx}</td>
 							<td class="name">${book.bName}</td>
-							<td>${book.bHp}</td>
+							<td>${book.bHp.substring(0, 3)} - ${book.bHp.substring(2, 6)} - ${book.bHp.substring(7)}</td>
 							<td>${book.bStart} → ${book.bEnd}</td>
 							<td>${book.bStartdate}</td>
 							<td>${book.bEnddate}</td>
