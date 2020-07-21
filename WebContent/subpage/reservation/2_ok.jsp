@@ -44,6 +44,7 @@
 			<div id="list">	
 			<img src="../../images/ico/deli_ico03.jpg" id="receipt">
 			<c:forEach var="item" items="${Reser_List}" varStatus="status">
+
 				<p><span>예약 번호 : </span> ${item.bIdx}</p>
 				<p><span>예약자 이름 : </span> ${item.bName}</p>
 				<p><span>예약자 연락처 : </span> ${item.bHp.substring(0, 3)} - ${item.bHp.substring(2, 6)} - ${item.bHp.substring(7)}</p>
