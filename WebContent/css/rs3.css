@@ -5,24 +5,37 @@
 .sub_content_wrap .sub_content .sub_navi ul li { width: 50%; }
 .sub_content .sub_navi ul li:last-child a { font-weight: bold; background: #ffda00; }
 
-
-p { line-height: 2; font-size: 24px; font-weight: 400; border-bottom:1px solid;}
-p:last-child { border: none; }
-input { background: #f8f8f8; border: RGB(86, 103, 105) 2px solid; margin: 10px auto; width: 80%; height: 60px; min-height: 2rem; padding: 10px; color: RGB(86, 103, 105); font-size: 1rem; }
+p { line-height: 2.5; font-size: 24px; font-weight: 400; }
+input { background: #f8f8f8; border: RGB(86, 103, 105) 2px solid;
+margin: 10px auto; width: 50%; height: 60px; min-height: 2rem; padding: 10px;
+color: RGB(86, 103, 105); font-size: 1rem; }
 input:hover { font-weight: bold; background: #ffda00; color: #333; }
-
-span { font-weight: bold }
-#list { margin: 0 auto; margin-top:10px; width: 80%; text-align: left; display: flex; background-color: #EAEAEA;}
-#list_1{background-color: #EAEAEA; float: left; padding-left: 20px;}
-#list_2{background-color: #EEEEEE; float:right; padding-left: 20px; padding-right: 20px; margin: 0 0 0 20px;  }
-
-#h2_1{ padding-bottom: 20px; padding-top:20px; }
-
-#carry {position: absolute; bottom: 120px; left: 400px;	}
-@keyframes Name{
-	0% {opacity:0;}
-	100%{opacity:1;}
+span { font-weight: 600; }
+#list {
+	margin: 30px auto; width: 35%; text-align: left;
+	border: 2px solid #FFDA00;
+	border-top-left-radius: 30px 30px;
+	border-bottom-right-radius: 30px 30px;
+	padding: 30px 0;
+	padding-left: 180px;
+	}
+#list p { font-size: 20px; color: #444444; position: relative; }
+#list p:after {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background: #FFD100;
+	left: -24px;
+	bottom: 19px;
 }
+#receipt {
+	margin-left: 60px;
+}
+#carry {
+	position: absolute; bottom: 120px; left: 240px;
+	}
 
 #carry.animate {
 	transform: translateX(500px);
@@ -46,16 +59,16 @@ span { font-weight: bold }
     .white .sub_content .sub_indicator > h2 { font-size: 30px; color: black; font-weight: 600; }
 
     p { font-size: 18px; margin: 0 0 0 10px; }
-    input { margin: 10px 0 0 0; padding: 0; }
+    input { margin: 10px 3px 0 0; padding: 0; }
     #list {
-	margin: 30px auto; width: 80%; text-align: left;
+	margin: 30px 18px auto; width: 80%; text-align: left;
 	border: 2px solid #FFDA00;
 	border-top-left-radius: 30px 30px;
 	border-bottom-right-radius: 30px 30px;
 	padding: 5% 0;
 	padding-left: 10%;
 	}
-	input { width: 90%; margin-top: 0;}
+	input { width: 90%; margin-top: 5%;}
 	#receipt {
 	margin-left: 24%;
 }
